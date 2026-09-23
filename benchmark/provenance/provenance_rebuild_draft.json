@@ -1,0 +1,47 @@
+{
+  "anchor_coverage_file": "source_anchor_coverage_draft.json",
+  "artifact_type": "combined_provenance_draft",
+  "counts": {
+    "candidate_references": 347,
+    "evidence_parts": 234,
+    "merge_groups": 56,
+    "minimum_required_chunk_hit_distribution": {
+      "1": 41,
+      "2": 53,
+      "3": 7,
+      "4": 6,
+      "5": 1,
+      "6": 5
+    },
+    "missing_provenance": 0,
+    "new_parts_produced": 56,
+    "numeric_facts": 71,
+    "old_parts_affected": 126,
+    "or_parts": 12,
+    "part_count_reduction": 70,
+    "resolved_source_contract_errors": 4,
+    "source_anchors": 72,
+    "source_contract_errors": 0,
+    "unique_candidate_chunks": 72,
+    "unresolved_items": 0,
+    "verified_evidence_items": 113
+  },
+  "evidence_file": "evidence_provenance_draft.json",
+  "merge_review_file": "merge_review_draft.csv",
+  "numeric_facts_file": "numeric_facts_draft.json",
+  "source_anchors_file": "source_anchors_draft.json",
+  "source_contract_errors_file": "source_contract_errors_draft.json",
+  "unique_sample_defect_trace_file": "unique_sample_defect_trace_draft.json",
+  "version_binding": {
+    "benchmark_component_tags": [
+      "bench_v0.1.1"
+    ],
+    "benchmark_parent_version": "bench_v0.1",
+    "benchmark_schema_version": "v0.1.2",
+    "benchmark_version": "bench_v0.1.1",
+    "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+    "ingestion_git_commit": "63cabb2",
+    "ingestion_tag": "ingestion_v0.1.1",
+    "provenance_schema_version": "v0.2.0-draft"
+  }
+}

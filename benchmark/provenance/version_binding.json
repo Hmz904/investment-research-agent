@@ -1,0 +1,12 @@
+{
+  "benchmark_component_tags": [
+    "bench_v0.1.1"
+  ],
+  "benchmark_parent_version": "bench_v0.1",
+  "benchmark_schema_version": "v0.1.2",
+  "benchmark_version": "bench_v0.1.1",
+  "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+  "ingestion_git_commit": "63cabb2",
+  "ingestion_tag": "ingestion_v0.1.1",
+  "provenance_schema_version": "v0.2.0-draft"
+}

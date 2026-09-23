@@ -1,0 +1,245 @@
+{
+  "artifact_type": "source_contract_resolution_draft",
+  "error_count": 0,
+  "errors": [],
+  "resolved_error_count": 4,
+  "resolved_errors": [
+    {
+      "actual_required_source_accessions": [
+        "0001045810-26-000051"
+      ],
+      "actual_supporting_accession": "0001045810-26-000051",
+      "actual_supporting_anchor_id": "src_77f7d6e75be23a6bc4d71051",
+      "actual_supporting_chunk_id": "513ec1bcd5f5b923",
+      "diagnosis": "resolved_by_bench_v0.1.1_source_metadata_erratum",
+      "frozen_claim": "Under the older Data Center disclosure split, networking revenue increased about 199% YoY while compute revenue increased about 77% YoY, showing strong growth across major Data Center categories.",
+      "item_id": "E05",
+      "non_source_field_assessment": "The claim and analytical classification remain unchanged; the erratum is limited to accession/location source metadata.",
+      "non_source_fields_need_correction": false,
+      "parent_frozen_accession_contract": [
+        "0001045810-26-000052"
+      ],
+      "parent_frozen_source_contract": {
+        "accessions": [
+          "0001045810-26-000052"
+        ],
+        "location": "Item 2 MD&A; Data Center discussion"
+      },
+      "q_id": "Q02",
+      "q_version": "2",
+      "release_accession_contract": [
+        "0001045810-26-000051"
+      ],
+      "release_contract_satisfied": true,
+      "release_source_contract": {
+        "accessions": [
+          "0001045810-26-000051"
+        ],
+        "location": "Exhibit 99.1; Data Center discussion"
+      },
+      "relevant_source_text": "…nclude revenue from the public clouds and the world’s largest consumer internet companies, while ACIE addresses NVIDIA’s growth opportunity in diverse AI purpose-built data centers and AI factories across industries and countries. Edge Computing highlights data processing devices for agentic and physical AI including PCs, game consoles, workstations, AI-RAN base stations, robotics and automotive. Under the previous sub-markets, Data Center compute revenue was a record $60.4 billion, up 77% from a year ago and up 18% sequentially. Data Center networking revenue was a record $14.8 billion, up 199% from a year ago and up 35% sequentially. Q1 Fiscal 2027 Summary",
+      "remains_genuine_frozen_benchmark_contract_error": false,
+      "required_semantic_part": "Older-split networking growth of about 199% YoY and compute growth of about 77% YoY",
+      "required_sources": [
+        {
+          "accession": "0001045810-26-000051",
+          "chunk_id": "513ec1bcd5f5b923",
+          "relevant_source_text": "…, NVIDIA will report two sub-markets, Hyperscale and ACIE, which incorporates AI Clouds, Industrial and Enterprise. Hyperscale will include revenue from the public clouds and the world’s largest consumer internet companies, while ACIE addresses NVIDIA’s growth opportunity in diverse AI purpose-built data centers and AI factories across industries and countries. Edge Computing highlights data processing devices for agentic and physical AI including PCs, game consoles, workstations, AI-RAN base stations, robotics and automotive. Under the previous sub-markets, Data Center compute revenue was a record $60.4 billion, up 77% from a year ago and up 18% sequentially. Data Center networking revenue was a record $14.8 billion, up 199% from a year ago and up 35% sequentially. Q1 Fiscal 2027 Summary",
+          "source_anchor_id": "src_77f7d6e75be23a6bc4d71051"
+        }
+      ],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "why_parent_frozen_contract_was_unsatisfiable": "The contracted FY27Q1 10-Q uses the new market-platform presentation and does not disclose the older compute/networking 77%/199% pair."
+    },
+    {
+      "actual_required_source_accessions": [
+        "0001045810-26-000051",
+        "0001045810-26-000073"
+      ],
+      "actual_supporting_accession": "0001045810-26-000051",
+      "actual_supporting_anchor_id": "src_524ffb2693b42cd4452814a1",
+      "actual_supporting_chunk_id": "a35a2f866d18fd19",
+      "diagnosis": "resolved_by_bench_v0.1.1_source_metadata_erratum",
+      "frozen_claim": "Q1 guidance had a USD 92.82B upper end, while Q2 realized total revenue was about USD 96.221B, so the earlier total-company guidance concern did not materialize as a shortfall.",
+      "item_id": "X3",
+      "non_source_field_assessment": "The claim and analytical classification remain unchanged; the erratum is limited to accession/location source metadata.",
+      "non_source_fields_need_correction": false,
+      "parent_frozen_accession_contract": [
+        "0001045810-26-000073"
+      ],
+      "parent_frozen_source_contract": {
+        "accessions": [
+          "0001045810-26-000073"
+        ],
+        "location": "Exhibit 99.1; realized Q2 results compared with prior outlook"
+      },
+      "q_id": "Q05",
+      "q_version": "2",
+      "release_accession_contract": [
+        "0001045810-26-000051",
+        "0001045810-26-000073"
+      ],
+      "release_contract_satisfied": true,
+      "release_source_contract": {
+        "accessions": [
+          "0001045810-26-000051",
+          "0001045810-26-000073"
+        ],
+        "location": "Exhibit 99.1; Q1 outlook and Q2 realized results"
+      },
+      "relevant_source_text": "Outlook NVIDIA’s outlook for the second quarter of fiscal 2027 is as follows: • Revenue is expected to be $91.0 billion, plus or minus 2%. NVIDIA is not assuming any Data Center compute revenue from China in its outlook. • GAAP and non-GAAP gross margins are expected to be 74.9% and 75.0%, respectively, plus or minus 50 basis points. • GAAP and non-GAAP operating expenses are expected to be approximately $8.5 billion and $8.3 billion, respectively. For the full year fiscal 2027, NVIDIA expects GAAP and non-GAAP tax rates to be between 16.0% and 18.0%, excluding any discrete items and material changes to NVIDIA’s tax environment. Highlights Data Center • First-quarter revenue was a record $75.2 billion, up 21% from the previous quarter and up 92% from a year ago. • Announced the NVIDIA Vera Rubin platform, including the NVIDIA Vera CPU, the world’s first processor purpose-built for agentic AI, and NVIDIA BlueField®-4 STX, accelerated storage infrastructure for agentic AI factories. • Entered production with NVIDIA Dynamo 1.0, open source software that boosts generative and agentic inference on NVIDIA Blackwell GPUs by up to 7x, with widespread global adoption. • Announced NVIDIA Nem…",
+      "remains_genuine_frozen_benchmark_contract_error": false,
+      "required_semantic_part": "FY27Q1 guidance upper end of USD 92.82B",
+      "required_sources": [
+        {
+          "accession": "0001045810-26-000051",
+          "chunk_id": "a35a2f866d18fd19",
+          "relevant_source_text": "Outlook NVIDIA’s outlook for the second quarter of fiscal 2027 is as follows: • Revenue is expected to be $91.0 billion, plus or minus 2%. NVIDIA is not assuming any Data Center compute revenue from China in its outlook. • GAAP and non-GAAP gross margins are expected to be 74.9% and 75.0%, respectively, plus or minus 50 basis points. • GAAP and non-GAAP operating expenses are expected to be approximately $8.5 billion and $8.3 billion, respectively. For the full year fiscal 2027, NVIDIA expects GAAP and non-GAAP tax rates to be between 16.0% and 18.0%, excluding any discrete items and material changes to NVIDIA’s tax environment. Highlights Data Center • First-quarter revenue was a record $75.2 billion, up 21% from the previous quarter and up 92% from a year ago. • Announced the NVIDIA Vera Rubin platform, including the NVIDIA Vera CPU, the world’s first processor purpose-built for agentic AI, and NVIDIA BlueField®-4 STX, accelerated storage infrastructure for agentic AI factories. • Entered production with NVIDIA Dynamo 1.0, open source software that boosts generative and agentic inference on NVIDIA Blackwell GPUs by up to 7x, with widespread global adoption. • Announced NVIDIA NemoClawTM for the OpenClaw agent platform, NVIDIA OpenShellTM with privacy and security controls for autonomous AI agents, and NVIDIA Agent Toolkit, an open source platform for building autonomous enterprise AI agents. • Advanced open AI model development with new NVIDIA NemotronTM, NVIDIA BioNeMoTM and NVIDIA Ising models, and the launch of the NVIDIA Nemotron Coalition. • Expanded collaboration wi…",
+          "source_anchor_id": "src_524ffb2693b42cd4452814a1"
+        },
+        {
+          "accession": "0001045810-26-000073",
+          "chunk_id": "e19520eac6dfcec3",
+          "relevant_source_text": "Table: CONDENSED CONSOLIDATED STATEMENTS OF INCOME Unit: USD millions Qualifiers: Unaudited Row: Revenue - Three Months Ended July 26, 2026: 96,221 - Three Months Ended July 27, 2025: 46,743 - Six Months Ended July 26, 2026: 177,837 - Six Months Ended July 27, 2025: 90,805 Row: Cost of revenue - Three Months Ended July 26, 2026: 24,079 - Three Months Ended July 27, 2025: 12,890 - Six Months Ended July 26, 2026: 44,538 - Six Months Ended July 27, 2025: 30,284 Row: Gross profit - Three Months Ended July 26, 2026: 72,142 - Three Months Ended July 27, 2025: 33,853 - Six Months Ended July 26, 2026: 133,299 - Six Months Ended July 27, 2025: 60,521 Row: Operating expenses Row: Research and development - Three Months Ended July 26, 2026: 7,054 - Three Months Ended July 27, 2025: 4,291 - Six Months Ended July 26, 2026: 13,375 - Six Months Ended July 27, 2025: 8,280 Row: Sales, general and administrative - Three Months Ended July 26, 2026: 1,354 - Three Months Ended July 27, 2025: 1,122 - Six Months Ended July 26, 2026: 2,654 - Six Months Ended July 27, 2025: 2,163 Row: Total operating expenses - Three Months Ended July 26, 2026: 8,408 - Three Months Ended July 27, 2025: 5,413 - Six Months Ended July 26, 2026: 16,029 - Six Months Ended July 27, 2025: 10,443 Row: Operating income - Three Months Ended July 26, 2026: 63,734 - Three Months Ended July 27, 2025: 28,440 - Six Months Ended July 26, 2026: 117,270 - Six Months Ended July 27, 2025: 50,078 Row: Other income, net - Three Months Ended July 26, 2026: 7,773 - Three Months Ended July 27, 2025: 2,766 - Six Months Ended July 26, 2026:…",
+          "source_anchor_id": "src_d94e340318c4730cc8fb3030"
+        }
+      ],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "why_parent_frozen_contract_was_unsatisfiable": "The contracted Q2 income statement proves exact realized Q2 revenue but does not contain the earlier $91.0B plus-or-minus 2% outlook needed to derive $92.82B."
+    },
+    {
+      "actual_required_source_accessions": [
+        "0001045810-26-000052",
+        "0001045810-26-000075"
+      ],
+      "actual_supporting_accession": "0001045810-26-000052",
+      "actual_supporting_anchor_id": "src_4252a1a0a8e3aafbc9486fe5",
+      "actual_supporting_chunk_id": "79ddd90f5c73467d",
+      "diagnosis": "resolved_by_bench_v0.1.1_source_metadata_erratum",
+      "frozen_claim": "The Q2 filing recast Q1 market-platform data, moving approximately USD 5.181B of Q1 revenue from ACIE to Hyperscale while leaving total Data Center revenue unchanged; Q1-to-Q2 component comparisons must use the recast Q1 values.",
+      "item_id": "X4",
+      "non_source_field_assessment": "The claim and analytical classification remain unchanged; the erratum is limited to accession/location source metadata.",
+      "non_source_fields_need_correction": false,
+      "parent_frozen_accession_contract": [
+        "0001045810-26-000075"
+      ],
+      "parent_frozen_source_contract": {
+        "accessions": [
+          "0001045810-26-000075"
+        ],
+        "location": "Item 2 MD&A; market-platform reclassification note"
+      },
+      "q_id": "Q05",
+      "q_version": "2",
+      "release_accession_contract": [
+        "0001045810-26-000052",
+        "0001045810-26-000075"
+      ],
+      "release_contract_satisfied": true,
+      "release_source_contract": {
+        "accessions": [
+          "0001045810-26-000052",
+          "0001045810-26-000075"
+        ],
+        "location": "Item 2 MD&A; original and recast Revenue by Market Platform presentations"
+      },
+      "relevant_source_text": "Table: Revenue by Market Platform (1) Unit: USD millions Row: Data Center - Three Months Ended Apr 26, 2026: 75,246 - Three Months Ended Jan 25, 2026: 62,314 - Three Months Ended Apr 27, 2025: 39,112 - Quarter-over-Quarter Change: 21% - Year-over-Year Change: 92% Row: Hyperscale - Three Months Ended Apr 26, 2026: 37,869 - Three Months Ended Jan 25, 2026: 33,814 - Three Months Ended Apr 27, 2025: 17,599 - Quarter-over-Quarter Change: 12% - Year-over-Year Change: 115% Row: AI Clouds, Industrial, & Enterprise - Three Months Ended Apr 26, 2026: 37,377 - Three Months Ended Jan 25, 2026: 28,500 - Three Months Ended Apr 27, 2025: 21,513 - Quarter-over-Quarter Change: 31% - Year-over-Year Change: 74% Row: Edge Computing - Three Months Ended Apr 26, 2026: 6,369 - Three Months Ended Jan 25, 2026: 5,813 - Three Months Ended Apr 27, 2025: 4,950 - Quarter-over-Quarter Change: 10% - Year-over-Year Change: 29% Row: Total revenue - Three Months Ended Apr 26, 2026: 81,615 - Three Months Ended Jan 25, 2026: 68,127 - Three Months Ended Apr 27, 2025: 44,062 - Quarter-over-Quarter Change: 20% - Year-over-Year Change: 85%",
+      "remains_genuine_frozen_benchmark_contract_error": false,
+      "required_semantic_part": "Original Q1 Hyperscale and ACIE values required to establish the USD 5.181B reclassification",
+      "required_sources": [
+        {
+          "accession": "0001045810-26-000052",
+          "chunk_id": "79ddd90f5c73467d",
+          "relevant_source_text": "Table: Revenue by Market Platform (1) Unit: USD millions Row: Data Center - Three Months Ended Apr 26, 2026: 75,246 - Three Months Ended Jan 25, 2026: 62,314 - Three Months Ended Apr 27, 2025: 39,112 - Quarter-over-Quarter Change: 21% - Year-over-Year Change: 92% Row: Hyperscale - Three Months Ended Apr 26, 2026: 37,869 - Three Months Ended Jan 25, 2026: 33,814 - Three Months Ended Apr 27, 2025: 17,599 - Quarter-over-Quarter Change: 12% - Year-over-Year Change: 115% Row: AI Clouds, Industrial, & Enterprise - Three Months Ended Apr 26, 2026: 37,377 - Three Months Ended Jan 25, 2026: 28,500 - Three Months Ended Apr 27, 2025: 21,513 - Quarter-over-Quarter Change: 31% - Year-over-Year Change: 74% Row: Edge Computing - Three Months Ended Apr 26, 2026: 6,369 - Three Months Ended Jan 25, 2026: 5,813 - Three Months Ended Apr 27, 2025: 4,950 - Quarter-over-Quarter Change: 10% - Year-over-Year Change: 29% Row: Total revenue - Three Months Ended Apr 26, 2026: 81,615 - Three Months Ended Jan 25, 2026: 68,127 - Three Months Ended Apr 27, 2025: 44,062 - Quarter-over-Quarter Change: 20% - Year-over-Year Change: 85%",
+          "source_anchor_id": "src_4252a1a0a8e3aafbc9486fe5"
+        },
+        {
+          "accession": "0001045810-26-000075",
+          "chunk_id": "66a2dbe9fa036e7f",
+          "relevant_source_text": "Table: Revenue by Market Platform Unit: USD millions Qualifiers: Continued, Unaudited Row: Data Center - Three Months Ended Jul 26, 2026: 89,023 - Three Months Ended Jul 27, 2025: 41,096 - Six Months Ended Jul 26, 2026: 164,269 - Six Months Ended Jul 27, 2025: 80,208 Row: Hyperscale - Three Months Ended Jul 26, 2026: 48,710 - Three Months Ended Jul 27, 2025: 24,168 - Six Months Ended Jul 26, 2026: 91,761 - Six Months Ended Jul 27, 2025: 46,428 Row: AI Clouds, Industrial, & Enterprise - Three Months Ended Jul 26, 2026: 40,313 - Three Months Ended Jul 27, 2025: 16,928 - Six Months Ended Jul 26, 2026: 72,508 - Six Months Ended Jul 27, 2025: 33,780 Row: Edge Computing - Three Months Ended Jul 26, 2026: 7,198 - Three Months Ended Jul 27, 2025: 5,647 - Six Months Ended Jul 26, 2026: 13,568 - Six Months Ended Jul 27, 2025: 10,597 Row: Total revenue - Three Months Ended Jul 26, 2026: 96,221 - Three Months Ended Jul 27, 2025: 46,743 - Six Months Ended Jul 26, 2026: 177,837 - Six Months Ended Jul 27, 2025: 90,805",
+          "source_anchor_id": "src_a327e472a2863053abd5307d"
+        },
+        {
+          "accession": "0001045810-26-000075",
+          "chunk_id": "6e776edb42ae8862",
+          "relevant_source_text": "Table: Revenue by Market Platform (1) (2) Unit: USD millions Row: Data Center - Three Months Ended Jul 26, 2026: 89,023 - Three Months Ended Apr 26, 2026: 75,246 - Three Months Ended Jul 27, 2025: 41,096 - Quarter-over-Quarter Change: 18% - Year-over-Year Change: 117% Row: Hyperscale - Three Months Ended Jul 26, 2026: 48,710 - Three Months Ended Apr 26, 2026: 43,050 - Three Months Ended Jul 27, 2025: 24,168 - Quarter-over-Quarter Change: 13% - Year-over-Year Change: 102% Row: AI Clouds, Industrial, & Enterprise - Three Months Ended Jul 26, 2026: 40,313 - Three Months Ended Apr 26, 2026: 32,196 - Three Months Ended Jul 27, 2025: 16,928 - Quarter-over-Quarter Change: 25% - Year-over-Year Change: 138% Row: Edge Computing - Three Months Ended Jul 26, 2026: 7,198 - Three Months Ended Apr 26, 2026: 6,369 - Three Months Ended Jul 27, 2025: 5,647 - Quarter-over-Quarter Change: 13% - Year-over-Year Change: 27% Row: Total revenue - Three Months Ended Jul 26, 2026: 96,221 - Three Months Ended Apr 26, 2026: 81,615 - Three Months Ended Jul 27, 2025: 46,743 - Quarter-over-Quarter Change: 18% - Year-over-Year Change: 106%",
+          "source_anchor_id": "src_56d2201508db7a172a4a10a6"
+        }
+      ],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "why_parent_frozen_contract_was_unsatisfiable": "The contracted Q2 10-Q contains recast Q1 values and the unchanged Data Center total, but not the original Q1 component values needed to prove the $5.181B reclassification amount."
+    },
+    {
+      "actual_required_source_accessions": [
+        "0001628280-26-028364",
+        "0001628280-26-028526"
+      ],
+      "actual_supporting_accession": "0001628280-26-028526",
+      "actual_supporting_anchor_id": "src_f5554428df34db89db31b18c",
+      "actual_supporting_chunk_id": "7b2aecb6f4439586",
+      "diagnosis": "resolved_by_bench_v0.1.1_source_metadata_erratum",
+      "frozen_claim": "Depreciation and amortization increased from approximately USD 3.900B to USD 5.999B, about 54%, while property and server depreciation increased materially, consistent with a rapidly expanding fixed-asset base.",
+      "item_id": "E07",
+      "non_source_field_assessment": "The claim and analytical classification remain unchanged; the erratum is limited to accession/location source metadata.",
+      "non_source_fields_need_correction": false,
+      "parent_frozen_accession_contract": [
+        "0001628280-26-028364"
+      ],
+      "parent_frozen_source_contract": {
+        "accessions": [
+          "0001628280-26-028364"
+        ],
+        "location": "Exhibit 99.1; cash flow and expense disclosures"
+      },
+      "q_id": "Q12",
+      "q_version": "2",
+      "release_accession_contract": [
+        "0001628280-26-028364",
+        "0001628280-26-028526"
+      ],
+      "release_contract_satisfied": true,
+      "release_source_contract": {
+        "accessions": [
+          "0001628280-26-028364",
+          "0001628280-26-028526"
+        ],
+        "location": "Exhibit 99.1; cash flow statement AND Form 10-Q; Part I Item 1 Note 6; property and server/network depreciation"
+      },
+      "relevant_source_text": "____________________________________ (1) Construction in progress includes costs mostly related to construction of data centers, network infrastructure and servers. 18 Table of Contents Depreciation expense on property and equipment was $ 5.68 billion and $ 3.84 billion for the three months ended March 31, 2026 and 2025, respectively. Within property and equipment, our servers and network assets depreciation expenses were $ 4.38 billion and $ 2.63 billion for the three months ended March 31, 2026 and 2025, respectively. Held-for-sale Assets In March 2026, we approved a plan to dispose of certain data center assets with a carrying value of $ 1.48 billion, consisting mostly of construction in progress and land. These assets were classified as held-for-sale within prepaid expenses and other current assets on our condensed consolidated balance sheet as of March 31, 2026. We expect to dispose of these assets within the next twelve months through a contribution to a third party for the purpose of co-developing data centers.",
+      "remains_genuine_frozen_benchmark_contract_error": false,
+      "required_semantic_part": "Property-and-server depreciation increase",
+      "required_sources": [
+        {
+          "accession": "0001628280-26-028364",
+          "chunk_id": "8c05d5174f59448e",
+          "relevant_source_text": "Table: META PLATFORMS, INC. Unit: USD millions Qualifiers: Unaudited Row: Net income - Three Months Ended March 31, 2026: 26,773 - 2025: 16,644 Row: Adjustments to reconcile net income to net cash provided by operating activities: Row: Depreciation and amortization - Three Months Ended March 31, 2026: 5,999 - 2025: 3,900 Row: Share-based compensation - Three Months Ended March 31, 2026: 6,032 - 2025: 4,147 Row: Deferred income taxes - Three Months Ended March 31, 2026: 123 - 2025: (993) Row: Unrealized (gain) loss on equity investments - Three Months Ended March 31, 2026: 1,075 - 2025: (135) Row: Other - Three Months Ended March 31, 2026: (17) - 2025: (96) Row: Changes in assets and liabilities: Row: Accounts receivable - Three Months Ended March 31, 2026: 2,128 - 2025: 2,804 Row: Prepaid expenses and other current assets - Three Months Ended March 31, 2026: (2,424) - 2025: 360 Row: Other assets - Three Months Ended March 31, 2026: (1,082) - 2025: (52) Row: Accounts payable - Three Months Ended March 31, 2026: (937) - 2025: (1,034) Row: Accrued expenses and other current liabilities - Three Months Ended March 31, 2026: (271) - 2025: (2,231) Row: Other liabilities - Three Months Ended March 31, 2026: (5,173) - 2025: 712 Row: Net cash provided by operating activities - Three Months Ended March 31, 2026: 32,226 - 2025: 24,026 Row: Cash flows from investing activities Row: Purchases of property and equipment - Three Months Ended March 31, 2026: (18,997) - 2025: (12,941) Row: Purchases of marketable securities - Three Months Ended March 31, 2026: (32,978) - 2025: (11,763) Row: S…",
+          "source_anchor_id": "src_da37be90e1f0355d3a9623dd"
+        },
+        {
+          "accession": "0001628280-26-028526",
+          "chunk_id": "7b2aecb6f4439586",
+          "relevant_source_text": "____________________________________ (1) Construction in progress includes costs mostly related to construction of data centers, network infrastructure and servers. 18 Table of Contents Depreciation expense on property and equipment was $ 5.68 billion and $ 3.84 billion for the three months ended March 31, 2026 and 2025, respectively. Within property and equipment, our servers and network assets depreciation expenses were $ 4.38 billion and $ 2.63 billion for the three months ended March 31, 2026 and 2025, respectively. Held-for-sale Assets In March 2026, we approved a plan to dispose of certain data center assets with a carrying value of $ 1.48 billion, consisting mostly of construction in progress and land. These assets were classified as held-for-sale within prepaid expenses and other current assets on our condensed consolidated balance sheet as of March 31, 2026. We expect to dispose of these assets within the next twelve months through a contribution to a third party for the purpose of co-developing data centers.",
+          "source_anchor_id": "src_f5554428df34db89db31b18c"
+        }
+      ],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "why_parent_frozen_contract_was_unsatisfiable": "The contracted earnings exhibit reports total depreciation and amortization but does not identify property or server/network depreciation; that component appears only in the 10-Q."
+    }
+  ],
+  "version_binding": {
+    "benchmark_component_tags": [
+      "bench_v0.1.1"
+    ],
+    "benchmark_parent_version": "bench_v0.1",
+    "benchmark_schema_version": "v0.1.2",
+    "benchmark_version": "bench_v0.1.1",
+    "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+    "ingestion_git_commit": "63cabb2",
+    "ingestion_tag": "ingestion_v0.1.1",
+    "provenance_schema_version": "v0.2.0-draft"
+  }
+}

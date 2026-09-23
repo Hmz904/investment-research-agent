@@ -1,0 +1,1715 @@
+{
+  "approved_merge_count": 56,
+  "artifact_type": "gold_merge_lineage",
+  "merge_count": 56,
+  "merges": [
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E01",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X AND X = X by Boolean idempotence. Final human review approved the repaired mapping; the original atoms remain recorded.",
+      "merge_lineage": "C. repaired after human provenance review",
+      "new_boolean_structure": "P01:79ddd90f5c73467d",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 2,
+      "old_boolean_structure": "P01:79ddd90f5c73467d AND P02:79ddd90f5c73467d AND P03:79ddd90f5c73467d",
+      "old_part_ids": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q02",
+      "q_version": "2",
+      "reason_for_merge": "Repaired after human provenance review; the corrected co-disclosed atoms form one source-level component: FY27Q1 Data Center revenue of USD 75.246B | FY27Q1 company-reported Data Center YoY growth of 92% | FY27Q1 company-reported Data Center QoQ growth of 21%. The final human review approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0001",
+        "review_record_number": 1,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": "APPROVE after repaired-source review: all merged atoms are co-disclosed by the exact same complete candidate set, so the source-level retrieval simplification is semantically appropriate and preserves the recorded atomic lineage."
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": "APPROVE after repaired-source review: all merged atoms are co-disclosed by the exact same complete candidate set, so the source-level retrieval simplification is semantically appropriate and preserves the recorded atomic lineage."
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E04",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:79ddd90f5c73467d",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:79ddd90f5c73467d AND P02:79ddd90f5c73467d",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q02",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Hyperscale QoQ growth of about 12% | ACIE QoQ growth of about 31%. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0002",
+        "review_record_number": 2,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E07",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:a35a2f866d18fd19",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:a35a2f866d18fd19 AND P02:a35a2f866d18fd19",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q02",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Q2 total-revenue guidance of about USD 91B | Q1 total-revenue base used for the 11.5% sequential implication. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0003",
+        "review_record_number": 3,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E08",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:7e29f360dd5f08f9",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:7e29f360dd5f08f9 AND P02:7e29f360dd5f08f9",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q02",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Continued AI-factory buildout | Broad AI-infrastructure expansion. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0004",
+        "review_record_number": 4,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E09",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:c2dd3127ada7a30d",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 2,
+      "old_boolean_structure": "P01:c2dd3127ada7a30d AND P02:c2dd3127ada7a30d AND P03:c2dd3127ada7a30d",
+      "old_part_ids": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q02",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Market-platform presentation changed | Comparable periods were recast | Cross-quarter comparisons require revised classifications and available denominators. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0005",
+        "review_record_number": 5,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "P3",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:a35a2f866d18fd19",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:a35a2f866d18fd19 AND P02:a35a2f866d18fd19",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q05",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Q2 total-revenue guidance midpoint of about USD 91B | Q1 revenue base used for the 11.5% sequential implication. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0006",
+        "review_record_number": 6,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C1",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X AND X = X by Boolean idempotence. Final human review approved the repaired mapping; the original atoms remain recorded.",
+      "merge_lineage": "C. repaired after human provenance review",
+      "new_boolean_structure": "P01:6e776edb42ae8862",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 2,
+      "old_boolean_structure": "P01:6e776edb42ae8862 AND P02:6e776edb42ae8862 AND P03:6e776edb42ae8862",
+      "old_part_ids": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q05",
+      "q_version": "2",
+      "reason_for_merge": "Repaired after human provenance review; the corrected co-disclosed atoms form one source-level component: FY27Q2 Data Center revenue of USD 89.023B | FY27Q2 company-reported Data Center YoY growth of 117% | FY27Q2 company-reported Data Center QoQ growth of 18%. The final human review approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0007",
+        "review_record_number": 7,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": "APPROVE after repaired-source review: all merged atoms are co-disclosed by the exact same complete candidate set, so the source-level retrieval simplification is semantically appropriate and preserves the recorded atomic lineage."
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": "APPROVE after repaired-source review: all merged atoms are co-disclosed by the exact same complete candidate set, so the source-level retrieval simplification is semantically appropriate and preserves the recorded atomic lineage."
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C2",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:0092947ac4b1ebc2",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 2,
+      "old_boolean_structure": "P01:0092947ac4b1ebc2 AND P02:0092947ac4b1ebc2 AND P03:0092947ac4b1ebc2",
+      "old_part_ids": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q05",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Q3 total-revenue guidance of about USD 108B | China Data Center compute exclusion | Q2 revenue base used for the 12.2% sequential implication. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0008",
+        "review_record_number": 8,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C3",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:71f3e27f3268315d",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:71f3e27f3268315d AND P02:71f3e27f3268315d",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q05",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Quarter-end customer advances of about USD 2.8B | Fiscal-year-opening customer advances of about USD 0.16B. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0009",
+        "review_record_number": 9,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E01",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:cd43ad63db9cabc4",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:cd43ad63db9cabc4 AND P02:cd43ad63db9cabc4",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q07",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Azure and other cloud services YoY growth of 40% | Intelligent Cloud revenue YoY growth of 30%. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0010",
+        "review_record_number": 10,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E02",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:b448abd2fe322a29",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:b448abd2fe322a29 AND P02:b448abd2fe322a29",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q07",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Intelligent Cloud gross-profit growth of about 19% | Intelligent Cloud operating-income growth of about 24%. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0011",
+        "review_record_number": 11,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E05",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:a8e515879b50c710",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 2,
+      "old_boolean_structure": "P01:a8e515879b50c710 AND P02:a8e515879b50c710 AND P03:a8e515879b50c710",
+      "old_part_ids": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q07",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Intelligent Cloud cost-of-revenue growth of about 47% | AI infrastructure and GitHub Copilot cost drivers | Segment gross-margin decline. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0012",
+        "review_record_number": 12,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E06",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:20b1aac4959d3bba",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 2,
+      "old_boolean_structure": "P01:20b1aac4959d3bba AND P02:20b1aac4959d3bba AND P03:20b1aac4959d3bba",
+      "old_part_ids": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q07",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Microsoft Cloud gross margin of about 66% | AI investment/usage pressure | Efficiency offset. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0013",
+        "review_record_number": 13,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E08",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:b3408b8474c51e96",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:b3408b8474c51e96 AND P02:b3408b8474c51e96",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q07",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Prior-period operating cash flow less cash PP&E | Current-period operating cash flow less cash PP&E. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0014",
+        "review_record_number": 14,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E09",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:b3408b8474c51e96",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:b3408b8474c51e96 AND P02:b3408b8474c51e96",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q07",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Prior-period depreciation/amortization/noncash adjustments | Current-period depreciation/amortization/noncash adjustments. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0015",
+        "review_record_number": 15,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E10",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:3b71f81f22a8aa92",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:3b71f81f22a8aa92 AND P02:3b71f81f22a8aa92",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q07",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: AI-capacity expansion | Component-shortage and supply-constraint risk. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0016",
+        "review_record_number": 16,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E11",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:2fb4339dafbbf91b",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:2fb4339dafbbf91b AND P02:2fb4339dafbbf91b",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q07",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Server-component receivable of about USD 17.8B | Restricted investment of about USD 11.5B. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0017",
+        "review_record_number": 17,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E12",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:bff202eff88457f6",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:bff202eff88457f6 AND P02:bff202eff88457f6",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q07",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Prior company-wide GAAP gross margin | Current company-wide GAAP gross margin. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0018",
+        "review_record_number": 18,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "P1",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:cd43ad63db9cabc4",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:cd43ad63db9cabc4 AND P02:cd43ad63db9cabc4",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q10",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Q3 Azure growth of about 40% | Q3 Intelligent Cloud revenue growth of about 30%. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0019",
+        "review_record_number": 19,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "P3",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:f0db369c68121f7b",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:f0db369c68121f7b AND P02:f0db369c68121f7b",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q10",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Q3 commercial RPO of about USD 627B | About 25% expected within 12 months. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0020",
+        "review_record_number": 20,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C1",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:e5efb84cd87d6e58",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:e5efb84cd87d6e58 AND P02:e5efb84cd87d6e58",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q10",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Q4 Intelligent Cloud revenue and 32% growth | Q4 Azure growth of about 43%. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0021",
+        "review_record_number": 21,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C2",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X AND X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:0d90ceeeffa01abc",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 3,
+      "old_boolean_structure": "P01:0d90ceeeffa01abc AND P02:0d90ceeeffa01abc AND P03:0d90ceeeffa01abc AND P04:0d90ceeeffa01abc",
+      "old_part_ids": [
+        "P01",
+        "P02",
+        "P03",
+        "P04"
+      ],
+      "q_id": "Q10",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Intelligent Cloud gross-profit growth inputs | Intelligent Cloud operating-income growth inputs | Intelligent Cloud operating-margin inputs | Intelligent Cloud operating-expense and gross-margin inputs. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0022",
+        "review_record_number": 22,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C3",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:0d90ceeeffa01abc",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:0d90ceeeffa01abc AND P02:0d90ceeeffa01abc",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q10",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Current and prior Intelligent Cloud gross margins | Intelligent Cloud cost-of-revenue growth. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0023",
+        "review_record_number": 23,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C4",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:10b5f2f74c4f4541",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:10b5f2f74c4f4541 AND P02:10b5f2f74c4f4541",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q10",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Current cash additions to PP&E | Prior-year cash additions to PP&E. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0024",
+        "review_record_number": 24,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C5",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:10b5f2f74c4f4541",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:10b5f2f74c4f4541 AND P02:10b5f2f74c4f4541",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q10",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Current operating cash flow less cash PP&E | Prior-year operating cash flow less cash PP&E. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0025",
+        "review_record_number": 25,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C6",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:6728f968c69afa22",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:6728f968c69afa22 AND P02:6728f968c69afa22",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q10",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: FY26 Microsoft Cloud gross margin | AI infrastructure/usage margin-pressure explanation. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0026",
+        "review_record_number": 26,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "X5",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P02:d1334881fba376c4",
+      "new_part_id": "P02",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P02:d1334881fba376c4 AND P03:d1334881fba376c4",
+      "old_part_ids": [
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q10",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Q4 commercial RPO of USD 678B | Q4 approximately 30% due within 12 months. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0027",
+        "review_record_number": 27,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E01",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X AND X = X by Boolean idempotence. Final human review approved the repaired mapping; the original atoms remain recorded.",
+      "merge_lineage": "C. repaired after human provenance review",
+      "new_boolean_structure": "P01:eb7ce4994d2626b3",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 2,
+      "old_boolean_structure": "P01:eb7ce4994d2626b3 AND P02:eb7ce4994d2626b3 AND P03:eb7ce4994d2626b3",
+      "old_part_ids": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q12",
+      "q_version": "2",
+      "reason_for_merge": "Repaired after human provenance review; the corrected co-disclosed atoms form one source-level component: Advertising revenue of about USD 55.024B | Reported advertising growth of 33% | Constant-currency advertising growth of 29%. The final human review approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0028",
+        "review_record_number": 28,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": "APPROVE after repaired-source review: all merged atoms are co-disclosed by the exact same complete candidate set, so the source-level retrieval simplification is semantically appropriate and preserves the recorded atomic lineage."
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": "APPROVE after repaired-source review: all merged atoms are co-disclosed by the exact same complete candidate set, so the source-level retrieval simplification is semantically appropriate and preserves the recorded atomic lineage."
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E01",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. Final human review approved the repaired mapping; the original atoms remain recorded.",
+      "merge_lineage": "C. repaired after human provenance review",
+      "new_boolean_structure": "P02:6eab04595fe303b6",
+      "new_part_id": "P02",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P04:6eab04595fe303b6 AND P05:6eab04595fe303b6",
+      "old_part_ids": [
+        "P04",
+        "P05"
+      ],
+      "q_id": "Q12",
+      "q_version": "2",
+      "reason_for_merge": "Repaired after human provenance review; the corrected co-disclosed atoms form one source-level component: Ad-impression growth of 19% | Average-price-per-ad growth of 12%. The final human review approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0029",
+        "review_record_number": 29,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": "APPROVE after repaired-source review: all merged atoms are co-disclosed by the exact same complete candidate set, so the source-level retrieval simplification is semantically appropriate and preserves the recorded atomic lineage."
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": "APPROVE after repaired-source review: all merged atoms are co-disclosed by the exact same complete candidate set, so the source-level retrieval simplification is semantically appropriate and preserves the recorded atomic lineage."
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E02",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:eb7ce4994d2626b3",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:eb7ce4994d2626b3 AND P02:eb7ce4994d2626b3",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q12",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Current company-defined free cash flow | Prior-year company-defined free cash flow. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0030",
+        "review_record_number": 30,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E03",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:eb7ce4994d2626b3",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 2,
+      "old_boolean_structure": "P01:eb7ce4994d2626b3 AND P02:eb7ce4994d2626b3 AND P03:eb7ce4994d2626b3",
+      "old_part_ids": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q12",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Current lease-inclusive capital expenditures | Prior-year lease-inclusive capital expenditures | Advertising-revenue growth comparator. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0031",
+        "review_record_number": 31,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E04",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:0eedae59648bc4e6",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 2,
+      "old_boolean_structure": "P01:0eedae59648bc4e6 AND P02:0eedae59648bc4e6 AND P03:0eedae59648bc4e6",
+      "old_part_ids": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q12",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Current and prior Family of Apps operating margins | Family of Apps operating-income growth | Family of Apps revenue-growth comparator. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0032",
+        "review_record_number": 32,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E06",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:a7bf7843848a38f7",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 2,
+      "old_boolean_structure": "P01:a7bf7843848a38f7 AND P02:a7bf7843848a38f7 AND P03:a7bf7843848a38f7",
+      "old_part_ids": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q12",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Total costs-and-expenses growth | R&D expense growth | Consolidated revenue-growth comparator. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0033",
+        "review_record_number": 33,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E08",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:6eab04595fe303b6",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 2,
+      "old_boolean_structure": "P01:6eab04595fe303b6 AND P02:6eab04595fe303b6 AND P03:6eab04595fe303b6",
+      "old_part_ids": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q12",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Prior capital-expenditure outlook | Raised capital-expenditure outlook | Component-pricing and data-center-capacity reasons. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0034",
+        "review_record_number": 34,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E09",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:6eab04595fe303b6",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:6eab04595fe303b6 AND P02:6eab04595fe303b6",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q12",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Maintained total-expense outlook | Expected 2026 operating income above 2025. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0035",
+        "review_record_number": 35,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E10",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:6eab04595fe303b6",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:6eab04595fe303b6 AND P02:6eab04595fe303b6",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q12",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Reported revenue growth | Constant-currency revenue growth. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0036",
+        "review_record_number": 36,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "P1",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:eb7ce4994d2626b3",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:eb7ce4994d2626b3 AND P02:eb7ce4994d2626b3",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q14",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Q1 reported advertising growth | Q1 constant-currency advertising growth. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0037",
+        "review_record_number": 37,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "P2",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:eb7ce4994d2626b3",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:eb7ce4994d2626b3 AND P02:eb7ce4994d2626b3",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q14",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Q1 current and prior company-defined free cash flow | Q1 capital-spending context. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0038",
+        "review_record_number": 38,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "P3",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:eb7ce4994d2626b3",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:eb7ce4994d2626b3 AND P02:eb7ce4994d2626b3",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q14",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Q1 lease-inclusive capital-expenditure growth | Q1 advertising-revenue growth comparator. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0039",
+        "review_record_number": 39,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C1",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. Final human review approved the repaired mapping; the original atoms remain recorded.",
+      "merge_lineage": "C. repaired after human provenance review",
+      "new_boolean_structure": "P01:874f02d4f152c4a1",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:874f02d4f152c4a1 AND P02:874f02d4f152c4a1",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q14",
+      "q_version": "2",
+      "reason_for_merge": "Repaired after human provenance review; the corrected co-disclosed atoms form one source-level component: Q2 advertising revenue | Reported and constant-currency advertising growth. The final human review approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0040",
+        "review_record_number": 40,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": "APPROVE after repaired-source review: all merged atoms are co-disclosed by the exact same complete candidate set, so the source-level retrieval simplification is semantically appropriate and preserves the recorded atomic lineage."
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": "APPROVE after repaired-source review: all merged atoms are co-disclosed by the exact same complete candidate set, so the source-level retrieval simplification is semantically appropriate and preserves the recorded atomic lineage."
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C1",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. Final human review approved the repaired mapping; the original atoms remain recorded.",
+      "merge_lineage": "C. repaired after human provenance review",
+      "new_boolean_structure": "P02:130fcc4fc2110081",
+      "new_part_id": "P02",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P03:130fcc4fc2110081 AND P04:130fcc4fc2110081",
+      "old_part_ids": [
+        "P03",
+        "P04"
+      ],
+      "q_id": "Q14",
+      "q_version": "2",
+      "reason_for_merge": "Repaired after human provenance review; the corrected co-disclosed atoms form one source-level component: Ad-impression growth | Average-price-per-ad growth. The final human review approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0041",
+        "review_record_number": 41,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": "APPROVE after repaired-source review: all merged atoms are co-disclosed by the exact same complete candidate set, so the source-level retrieval simplification is semantically appropriate and preserves the recorded atomic lineage."
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": "APPROVE after repaired-source review: all merged atoms are co-disclosed by the exact same complete candidate set, so the source-level retrieval simplification is semantically appropriate and preserves the recorded atomic lineage."
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C3",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:874f02d4f152c4a1",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:874f02d4f152c4a1 AND P02:874f02d4f152c4a1",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q14",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Current lease-inclusive capital expenditures | Prior-year lease-inclusive capital expenditures. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0042",
+        "review_record_number": 42,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C6",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:6f45839ef280a11c",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P01:6f45839ef280a11c AND P02:6f45839ef280a11c",
+      "old_part_ids": [
+        "P01",
+        "P02"
+      ],
+      "q_id": "Q14",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Net debt issuance proceeds | Absence of share repurchases. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0043",
+        "review_record_number": 43,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "C7",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P01:130fcc4fc2110081",
+      "new_part_id": "P01",
+      "number_of_parts_reduced": 2,
+      "old_boolean_structure": "P01:130fcc4fc2110081 AND P02:130fcc4fc2110081 AND P03:130fcc4fc2110081",
+      "old_part_ids": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q14",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Raised capital-expenditure lower bound and retained upper bound | Raised expense-outlook lower bound and legal-expense reason | Expected full-year operating income above 2025. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0044",
+        "review_record_number": 44,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E03",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P02:b3408b8474c51e96",
+      "new_part_id": "P02",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P02:b3408b8474c51e96 AND P03:b3408b8474c51e96",
+      "old_part_ids": [
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q15",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Microsoft Q1 cash PP&E | Microsoft Q1 operating cash flow. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0045",
+        "review_record_number": 45,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E03",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P04:(8c05d5174f59448e OR eb7ce4994d2626b3)",
+      "new_part_id": "P04",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P05:(8c05d5174f59448e OR eb7ce4994d2626b3) AND P06:(8c05d5174f59448e OR eb7ce4994d2626b3)",
+      "old_part_ids": [
+        "P05",
+        "P06"
+      ],
+      "q_id": "Q15",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Meta Q1 cash PP&E | Meta Q1 operating cash flow. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0046",
+        "review_record_number": 46,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E04",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P02:10b5f2f74c4f4541",
+      "new_part_id": "P02",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P02:10b5f2f74c4f4541 AND P03:10b5f2f74c4f4541",
+      "old_part_ids": [
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q15",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Microsoft Q2 cash PP&E | Microsoft Q2 operating cash flow. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0047",
+        "review_record_number": 47,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E04",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P04:(6f45839ef280a11c OR 874f02d4f152c4a1)",
+      "new_part_id": "P04",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P05:(6f45839ef280a11c OR 874f02d4f152c4a1) AND P06:(6f45839ef280a11c OR 874f02d4f152c4a1)",
+      "old_part_ids": [
+        "P05",
+        "P06"
+      ],
+      "q_id": "Q15",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Meta Q2 cash PP&E | Meta Q2 operating cash flow. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0048",
+        "review_record_number": 48,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E05",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P02:b3408b8474c51e96",
+      "new_part_id": "P02",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P02:b3408b8474c51e96 AND P03:b3408b8474c51e96",
+      "old_part_ids": [
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q15",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Microsoft Q1 cash PP&E | Microsoft Q1 operating cash flow. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0049",
+        "review_record_number": 49,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E05",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P04:(8c05d5174f59448e OR eb7ce4994d2626b3)",
+      "new_part_id": "P04",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P05:(8c05d5174f59448e OR eb7ce4994d2626b3) AND P06:(8c05d5174f59448e OR eb7ce4994d2626b3)",
+      "old_part_ids": [
+        "P05",
+        "P06"
+      ],
+      "q_id": "Q15",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Meta Q1 cash PP&E | Meta Q1 operating cash flow. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0050",
+        "review_record_number": 50,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E05",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P06:10b5f2f74c4f4541",
+      "new_part_id": "P06",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P08:10b5f2f74c4f4541 AND P09:10b5f2f74c4f4541",
+      "old_part_ids": [
+        "P08",
+        "P09"
+      ],
+      "q_id": "Q15",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Microsoft Q2 cash PP&E | Microsoft Q2 operating cash flow. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0051",
+        "review_record_number": 51,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E05",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P08:(6f45839ef280a11c OR 874f02d4f152c4a1)",
+      "new_part_id": "P08",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P11:(6f45839ef280a11c OR 874f02d4f152c4a1) AND P12:(6f45839ef280a11c OR 874f02d4f152c4a1)",
+      "old_part_ids": [
+        "P11",
+        "P12"
+      ],
+      "q_id": "Q15",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Meta Q2 cash PP&E | Meta Q2 operating cash flow. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0052",
+        "review_record_number": 52,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E08",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P02:b3408b8474c51e96",
+      "new_part_id": "P02",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P02:b3408b8474c51e96 AND P03:b3408b8474c51e96",
+      "old_part_ids": [
+        "P02",
+        "P03"
+      ],
+      "q_id": "Q15",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Microsoft Q1 cash PP&E | Microsoft Q1 operating cash flow. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0053",
+        "review_record_number": 53,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E08",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P04:(8c05d5174f59448e OR eb7ce4994d2626b3)",
+      "new_part_id": "P04",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P05:(8c05d5174f59448e OR eb7ce4994d2626b3) AND P06:(8c05d5174f59448e OR eb7ce4994d2626b3)",
+      "old_part_ids": [
+        "P05",
+        "P06"
+      ],
+      "q_id": "Q15",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Meta Q1 cash PP&E | Meta Q1 operating cash flow. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0054",
+        "review_record_number": 54,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E08",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P06:10b5f2f74c4f4541",
+      "new_part_id": "P06",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P08:10b5f2f74c4f4541 AND P09:10b5f2f74c4f4541",
+      "old_part_ids": [
+        "P08",
+        "P09"
+      ],
+      "q_id": "Q15",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Microsoft Q2 cash PP&E | Microsoft Q2 operating cash flow. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0055",
+        "review_record_number": 55,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    },
+    {
+      "benchmark_version": "bench_v0.1.1",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+      "human_approved": true,
+      "ingestion_git_commit": "63cabb2",
+      "ingestion_tag": "ingestion_v0.1.1",
+      "item_id": "E08",
+      "logical_equivalence": "Every old clause has the same complete OR candidate set X; therefore X AND X = X by Boolean idempotence. The project owner accepted this equivalence for retrieval scoring; the original atoms remain recorded.",
+      "merge_lineage": "B. copied/applied from a previous merge proposal",
+      "new_boolean_structure": "P08:(6f45839ef280a11c OR 874f02d4f152c4a1)",
+      "new_part_id": "P08",
+      "number_of_parts_reduced": 1,
+      "old_boolean_structure": "P11:(6f45839ef280a11c OR 874f02d4f152c4a1) AND P12:(6f45839ef280a11c OR 874f02d4f152c4a1)",
+      "old_part_ids": [
+        "P11",
+        "P12"
+      ],
+      "q_id": "Q15",
+      "q_version": "2",
+      "reason_for_merge": "Copied from the previous merge proposal, which treated the following co-disclosed atoms as one source-level component: Meta Q2 cash PP&E | Meta Q2 operating cash flow. The project owner approved this retrieval-level merge.",
+      "review_lineage": {
+        "decision": "APPROVE",
+        "decision_id": "merge:merge_review_final_reviewed.csv:0056",
+        "review_record_number": 56,
+        "review_source": "benchmark/provenance/merge_review_final_reviewed.csv",
+        "reviewer_note": ""
+      },
+      "reviewer_decision": "APPROVE",
+      "reviewer_note": ""
+    }
+  ],
+  "version_binding": {
+    "benchmark_parent_version": "bench_v0.1",
+    "benchmark_release_git_commit": "b0197d17018fe29d6863b7c35b572b3fa599059b",
+    "benchmark_release_git_tag": "bench_v0.1.1",
+    "benchmark_release_manifest_sha256": "c45f1fe1add2e4765b063bbd45d9e94c43bb4b2a485f9184b88477f25abcd29f",
+    "benchmark_schema_version": "v0.1.2",
+    "benchmark_tag": "bench_v0.1.1",
+    "benchmark_version": "bench_v0.1.1",
+    "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+    "gold_schema": "investment-research-provenance-gold-map",
+    "gold_schema_version": "1.0.0",
+    "ingestion_git_commit": "63cabb2",
+    "ingestion_tag": "ingestion_v0.1.1"
+  }
+}

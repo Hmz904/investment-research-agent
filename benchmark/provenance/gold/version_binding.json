@@ -1,0 +1,14 @@
+{
+  "benchmark_parent_version": "bench_v0.1",
+  "benchmark_release_git_commit": "b0197d17018fe29d6863b7c35b572b3fa599059b",
+  "benchmark_release_git_tag": "bench_v0.1.1",
+  "benchmark_release_manifest_sha256": "c45f1fe1add2e4765b063bbd45d9e94c43bb4b2a485f9184b88477f25abcd29f",
+  "benchmark_schema_version": "v0.1.2",
+  "benchmark_tag": "bench_v0.1.1",
+  "benchmark_version": "bench_v0.1.1",
+  "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+  "gold_schema": "investment-research-provenance-gold-map",
+  "gold_schema_version": "1.0.0",
+  "ingestion_git_commit": "63cabb2",
+  "ingestion_tag": "ingestion_v0.1.1"
+}

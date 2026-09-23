@@ -1,0 +1,162 @@
+{
+  "artifact_type": "previous_unique_sample_defect_trace_draft",
+  "trace_count": 3,
+  "traces": [
+    {
+      "current_mapping": [
+        {
+          "candidate_chunk_ids": [
+            "a35a2f866d18fd19"
+          ],
+          "description": "FY27Q1 guidance upper end of USD 92.82B",
+          "part_id": "P01"
+        },
+        {
+          "candidate_chunk_ids": [
+            "e19520eac6dfcec3"
+          ],
+          "description": "FY27Q2 realized revenue of USD 96.221B",
+          "part_id": "P02"
+        }
+      ],
+      "current_source_anchors": [
+        {
+          "accession": "0001045810-26-000051",
+          "chunk_id": "a35a2f866d18fd19",
+          "source_anchor_id": "src_524ffb2693b42cd4452814a1"
+        },
+        {
+          "accession": "0001045810-26-000073",
+          "chunk_id": "e19520eac6dfcec3",
+          "source_anchor_id": "src_d94e340318c4730cc8fb3030"
+        }
+      ],
+      "current_status": "supported",
+      "exact_defect_reason": "The old single chunk proves realized FY27Q2 revenue only. It cannot establish the earlier $91.0B plus-or-minus 2% guidance or its $92.82B upper bound.",
+      "item_id": "X3",
+      "old_mapping": [
+        "fc8eed03351b9373"
+      ],
+      "old_mapping_source_text": [
+        "EX-99.1 2 q2fy27pr.htm EX-99.1 Document created using Wdesk Copyright 2026 Workiva NVIDIA Announces Financial Results for Second Quarter Fiscal 2027 • Revenue of $96.2 billion, up 106% from a year ago • Data Center revenue of $89.0 billion, up 117% from a year ago SANTA CLARA, Calif.—Aug. 26, 2026― NVIDIA (NASDAQ: NVDA) today reported revenue for the second quarter ended July 26, 2026, of $96.2 billion, up 18% from the previous quarter and up 106% from a year ago. For the quarter, GAAP and non-GAAP gross margins were both 75.0%. GAAP and non-GAAP earnings per diluted share were $2.46 and $2.22, respectively. “AI has reached its inflection point. It’s doing useful work. Its tokens are productive and profitable. Now, compute is revenue,” said Jensen Huang, founder and CEO of NVIDIA. “And demand is accelerating. This time last year, one lab alone was driving the buildout; today, we have a golden age of new AI labs and startups, multiple frontier labs scaling in parallel, a thriving open-model ecosystem and physical AI coming online — with strong momentum across the U.S. and around the world. The AI infrastructure buildout is at full steam. Vera Rubin, now in full production, was built to power exactly this moment.” During the second quarter of fiscal 2027, NVIDIA returned approximately $26.0 billion to shareholders in the form of shares repurchased and cash dividends. As of the en…"
+      ],
+      "q_id": "Q05",
+      "q_version": "2",
+      "relevant_source_text": [
+        "Outlook NVIDIA’s outlook for the second quarter of fiscal 2027 is as follows: • Revenue is expected to be $91.0 billion, plus or minus 2%. NVIDIA is not assuming any Data Center compute revenue from China in its outlook. • GAAP and non-GAAP gross margins are expected to be 74.9% and 75.0%, respectively, plus or minus 50 basis points. • GAAP and non-GAAP operating expenses are expected to be approximately $8.5 billion and $8.3 billion, respectively. For the full year fiscal 2027, NVIDIA expects GAAP and non-GAAP tax rates to be between 16.0% and 18.0%, excluding any discrete items and material changes to NVIDIA’s tax environment. Highlights Data Center • First-quarter revenue was a record $75.2 billion, up 21% from the previous quarter and up 92% from a year ago. • Announced the NVIDIA Vera Rubin platform, including the NVIDIA Vera CPU, the world’s first processor purpose-built for agentic AI, and NVIDIA BlueField®-4 STX, accelerated storage infrastructure for agentic AI factories. • Entered production with NVIDIA Dynamo 1.0, open source software that boosts generative and agentic inference on NVIDIA Blackwell GPUs by up to 7x, with widespread global adoption. • Announced NVIDIA NemoClawTM for the OpenClaw agent platform, NVIDIA OpenShellTM with privacy and security controls for autonomous AI agents, and NVIDIA Agent Toolkit, an open source platform for building autonomous enterprise AI agents. • Advanced open AI model development with new NVIDIA NemotronTM, NVIDIA BioNeMoTM and NVIDIA Ising models, and the launch of the NVIDIA Nemotron Coalition. • Expanded collaboration with Google Cloud to advance agentic and physical AI, including new NVIDIA Vera Rubin-powered A5X instances and a preview of Google Gemini models on Google Distributed Cloud running on NVIDIA Blackwell…",
+        "Table: CONDENSED CONSOLIDATED STATEMENTS OF INCOME Unit: USD millions Qualifiers: Unaudited Row: Revenue - Three Months Ended July 26, 2026: 96,221 - Three Months Ended July 27, 2025: 46,743 - Six Months Ended July 26, 2026: 177,837 - Six Months Ended July 27, 2025: 90,805 Row: Cost of revenue - Three Months Ended July 26, 2026: 24,079 - Three Months Ended July 27, 2025: 12,890 - Six Months Ended July 26, 2026: 44,538 - Six Months Ended July 27, 2025: 30,284 Row: Gross profit - Three Months Ended July 26, 2026: 72,142 - Three Months Ended July 27, 2025: 33,853 - Six Months Ended July 26, 2026: 133,299 - Six Months Ended July 27, 2025: 60,521 Row: Operating expenses Row: Research and development - Three Months Ended July 26, 2026: 7,054 - Three Months Ended July 27, 2025: 4,291 - Six Months Ended July 26, 2026: 13,375 - Six Months Ended July 27, 2025: 8,280 Row: Sales, general and administrative - Three Months Ended July 26, 2026: 1,354 - Three Months Ended July 27, 2025: 1,122 - Six Months Ended July 26, 2026: 2,654 - Six Months Ended July 27, 2025: 2,163 Row: Total operating expenses - Three Months Ended July 26, 2026: 8,408 - Three Months Ended July 27, 2025: 5,413 - Six Months Ended July 26, 2026: 16,029 - Six Months Ended July 27, 2025: 10,443 Row: Operating income - Three Months Ended July 26, 2026: 63,734 - Three Months Ended July 27, 2025: 28,440 - Six Months Ended July 26, 2026: 117,270 - Six Months Ended July 27, 2025: 50,078 Row: Other income, net - Three Months Ended July 26, 2026: 7,773 - Three Months Ended July 27, 2025: 2,766 - Six Months Ended July 26, 2026: 24,140 - Six Months Ended July 27, 2025: 3,039 Row: Income before income tax - Three Months Ended July 26, 2026: 71,507 - Three Months Ended July 27, 2025: 31,206 - Six Months Ended July 26, 2026: 141…"
+      ],
+      "resolution": "The v0.1.1 erratum adds the Q1 release to the source contract. The rebuild maps P01 to the guidance chunk and retains the Q2 realized-revenue chunk as P02; the former contract error is resolved.",
+      "reviewer_decision": "",
+      "reviewer_note": ""
+    },
+    {
+      "current_mapping": [
+        {
+          "candidate_chunk_ids": [
+            "3e9b386d72ec488d"
+          ],
+          "description": "Hyperscale category is the closer economic proxy for large cloud/internet buyers",
+          "part_id": "P01"
+        },
+        {
+          "candidate_chunk_ids": [
+            "66a2dbe9fa036e7f"
+          ],
+          "description": "First-half Hyperscale current and prior-year inputs used to reconstruct Q1",
+          "part_id": "P02"
+        },
+        {
+          "candidate_chunk_ids": [
+            "6e776edb42ae8862"
+          ],
+          "description": "Q2 Hyperscale current and prior-year inputs used with the first-half table",
+          "part_id": "P03"
+        }
+      ],
+      "current_source_anchors": [
+        {
+          "accession": "0001045810-26-000075",
+          "chunk_id": "3e9b386d72ec488d",
+          "source_anchor_id": "src_14d823b57b716871879e3951"
+        },
+        {
+          "accession": "0001045810-26-000075",
+          "chunk_id": "66a2dbe9fa036e7f",
+          "source_anchor_id": "src_a327e472a2863053abd5307d"
+        },
+        {
+          "accession": "0001045810-26-000075",
+          "chunk_id": "6e776edb42ae8862",
+          "source_anchor_id": "src_56d2201508db7a172a4a10a6"
+        }
+      ],
+      "current_status": "supported",
+      "exact_defect_reason": "The old narrative chunk explains the Hyperscale category and recast, but lacks the first-half and Q2 numeric inputs needed to reconstruct Q1 and verify both YoY rates.",
+      "item_id": "E09",
+      "old_mapping": [
+        "3e9b386d72ec488d"
+      ],
+      "old_mapping_source_text": [
+        "(1) In the first quarter of fiscal year 2027, we changed our presentation of revenue by market platform and the comparable periods have been recast. (2) During the second quarter of fiscal year 2027, we reclassified a company from ACIE to Hyperscale due to a change in their business model and recast the prior period revenue associated with this company. 27 Revenue was $96.2 billion, up 106% from a year ago and up 18% sequentially. Data Center revenue was $89.0 billion, up 117% from a year ago and up 18% sequentially, driven by the ramp of our Blackwell Ultra infrastructure. Hyperscale revenue more than doubled from a year ago and increased 13% sequentially on the strength of Blackwell Ultra. ACIE revenue increased 138% from a year ago and 25% sequentially driven by end-demand from AI natives, enterprises, and sovereign customers, as well as hyperscalers utilizing AI clouds. Shipments of Data Center Hopper products to China during the second quarter of fiscal year 2027 were less than 1% of Data Center revenue. Edge Computing revenue was $7.2 billion, up 27% from a year ago and up 13% sequentially. The increases were driven by strong sales of Blackwell workstations, partially offset by slower consumer PC sales that were tempered by elevated memory and systems prices . Gross margin increased from a year ago on improved mix from Blackwell Ultra. Gross margin was approximately flat…"
+      ],
+      "q_id": "Q16",
+      "q_version": "2",
+      "relevant_source_text": [
+        "(1) In the first quarter of fiscal year 2027, we changed our presentation of revenue by market platform and the comparable periods have been recast. (2) During the second quarter of fiscal year 2027, we reclassified a company from ACIE to Hyperscale due to a change in their business model and recast the prior period revenue associated with this company. 27 Revenue was $96.2 billion, up 106% from a year ago and up 18% sequentially. Data Center revenue was $89.0 billion, up 117% from a year ago and up 18% sequentially, driven by the ramp of our Blackwell Ultra infrastructure. Hyperscale revenue more than doubled from a year ago and increased 13% sequentially on the strength of Blackwell Ultra. ACIE revenue increased 138% from a year ago and 25% sequentially driven by end-demand from AI natives, enterprises, and sovereign customers, as well as hyperscalers utilizing AI clouds. Shipments of Data Center Hopper products to China during the second quarter of fiscal year 2027 were less than 1% of Data Center revenue. Edge Computing revenue was $7.2 billion, up 27% from a year ago and up 13% sequentially. The increases were driven by strong sales of Blackwell workstations, partially offset by slower consumer PC sales that were tempered by elevated memory and systems prices . Gross margin increased from a year ago on improved mix from Blackwell Ultra. Gross margin was approximately flat sequentially as our Blackwell architecture remains the vast majority of our revenue. Operating expenses were up 55% from a year ago and up 10% sequentially. These increases were driven by higher compute infrastructure and compensation and benefits costs. Financial Information by Business Segment and Geographic Data Refer to Note 13 of the Notes to Condensed Consolidated Financial Statements in Par…",
+        "Table: Revenue by Market Platform Unit: USD millions Qualifiers: Continued, Unaudited Row: Data Center - Three Months Ended Jul 26, 2026: 89,023 - Three Months Ended Jul 27, 2025: 41,096 - Six Months Ended Jul 26, 2026: 164,269 - Six Months Ended Jul 27, 2025: 80,208 Row: Hyperscale - Three Months Ended Jul 26, 2026: 48,710 - Three Months Ended Jul 27, 2025: 24,168 - Six Months Ended Jul 26, 2026: 91,761 - Six Months Ended Jul 27, 2025: 46,428 Row: AI Clouds, Industrial, & Enterprise - Three Months Ended Jul 26, 2026: 40,313 - Three Months Ended Jul 27, 2025: 16,928 - Six Months Ended Jul 26, 2026: 72,508 - Six Months Ended Jul 27, 2025: 33,780 Row: Edge Computing - Three Months Ended Jul 26, 2026: 7,198 - Three Months Ended Jul 27, 2025: 5,647 - Six Months Ended Jul 26, 2026: 13,568 - Six Months Ended Jul 27, 2025: 10,597 Row: Total revenue - Three Months Ended Jul 26, 2026: 96,221 - Three Months Ended Jul 27, 2025: 46,743 - Six Months Ended Jul 26, 2026: 177,837 - Six Months Ended Jul 27, 2025: 90,805",
+        "Table: Revenue by Market Platform (1) (2) Unit: USD millions Row: Data Center - Three Months Ended Jul 26, 2026: 89,023 - Three Months Ended Apr 26, 2026: 75,246 - Three Months Ended Jul 27, 2025: 41,096 - Quarter-over-Quarter Change: 18% - Year-over-Year Change: 117% Row: Hyperscale - Three Months Ended Jul 26, 2026: 48,710 - Three Months Ended Apr 26, 2026: 43,050 - Three Months Ended Jul 27, 2025: 24,168 - Quarter-over-Quarter Change: 13% - Year-over-Year Change: 102% Row: AI Clouds, Industrial, & Enterprise - Three Months Ended Jul 26, 2026: 40,313 - Three Months Ended Apr 26, 2026: 32,196 - Three Months Ended Jul 27, 2025: 16,928 - Quarter-over-Quarter Change: 25% - Year-over-Year Change: 138% Row: Edge Computing - Three Months Ended Jul 26, 2026: 7,198 - Three Months Ended Apr 26, 2026: 6,369 - Three Months Ended Jul 27, 2025: 5,647 - Quarter-over-Quarter Change: 13% - Year-over-Year Change: 27% Row: Total revenue - Three Months Ended Jul 26, 2026: 96,221 - Three Months Ended Apr 26, 2026: 81,615 - Three Months Ended Jul 27, 2025: 46,743 - Quarter-over-Quarter Change: 18% - Year-over-Year Change: 106%"
+      ],
+      "resolution": "Corrected during the rebuild, not dropped: P02 adds the first-half table and P03 adds the Q2 quarterly table.",
+      "reviewer_decision": "",
+      "reviewer_note": ""
+    },
+    {
+      "current_mapping": [
+        {
+          "candidate_chunk_ids": [
+            "0d90ceeeffa01abc"
+          ],
+          "description": "Intelligent Cloud gross-profit growth inputs; Intelligent Cloud operating-income growth inputs; Intelligent Cloud operating-margin inputs; Intelligent Cloud operating-expense and gross-margin inputs",
+          "part_id": "P01"
+        }
+      ],
+      "current_source_anchors": [
+        {
+          "accession": "0001193125-26-323632",
+          "chunk_id": "0d90ceeeffa01abc",
+          "source_anchor_id": "src_a43c9d8eb1dc9edf4618b724"
+        }
+      ],
+      "current_status": "supported",
+      "exact_defect_reason": "The old chunk is only the segment-results heading and recast note; it contains none of the required Intelligent Cloud financial cells.",
+      "item_id": "C2",
+      "old_mapping": [
+        "70129a2015d51908"
+      ],
+      "old_mapping_source_text": [
+        "We have recast certain prior period amounts to conform to the current period presentation. SEGMENT RESULTS (In millions) (Unaudited)"
+      ],
+      "q_id": "Q10",
+      "q_version": "2",
+      "relevant_source_text": [
+        "…nded June 30, 2025: $120,810 Row: Cost of revenue - Three Months Ended June, 2026: 6,989 - Three Months Ended June, 2025: 6,042 - Twelve Months Ended June 30, 2026: 25,017 - Twelve Months Ended June 30, 2025: 22,422 Row: Operating expenses - Three Months Ended June, 2026: 8,958 - Three Months Ended June, 2025: 8,077 - Twelve Months Ended June 30, 2026: 31,100 - Twelve Months Ended June 30, 2025: 28,615 Row: Operating income - Three Months Ended June, 2026: $21,900 - Three Months Ended June, 2025: $18,993 - Twelve Months Ended June 30, 2026: $83,879 - Twelve Months Ended June 30, 2025: $69,773 Row: Intelligent Cloud Row: Revenue - Three Months Ended June, 2026: $39,306 - Three Months Ended June, 2025: $29,878 - Twelve Months Ended June 30, 2026: $137,791 - Twelve Months Ended June 30, 2025: $106,265 Row: Cost of revenue - Three Months Ended June, 2026: 16,876 - Three Months Ended June, 2025: 11,845 - Twelve Months Ended June 30, 2026: 57,876 - Twelve Months Ended June 30, 2025: 40,171 Row: Operating expenses - Three Months Ended June, 2026: 6,475 - Three Months Ended June, 2025: 5,893 - Twelve Months Ended June 30, 2026: 22,943 - Twelve Months Ended June 30, 2025: 21,505 Row: Operating income - Three Months Ended June, 2026: $15,955 - Three Months Ended June, 2025: $12,140 - Twelve Months Ended June 30, 2026: $56,972 - Twelve Months Ended June 30, 2025: $44,589 Row: More Personal Computing Row: Revenue - Three Months Ended June, 2026: $12,854 - Three Months Ended June, 2025: $13,451 - Twelve Months Ended June 30, 2026: $54,052 - Twelve Months Ended June 30, 2025: $54,649 Row: Cost of revenue - Three Months Ended June, 2026: 5,660 - Three Months Ended June, 2025: 6,127 - Twelve Months Ended June 30, 2026: 23,481 - Twelve Months Ended June 30, 2025: 25,238 Row: Operating e…"
+      ],
+      "resolution": "Corrected during the rebuild, not dropped: the current mapping uses the adjacent segment table containing revenue, cost, operating expense, and operating income for both periods.",
+      "reviewer_decision": "",
+      "reviewer_note": ""
+    }
+  ],
+  "version_binding": {
+    "benchmark_component_tags": [
+      "bench_v0.1.1"
+    ],
+    "benchmark_parent_version": "bench_v0.1",
+    "benchmark_schema_version": "v0.1.2",
+    "benchmark_version": "bench_v0.1.1",
+    "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+    "ingestion_git_commit": "63cabb2",
+    "ingestion_tag": "ingestion_v0.1.1",
+    "provenance_schema_version": "v0.2.0-draft"
+  }
+}

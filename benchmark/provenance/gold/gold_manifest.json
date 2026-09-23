@@ -1,0 +1,48 @@
+{
+  "artifact_type": "gold_map_manifest",
+  "artifacts": {
+    "evidence_provenance.json": {
+      "bytes": 1133932,
+      "sha256": "f838d4337cd2620c97ba05bc3d42aeaedafe1119ccf2bbda47cdc5402b319dcb"
+    },
+    "merge_lineage.json": {
+      "bytes": 91121,
+      "sha256": "d9a776cea3bff4d6e4e7b69860be84a896cbe5babcf4e91d346c4b36b0354ec0"
+    },
+    "numeric_fact_provenance.json": {
+      "bytes": 427175,
+      "sha256": "6e3627097325798e343119738765ce06ee4ca1a8c7eb06b6667a46098414ad7c"
+    },
+    "review_decisions.json": {
+      "bytes": 200856,
+      "sha256": "b2cac88931bf3169001775be55ccd61c8a16c83c21c6d3134241efeed00145a8"
+    },
+    "source_anchors.json": {
+      "bytes": 91733,
+      "sha256": "3b6c68f5c3ad6349dedbd62d88a1ab473b2e960c4b6a6fc20494695625f36068"
+    },
+    "version_binding.json": {
+      "bytes": 655,
+      "sha256": "f450c6ede7f18dcfa0cfec496936b60fcaad9aff4be50b269c60a788a511ea1c"
+    }
+  },
+  "benchmark_binding": {
+    "benchmark_release_git_commit": "b0197d17018fe29d6863b7c35b572b3fa599059b",
+    "benchmark_release_git_tag": "bench_v0.1.1",
+    "benchmark_tag": "bench_v0.1.1",
+    "benchmark_version": "bench_v0.1.1"
+  },
+  "fingerprint_algorithm": "sha256-canonical-json",
+  "fingerprint_excludes": [
+    "timestamps",
+    "gold_map_fingerprint"
+  ],
+  "gold_map_fingerprint": "dfc5246bc625085b9412eb0918444751f944930905fbbd4b33cb97adda50ed57",
+  "gold_schema": "investment-research-provenance-gold-map",
+  "gold_schema_version": "1.0.0",
+  "ingestion_binding": {
+    "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+    "ingestion_git_commit": "63cabb2",
+    "ingestion_tag": "ingestion_v0.1.1"
+  }
+}
