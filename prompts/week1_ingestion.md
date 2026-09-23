@@ -475,7 +475,7 @@ Do not collapse these into one fact because their labels match.
 Recover Intelligent Cloud:
 
 - revenue 39,306
-- gross profit 16,876
+- Cost of revenue 16,876
 - operating income 15,955
 
 The cells must retain header-derived period provenance and correctly identify
