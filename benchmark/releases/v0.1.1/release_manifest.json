@@ -1,0 +1,14 @@
+{
+  "benchmark_parent_version": "bench_v0.1",
+  "benchmark_release_version": "bench_v0.1.1",
+  "errata_file": "benchmark/errata/bench_v0.1.1.csv",
+  "files": {
+    "evidence_checklist.csv": "eda49cab2e213424872b192fa8abaf4dce0b45693391033b2ba868cbd4d18947",
+    "numeric_answers.csv": "a6b9b49c98ff6b3052bd43cfbc9ca1e10dccaf1ae64fea588b3945fdc4510ce1",
+    "protocol.md": "a4d67d7b0e4a41e1c80d18188508ce2933fa518c7dafff601b9f5eb43c7f9eb3",
+    "protocol_addendum.md": "71fff537adee1279674cb20d5bd06985a89e5687ec7a9aaa4d5324853c349c62",
+    "questions.csv": "8019db55145518a844eade8c02687bd7069d04de1ff428faa5337a6672c24dcd",
+    "release_diff.json": "c7a34191fc581eda1732188ea4e49972bd86cbe33eb8c2b4dc67864ef13ded37",
+    "source_manifest.csv": "1513c62b3379639af91e1aae7e4193d725eefece494aa2c988bdf4b9b4c75916"
+  }
+}

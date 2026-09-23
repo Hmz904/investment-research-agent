@@ -1,0 +1,100 @@
+{
+  "affected_item_count": 4,
+  "allowed_changed_fields": [
+    "accession",
+    "location"
+  ],
+  "benchmark_parent_version": "bench_v0.1",
+  "benchmark_release_version": "bench_v0.1.1",
+  "changed_field_count": 8,
+  "changes": [
+    {
+      "field_name": "accession",
+      "file": "evidence_checklist.csv",
+      "item_id": "E05",
+      "new_value": "0001045810-26-000051",
+      "old_value": "0001045810-26-000052",
+      "q_id": "Q02",
+      "q_version": "2"
+    },
+    {
+      "field_name": "location",
+      "file": "evidence_checklist.csv",
+      "item_id": "E05",
+      "new_value": "Exhibit 99.1; Data Center discussion",
+      "old_value": "Item 2 MD&A; Data Center discussion",
+      "q_id": "Q02",
+      "q_version": "2"
+    },
+    {
+      "field_name": "accession",
+      "file": "evidence_checklist.csv",
+      "item_id": "X3",
+      "new_value": "0001045810-26-000051;0001045810-26-000073",
+      "old_value": "0001045810-26-000073",
+      "q_id": "Q05",
+      "q_version": "2"
+    },
+    {
+      "field_name": "location",
+      "file": "evidence_checklist.csv",
+      "item_id": "X3",
+      "new_value": "Exhibit 99.1; Q1 outlook and Q2 realized results",
+      "old_value": "Exhibit 99.1; realized Q2 results compared with prior outlook",
+      "q_id": "Q05",
+      "q_version": "2"
+    },
+    {
+      "field_name": "accession",
+      "file": "evidence_checklist.csv",
+      "item_id": "X4",
+      "new_value": "0001045810-26-000052;0001045810-26-000075",
+      "old_value": "0001045810-26-000075",
+      "q_id": "Q05",
+      "q_version": "2"
+    },
+    {
+      "field_name": "location",
+      "file": "evidence_checklist.csv",
+      "item_id": "X4",
+      "new_value": "Item 2 MD&A; original and recast Revenue by Market Platform presentations",
+      "old_value": "Item 2 MD&A; market-platform reclassification note",
+      "q_id": "Q05",
+      "q_version": "2"
+    },
+    {
+      "field_name": "accession",
+      "file": "evidence_checklist.csv",
+      "item_id": "E07",
+      "new_value": "0001628280-26-028364;0001628280-26-028526",
+      "old_value": "0001628280-26-028364",
+      "q_id": "Q12",
+      "q_version": "2"
+    },
+    {
+      "field_name": "location",
+      "file": "evidence_checklist.csv",
+      "item_id": "E07",
+      "new_value": "Exhibit 99.1; cash flow statement AND Form 10-Q; Part I Item 1 Note 6; property and server/network depreciation",
+      "old_value": "Exhibit 99.1; cash flow and expense disclosures",
+      "q_id": "Q12",
+      "q_version": "2"
+    }
+  ],
+  "semantic_change_counts": {
+    "answer_semantics": 0,
+    "claim_wording": 0,
+    "formula": 0,
+    "importance": 0,
+    "numeric_answers_or_values": 0,
+    "numeric_facts": 0,
+    "question_wording": 0,
+    "stance": 0,
+    "temporal_role": 0
+  },
+  "validation": {
+    "all_unaffected_release_files_byte_identical": true,
+    "all_unaffected_rows_preserved": true,
+    "only_allowlisted_metadata_changed": true
+  }
+}
