@@ -1,0 +1,2 @@
+"""SEC filing ingestion package."""
+

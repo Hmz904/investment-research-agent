@@ -1,0 +1,114 @@
+{
+  "META_2026Q1_10Q": {
+    "tables": 40,
+    "chunks": 180,
+    "xbrl_facts": 671,
+    "numeric_cells_with_header_periods": 399,
+    "percent_cells": 40,
+    "footnotes": 0
+  },
+  "META_2026Q1_8K_EX991": {
+    "tables": 6,
+    "chunks": 15,
+    "xbrl_facts": 0,
+    "numeric_cells_with_header_periods": 122,
+    "percent_cells": 21,
+    "footnotes": 0
+  },
+  "META_2026Q2_10Q": {
+    "tables": 43,
+    "chunks": 188,
+    "xbrl_facts": 925,
+    "numeric_cells_with_header_periods": 737,
+    "percent_cells": 71,
+    "footnotes": 0
+  },
+  "META_2026Q2_8K_EX991": {
+    "tables": 6,
+    "chunks": 15,
+    "xbrl_facts": 0,
+    "numeric_cells_with_header_periods": 341,
+    "percent_cells": 21,
+    "footnotes": 0
+  },
+  "MSFT_FY26Q3_10Q": {
+    "tables": 59,
+    "chunks": 273,
+    "xbrl_facts": 1569,
+    "numeric_cells_with_header_periods": 802,
+    "percent_cells": 132,
+    "footnotes": 0
+  },
+  "MSFT_FY26Q3_8K_EX991": {
+    "tables": 9,
+    "chunks": 18,
+    "xbrl_facts": 0,
+    "numeric_cells_with_header_periods": 392,
+    "percent_cells": 63,
+    "footnotes": 0
+  },
+  "MSFT_FY26Q4_8K_EX991": {
+    "tables": 11,
+    "chunks": 21,
+    "xbrl_facts": 0,
+    "numeric_cells_with_header_periods": 416,
+    "percent_cells": 91,
+    "footnotes": 0
+  },
+  "MSFT_FY26_10K": {
+    "tables": 88,
+    "chunks": 422,
+    "xbrl_facts": 1782,
+    "numeric_cells_with_header_periods": 96,
+    "percent_cells": 134,
+    "footnotes": 0
+  },
+  "NVDA_FY26Q2_10Q": {
+    "tables": 51,
+    "chunks": 160,
+    "xbrl_facts": 1011,
+    "numeric_cells_with_header_periods": 662,
+    "percent_cells": 59,
+    "footnotes": 1
+  },
+  "NVDA_FY26Q4_8K_EX991": {
+    "tables": 13,
+    "chunks": 19,
+    "xbrl_facts": 0,
+    "numeric_cells_with_header_periods": 335,
+    "percent_cells": 50,
+    "footnotes": 0
+  },
+  "NVDA_FY27Q1_10Q": {
+    "tables": 49,
+    "chunks": 156,
+    "xbrl_facts": 782,
+    "numeric_cells_with_header_periods": 499,
+    "percent_cells": 60,
+    "footnotes": 2
+  },
+  "NVDA_FY27Q1_8K_EX991": {
+    "tables": 11,
+    "chunks": 16,
+    "xbrl_facts": 0,
+    "numeric_cells_with_header_periods": 203,
+    "percent_cells": 32,
+    "footnotes": 0
+  },
+  "NVDA_FY27Q2_10Q": {
+    "tables": 52,
+    "chunks": 163,
+    "xbrl_facts": 1099,
+    "numeric_cells_with_header_periods": 637,
+    "percent_cells": 90,
+    "footnotes": 3
+  },
+  "NVDA_FY27Q2_8K_EX991": {
+    "tables": 11,
+    "chunks": 16,
+    "xbrl_facts": 0,
+    "numeric_cells_with_header_periods": 319,
+    "percent_cells": 36,
+    "footnotes": 0
+  }
+}
