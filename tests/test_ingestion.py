@@ -7,10 +7,15 @@ Expected values are intentionally hard-coded here.  Production parsing code in
 from __future__ import annotations
 
 import json
+import re
+import hashlib
 from pathlib import Path
 from typing import Any, Iterator
 
 import pytest
+
+from src.storage import INGESTION_SCHEMA_VERSION, corpus_fingerprint
+from src.tables import check_numeric_cell_xbrl_consistency
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -154,6 +159,7 @@ def test_f_meta_2026q2_free_cash_flow_cells() -> None:
 
 
 def test_g_corpus_integrity_and_second_run_reuse() -> None:
+    manifest = _load_json(DATA / "manifest.json")
     entries = _manifest_entries()
     assert len(entries) == 14
     assert len({e["doc_id"] for e in entries}) == 14
@@ -164,14 +170,115 @@ def test_g_corpus_integrity_and_second_run_reuse() -> None:
     for entry in entries:
         raw_path = Path(entry["local_path"])
         assert raw_path.exists()
-        actual_sha = __import__("hashlib").sha256(raw_path.read_bytes()).hexdigest()
-        assert actual_sha == entry["sha256"]
+        actual_sha = hashlib.sha256(raw_path.read_bytes()).hexdigest()
+        assert actual_sha == entry["sha256"] == entry["raw_sha256"]
+        parsed_path = DATA / "parsed" / f"{entry['doc_id']}.json"
+        chunk_path = DATA / "chunks" / f"{entry['doc_id']}.json"
+        assert hashlib.sha256(parsed_path.read_bytes()).hexdigest() == entry["parsed_sha256"]
+        assert hashlib.sha256(chunk_path.read_bytes()).hexdigest() == entry["chunk_sha256"]
+
+    assert manifest["ingestion_schema_version"] == INGESTION_SCHEMA_VERSION
+    assert manifest["corpus_fingerprint"] == corpus_fingerprint(entries)
 
     from src.pipeline import run
 
     summary = run()
     assert summary["downloaded_raw_files"] == 0
     assert summary["reused_raw_files"] == 14
+
+
+def test_msft_cash_ppe_table_and_xbrl_paths_are_consistent() -> None:
+    target = None
+    for row, cell in _cells("MSFT_FY26Q3_10Q"):
+        if (
+            cell.get("raw_text") == "( 30,876"
+            and cell.get("row_label") == "Additions to property and equipment"
+            and cell.get("period_end") == "2026-03-31"
+        ):
+            target = cell
+            break
+    assert target is not None
+    fact = next(
+        fact
+        for fact in target["xbrl_facts"]
+        if fact["concept"] == "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+        and fact["period_start"] == "2026-01-01"
+        and fact["period_end"] == "2026-03-31"
+    )
+    result = check_numeric_cell_xbrl_consistency(target, fact)
+    assert result["consistent"] is True
+    assert result["magnitude_matches"] is True
+    assert result["table_display_sign"] == "negative"
+    assert result["xbrl_fact_sign"] == "nonnegative"
+    assert result["display_signs_equal"] is False
+    assert result["period_end_matches"] is True
+    assert result["duration_matches"] is True
+    assert result["unit_matches"] is True
+    assert result["row_label"] == "Additions to property and equipment"
+    assert result["concept"] == "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+
+
+def test_all_attached_footnotes_are_structurally_local() -> None:
+    marker_re = re.compile(
+        r"^\s*(\(\d{1,3}\)|\([a-z]\)|\[\d{1,3}\]|\d{1,3}\))\s+",
+        re.IGNORECASE,
+    )
+    accounting_marker_re = re.compile(r"^\(\d{1,3}\)$")
+    separator_re = re.compile(r"^[\s_\-–—]+$")
+    attachment_count = 0
+
+    for entry in _manifest_entries():
+        blocks = _blocks(entry["doc_id"])
+        for index, block in enumerate(blocks):
+            if block.get("block_type") != "table":
+                continue
+            table = block.get("table", {})
+            references = set(table.get("footnote_references", []))
+            internal_bodies = {
+                cell.get("raw_text", "")
+                for row in table.get("rows", [])
+                for cell in row.get("cells", [])
+            }
+
+            local_external_bodies: set[str] = set()
+            cursor = index + 1
+            while cursor < len(blocks) and separator_re.fullmatch(
+                blocks[cursor].get("text", "").strip()
+            ):
+                cursor += 1
+            while cursor < len(blocks):
+                candidate = blocks[cursor]
+                if candidate.get("section_path") != block.get("section_path"):
+                    break
+                if candidate.get("block_type") != "footnote":
+                    break
+                local_external_bodies.add(candidate.get("text", ""))
+                cursor += 1
+
+            for body in table.get("footnotes", []):
+                attachment_count += 1
+                match = marker_re.match(body)
+                assert match is not None
+                assert match.group(1) in references
+                assert body in internal_bodies or body in local_external_bodies
+
+            for row in table.get("rows", []):
+                row_references = set(row.get("footnote_references", []))
+                for reference in row_references:
+                    assert any(
+                        cell.get("parsed_value") is None
+                        and cell.get("raw_text", "").strip().endswith(reference)
+                        for cell in row.get("cells", [])
+                    )
+                for cell in row.get("cells", []):
+                    raw_text = cell.get("raw_text", "").strip()
+                    if (
+                        cell.get("parsed_value") is not None
+                        and accounting_marker_re.fullmatch(raw_text)
+                    ):
+                        assert raw_text not in row_references
+
+    assert attachment_count == 56
 
 
 def test_extra_meta_q1_segment_cells() -> None:

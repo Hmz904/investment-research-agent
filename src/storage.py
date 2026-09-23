@@ -11,12 +11,34 @@ from pathlib import Path
 from typing import Any
 
 
+INGESTION_SCHEMA_VERSION = "0.1.1"
+
+
 def sha256_hex(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
 def _utc_now_iso() -> str:
     return _dt.datetime.now(_dt.timezone.utc).isoformat()
+
+
+def corpus_fingerprint(
+    entries: list[dict[str, Any]],
+    ingestion_schema_version: str = INGESTION_SCHEMA_VERSION,
+) -> str:
+    """Hash only deterministic corpus identity fields."""
+    identity = {
+        "ingestion_schema_version": ingestion_schema_version,
+        "raw_artifact_hashes": sorted(entry["raw_sha256"] for entry in entries),
+        "parsed_artifact_hashes": sorted(entry["parsed_sha256"] for entry in entries),
+        "chunk_artifact_hashes": sorted(entry["chunk_sha256"] for entry in entries),
+    }
+    canonical = json.dumps(
+        identity,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return sha256_hex(canonical)
 
 
 class RawStore:
@@ -172,12 +194,16 @@ class RawStore:
                 pass
             raise
 
-    def save_manifest(self, entries: list[dict[str, Any]]) -> None:
+    def save_manifest(self, entries: list[dict[str, Any]]) -> str:
+        fingerprint = corpus_fingerprint(entries)
         payload = {
             "generated_at": _utc_now_iso(),
+            "ingestion_schema_version": INGESTION_SCHEMA_VERSION,
+            "corpus_fingerprint": fingerprint,
             "entries": entries,
         }
         tmp_path = self.manifest_path.with_suffix(".json.tmp")
         with tmp_path.open("w", encoding="utf-8") as fh:
             json.dump(payload, fh, indent=2, sort_keys=True)
         os.replace(tmp_path, self.manifest_path)
+        return fingerprint

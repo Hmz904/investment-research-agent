@@ -3,9 +3,9 @@
     "tables": 40,
     "chunks": 180,
     "xbrl_facts": 671,
-    "numeric_cells_with_header_periods": 399,
+    "numeric_cells_with_header_periods": 367,
     "percent_cells": 40,
-    "footnotes": 0
+    "footnotes": 5
   },
   "META_2026Q1_8K_EX991": {
     "tables": 6,
@@ -19,9 +19,9 @@
     "tables": 43,
     "chunks": 188,
     "xbrl_facts": 925,
-    "numeric_cells_with_header_periods": 737,
+    "numeric_cells_with_header_periods": 685,
     "percent_cells": 71,
-    "footnotes": 0
+    "footnotes": 6
   },
   "META_2026Q2_8K_EX991": {
     "tables": 6,
@@ -29,14 +29,14 @@
     "xbrl_facts": 0,
     "numeric_cells_with_header_periods": 341,
     "percent_cells": 21,
-    "footnotes": 0
+    "footnotes": 1
   },
   "MSFT_FY26Q3_10Q": {
     "tables": 59,
     "chunks": 273,
     "xbrl_facts": 1569,
-    "numeric_cells_with_header_periods": 802,
-    "percent_cells": 132,
+    "numeric_cells_with_header_periods": 956,
+    "percent_cells": 133,
     "footnotes": 0
   },
   "MSFT_FY26Q3_8K_EX991": {
@@ -59,17 +59,17 @@
     "tables": 88,
     "chunks": 422,
     "xbrl_facts": 1782,
-    "numeric_cells_with_header_periods": 96,
-    "percent_cells": 134,
+    "numeric_cells_with_header_periods": 129,
+    "percent_cells": 136,
     "footnotes": 0
   },
   "NVDA_FY26Q2_10Q": {
     "tables": 51,
     "chunks": 160,
     "xbrl_facts": 1011,
-    "numeric_cells_with_header_periods": 662,
+    "numeric_cells_with_header_periods": 638,
     "percent_cells": 59,
-    "footnotes": 1
+    "footnotes": 14
   },
   "NVDA_FY26Q4_8K_EX991": {
     "tables": 13,
@@ -83,9 +83,9 @@
     "tables": 49,
     "chunks": 156,
     "xbrl_facts": 782,
-    "numeric_cells_with_header_periods": 499,
+    "numeric_cells_with_header_periods": 483,
     "percent_cells": 60,
-    "footnotes": 2
+    "footnotes": 15
   },
   "NVDA_FY27Q1_8K_EX991": {
     "tables": 11,
@@ -99,9 +99,9 @@
     "tables": 52,
     "chunks": 163,
     "xbrl_facts": 1099,
-    "numeric_cells_with_header_periods": 637,
+    "numeric_cells_with_header_periods": 613,
     "percent_cells": 90,
-    "footnotes": 3
+    "footnotes": 15
   },
   "NVDA_FY27Q2_8K_EX991": {
     "tables": 11,

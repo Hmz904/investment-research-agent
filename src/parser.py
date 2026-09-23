@@ -7,7 +7,7 @@ from typing import Any
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from .tables import extract_table, normalize_text
+from .tables import detect_unit_scale, extract_table, normalize_text
 
 
 SKIP_TAGS = {
@@ -312,6 +312,7 @@ def extract_blocks(
         for block in blocks:
             if block["section_path"][:1] != [root_section]:
                 block["section_path"] = [root_section] + block["section_path"]
+    _inherit_preceding_table_metadata(blocks)
     _attach_table_footnotes(blocks)
     return blocks
 
@@ -374,6 +375,105 @@ _LEADING_FOOTNOTE_MARKER_RE = re.compile(
     r"^\s*(\(\d{1,3}\)|\([a-z]\)|\[\d{1,3}\]|\d{1,3}\))\s+"
 )
 
+_PRECEDING_TABLE_UNIT_RE = re.compile(
+    r"\b(?:in\s+)?(?:us\s*)?\$?\s*(millions?|thousands?|billions?)\b",
+    re.IGNORECASE,
+)
+_PRECEDING_TABLE_QUALIFIER_RE = re.compile(
+    r"^\(?(unaudited|audited|continued|restated)\)?$",
+    re.IGNORECASE,
+)
+_STANDALONE_TABLE_METADATA_RE = re.compile(
+    r"^\s*\(\s*(?:us\s*)?\$?\s*(?:in\s+)?(?:\$?\s*)?"
+    r"(?:millions?|thousands?|billions?)(?:\s*,[^)]*)?\)"
+    r"(?:\s*\(\s*(?:unaudited|audited|continued|restated)\s*\))*\s*$",
+    re.IGNORECASE,
+)
+_FOOTNOTE_SEPARATOR_RE = re.compile(r"^[\s_\-–—]+$")
+
+
+def _looks_like_table_title(block: dict[str, Any]) -> bool:
+    text = normalize_text(block.get("text") or "")
+    if not text or len(text.split()) > 16 or any(ch.isdigit() for ch in text):
+        return False
+    if block.get("block_type") == "heading":
+        return True
+    letters = [ch for ch in text if ch.isalpha()]
+    return bool(letters) and text == text.upper()
+
+
+def _inherit_preceding_table_metadata(blocks: list[dict[str, Any]]) -> None:
+    """Apply standalone title/unit/qualifier blocks to the following table."""
+    for index, block in enumerate(blocks):
+        if block.get("block_type") != "table":
+            continue
+        table = block.get("table") or {}
+        section_path = block.get("section_path") or []
+        cursor = index - 1
+        unit_text = ""
+        qualifiers: list[str] = []
+        saw_standalone_metadata = False
+
+        while cursor >= 0 and index - cursor <= 4:
+            previous = blocks[cursor]
+            if previous.get("block_type") == "table":
+                break
+            if (previous.get("section_path") or []) != section_path:
+                break
+            text = normalize_text(previous.get("text") or "")
+            unit_match = _PRECEDING_TABLE_UNIT_RE.search(text)
+            qualifier_match = _PRECEDING_TABLE_QUALIFIER_RE.match(text.strip("() "))
+            qualifier_fragments = [
+                match.group(1).title()
+                for match in re.finditer(r"\((unaudited|audited|continued|restated)\)", text, re.I)
+            ]
+            for qualifier in qualifier_fragments:
+                if qualifier not in qualifiers:
+                    qualifiers.insert(0, qualifier)
+            if unit_match:
+                unit_text = text
+                if _STANDALONE_TABLE_METADATA_RE.match(text):
+                    saw_standalone_metadata = True
+                cursor -= 1
+                continue
+            if qualifier_match:
+                saw_standalone_metadata = True
+                qualifier = qualifier_match.group(1).title()
+                if qualifier not in qualifiers:
+                    qualifiers.insert(0, qualifier)
+                cursor -= 1
+                continue
+            break
+
+        external_title = ""
+        if saw_standalone_metadata and cursor >= 0:
+            previous = blocks[cursor]
+            if (previous.get("section_path") or []) == section_path and _looks_like_table_title(previous):
+                external_title = normalize_text(previous.get("text") or "")
+
+        if unit_text and table.get("unit_scale") is None:
+            unit_scale, unit_label = detect_unit_scale(unit_text)
+            table["unit_scale"] = unit_scale
+            table["unit_label"] = unit_label
+            for row in table.get("rows", []):
+                for cell in row.get("cells", []):
+                    if cell.get("is_percent") or cell.get("change_unit"):
+                        continue
+                    if cell.get("parsed_value") is not None:
+                        cell["unit_scale"] = unit_scale
+                        cell["unit_label"] = unit_label
+
+        for qualifier in qualifiers:
+            if qualifier not in table.setdefault("qualifiers", []):
+                table["qualifiers"].append(qualifier)
+
+        caption = normalize_text(table.get("caption") or "")
+        if external_title and (
+            not caption
+            or ("statement" in external_title.lower() and len(caption.split()) <= 2)
+        ):
+            table["caption"] = external_title
+
 
 def _attach_table_footnotes(blocks: list[dict[str, Any]]) -> None:
     """Attach immediately-following footnote-body paragraphs to a table."""
@@ -386,6 +486,12 @@ def _attach_table_footnotes(blocks: list[dict[str, Any]]) -> None:
 
         bodies: list[str] = []
         j = i + 1
+        while j < len(blocks):
+            text = (blocks[j].get("text") or "").strip()
+            if not text or _FOOTNOTE_SEPARATOR_RE.fullmatch(text):
+                j += 1
+                continue
+            break
         while j < len(blocks):
             nxt = blocks[j]
             if nxt["block_type"] in ("table", "heading"):

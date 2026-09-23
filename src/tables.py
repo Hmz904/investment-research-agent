@@ -37,19 +37,40 @@ def _cell_text(cell: Tag) -> str:
     return normalize_text(cell.get_text(" ", strip=True))
 
 
-def parse_number_text(text: str) -> dict[str, Any] | None:
+_FINANCIAL_CHANGE_UNIT_RE = re.compile(
+    r"(?P<unit>ppt|pts?|pp|bps?|bp)\s*$",
+    re.IGNORECASE,
+)
+
+
+def parse_number_text(
+    text: str,
+    *,
+    numeric_cell_context: bool = False,
+) -> dict[str, Any] | None:
     """Parse a table cell into its numeric value and simple numeric flags."""
     t = normalize_text(text)
     if not t:
         return None
-    is_percent = "%" in t
-    cleaned = t.replace("$", "").replace("\u00a0", "").replace(" ", "")
+    change_match = _FINANCIAL_CHANGE_UNIT_RE.search(t)
+    change_unit: str | None = None
+    if change_match:
+        suffix = change_match.group("unit").lower()
+        change_unit = "basis_point" if suffix in {"bp", "bps"} else "percentage_point"
+        number_text = t[: change_match.start()].rstrip()
+    else:
+        number_text = t
+
+    is_percent = "%" in number_text
+    cleaned = number_text.replace("$", "").replace("\u00a0", "").replace(" ", "")
     cleaned = cleaned.replace("%", "")
     cleaned = cleaned.replace(",", "")
     negative = False
-    if cleaned.startswith("(") and cleaned.endswith(")"):
+    if cleaned.startswith("(") and numeric_cell_context:
         negative = True
-        cleaned = cleaned[1:-1]
+        cleaned = cleaned[1:]
+        if cleaned.endswith(")"):
+            cleaned = cleaned[:-1]
     elif cleaned.startswith("-"):
         negative = True
         cleaned = cleaned[1:]
@@ -73,13 +94,16 @@ def parse_number_text(text: str) -> dict[str, Any] | None:
         "is_percent": is_percent,
         "is_negative": negative,
         "has_comma": "," in t,
+        "change_unit": change_unit,
     }
 
 
 def is_numeric_data_cell(text: str) -> bool:
-    parsed = parse_number_text(text)
+    parsed = parse_number_text(text, numeric_cell_context=True)
     if parsed is None:
         return False
+    if parsed.get("change_unit"):
+        return True
     if parsed["is_percent"]:
         return True
     if parsed["has_comma"]:
@@ -166,6 +190,80 @@ def _column_header_texts(
         if text and (not texts or texts[-1] != text):
             texts.append(text)
     return texts
+
+
+def _column_header_texts_for_rows(
+    grid: list[list[Tag | None]],
+    rows: list[int],
+    col: int,
+) -> list[str]:
+    """Return de-duplicated header text for one column and header band."""
+    texts: list[str] = []
+    for row in rows:
+        cell = grid[row][col]
+        if cell is None:
+            continue
+        text = _cell_text(cell)
+        if text and (not texts or texts[-1] != text):
+            texts.append(text)
+    return texts
+
+
+def _row_is_data(
+    grid: list[list[Tag | None]],
+    row: int,
+    ncols: int,
+) -> bool:
+    """Identify a data row, including rows whose values are small integers."""
+    label_found = False
+    visited: set[int] = set()
+    for col in range(ncols):
+        cell = grid[row][col]
+        if cell is None or id(cell) in visited:
+            continue
+        visited.add(id(cell))
+        text = _cell_text(cell)
+        if not text:
+            continue
+        parsed = parse_number_text(text, numeric_cell_context=True)
+        is_bare_year = bool(re.fullmatch(r"\d{4}", normalize_text(text).strip("()")))
+        numeric = parsed is not None and not is_bare_year
+        if not label_found and not numeric:
+            label_found = True
+            continue
+        if label_found and numeric:
+            return True
+    return False
+
+
+def _row_starts_repeated_header_band(
+    grid: list[list[Tag | None]],
+    row: int,
+    ncols: int,
+) -> bool:
+    """Detect a period-bearing column-header restart inside a physical table.
+
+    SEC filings sometimes serialize two statements (for example quarterly and
+    year-to-date stockholders' equity) as one HTML ``table``.  A period header
+    spanning several logical columns is structural evidence that subsequent
+    rows belong to a new header band.  Requiring a non-data row and a spanning
+    cell avoids treating dated row labels as header restarts.
+    """
+    if _row_is_data(grid, row, ncols):
+        return False
+
+    visited: set[int] = set()
+    for col in range(ncols):
+        cell = grid[row][col]
+        if cell is None or id(cell) in visited:
+            continue
+        visited.add(id(cell))
+        text = _cell_text(cell)
+        if not text or _cell_span_width(grid, row, ncols, cell) <= 1:
+            continue
+        if infer_period([text]) is not None:
+            return True
+    return False
 
 
 def detect_unit_scale(*texts: str) -> tuple[int | None, str | None]:
@@ -285,6 +383,11 @@ _FOOTNOTE_MARKER_IN_TEXT_RE = re.compile(
     re.IGNORECASE,
 )
 
+_TRAILING_ROW_FOOTNOTE_RE = re.compile(
+    r"^(?P<label>.+?)\s+(?P<marker>\(\d{1,3}\)|\([a-z]\)|\[\d{1,3}\]|\d{1,3}\))\s*$",
+    re.IGNORECASE,
+)
+
 _UNIT_META_RE = re.compile(
     r"^\(\s*\$?\s*(?:in\s*\$?\s*)?(millions?|thousands?|billions?)"
     r"\s*(?:,\s*except\s+percentages?)?\s*\)\s*$",
@@ -303,6 +406,16 @@ def _is_footnote_marker(text: str) -> bool:
 
 def _footnote_markers_in_text(text: str) -> list[str]:
     return _FOOTNOTE_MARKER_IN_TEXT_RE.findall(text)
+
+
+def _split_row_label_footnote(text: str) -> tuple[str, list[str]]:
+    """Separate a trailing structural footnote marker from a semantic row label."""
+    match = _TRAILING_ROW_FOOTNOTE_RE.match(text)
+    if not match:
+        return text, []
+    label = normalize_text(match.group("label"))
+    marker = normalize_text(match.group("marker"))
+    return label, [marker]
 
 
 def _extract_footnote_references(
@@ -487,7 +600,9 @@ def _is_genuine_footnote_cell(
         return False
     # A marker in a row with no numeric data values is a footnote reference.
     row_has_numeric = any(
-        c is not None and c is not cell and parse_number_text(_cell_text(c)) is not None
+        c is not None
+        and c is not cell
+        and parse_number_text(_cell_text(c), numeric_cell_context=True) is not None
         for c in row_cells
     )
     return not row_has_numeric
@@ -530,8 +645,16 @@ def build_retrieval_text(table: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
-def _months_between(start: date, end: date) -> int:
-    return (end.year - start.year) * 12 + (end.month - start.month)
+def _duration_from_dates(start_iso: str, end_iso: str) -> int | None:
+    try:
+        start = date.fromisoformat(start_iso)
+        end = date.fromisoformat(end_iso)
+    except (TypeError, ValueError):
+        return None
+    if end < start:
+        return None
+    days = (end - start).days + 1
+    return max(1, round(days / (365.2425 / 12)))
 
 
 def _resolve_start_from_contexts(
@@ -558,7 +681,10 @@ def _resolve_start_from_contexts(
             start = date.fromisoformat(start_iso)
         except ValueError:
             continue
-        if duration_months is not None and _months_between(start, period_end) != duration_months:
+        if (
+            duration_months is not None
+            and _duration_from_dates(start_iso, end_iso) != duration_months
+        ):
             continue
         candidates.append((len(ctx.get("dimensions", [])), ctx.get("id", ""), start_iso))
 
@@ -637,6 +763,284 @@ def _cell_facts(cell: Tag, fact_by_id: dict[str, dict[str, Any]]) -> list[dict[s
     return facts
 
 
+def _fact_context_signature(fact: dict[str, Any]) -> tuple[Any, ...]:
+    dimensions = tuple(
+        sorted(
+            (dimension.get("axis", ""), dimension.get("member", ""))
+            for dimension in fact.get("dimensions", [])
+        )
+    )
+    members = tuple(sorted(fact.get("members", [])))
+    unit_measures = tuple(sorted(fact.get("unit_measures", [])))
+    return (
+        fact.get("period_start"),
+        fact.get("period_end"),
+        _duration_from_dates(fact.get("period_start"), fact.get("period_end")),
+        fact.get("unit"),
+        unit_measures,
+        fact.get("scale"),
+        dimensions,
+        members,
+        fact.get("concept"),
+        fact.get("context_id"),
+    )
+
+
+def check_numeric_cell_xbrl_consistency(
+    cell: dict[str, Any],
+    fact: dict[str, Any],
+) -> dict[str, Any]:
+    """Compare the table-display and inline-XBRL paths without erasing sign semantics."""
+    cell_value = cell.get("parsed_value")
+    fact_value = fact.get("parsed_value")
+    magnitude_matches = (
+        cell_value is not None
+        and fact_value is not None
+        and abs(float(cell_value)) == abs(float(fact_value))
+    )
+
+    raw_text = str(cell.get("raw_text") or "").strip()
+    table_negative_display = raw_text.startswith("(") or raw_text.startswith("-")
+    table_display_sign_valid = cell_value is not None and (
+        (table_negative_display and float(cell_value) <= 0)
+        or (not table_negative_display and float(cell_value) >= 0)
+    )
+    xbrl_negative = bool(fact.get("is_negative"))
+    xbrl_sign_valid = fact_value is not None and (
+        (xbrl_negative and float(fact_value) <= 0)
+        or (not xbrl_negative and float(fact_value) >= 0)
+    )
+    display_signs_equal = table_negative_display == xbrl_negative
+
+    cell_period_end = cell.get("period_end")
+    fact_period_end = fact.get("period_end") or fact.get("instant_date")
+    period_end_matches = bool(cell_period_end and fact_period_end) and (
+        cell_period_end == fact_period_end
+    )
+    fact_duration = _duration_from_dates(
+        fact.get("period_start"), fact.get("period_end")
+    )
+    cell_duration = cell.get("duration_months")
+    duration_matches = (
+        (cell_duration is None and fact_duration is None)
+        or (
+            cell_duration is not None
+            and fact_duration is not None
+            and cell_duration == fact_duration
+        )
+    )
+
+    unit_label = str(cell.get("unit_label") or "").casefold()
+    unit_scale = cell.get("unit_scale")
+    fact_scale = fact.get("scale")
+    measures = {str(measure).casefold() for measure in fact.get("unit_measures", [])}
+    if "million" in unit_label:
+        unit_matches = unit_scale == 6 and fact_scale == 6 and any(
+            "usd" in measure for measure in measures
+        )
+    elif unit_scale is not None:
+        unit_matches = unit_scale == fact_scale
+    else:
+        unit_matches = bool(fact.get("unit") or measures)
+
+    identity_present = bool(cell.get("row_label") and fact.get("concept"))
+    consistent = all(
+        (
+            magnitude_matches,
+            table_display_sign_valid,
+            xbrl_sign_valid,
+            period_end_matches,
+            duration_matches,
+            unit_matches,
+            identity_present,
+        )
+    )
+    return {
+        "consistent": consistent,
+        "magnitude_matches": magnitude_matches,
+        "table_display_sign": "negative" if table_negative_display else "nonnegative",
+        "xbrl_fact_sign": "negative" if xbrl_negative else "nonnegative",
+        "table_display_sign_valid": table_display_sign_valid,
+        "xbrl_sign_valid": xbrl_sign_valid,
+        "display_signs_equal": display_signs_equal,
+        "period_end_matches": period_end_matches,
+        "duration_matches": duration_matches,
+        "unit_matches": unit_matches,
+        "row_label": cell.get("row_label"),
+        "concept": fact.get("concept"),
+        "identity_present": identity_present,
+    }
+
+
+def _reconcile_period_with_direct_facts(
+    period: dict[str, Any] | None,
+    facts: list[dict[str, Any]],
+    column_label: str,
+) -> tuple[dict[str, Any] | None, dict[str, Any] | None]:
+    """Prefer an unambiguous directly attached XBRL period over conflicting headers."""
+    temporal_facts = [
+        fact
+        for fact in facts
+        if fact.get("period_start") and fact.get("period_end")
+        or fact.get("instant_date")
+    ]
+    if not temporal_facts:
+        return period, None
+
+    def temporal_signature(fact: dict[str, Any]) -> tuple[str | None, str | None, str | None, int | None]:
+        if fact.get("instant_date"):
+            return None, None, fact["instant_date"], None
+        start = fact.get("period_start") or None
+        end = fact.get("period_end") or None
+        return start, end, None, _duration_from_dates(start, end) if start and end else None
+
+    signatures = {temporal_signature(fact) for fact in temporal_facts}
+    if len(signatures) != 1:
+        if period is None:
+            return period, {
+                "status": "direct_xbrl_ambiguous",
+                "direct_fact_count": len(temporal_facts),
+                "temporal_signature_count": len(signatures),
+            }
+        return period, {
+            "status": "direct_xbrl_ambiguous",
+            "direct_fact_count": len(temporal_facts),
+            "temporal_signature_count": len(signatures),
+        }
+
+    start, end, instant, duration = next(iter(signatures))
+    current = period or {}
+    if current.get("instant_date"):
+        current_signature = (
+            None,
+            None,
+            current.get("instant_date"),
+            None,
+        )
+    else:
+        current_signature = (
+            current.get("period_start") or None,
+            current.get("period_end") or None,
+            None,
+            current.get("duration_months"),
+        )
+    if current_signature == (start, end, instant, duration):
+        return period, None
+
+    reconciled = dict(current)
+    reconciled["period_start"] = start
+    reconciled["period_end"] = end or instant
+    reconciled["instant_date"] = instant
+    reconciled["duration_months"] = duration
+    reconciled.setdefault("period_label", column_label)
+    reconciled["period_source"] = "xbrl_fact"
+    reconciled["period_resolution_source"] = "xbrl_fact"
+    context_ids = {fact.get("context_id") for fact in temporal_facts}
+    reconciled["period_resolution_context_id"] = (
+        next(iter(context_ids)) if len(context_ids) == 1 else None
+    )
+    return reconciled, {
+        "status": "direct_xbrl_overrode_header",
+        "header_period_start": current.get("period_start"),
+        "header_period_end": current.get("period_end"),
+        "header_duration_months": current.get("duration_months"),
+        "direct_period_start": start,
+        "direct_period_end": end or instant,
+        "direct_instant_date": instant,
+        "direct_duration_months": duration,
+        "direct_fact_count": len(temporal_facts),
+        "temporal_signature_count": 1,
+    }
+
+
+def _enrich_period_from_cell_facts(
+    period: dict[str, Any] | None,
+    facts: list[dict[str, Any]],
+    parsed_value: float | int,
+    column_label: str,
+) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+    """Fill period fields only from one unambiguous, exact XBRL context."""
+    candidates = [
+        fact
+        for fact in facts
+        if fact.get("period_start") and fact.get("period_end")
+    ]
+    value_matches = [
+        fact
+        for fact in candidates
+        if fact.get("parsed_value") is not None
+        and abs(float(fact["parsed_value"])) == abs(float(parsed_value))
+    ]
+    if not value_matches:
+        return period, {
+            "status": "no_compatible_fact",
+            "matching_fact_count": 0,
+            "compatible_context_count": 0,
+        }
+    candidates = value_matches
+
+    if period and period.get("period_end"):
+        candidates = [
+            fact
+            for fact in candidates
+            if fact.get("period_end") == period["period_end"]
+        ]
+    if period and period.get("period_start"):
+        candidates = [
+            fact
+            for fact in candidates
+            if fact.get("period_start") == period["period_start"]
+        ]
+    if period and period.get("duration_months"):
+        candidates = [
+            fact
+            for fact in candidates
+            if _duration_from_dates(fact.get("period_start"), fact.get("period_end"))
+            == period["duration_months"]
+        ]
+
+    if not candidates:
+        return period, {
+            "status": "no_compatible_fact",
+            "matching_fact_count": len(value_matches),
+            "compatible_context_count": 0,
+        }
+
+    signatures = {_fact_context_signature(fact) for fact in candidates}
+    if len(signatures) != 1:
+        return period, {
+            "status": "rejected_ambiguous",
+            "matching_fact_count": len(value_matches),
+            "compatible_context_count": len(signatures),
+        }
+
+    fact = candidates[0]
+    start_iso = fact["period_start"]
+    end_iso = fact["period_end"]
+    enriched = dict(period or {})
+    changed = False
+    if not enriched.get("period_start"):
+        enriched["period_start"] = start_iso
+        changed = True
+    if not enriched.get("period_end"):
+        enriched["period_end"] = end_iso
+        changed = True
+    if not enriched.get("duration_months"):
+        enriched["duration_months"] = _duration_from_dates(start_iso, end_iso)
+        changed = True
+    if changed:
+        enriched.setdefault("instant_date", None)
+        enriched.setdefault("period_label", column_label)
+        enriched.setdefault("period_source", "xbrl_fact")
+        enriched["period_resolution_source"] = "xbrl_fact"
+        enriched["period_resolution_context_id"] = fact.get("context_id")
+    return enriched, {
+        "status": "assigned_unique",
+        "matching_fact_count": len(value_matches),
+        "compatible_context_count": 1,
+    }
+
+
 def extract_table(
     table: Tag,
     fact_by_id: dict[str, dict[str, Any]],
@@ -677,6 +1081,18 @@ def extract_table(
         column_labels.append(" ".join(t for t in texts if t))
         column_periods.append(infer_period(texts, contexts))
 
+    active_header_rows = [row for row in range(header_rows) if row not in meta_rows]
+    active_column_labels = column_labels
+    active_column_periods = column_periods
+    header_bands: list[dict[str, Any]] = [
+        {
+            "row_start": active_header_rows[0] if active_header_rows else 0,
+            "row_end": active_header_rows[-1] if active_header_rows else -1,
+            "column_labels": column_labels,
+            "column_periods": column_periods,
+        }
+    ]
+
     footnote_references = _extract_footnote_references(grid, ncols, header_rows)
 
     unit_scale, _detected_label = detect_unit_scale(
@@ -687,9 +1103,35 @@ def extract_table(
 
     rows_out: list[dict[str, Any]] = []
     footnotes: list[str] = []
-    for r in range(header_rows, len(grid)):
+    r = header_rows
+    while r < len(grid):
+        if _row_starts_repeated_header_band(grid, r, ncols):
+            band_start = r
+            r += 1
+            while r < len(grid) and not _row_is_data(grid, r, ncols):
+                r += 1
+            active_header_rows = list(range(band_start, r))
+            active_column_labels = []
+            active_column_periods = []
+            for col in range(ncols):
+                texts = _column_header_texts_for_rows(
+                    grid, active_header_rows, col
+                )
+                active_column_labels.append(" ".join(texts))
+                active_column_periods.append(infer_period(texts, contexts))
+            header_bands.append(
+                {
+                    "row_start": band_start,
+                    "row_end": r - 1,
+                    "column_labels": active_column_labels,
+                    "column_periods": active_column_periods,
+                }
+            )
+            continue
+
         row_cells = grid[r]
         row_label = ""
+        row_footnote_references: list[str] = []
         seen: set[int] = set()
         row_facts: list[dict[str, Any]] = []
 
@@ -700,7 +1142,10 @@ def extract_table(
                 continue
             text = _cell_text(cell)
             if text and not is_numeric_data_cell(text):
-                row_label = text
+                row_label, row_footnote_references = _split_row_label_footnote(text)
+                for marker in row_footnote_references:
+                    if marker not in footnote_references:
+                        footnote_references.append(marker)
                 break
 
         cells_out: list[dict[str, Any]] = []
@@ -718,11 +1163,13 @@ def extract_table(
             while col_end + 1 < ncols and row_cells[col_end + 1] is cell:
                 col_end += 1
 
-            parsed = parse_number_text(raw_text)
+            parsed = parse_number_text(raw_text, numeric_cell_context=True)
             facts = _cell_facts(cell, fact_by_id)
             row_facts.extend(facts)
 
-            column_label = column_labels[c] if c < len(column_labels) else ""
+            column_label = (
+                active_column_labels[c] if c < len(active_column_labels) else ""
+            )
             percent = _cell_is_percent(
                 raw_text=raw_text,
                 row_label=row_label,
@@ -735,11 +1182,39 @@ def extract_table(
             )
             cell_unit_scale = unit_scale
             cell_unit_label = unit_label
-            if percent:
+            change_unit = parsed.get("change_unit") if parsed else None
+            if change_unit:
+                percent = False
+                cell_unit_scale = None
+                cell_unit_label = change_unit
+            elif percent:
                 cell_unit_scale = None
                 cell_unit_label = "percent"
 
-            period = column_periods[c] if parsed is not None else None
+            period = active_column_periods[c] if parsed is not None else None
+            period_reconciliation: dict[str, Any] | None = None
+            if parsed is not None and facts:
+                period, period_reconciliation = _reconcile_period_with_direct_facts(
+                    period,
+                    facts,
+                    column_label,
+                )
+            period_fallback: dict[str, Any] | None = None
+            has_duration_fact = any(
+                fact.get("period_start") and fact.get("period_end")
+                for fact in facts
+            )
+            period_incomplete = period is None or any(
+                not period.get(field)
+                for field in ("period_start", "period_end", "duration_months")
+            )
+            if parsed is not None and facts and has_duration_fact and period_incomplete:
+                period, period_fallback = _enrich_period_from_cell_facts(
+                    period,
+                    facts,
+                    parsed["parsed_value"],
+                    column_label,
+                )
             cell_record: dict[str, Any] = {
                 "col": c,
                 "col_end": col_end,
@@ -760,6 +1235,12 @@ def extract_table(
                 "duration_months": period["duration_months"] if period else None,
                 "xbrl_facts": facts,
             }
+            if change_unit:
+                cell_record["change_unit"] = change_unit
+            if period_fallback:
+                cell_record["period_fallback"] = period_fallback
+            if period_reconciliation:
+                cell_record["period_reconciliation"] = period_reconciliation
             cells_out.append(cell_record)
 
             if _is_genuine_footnote_cell(
@@ -772,13 +1253,15 @@ def extract_table(
                     footnotes.append(raw_text)
 
         if row_label or cells_out:
-            rows_out.append(
-                {
-                    "row_label": row_label,
-                    "cells": cells_out,
-                    "xbrl_facts": row_facts,
-                }
-            )
+            row_record: dict[str, Any] = {
+                "row_label": row_label,
+                "cells": cells_out,
+                "xbrl_facts": row_facts,
+            }
+            if row_footnote_references:
+                row_record["footnote_references"] = row_footnote_references
+            rows_out.append(row_record)
+        r += 1
 
     table_text = normalize_text(table.get_text(" ", strip=True))
     return {
@@ -786,6 +1269,7 @@ def extract_table(
         "num_rows": len(grid),
         "num_cols": ncols,
         "header_rows": header_texts,
+        "header_bands": header_bands,
         "column_labels": column_labels,
         "column_periods": column_periods,
         "unit_scale": unit_scale,

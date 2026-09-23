@@ -14,7 +14,7 @@ from .chunking import chunk_blocks
 from .corpus import SOURCES
 from .parser import extract_blocks
 from .sec import SECClient
-from .storage import RawStore
+from .storage import RawStore, sha256_hex
 from .xbrl import parse_inline_xbrl
 
 
@@ -135,6 +135,10 @@ def run() -> dict[str, Any]:
             encoding="utf-8",
         )
 
+        entry["raw_sha256"] = sha256_hex(body)
+        entry["parsed_sha256"] = sha256_hex(parsed_path.read_bytes())
+        entry["chunk_sha256"] = sha256_hex(chunks_path.read_bytes())
+
         summary["documents"] += 1
         summary["blocks"] += len(blocks)
         summary["tables"] += sum(1 for b in blocks if b["block_type"] == "table")
@@ -142,7 +146,7 @@ def run() -> dict[str, Any]:
         summary["xbrl_facts"] += len(xbrl["facts"])
         summary["numeric_table_cells_with_header_periods"] += _count_header_period_cells(blocks)
 
-    store.save_manifest(manifest_entries)
+    summary["corpus_fingerprint"] = store.save_manifest(manifest_entries)
     return summary
 
 
@@ -169,6 +173,7 @@ def _print_summary(summary: dict[str, Any]) -> None:
         "numeric_table_cells_with_header_periods",
         "downloaded_raw_files",
         "reused_raw_files",
+        "corpus_fingerprint",
     ):
         print(f"  {key}: {summary[key]}")
 
