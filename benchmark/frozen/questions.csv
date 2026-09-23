@@ -1,0 +1,30 @@
+q_id,version,company,fiscal_period,calendar_period,q_type,question,label_type,depends_on,calibration,status,created_at,updated_at
+Q01,1,NVDA,FY27Q1,2026Q1,numeric,NVIDIA FY27 Q1 数据中心收入是多少，同比增长多少？,numeric,,false,frozen,2026-09-22,2026-09-22
+Q02,1,NVDA,FY27Q1,2026Q1,thesis,本季度是否强化了“AI 算力需求持续加速”的逻辑？,checklist,,false,retired,2026-09-22,2026-09-22
+Q02,2,NVDA,FY27Q1,2026Q1,thesis,根据 NVIDIA FY27 Q1 的披露，哪些证据支持、哪些证据反驳“数据中心需求在加速”？请分别说明同比和环比口径下的情况。,checklist,,false,frozen,2026-09-22,2026-09-22
+Q03,1,NVDA,FY27Q2,2026Q2,numeric,NVIDIA FY27 Q2 GAAP 毛利率环比变化多少？,numeric,,false,frozen,2026-09-22,2026-09-22
+Q04,1,NVDA,FY27Q2,2026Q2,thesis,相比 Q1，客户集中度风险是上升还是下降？,checklist,,false,retired,2026-09-22,2026-09-22
+Q04,2,NVDA,FY27Q1-FY27Q2,2026Q1-2026Q2,thesis,对比 NVIDIA FY27 Q1 和 Q2 的 10-Q，客户集中度发生了什么变化？哪些证据表明集中度下降，哪些证据表明集中度仍然较高或相关风险上升？,checklist,,false,frozen,2026-09-22,2026-09-22
+Q05,1,NVDA,FY27Q1-FY27Q2,2026Q1-2026Q2,update,Q1 形成的“需求加速”判断，在 Q2 是被强化还是被削弱？,checklist,Q02@1,false,retired,2026-09-22,2026-09-22
+Q05,2,NVDA,FY27Q1-FY27Q2,2026Q1-2026Q2,update,以 NVIDIA FY27 Q1 的证据为基线，FY27 Q2 的披露如何改变“数据中心需求在加速”这一判断？请分别说明同比和环比口径，并指出 Q1 的哪些判断得到强化、哪些需要修正。,checklist,Q02@2,false,frozen,2026-09-22,2026-09-22
+Q06,1,MSFT,FY26Q3,2026Q1,numeric,Microsoft FY26 Q3 本季度资本开支（含融资租赁）是多少？,numeric,,false,retired,2026-09-22,2026-09-22
+Q06,2,MSFT,FY26Q3,2026Q1,numeric,Microsoft FY26 Q3（截至 2026 年 3 月 31 日）单季度现金流量表中的 Additions to property and equipment 是多少？,numeric,,false,frozen,2026-09-22,2026-09-22
+Q07,1,MSFT,FY26Q3,2026Q1,thesis,Azure 增长是否支撑其 AI 投入的回报逻辑？,checklist,,false,retired,2026-09-22,2026-09-22
+Q07,2,MSFT,FY26Q3,2026Q1,thesis,根据 Microsoft FY26 Q3 的披露，哪些证据表明 Azure/云业务增长正在支撑 AI 基础设施投入的回报逻辑，哪些证据表明投入成本和回报兑现仍存在压力？,checklist,,false,frozen,2026-09-22,2026-09-22
+Q08,1,MSFT,FY26,2026Q2,numeric,Microsoft FY26 全财年资本开支总额是多少？,numeric,,false,retired,2026-09-22,2026-09-22
+Q08,2,MSFT,FY26Q4,2026Q2,numeric,Microsoft FY26 Q4（2026 年 4-6 月）单季度的 Additions to property and equipment 是多少？,numeric,,false,frozen,2026-09-22,2026-09-22
+Q09,1,MSFT,FY26,2026Q2,thesis,10-K 风险因素中，AI 相关风险的表述是否有新增或加重？,checklist,,false,retired,2026-09-22,2026-09-22
+Q09,2,MSFT,FY26Q3-FY26,2026Q1-2026Q2,thesis,相比 Microsoft FY26 Q3 10-Q，FY26 10-K 的 Risk Factors 中有哪些 AI 相关风险是新增的或被实质性扩展的？请区分新出现的风险主题和仅有措辞变化的内容。,checklist,,false,frozen,2026-09-22,2026-09-22
+Q10,1,MSFT,FY26Q3-FY26Q4,2026Q1-2026Q2,update,Q3 的“AI 回报”判断在 Q4 是否需要修正？,checklist,Q07@1,false,retired,2026-09-22,2026-09-22
+Q10,2,MSFT,FY26Q3-FY26Q4,2026Q1-2026Q2,update,以 Microsoft FY26 Q3 的证据为基线，FY26 Q4 的 earnings 8-K 和 FY26 10-K 如何更新“云业务增长正在支撑 AI 投入回报”这一判断？哪些证据强化了基线判断，哪些压力仍然存在或加剧？,checklist,Q07@2;Q09@2,false,frozen,2026-09-22,2026-09-22
+Q11,1,META,2026Q1,2026Q1,numeric,Meta 2026 Q1 全年资本开支指引区间是多少？,numeric,,false,frozen,2026-09-22,2026-09-22
+Q12,1,META,2026Q1,2026Q1,thesis,广告收入增长是否足以覆盖 AI 基础设施支出？,checklist,,false,retired,2026-09-22,2026-09-22
+Q12,2,META,2026Q1,2026Q1,thesis,根据 Meta 2026 Q1 的披露，哪些证据表明广告业务的增长能够支撑其 AI 基础设施投入，哪些证据表明投入增速正在超过收入增长，或正在压缩利润和现金流？,checklist,,false,frozen,2026-09-22,2026-09-22
+Q13,1,META,2026Q2,2026Q2,numeric,Meta 2026 Q2 的资本开支指引相比 Q1 是上调还是下调，幅度多少？,numeric,,false,retired,2026-09-22,2026-09-22
+Q13,2,META,2026Q2,2026Q2,numeric,相比 Q1，Meta 在 Q2 将 2026 全年资本开支指引区间如何调整？上下限分别变化多少？,numeric,,false,frozen,2026-09-22,2026-09-22
+Q14,1,META,2026Q1-2026Q2,2026Q1-2026Q2,update,Q1 的“收入覆盖支出”判断在 Q2 是否仍成立？,checklist,Q12@1,false,retired,2026-09-22,2026-09-22
+Q14,2,META,2026Q1-2026Q2,2026Q1-2026Q2,update,以 Meta 2026 Q1 的证据为基线，Q2 的披露如何更新“广告业务增长能够支撑 AI 基础设施投入”这一判断？哪些 Q1 判断被强化，哪些需要修正？请区分法律诉讼费用和遣散费用的影响。,checklist,Q12@2;Q13@2,false,frozen,2026-09-22,2026-09-22
+Q15,1,MULTI,2026Q2,2026Q2,comparison,三家中谁的资本开支相对收入最激进？,checklist,,false,retired,2026-09-22,2026-09-22
+Q15,2,MULTI,2026Q1-2026Q2,2026Q1-2026Q2,comparison,按日历季度对齐，比较 Microsoft 与 Meta 在 2026 年 1-3 月和 4-6 月的资本开支强度。请先说明两家公司披露的资本开支口径差异，并统一到可比口径；分别以收入和经营现金流为分母进行比较，说明结论是否随季度发生变化。,checklist,,false,frozen,2026-09-22,2026-09-22
+Q16,1,MULTI,2026Q1-2026Q2,2026Q1-2026Q2,comparison,NVIDIA 的收入增长和 Microsoft、Meta 的资本开支增长是否相互印证？,checklist,,false,retired,2026-09-22,2026-09-22
+Q16,2,MULTI,2026Q1-2026Q2,2026Q1-2026Q2,comparison,在考虑期间并非完全对齐、资本开支口径差异以及无法观察客户—供应商直接对应关系的前提下，NVIDIA FY27 Q1/Q2 的 Data Center 收入增长，与 Microsoft、Meta 2026 Q1/Q2 的现金购买 PP&E 增长，是否呈现一致的 AI 基础设施扩张信号？哪些证据支持这种行业层面的共振，哪些限制使其不能被解释为直接因果关系？,checklist,,false,frozen,2026-09-22,2026-09-22
