@@ -6,9 +6,9 @@ bytes, parses HTML/inline-XBRL into ordered blocks, extracts structured tables
 and fact-level period provenance, and writes deterministic chunks plus an
 ingestion manifest.
 
-The repository also includes a deterministic lexical BM25 retrieval baseline.
-It does not implement embeddings, hybrid retrieval, reranking, query rewriting,
-LLM retrieval, or agent logic.
+The repository also includes frozen deterministic lexical BM25 and dense BGE
+retrieval baselines. It does not implement hybrid retrieval, reranking, query
+rewriting, LLM retrieval, or agent logic.
 
 ## Setup
 
@@ -74,6 +74,29 @@ chunk hashes, then writes deterministic JSON Lines to
 `evaluation/results/bm25_v0.1.jsonl`. It reads only the frozen retrieval query
 artifact and does not score relevance.
 
+## Dense embedding retrieval baseline
+
+`src.embedding_retrieval.DenseRetriever` implements `embedding_v0.1` with
+`BAAI/bge-base-en-v1.5` pinned to commit
+`a5beb1e3e68b9ab74eb54cfd186867f64f240e1a`. It uses the same encoder for
+queries and passages with no instruction prefix, CLS pooling, float32 L2
+normalization, and a dot product over normalized vectors. CPU inference uses a
+fixed batch size of 32 and deterministic PyTorch settings. Inputs longer than
+the tokenizer's native 512-token limit are truncated without rechunking, and
+pre-truncation token-length diagnostics are reported.
+
+Run the frozen-query, gold-blind dense baseline with:
+
+```bash
+python -m evaluation.run_embedding
+```
+
+Model files and the validated embedding cache are stored under ignored
+`data/` directories; model weights are not committed. The runner verifies the
+frozen query SHA-256, ingestion schema, corpus fingerprint, per-document chunk
+hashes, and 1,662-chunk universe before writing deterministic JSON Lines to
+`evaluation/results/embedding_v0.1.jsonl`. It does not evaluate relevance.
+
 ## Tests
 
 ```bash
@@ -88,3 +111,6 @@ Test organization:
   requires generated `data/` output from a completed pipeline run.
 - `tests/test_retrieval.py` checks tokenization, hand-computed BM25 scoring,
   deterministic ordering, metadata handling, and ingestion-record immutability.
+- `tests/test_embedding_retrieval.py` uses a fake encoder to check dense ranking,
+  normalization, cache invalidation, metadata, and deterministic serialization
+  without downloading model weights.
