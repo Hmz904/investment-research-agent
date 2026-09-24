@@ -8,11 +8,22 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 SRC = ROOT / "src"
+BM25_RUNNER = ROOT / "evaluation" / "run_bm25.py"
 FORBIDDEN_PATHS = (
     "benchmark/frozen/",
     "benchmark/releases/",
     "benchmark/provenance/",
     "benchmark/errata/",
+)
+FORBIDDEN_FILENAMES = (
+    "numeric_answers.csv",
+    "evidence_checklist.csv",
+)
+FORBIDDEN_GOLD_MARKERS = (
+    "gold-map",
+    "gold_map",
+    "source-anchor",
+    "source_anchor",
 )
 
 
@@ -50,7 +61,7 @@ def test_src_has_no_gold_or_evaluation_dependency() -> None:
         for module in _imports(tree):
             if module == "evaluation" or module.startswith("evaluation."):
                 violations.append(f"{path}: imports {module}")
-            if module == "provenance" or module.endswith(".provenance"):
+            if "provenance" in module.split("."):
                 violations.append(f"{path}: imports gold tooling {module}")
         for node in ast.walk(tree):
             if not isinstance(node, ast.Constant) or not isinstance(node.value, str):
@@ -59,6 +70,14 @@ def test_src_has_no_gold_or_evaluation_dependency() -> None:
             for forbidden in FORBIDDEN_PATHS:
                 if forbidden in normalized:
                     violations.append(f"{path}: contains forbidden gold path {forbidden}")
+            for forbidden in FORBIDDEN_FILENAMES:
+                if forbidden in normalized:
+                    violations.append(f"{path}: contains forbidden gold filename {forbidden}")
+            for forbidden in FORBIDDEN_GOLD_MARKERS:
+                if forbidden in normalized:
+                    violations.append(f"{path}: contains forbidden gold marker {forbidden}")
+            if normalized.endswith("_reviewed.csv"):
+                violations.append(f"{path}: contains forbidden reviewed filename")
         for node in ast.walk(tree):
             if not isinstance(node, ast.Call):
                 continue
@@ -75,8 +94,38 @@ def test_src_has_no_gold_or_evaluation_dependency() -> None:
             for forbidden in FORBIDDEN_PATHS:
                 if forbidden in literal_path:
                     violations.append(f"{path}: reads forbidden gold path {forbidden}")
+            for forbidden in FORBIDDEN_FILENAMES:
+                if forbidden in literal_path:
+                    violations.append(f"{path}: reads forbidden gold filename {forbidden}")
+            if literal_path.endswith("_reviewed.csv/"):
+                violations.append(f"{path}: reads forbidden reviewed filename")
     assert violations == []
 
 
 def test_no_provenance_module_remains_under_src() -> None:
     assert not (SRC / "provenance.py").exists()
+
+
+def test_bm25_runner_has_no_gold_input_dependency() -> None:
+    source = BM25_RUNNER.read_text(encoding="utf-8")
+    tree = ast.parse(source, filename=str(BM25_RUNNER))
+    violations: list[str] = []
+    for module in _imports(tree):
+        if "provenance" in module.split("."):
+            violations.append(f"imports gold tooling {module}")
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Constant) or not isinstance(node.value, str):
+            continue
+        normalized = node.value.replace("\\", "/").lower()
+        for forbidden in FORBIDDEN_PATHS:
+            if forbidden in normalized:
+                violations.append(f"contains forbidden gold path {forbidden}")
+        for forbidden in FORBIDDEN_FILENAMES:
+            if forbidden in normalized:
+                violations.append(f"contains forbidden gold filename {forbidden}")
+        for forbidden in FORBIDDEN_GOLD_MARKERS:
+            if forbidden in normalized:
+                violations.append(f"contains forbidden gold marker {forbidden}")
+        if normalized.endswith("_reviewed.csv"):
+            violations.append("contains forbidden reviewed filename")
+    assert violations == []
