@@ -13,6 +13,14 @@ from evaluation import score_retrieval
 
 ROOT = Path(__file__).resolve().parents[2]
 FROZEN_RESULT = ROOT / "evaluation" / "results" / "bm25_v0.1.jsonl"
+FROZEN_BM25_OUTPUTS = {
+    "scores.json": ROOT / "evaluation" / "results" / "bm25_v0.1_scores.json",
+    "per_question.csv": ROOT / "evaluation" / "results" / "bm25_v0.1_per_question.csv",
+    "misses.csv": ROOT / "evaluation" / "results" / "bm25_v0.1_misses.csv",
+}
+FROZEN_EMBEDDING_RESULT = (
+    ROOT / "evaluation" / "results" / "embedding_v0.1.jsonl"
+)
 
 
 def _source(chunk_id: str, accession: str = "A1") -> dict[str, str]:
@@ -139,6 +147,44 @@ def test_scoring_is_byte_deterministic(tmp_path: Path) -> None:
     assert list(first_hashes.values()) == list(second_hashes.values())
     for path in ("scores.json", "per_question.csv", "misses.csv"):
         assert (first / path).read_bytes() == (second / path).read_bytes()
+
+
+def test_bm25_reproduction_remains_byte_identical(tmp_path: Path) -> None:
+    score_retrieval.run(
+        scores_path=tmp_path / "scores.json",
+        per_question_path=tmp_path / "per_question.csv",
+        misses_path=tmp_path / "misses.csv",
+    )
+    for name, frozen_path in FROZEN_BM25_OUTPUTS.items():
+        assert (tmp_path / name).read_bytes() == frozen_path.read_bytes()
+
+
+def test_embedding_metadata_adapter_and_comparison(tmp_path: Path) -> None:
+    output_paths = {
+        "scores_path": tmp_path / "scores.json",
+        "per_question_path": tmp_path / "per_question.csv",
+        "misses_path": tmp_path / "misses.csv",
+        "comparison_path": tmp_path / "comparison.csv",
+    }
+    hashes = score_retrieval.run(
+        result_path=FROZEN_EMBEDDING_RESULT,
+        **output_paths,
+    )
+    scores = json.loads(output_paths["scores_path"].read_text(encoding="utf-8"))
+    assert scores["bindings"]["embedding_result_sha256"] == (
+        "d997bb8ac72ba2e003eea440b0e805e3dd9722b053874162bee7d6754bc2bfa3"
+    )
+    assert scores["bindings"]["embedding_version"] == "embedding_v0.1"
+    assert scores["bindings"]["retrieval_query_version"] == (
+        "retrieval_queries_v0.1.1"
+    )
+    assert len(hashes) == 4
+    comparison = output_paths["comparison_path"].read_text(encoding="utf-8")
+    assert comparison.startswith(
+        "scope,domain,q_id,k,metric,bm25_v0.1,embedding_v0.1,absolute_difference\n"
+    )
+    assert "aggregate,evidence,,1,part_recall," in comparison
+    assert "per_question,numeric," in comparison
 
 
 def test_scoring_does_not_mutate_frozen_bm25_result(tmp_path: Path) -> None:

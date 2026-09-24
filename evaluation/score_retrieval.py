@@ -53,9 +53,17 @@ RETRIEVAL_QUERY_VERSION = "retrieval_queries_v0.1"
 BM25_RESULT_SHA256 = (
     "7e276b409b9bebafa3b31acc105d253f90595bf652e2936446995bd5ae6611e1"
 )
+EMBEDDING_RESULT_SHA256 = (
+    "d997bb8ac72ba2e003eea440b0e805e3dd9722b053874162bee7d6754bc2bfa3"
+)
 RETRIEVAL_QUERY_SHA256 = (
     "4de3208bf457e0670d691e95284c5675006c825be85a2dca159e6f5268a61c1c"
 )
+CORPUS_FINGERPRINT = (
+    "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96"
+)
+EMBEDDING_MODEL_ID = "BAAI/bge-base-en-v1.5"
+EMBEDDING_MODEL_REVISION = "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a"
 IMPORTANCE_WEIGHTS = {"core": 3.0, "supporting": 1.5, "optional": 0.5}
 
 PER_QUESTION_FIELDS = (
@@ -76,10 +84,73 @@ MISS_FIELDS = (
     "retrieved_top_k_chunk_ids", "relevant_document_wrong_chunk",
     "first_relevant_rank_below_k", "failure_types",
 )
+COMPARISON_FIELDS = (
+    "scope", "domain", "q_id", "k", "metric", "bm25_v0.1",
+    "embedding_v0.1", "absolute_difference",
+)
+
+EVIDENCE_COMPARISON_METRICS = (
+    ("part_recall", "mean_part_recall"),
+    ("item_coverage", "mean_item_coverage"),
+    ("all_parts_rate", "all_parts_rate"),
+    ("benchmark_weighted_strict_score", "weighted_evidence_score"),
+    ("weighted_partial_coverage", "weighted_item_coverage"),
+    ("core_recall", "core_evidence_recall"),
+)
+NUMERIC_COMPARISON_METRICS = (
+    ("strict_fact_coverage", "answer_fact_coverage"),
+    ("group_coverage", "numeric_group_coverage"),
+    ("strict_multi_input_rate", "strict_complete_input_retrieval_rate"),
+    ("complete_question_rate", "numeric_question_complete_rate"),
+    ("mean_input_coverage", "mean_answer_fact_input_coverage"),
+)
 
 
 class EvaluationError(ValueError):
     """Raised when a frozen evaluation input violates its declared schema."""
+
+
+@dataclass(frozen=True)
+class FrozenSystem:
+    """Metadata adapter for one immutable ranked-result schema."""
+
+    version: str
+    retrieval_method: str
+    query_version: str
+    config_field: str
+    result_sha256: str
+    artifact_type: str
+    result_binding_key: str
+    version_binding_key: str
+    required_metadata: tuple[tuple[str, str], ...] = ()
+
+
+BM25_SYSTEM = FrozenSystem(
+    version=BM25_VERSION,
+    retrieval_method="bm25",
+    query_version=RETRIEVAL_QUERY_VERSION,
+    config_field="retrieval_config",
+    result_sha256=BM25_RESULT_SHA256,
+    artifact_type="frozen_bm25_retrieval_evaluation",
+    result_binding_key="bm25_result_sha256",
+    version_binding_key="bm25_version",
+)
+EMBEDDING_SYSTEM = FrozenSystem(
+    version="embedding_v0.1",
+    retrieval_method="embedding_v0.1",
+    query_version="retrieval_queries_v0.1.1",
+    config_field="embedding_config",
+    result_sha256=EMBEDDING_RESULT_SHA256,
+    artifact_type="frozen_embedding_retrieval_evaluation",
+    result_binding_key="embedding_result_sha256",
+    version_binding_key="embedding_version",
+    required_metadata=(
+        ("retrieval_query_sha256", RETRIEVAL_QUERY_SHA256),
+        ("model_id", EMBEDDING_MODEL_ID),
+        ("model_revision", EMBEDDING_MODEL_REVISION),
+    ),
+)
+FROZEN_SYSTEMS = (BM25_SYSTEM, EMBEDDING_SYSTEM)
 
 
 @dataclass(frozen=True)
@@ -138,12 +209,12 @@ def load_ranked_results(path: Path) -> list[dict[str, Any]]:
                 record = json.loads(line)
             except json.JSONDecodeError as exc:
                 raise EvaluationError(
-                    f"malformed BM25 JSONL at line {line_number}: {exc}"
+                    f"malformed ranked-result JSONL at line {line_number}: {exc}"
                 ) from exc
             if not isinstance(record, dict):
-                raise EvaluationError(f"BM25 record {line_number} is not an object")
+                raise EvaluationError(f"ranked-result record {line_number} is not an object")
             if "q_id" not in record:
-                raise EvaluationError(f"BM25 record {line_number} has missing q_id")
+                raise EvaluationError(f"ranked-result record {line_number} has missing q_id")
             records.append(record)
     if not records:
         raise EvaluationError("BM25 result artifact is empty")
@@ -151,7 +222,9 @@ def load_ranked_results(path: Path) -> list[dict[str, Any]]:
 
 
 def validate_ranked_results(
-    records: Sequence[dict[str, Any]], queries: dict[str, str]
+    records: Sequence[dict[str, Any]],
+    queries: dict[str, str],
+    system: FrozenSystem = BM25_SYSTEM,
 ) -> dict[str, dict[str, Any]]:
     by_q: dict[str, dict[str, Any]] = {}
     configs: set[str] = set()
@@ -159,20 +232,23 @@ def validate_ranked_results(
     for record in records:
         q_id = record["q_id"]
         if not isinstance(q_id, str) or not q_id:
-            raise EvaluationError("BM25 q_id must be a non-empty string")
+            raise EvaluationError("ranked-result q_id must be a non-empty string")
         if q_id in by_q:
-            raise EvaluationError(f"duplicate BM25 q_id: {q_id}")
+            raise EvaluationError(f"duplicate ranked-result q_id: {q_id}")
         if q_id not in queries:
-            raise EvaluationError(f"unknown BM25 q_id: {q_id}")
+            raise EvaluationError(f"unknown ranked-result q_id: {q_id}")
         if record.get("query_en") != queries[q_id]:
             raise EvaluationError(f"frozen query text mismatch for {q_id}")
-        if record.get("retrieval_query_version") != RETRIEVAL_QUERY_VERSION:
+        if record.get("retrieval_query_version") != system.query_version:
             raise EvaluationError(f"retrieval query version mismatch for {q_id}")
-        if record.get("retrieval_method") != "bm25":
+        if record.get("retrieval_method") != system.retrieval_method:
             raise EvaluationError(f"retrieval method mismatch for {q_id}")
-        if not isinstance(record.get("retrieval_config"), dict):
+        if not isinstance(record.get(system.config_field), dict):
             raise EvaluationError(f"missing retrieval config for {q_id}")
-        configs.add(json.dumps(record["retrieval_config"], sort_keys=True))
+        configs.add(json.dumps(record[system.config_field], sort_keys=True))
+        for field, expected in system.required_metadata:
+            if record.get(field) != expected:
+                raise EvaluationError(f"{field} mismatch for {q_id}")
         fingerprint = record.get("corpus_fingerprint")
         if not isinstance(fingerprint, str) or not fingerprint:
             raise EvaluationError(f"missing corpus fingerprint for {q_id}")
@@ -194,14 +270,14 @@ def validate_ranked_results(
         by_q[q_id] = record
     if set(by_q) != set(queries):
         missing = sorted(set(queries) - set(by_q))
-        raise EvaluationError(f"BM25 results are missing q_ids: {missing}")
+        raise EvaluationError(f"ranked results are missing q_ids: {missing}")
     if len(configs) != 1:
-        raise EvaluationError("BM25 retrieval config differs across questions")
+        raise EvaluationError("retrieval config differs across questions")
     if len(corpus_fingerprints) != 1:
-        raise EvaluationError("corpus fingerprint differs across BM25 records")
-    config = records[0]["retrieval_config"]
+        raise EvaluationError("corpus fingerprint differs across ranked-result records")
+    config = records[0][system.config_field]
     if config.get("top_k", 0) < max(K_VALUES):
-        raise EvaluationError("saved BM25 top_k does not support requested K values")
+        raise EvaluationError("saved top_k does not support requested K values")
     return by_q
 
 
@@ -787,14 +863,30 @@ def _write_csv(path: Path, fields: Sequence[str], rows: Sequence[dict[str, Any]]
         writer.writerows(rows)
 
 
+def _system_for_result(path: Path) -> FrozenSystem:
+    result_sha256 = sha256_file(path)
+    for system in FROZEN_SYSTEMS:
+        if result_sha256 == system.result_sha256:
+            return system
+    raise EvaluationError(
+        f"ranked-result SHA-256 is not a frozen supported system: {result_sha256}"
+    )
+
+
 def evaluate(
-    gold_dir: Path, query_path: Path, result_path: Path
+    gold_dir: Path,
+    query_path: Path,
+    result_path: Path,
+    system: FrozenSystem | None = None,
 ) -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str, Any]]]:
     """Load, validate, and score frozen inputs without writing any files."""
     if sha256_file(query_path) != RETRIEVAL_QUERY_SHA256:
         raise EvaluationError("frozen retrieval query artifact SHA-256 mismatch")
-    if sha256_file(result_path) != BM25_RESULT_SHA256:
-        raise EvaluationError("frozen BM25 result artifact SHA-256 mismatch")
+    selected_system = system or _system_for_result(result_path)
+    if sha256_file(result_path) != selected_system.result_sha256:
+        raise EvaluationError(
+            f"frozen {selected_system.version} result artifact SHA-256 mismatch"
+        )
     evidence_path = gold_dir / "evidence_provenance.json"
     numeric_path = gold_dir / "numeric_fact_provenance.json"
     manifest_path = gold_dir / "gold_manifest.json"
@@ -806,13 +898,15 @@ def evaluate(
     validate_gold_manifest(gold_dir, manifest)
     queries = load_queries(query_path)
     records = load_ranked_results(result_path)
-    results_by_q = validate_ranked_results(records, queries)
+    results_by_q = validate_ranked_results(records, queries, selected_system)
     validate_gold(evidence, numeric, manifest, binding, set(results_by_q))
     corpus_fingerprint = records[0]["corpus_fingerprint"]
+    if corpus_fingerprint != CORPUS_FINGERPRINT:
+        raise EvaluationError("ranked-result corpus fingerprint mismatch")
     if corpus_fingerprint != binding.get("corpus_fingerprint"):
-        raise EvaluationError("BM25 corpus fingerprint does not match gold binding")
+        raise EvaluationError("ranked-result corpus fingerprint does not match gold binding")
     if records[0].get("ingestion_tag") != binding.get("ingestion_tag"):
-        raise EvaluationError("BM25 ingestion tag does not match gold binding")
+        raise EvaluationError("ranked-result ingestion tag does not match gold binding")
     answer_facts = [fact for fact in numeric["facts"] if fact["role"] == "answer"]
     provenance = NumericProvenance(numeric["facts"])
     evidence_by_k = {
@@ -823,13 +917,16 @@ def evaluate(
     }
     per_question = _per_question_rows(evidence["items"], answer_facts, provenance, results_by_q)
     misses = build_miss_rows(evidence["items"], answer_facts, provenance, results_by_q)
+    result_bindings = {
+        selected_system.result_binding_key: selected_system.result_sha256,
+        selected_system.version_binding_key: selected_system.version,
+    }
     scores = {
-        "artifact_type": "frozen_bm25_retrieval_evaluation",
+        "artifact_type": selected_system.artifact_type,
         "bindings": {
             "benchmark_tag": binding["benchmark_tag"],
             "benchmark_version": binding["benchmark_version"],
-            "bm25_result_sha256": BM25_RESULT_SHA256,
-            "bm25_version": BM25_VERSION,
+            **result_bindings,
             "corpus_fingerprint": corpus_fingerprint,
             "gold_artifact_sha256": {
                 name: sha256_file(gold_dir / name)
@@ -842,9 +939,9 @@ def evaluate(
             "gold_map_fingerprint": GOLD_MAP_FINGERPRINT,
             "gold_map_version": GOLD_MAP_VERSION,
             "ingestion_tag": binding["ingestion_tag"],
-            "retrieval_config": records[0]["retrieval_config"],
+            "retrieval_config": records[0][selected_system.config_field],
             "retrieval_query_artifact_sha256": RETRIEVAL_QUERY_SHA256,
-            "retrieval_query_version": RETRIEVAL_QUERY_VERSION,
+            "retrieval_query_version": selected_system.query_version,
         },
         "k_values": list(K_VALUES),
         "scoring_interpretation": {
@@ -878,6 +975,104 @@ def evaluate(
     return scores, per_question, misses
 
 
+def _comparison_value(value: Any) -> Any:
+    if value in (None, ""):
+        return ""
+    if isinstance(value, bool):
+        return int(value)
+    return value
+
+
+def _comparison_row(
+    scope: str,
+    domain: str,
+    q_id: str,
+    k: int,
+    metric: str,
+    bm25_value: Any,
+    embedding_value: Any,
+) -> dict[str, Any]:
+    bm25_value = _comparison_value(bm25_value)
+    embedding_value = _comparison_value(embedding_value)
+    if bm25_value == "" or embedding_value == "":
+        difference: float | str = ""
+    else:
+        difference = round(abs(float(embedding_value) - float(bm25_value)), 12)
+    return {
+        "scope": scope,
+        "domain": domain,
+        "q_id": q_id,
+        "k": k,
+        "metric": metric,
+        "bm25_v0.1": bm25_value,
+        "embedding_v0.1": embedding_value,
+        "absolute_difference": difference,
+    }
+
+
+def build_comparison_rows(
+    bm25_scores: dict[str, Any],
+    bm25_per_question: Sequence[dict[str, Any]],
+    embedding_scores: dict[str, Any],
+    embedding_per_question: Sequence[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Compare the complete frozen metric panel on its original absolute scale."""
+    if bm25_scores.get("k_values") != list(K_VALUES):
+        raise EvaluationError("BM25 scores do not contain the frozen K values")
+    if embedding_scores.get("k_values") != list(K_VALUES):
+        raise EvaluationError("embedding scores do not contain the frozen K values")
+    rows: list[dict[str, Any]] = []
+    metric_groups = (
+        ("evidence", "evidence_metrics", EVIDENCE_COMPARISON_METRICS),
+        ("numeric", "numeric_metrics", NUMERIC_COMPARISON_METRICS),
+    )
+    for domain, score_key, metrics in metric_groups:
+        for k in K_VALUES:
+            bm25_at_k = bm25_scores[score_key][str(k)]
+            embedding_at_k = embedding_scores[score_key][str(k)]
+            for metric, field in metrics:
+                rows.append(
+                    _comparison_row(
+                        "aggregate", domain, "", k, metric,
+                        bm25_at_k[field], embedding_at_k[field],
+                    )
+                )
+
+    bm25_by_question = {
+        (row["domain"], row["q_id"], int(row["k"])): row
+        for row in bm25_per_question
+    }
+    embedding_by_question = {
+        (row["domain"], row["q_id"], int(row["k"])): row
+        for row in embedding_per_question
+    }
+    if set(bm25_by_question) != set(embedding_by_question):
+        raise EvaluationError("per-question comparison keys differ between systems")
+    per_question_fields = {
+        "evidence": EVIDENCE_COMPARISON_METRICS,
+        "numeric": tuple(
+            (
+                metric,
+                "numeric_question_complete"
+                if field == "numeric_question_complete_rate"
+                else field,
+            )
+            for metric, field in NUMERIC_COMPARISON_METRICS
+        ),
+    }
+    for domain, q_id, k in sorted(bm25_by_question):
+        bm25_row = bm25_by_question[(domain, q_id, k)]
+        embedding_row = embedding_by_question[(domain, q_id, k)]
+        for metric, field in per_question_fields[domain]:
+            rows.append(
+                _comparison_row(
+                    "per_question", domain, q_id, k, metric,
+                    bm25_row[field], embedding_row[field],
+                )
+            )
+    return rows
+
+
 def run(
     gold_dir: Path = GOLD_DIR,
     query_path: Path = QUERY_PATH,
@@ -885,13 +1080,17 @@ def run(
     scores_path: Path = SCORES_PATH,
     per_question_path: Path = PER_QUESTION_PATH,
     misses_path: Path = MISSES_PATH,
+    comparison_path: Path | None = None,
 ) -> dict[str, str]:
     """Evaluate and write deterministic artifacts, guarding the frozen result."""
     frozen_before = sha256_file(result_path)
     protected = {path.resolve() for path in (result_path, query_path)} | {
         path.resolve() for path in gold_dir.glob("*.json")
     }
-    for output in (scores_path, per_question_path, misses_path):
+    outputs = [scores_path, per_question_path, misses_path]
+    if comparison_path is not None:
+        outputs.append(comparison_path)
+    for output in outputs:
         if output.resolve() in protected:
             raise EvaluationError(f"refusing to overwrite frozen input: {output}")
     scores, per_question, misses = evaluate(
@@ -900,13 +1099,26 @@ def run(
     _write_json(scores_path, scores)
     _write_csv(per_question_path, PER_QUESTION_FIELDS, per_question)
     _write_csv(misses_path, MISS_FIELDS, misses)
+    if comparison_path is not None:
+        if scores["bindings"].get("embedding_version") != EMBEDDING_SYSTEM.version:
+            raise EvaluationError("comparison output requires embedding_v0.1 results")
+        bm25_scores, bm25_per_question, _ = evaluate(
+            gold_dir=gold_dir,
+            query_path=query_path,
+            result_path=RESULT_PATH,
+            system=BM25_SYSTEM,
+        )
+        comparison_rows = build_comparison_rows(
+            bm25_scores,
+            bm25_per_question,
+            scores,
+            per_question,
+        )
+        _write_csv(comparison_path, COMPARISON_FIELDS, comparison_rows)
     frozen_after = sha256_file(result_path)
     if frozen_after != frozen_before:
-        raise EvaluationError("frozen BM25 result artifact changed during scoring")
-    return {
-        str(path): sha256_file(path)
-        for path in (scores_path, per_question_path, misses_path)
-    }
+        raise EvaluationError("frozen ranked-result artifact changed during scoring")
+    return {str(path): sha256_file(path) for path in outputs}
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -917,6 +1129,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--scores", type=Path, default=SCORES_PATH)
     parser.add_argument("--per-question", type=Path, default=PER_QUESTION_PATH)
     parser.add_argument("--misses", type=Path, default=MISSES_PATH)
+    parser.add_argument("--comparison", type=Path)
     args = parser.parse_args(argv)
     hashes = run(
         gold_dir=args.gold_dir,
@@ -925,6 +1138,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         scores_path=args.scores,
         per_question_path=args.per_question,
         misses_path=args.misses,
+        comparison_path=args.comparison,
     )
     for path, digest in hashes.items():
         print(f"{digest}  {path}")
