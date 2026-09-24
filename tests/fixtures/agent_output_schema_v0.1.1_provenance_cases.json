@@ -1,0 +1,173 @@
+{
+  "valid": {
+    "narrative": {
+      "provenance_type": "chunk",
+      "chunk_id": "chunk_fixture_001",
+      "accession": "0000000001-26-000001",
+      "locator": "Fixture section > Fixture table"
+    },
+    "xbrl_instant_without_chunk": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_001",
+      "accession": "0000000001-26-000001",
+      "concept": "us-gaap:FixtureInstantConcept",
+      "context_ref": "ctx_instant",
+      "instant": "2026-06-30",
+      "unit": "USD"
+    },
+    "xbrl_instant_with_chunk": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_002",
+      "accession": "0000000001-26-000001",
+      "concept": "us-gaap:FixtureInstantConcept",
+      "context_ref": "ctx_instant_linked",
+      "instant": "2026-06-30",
+      "unit": "USD",
+      "chunk_id": "chunk_fixture_002"
+    },
+    "xbrl_duration_without_chunk": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_003",
+      "accession": "0000000001-26-000001",
+      "concept": "us-gaap:FixtureDurationConcept",
+      "context_ref": "ctx_duration",
+      "period_start": "2026-04-01",
+      "period_end": "2026-06-30",
+      "unit": "USD"
+    },
+    "xbrl_duration_with_chunk": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_004",
+      "accession": "0000000001-26-000001",
+      "concept": "us-gaap:FixtureDurationConcept",
+      "context_ref": "ctx_duration_linked",
+      "period_start": "2026-04-01",
+      "period_end": "2026-06-30",
+      "unit": "USD",
+      "chunk_id": "chunk_fixture_004"
+    }
+  },
+  "invalid": {
+    "narrative_missing_locator": {
+      "provenance_type": "chunk",
+      "chunk_id": "chunk_fixture_001",
+      "accession": "0000000001-26-000001"
+    },
+    "xbrl_missing_temporal_form": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_101",
+      "accession": "0000000001-26-000001",
+      "concept": "us-gaap:FixtureConcept",
+      "context_ref": "ctx_missing_time",
+      "unit": "USD"
+    },
+    "xbrl_instant_and_duration": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_102",
+      "accession": "0000000001-26-000001",
+      "concept": "us-gaap:FixtureConcept",
+      "context_ref": "ctx_hybrid_time",
+      "instant": "2026-06-30",
+      "period_start": "2026-04-01",
+      "period_end": "2026-06-30",
+      "unit": "USD"
+    },
+    "xbrl_period_start_only": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_103",
+      "accession": "0000000001-26-000001",
+      "concept": "us-gaap:FixtureConcept",
+      "context_ref": "ctx_start_only",
+      "period_start": "2026-04-01",
+      "unit": "USD"
+    },
+    "xbrl_period_end_only": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_104",
+      "accession": "0000000001-26-000001",
+      "concept": "us-gaap:FixtureConcept",
+      "context_ref": "ctx_end_only",
+      "period_end": "2026-06-30",
+      "unit": "USD"
+    },
+    "xbrl_missing_fact_locator": {
+      "provenance_type": "xbrl_fact",
+      "accession": "0000000001-26-000001",
+      "concept": "us-gaap:FixtureConcept",
+      "context_ref": "ctx_missing_locator",
+      "instant": "2026-06-30",
+      "unit": "USD"
+    },
+    "xbrl_missing_accession": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_106",
+      "concept": "us-gaap:FixtureConcept",
+      "context_ref": "ctx_missing_accession",
+      "instant": "2026-06-30",
+      "unit": "USD"
+    },
+    "xbrl_missing_concept": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_107",
+      "accession": "0000000001-26-000001",
+      "context_ref": "ctx_missing_concept",
+      "instant": "2026-06-30",
+      "unit": "USD"
+    },
+    "xbrl_missing_context_ref": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_108",
+      "accession": "0000000001-26-000001",
+      "concept": "us-gaap:FixtureConcept",
+      "instant": "2026-06-30",
+      "unit": "USD"
+    },
+    "xbrl_missing_unit": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_109",
+      "accession": "0000000001-26-000001",
+      "concept": "us-gaap:FixtureConcept",
+      "context_ref": "ctx_missing_unit",
+      "instant": "2026-06-30"
+    },
+    "xbrl_null_unit": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_109_null",
+      "accession": "0000000001-26-000001",
+      "concept": "dei:FixtureNonnumericConcept",
+      "context_ref": "ctx_null_unit",
+      "instant": "2026-06-30",
+      "unit": null
+    },
+    "xbrl_empty_unit": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_109_empty",
+      "accession": "0000000001-26-000001",
+      "concept": "dei:FixtureNonnumericConcept",
+      "context_ref": "ctx_empty_unit",
+      "instant": "2026-06-30",
+      "unit": ""
+    },
+    "xbrl_with_narrative_locator": {
+      "provenance_type": "xbrl_fact",
+      "fact_locator": "fixture_doc#fact_110",
+      "accession": "0000000001-26-000001",
+      "concept": "us-gaap:FixtureConcept",
+      "context_ref": "ctx_extra_locator",
+      "instant": "2026-06-30",
+      "unit": "USD",
+      "locator": "Not authoritative for a structured fact"
+    },
+    "hybrid_discriminator_and_fields": {
+      "provenance_type": "chunk",
+      "chunk_id": "chunk_fixture_111",
+      "accession": "0000000001-26-000001",
+      "locator": "Fixture section",
+      "fact_locator": "fixture_doc#fact_111",
+      "concept": "us-gaap:FixtureConcept",
+      "context_ref": "ctx_hybrid",
+      "instant": "2026-06-30",
+      "unit": "USD"
+    }
+  }
+}

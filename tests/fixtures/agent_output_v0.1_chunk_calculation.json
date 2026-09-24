@@ -1,0 +1,62 @@
+{
+  "schema_version": "agent_output_v0.1",
+  "q_id": "FIXTURE_COMPAT_002",
+  "answer": "The synthetic derived value is $20.",
+  "answer_claim_ids": ["C001"],
+  "claims": [
+    {
+      "claim_id": "C001",
+      "text": "The synthetic derived value is $20.",
+      "claim_type": "numeric",
+      "entities": ["Fixture Entity"],
+      "numeric_value": {
+        "value": 20,
+        "unit": "USD",
+        "period": "fixture period",
+        "basis": "fixture basis",
+        "display_value": "$20"
+      },
+      "material": true,
+      "period": "fixture period",
+      "requires_citation": true,
+      "temporal_role": "current",
+      "calculation_ids": ["K001"],
+      "citations": [
+        {
+          "chunk_id": "chunk_fixture_compat_calc",
+          "accession": "0000000001-26-000001",
+          "locator": "Fixture calculation table"
+        }
+      ]
+    }
+  ],
+  "calculations": [
+    {
+      "calculation_id": "K001",
+      "expression": "I001 * 2",
+      "inputs": [
+        {
+          "input_id": "I001",
+          "name": "fixture reported input",
+          "value": 10,
+          "unit": "USD",
+          "period": "fixture period",
+          "basis": "fixture basis",
+          "source_type": "cited_fact",
+          "citations": [
+            {
+              "chunk_id": "chunk_fixture_compat_calc",
+              "accession": "0000000001-26-000001",
+              "locator": "Fixture calculation table"
+            }
+          ]
+        }
+      ],
+      "result": {
+        "value": 20,
+        "unit": "USD",
+        "display_value": "$20"
+      }
+    }
+  ]
+}

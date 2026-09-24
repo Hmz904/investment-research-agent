@@ -1,0 +1,26 @@
+{
+  "schema_version": "agent_output_v0.1",
+  "q_id": "FIXTURE_COMPAT_001",
+  "answer": "The fixture filing reports a directly stated value.",
+  "answer_claim_ids": ["C001"],
+  "claims": [
+    {
+      "claim_id": "C001",
+      "text": "The fixture filing reports a directly stated value.",
+      "claim_type": "factual",
+      "entities": ["Fixture Entity"],
+      "material": true,
+      "period": "fixture period",
+      "requires_citation": true,
+      "temporal_role": "current",
+      "citations": [
+        {
+          "chunk_id": "chunk_fixture_compat",
+          "accession": "0000000001-26-000001",
+          "locator": "Fixture section"
+        }
+      ]
+    }
+  ],
+  "calculations": []
+}

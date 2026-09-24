@@ -1,0 +1,351 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/agent_output_schema_v0.1.1.json",
+  "title": "ThesisAgent end-to-end output v0.1.1",
+  "description": "Backward-compatible v0.1 extension adding a discriminated provenance union for narrative chunks and structured XBRL facts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "q_id",
+    "answer",
+    "answer_claim_ids",
+    "claims",
+    "calculations"
+  ],
+  "properties": {
+    "schema_version": {"const": "agent_output_v0.1.1"},
+    "q_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9_.-]+$"},
+    "answer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Explicit user-facing final answer. It must not rely on hidden chain-of-thought."
+    },
+    "answer_claim_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/claim_id"},
+      "description": "Claims that jointly express the final answer. Every ID must resolve within claims."
+    },
+    "claims": {"type": "array", "items": {"$ref": "#/$defs/claim"}},
+    "calculations": {"type": "array", "items": {"$ref": "#/$defs/calculation"}}
+  },
+  "$defs": {
+    "claim_id": {"type": "string", "pattern": "^C[0-9]{3,}$"},
+    "calculation_id": {"type": "string", "pattern": "^K[0-9]{3,}$"},
+    "citation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chunk_id", "accession", "locator"],
+      "properties": {
+        "chunk_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact frozen-corpus chunk identifier."
+        },
+        "accession": {"type": "string", "pattern": "^[0-9]{10}-[0-9]{2}-[0-9]{6}$"},
+        "locator": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-auditable section, note, statement, or table locator."
+        }
+      },
+      "deprecated": true,
+      "description": "Legacy v0.1 narrative citation retained only for payload compatibility. New v0.1.1 outputs should use NarrativeProvenance in provenance. A claim or calculation input must not supply both representations."
+    },
+    "narrative_provenance": {
+      "title": "NarrativeProvenance",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provenance_type", "chunk_id", "accession", "locator"],
+      "properties": {
+        "provenance_type": {"const": "chunk"},
+        "chunk_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact frozen-corpus chunk identifier."
+        },
+        "accession": {"type": "string", "pattern": "^[0-9]{10}-[0-9]{2}-[0-9]{6}$"},
+        "locator": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact authoritative locator from the chunk metadata."
+        }
+      }
+    },
+    "xbrl_fact_provenance": {
+      "title": "XBRLFactProvenance",
+      "description": "Identity for a numeric XBRL fact only. Nonnumeric, nil, and dash facts are outside this structured-provenance contract.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provenance_type",
+        "fact_locator",
+        "accession",
+        "concept",
+        "context_ref",
+        "unit"
+      ],
+      "properties": {
+        "provenance_type": {"const": "xbrl_fact"},
+        "fact_locator": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact deterministic XBRLTool fact locator (doc_id#fact_id); not a narrative locator."
+        },
+        "accession": {"type": "string", "pattern": "^[0-9]{10}-[0-9]{2}-[0-9]{6}$"},
+        "concept": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact XBRL QName returned by XBRLTool."
+        },
+        "context_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact XBRL context reference returned by XBRLTool."
+        },
+        "period_start": {"type": "string", "format": "date"},
+        "period_end": {"type": "string", "format": "date"},
+        "instant": {"type": "string", "format": "date"},
+        "unit": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact nonempty raw unit reference returned for the authoritative numeric XBRL fact. Never invent a unit."
+        },
+        "chunk_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional authoritative chunk linkage; omit when XBRLTool returns no chunk_id."
+        }
+      },
+      "oneOf": [
+        {
+          "required": ["instant"],
+          "not": {
+            "anyOf": [
+              {"required": ["period_start"]},
+              {"required": ["period_end"]}
+            ]
+          }
+        },
+        {
+          "required": ["period_start", "period_end"],
+          "not": {"required": ["instant"]}
+        }
+      ]
+    },
+    "provenance": {
+      "title": "Provenance",
+      "oneOf": [
+        {"$ref": "#/$defs/narrative_provenance"},
+        {"$ref": "#/$defs/xbrl_fact_provenance"}
+      ]
+    },
+    "provenance_array": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/provenance"},
+      "description": "Claim-bound or calculation-input-bound provenance records. Each item is exactly one discriminated provenance type."
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claim_id",
+        "text",
+        "claim_type",
+        "entities",
+        "material",
+        "period",
+        "requires_citation",
+        "temporal_role"
+      ],
+      "properties": {
+        "claim_id": {"$ref": "#/$defs/claim_id"},
+        "text": {"type": "string", "minLength": 1},
+        "claim_type": {
+          "enum": ["numeric", "factual", "comparative", "interpretive", "limitation"]
+        },
+        "entities": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1},
+          "description": "Companies or other entities addressed by the claim."
+        },
+        "numeric_value": {"$ref": "#/$defs/numeric_value"},
+        "material": {
+          "type": "boolean",
+          "description": "True when the claim could affect the substantive answer or an investment conclusion."
+        },
+        "period": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Fiscal/reporting period or ordered period comparison for the claim."
+        },
+        "requires_citation": {
+          "type": "boolean",
+          "description": "Legacy field name retained for compatibility; true means sufficient valid supporting provenance is required."
+        },
+        "temporal_role": {
+          "enum": ["prior_period", "current", "change", "cross_company", "not_applicable"]
+        },
+        "calculation_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/calculation_id"}
+        },
+        "citations": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/citation"},
+          "description": "Legacy v0.1 narrative citations retained for backward compatibility."
+        },
+        "provenance": {"$ref": "#/$defs/provenance_array"}
+      },
+      "allOf": [
+        {
+          "not": {
+            "required": ["citations", "provenance"]
+          }
+        },
+        {
+          "if": {
+            "properties": {"claim_type": {"const": "numeric"}},
+            "required": ["claim_type"]
+          },
+          "then": {"required": ["numeric_value"]}
+        },
+        {
+          "if": {
+            "properties": {"requires_citation": {"const": true}},
+            "required": ["requires_citation"]
+          },
+          "then": {
+            "anyOf": [
+              {
+                "required": ["citations"],
+                "properties": {"citations": {"minItems": 1}}
+              },
+              {
+                "required": ["provenance"],
+                "properties": {"provenance": {"minItems": 1}}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "numeric_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "unit", "period", "basis", "display_value"],
+      "properties": {
+        "value": {"type": "number"},
+        "unit": {"type": "string", "minLength": 1},
+        "period": {"type": "string", "minLength": 1},
+        "basis": {"type": "string", "minLength": 1},
+        "display_value": {"type": "string", "minLength": 1}
+      }
+    },
+    "calculation_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input_id", "name", "value", "unit", "period", "source_type"],
+      "properties": {
+        "input_id": {"type": "string", "pattern": "^I[0-9]{3,}$"},
+        "name": {"type": "string", "minLength": 1},
+        "value": {"type": "number"},
+        "unit": {"type": "string", "minLength": 1},
+        "period": {"type": "string", "minLength": 1},
+        "basis": {"type": "string", "minLength": 1},
+        "source_type": {"enum": ["cited_fact", "literal_constant", "prior_calculation"]},
+        "source_calculation_id": {"$ref": "#/$defs/calculation_id"},
+        "citations": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/citation"},
+          "description": "Legacy v0.1 narrative citations retained for backward compatibility."
+        },
+        "provenance": {"$ref": "#/$defs/provenance_array"}
+      },
+      "allOf": [
+        {
+          "not": {
+            "required": ["citations", "provenance"]
+          }
+        },
+        {
+          "if": {
+            "properties": {"source_type": {"const": "cited_fact"}},
+            "required": ["source_type"]
+          },
+          "then": {
+            "anyOf": [
+              {
+                "required": ["citations"],
+                "properties": {"citations": {"minItems": 1}}
+              },
+              {
+                "required": ["provenance"],
+                "properties": {"provenance": {"minItems": 1}}
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {"source_type": {"const": "literal_constant"}},
+            "required": ["source_type"]
+          },
+          "then": {
+            "properties": {
+              "citations": {"maxItems": 0},
+              "provenance": {"maxItems": 0}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"source_type": {"const": "prior_calculation"}},
+            "required": ["source_type"]
+          },
+          "then": {
+            "required": ["source_calculation_id"],
+            "properties": {
+              "citations": {"maxItems": 0},
+              "provenance": {"maxItems": 0}
+            }
+          }
+        }
+      ]
+    },
+    "calculation_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "unit", "display_value"],
+      "properties": {
+        "value": {"type": "number"},
+        "unit": {"type": "string", "minLength": 1},
+        "display_value": {"type": "string", "minLength": 1}
+      }
+    },
+    "calculation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["calculation_id", "expression", "inputs", "result"],
+      "properties": {
+        "calculation_id": {"$ref": "#/$defs/calculation_id"},
+        "expression": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Explicit expression using input_id identifiers; no hidden operands."
+        },
+        "inputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/calculation_input"}
+        },
+        "result": {"$ref": "#/$defs/calculation_result"}
+      }
+    }
+  }
+}
