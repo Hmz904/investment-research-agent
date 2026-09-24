@@ -1,0 +1,71 @@
+unit_key,q_id,unit_type,fact_id,item_id,part_id,delta_status,round1_human_decision,final_human_decision,semantic_changed,provenance_changed,source_review_changed,reason
+NF001,DEV01,numeric_fact,NF001,,,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,false,true,true,REJECT: the valid FY27Q2-release prior-quarter column was missing as an OR provenance candidate for the same FY27Q1 free-cash-flow fact.
+NF002,DEV01,numeric_fact,NF002,,,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+NF003,DEV01,numeric_fact,NF003,,,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+NF004,DEV01,numeric_fact,NF004,,,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+NF005,DEV02,numeric_fact,NF005,,,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+NF006,DEV02,numeric_fact,NF006,,,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+NF007,DEV02,numeric_fact,NF007,,,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+NF008,DEV02,numeric_fact,NF008,,,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+NF009,DEV02,numeric_fact,NF009,,,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+NF010,DEV02,numeric_fact,NF010,,,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+NF011,DEV02,numeric_fact,NF011,,,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+NF012,DEV03,numeric_fact,NF012,,,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+NF013,DEV03,numeric_fact,NF013,,,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+NF014,DEV03,numeric_fact,NF014,,,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+NF015,DEV02,numeric_fact,NF015,,,NEW_REVIEW_REQUIRED,,APPROVE,true,true,true,New accepted variant or required evidence part added by the human-directed correction.
+NF016,DEV02,numeric_fact,NF016,,,NEW_REVIEW_REQUIRED,,APPROVE,true,true,true,New accepted variant or required evidence part added by the human-directed correction.
+NF017,DEV02,numeric_fact,NF017,,,NEW_REVIEW_REQUIRED,,APPROVE,true,true,true,New accepted variant or required evidence part added by the human-directed correction.
+DEV04:E01:P1,DEV04,evidence_part,,E01,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV04:E02:P1,DEV04,evidence_part,,E02,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV04:E03:P1,DEV04,evidence_part,,E03,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV04:E03:P2,DEV04,evidence_part,,E03,P2,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV04:E04:P1,DEV04,evidence_part,,E04,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV04:E04:P2,DEV04,evidence_part,,E04,P2,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV04:E05:P1,DEV04,evidence_part,,E05,P1,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,true,false,true,"REJECT: the Q1 platform-composition disclosure is background/context, not a Q2 current-period claim; its temporal role requires correction."
+DEV04:E05:P2,DEV04,evidence_part,,E05,P2,RETIRED,REJECT,REJECT,true,true,true,"RETIRED: duplicate of DEV04 E04/P1; historical row and rejection retained, excluded from active scoring and required provenance."
+DEV04:E05:P3,DEV04,evidence_part,,E05,P3,MODIFIED_REVIEW_REQUIRED,,APPROVE,true,true,true,REQUIRES_FINAL_HUMAN_REVIEW: active target narrowed to the Q2 Blackwell qualitative-driver/quantification limitation; taxonomy chunk removed as unnecessary.
+DEV04:E05:P4,DEV04,evidence_part,,E05,P4,MODIFIED_REVIEW_REQUIRED,,APPROVE,true,false,true,REQUIRES_FINAL_HUMAN_REVIEW: active target narrowed to the bounded non-attribution statement; taxonomy remains only to identify other listed categories.
+DEV05:E01:P1,DEV05,evidence_part,,E01,P1,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,true,false,true,REQUIRES_FINAL_HUMAN_REVIEW: semantic target now explicitly accepts rounded and exact display precision on independently sufficient OR paths.
+DEV05:E01:P2,DEV05,evidence_part,,E01,P2,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV05:E01:P3,DEV05,evidence_part,,E01,P3,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV05:E01:P4,DEV05,evidence_part,,E01,P4,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV05:E02:P1,DEV05,evidence_part,,E02,P1,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,true,false,true,REQUIRES_FINAL_HUMAN_REVIEW: semantic target now explicitly accepts rounded and exact display precision on independently sufficient OR paths.
+DEV05:E02:P2,DEV05,evidence_part,,E02,P2,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV05:E02:P3,DEV05,evidence_part,,E02,P3,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV05:E02:P4,DEV05,evidence_part,,E02,P4,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,true,true,true,REJECT: the row labeled current mixed the Q4 +10% fact with the Q3-to-Q4 slowdown comparison.
+DEV05:E03:P1,DEV05,evidence_part,,E03,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV05:E04:P1,DEV05,evidence_part,,E04,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV05:E04:P2,DEV05,evidence_part,,E04,P2,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV05:E05:P1,DEV05,evidence_part,,E05,P1,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,true,false,true,REJECT: the wording resolved the filing's grammar more strongly than the source; it must remain close to 'severance expense and impairment charges in Xbox.'
+DEV05:E05:P2,DEV05,evidence_part,,E05,P2,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,true,true,true,REJECT: the limitation omitted that the discrete-items disclosure compares results with April 29 guidance rather than decomposing the YoY MPC operating-income decline.
+DEV06:E01:P1,DEV06,evidence_part,,E01,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV06:E02:P1,DEV06,evidence_part,,E02,P1,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,true,true,true,REJECT: a current row mixed the June 30 lease balance with the Q1-to-Q2 change.
+DEV06:E02:P2,DEV06,evidence_part,,E02,P2,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,true,true,true,REJECT: a current row mixed the June 30 contractual-commitment balance with the Q1-to-Q2 change.
+DEV06:E03:P1,DEV06,evidence_part,,E03,P1,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,true,true,true,REJECT: the scheduled-commitment comparison did not identify the contractual-commitment balance or explain that the remaining 2026 window shortened from nine months to six months.
+DEV06:E03:P2,DEV06,evidence_part,,E03,P2,NEW_REVIEW_REQUIRED,,APPROVE,true,true,true,New accepted variant or required evidence part added by the human-directed correction.
+DEV06:E04:P1,DEV06,evidence_part,,E04,P1,SOURCE_VERIFICATION_REVIEW_REQUIRED,NEEDS_SOURCE_CHECK,APPROVE,false,false,true,Frozen-chunk support was verified and the final packet now shows untruncated exact supporting text.
+DEV06:E05:P1,DEV06,evidence_part,,E05,P1,SOURCE_VERIFICATION_REVIEW_REQUIRED,NEEDS_SOURCE_CHECK,APPROVE,false,false,true,Frozen-chunk support was verified and the final packet now shows untruncated exact supporting text.
+DEV06:E06:P1,DEV06,evidence_part,,E06,P1,SOURCE_VERIFICATION_REVIEW_REQUIRED,NEEDS_SOURCE_CHECK,APPROVE,false,false,true,Frozen-chunk support was verified and the final packet now shows untruncated exact supporting text.
+DEV06:E06:P2,DEV06,evidence_part,,E06,P2,SOURCE_VERIFICATION_REVIEW_REQUIRED,NEEDS_SOURCE_CHECK,APPROVE,false,false,true,Frozen-chunk support was verified and the final packet now shows untruncated exact supporting text.
+DEV06:E07:P1,DEV06,evidence_part,,E07,P1,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,true,false,true,REJECT: the category description is background/context rather than a cross-period change claim.
+DEV06:E07:P2,DEV06,evidence_part,,E07,P2,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,true,true,true,REQUIRES_FINAL_HUMAN_REVIEW: removed unnecessary Q2 cash-flow-table member 6f45839ef280a11c from the active AND bundle.
+DEV07:E01:P1,DEV07,evidence_part,,E01,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV07:E01:P2,DEV07,evidence_part,,E01,P2,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV07:E02:P1,DEV07,evidence_part,,E02,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV07:E02:P2,DEV07,evidence_part,,E02,P2,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV07:E03:P1,DEV07,evidence_part,,E03,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV07:E03:P2,DEV07,evidence_part,,E03,P2,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV07:E04:P1,DEV07,evidence_part,,E04,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV07:E05:P1,DEV07,evidence_part,,E05,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV07:E06:P1,DEV07,evidence_part,,E06,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV07:E06:P2,DEV07,evidence_part,,E06,P2,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV08:E01:P1,DEV08,evidence_part,,E01,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV08:E01:P2,DEV08,evidence_part,,E01,P2,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV08:E02:P1,DEV08,evidence_part,,E02,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV08:E02:P2,DEV08,evidence_part,,E02,P2,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV08:E03:P1,DEV08,evidence_part,,E03,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV08:E04:P1,DEV08,evidence_part,,E04,P1,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV08:E04:P2,DEV08,evidence_part,,E04,P2,UNCHANGED_APPROVAL_CARRIED_FORWARD,APPROVE,APPROVE,false,false,false,Semantic unit and provenance are unchanged from the human-approved round-1 row.
+DEV08:E05:P1,DEV08,evidence_part,,E05,P1,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,false,true,true,"REJECT: the provenance omitted the debt note, which discloses that the notes were issued for general corporate purposes."
+DEV08:E05:P2,DEV08,evidence_part,,E05,P2,MODIFIED_REVIEW_REQUIRED,REJECT,APPROVE,true,true,true,REQUIRES_FINAL_HUMAN_REVIEW: wording changed from broad permitted use to stated general-corporate purpose; causal boundary unchanged.

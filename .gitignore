@@ -5,3 +5,7 @@ __pycache__/
 .env
 .pytest_cache/
 review/
+!benchmark/dev/v0.1/review/
+!benchmark/dev/v0.1/review/dev_gold_review.csv
+!benchmark/dev/v0.1/review/dev_gold_review_round1.csv
+!benchmark/dev/v0.1/review/dev_gold_review_delta.csv

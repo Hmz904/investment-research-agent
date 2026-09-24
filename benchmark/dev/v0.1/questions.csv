@@ -1,0 +1,9 @@
+q_id,version,split,company,fiscal_period,calendar_period,q_type,question,source_scope,depends_on,status
+DEV01,1,dev,NVDA,FY27Q1-FY27Q2,2026Q1-2026Q2,numeric,"NVIDIA FY27 Q2 的公司定义自由现金流相较 FY27 Q1 减少了多少（绝对额与百分比）？请列出两季自由现金流并展示计算。","SEC 10-Q; SEC 10-K; earnings 8-K Exhibit 99.1",,draft
+DEV02,1,dev,MSFT,FY25Q4-FY26Q4,2025Q2-2026Q2,numeric,"Microsoft FY26 Q4（截至 2026-06-30）OpenAI 投资对单季度摊薄每股收益的 GAAP 与 non-GAAP 差异是多少？与上年同期相比，影响方向和幅度如何变化？请展示 GAAP、non-GAAP 和差额。","SEC 10-Q; SEC 10-K; earnings 8-K Exhibit 99.1",,draft
+DEV03,1,dev,META,2026Q1-2026Q2,2026Q1-2026Q2,numeric,"仅使用 Meta 2026 Q1 和 Q2 10-Q 的累计现金流补充披露，推导 2026 Q2 单季度 Cash paid for income taxes, net；列出 Q1 与 H1 输入值和公式。","SEC 10-Q; SEC 10-K; earnings 8-K Exhibit 99.1",,draft
+DEV04,1,dev,NVDA,FY27Q1-FY27Q2,2026Q1-2026Q2,update,"从 FY27 Q1 到 FY27 Q2，NVIDIA Edge Computing 的增长信号如何变化？请比较收入、同比和环比增速，说明披露的共同驱动与约束，并避免把平台收入归因于某一单项产品。","SEC 10-Q; SEC 10-K; earnings 8-K Exhibit 99.1",,draft
+DEV05,1,dev,MSFT,FY26Q3-FY26Q4,2026Q1-2026Q2,update,"从 Microsoft FY26 Q3 到 Q4，More Personal Computing 的疲弱是否扩大？请比较分部收入、Windows OEM and Devices、Xbox content and services、Search advertising ex-TAC 以及分部营业利润，并说明披露能否把利润变化完全归因于 Xbox 相关费用。","SEC 10-Q; SEC 10-K; earnings 8-K Exhibit 99.1",,draft
+DEV06,1,dev,META,2026Q1-2026Q2,2026Q1-2026Q2,update,"从 2026 Q1 到 Q2，Meta 未开始租赁义务和不可取消合同承诺如何变化？请量化主要变化、区分截至期末的义务与期后新增租赁，并说明这些承诺为何不等同于当季资本开支。","SEC 10-Q; SEC 10-K; earnings 8-K Exhibit 99.1",,draft
+DEV07,1,dev,MULTI,2026Q2,2026Q2,comparison,"按各公司披露的单季度 GAAP 数据，比较 NVIDIA FY27 Q2、Microsoft FY26 Q4 和 Meta 2026 Q2 的股权激励费用占收入比例。哪家公司最高？期间与口径有哪些可比性限制？","SEC 10-Q; SEC 10-K; earnings 8-K Exhibit 99.1",,draft
+DEV08,1,dev,NVDA,FY27Q1-FY27Q2,2026Q1-2026Q2,thesis,"NVIDIA FY27 Q2 同时披露大额发债和更高股东回报。与 Q1 相比，Q2 的回购、分红和净融资现金流如何变化？这些披露是否足以证明新增债务直接用于回购和分红？","SEC 10-Q; SEC 10-K; earnings 8-K Exhibit 99.1",,draft
