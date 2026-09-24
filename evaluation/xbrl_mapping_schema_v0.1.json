@@ -1,0 +1,710 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/xbrl_mapping_schema_v0.1.json",
+  "title": "Deterministic gold-to-XBRL mapping artifact v0.1",
+  "description": "Evaluation-only contract. Candidate review status and final direct-target mapping status are distinct.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mapping_id",
+    "split",
+    "benchmark_version",
+    "benchmark_artifact_sha256",
+    "xbrl_artifact_fingerprint",
+    "mapping_algorithm_version",
+    "human_review_rubric_version",
+    "agent_outputs_generated_or_inspected_before_mapping_freeze",
+    "authorized_access_log_reference",
+    "targets"
+  ],
+  "properties": {
+    "schema_version": {"const": "xbrl_gold_mapping_schema_v0.1"},
+    "mapping_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9_.-]+$"},
+    "split": {"enum": ["DEV", "TEST"]},
+    "benchmark_version": {"type": "string", "minLength": 1},
+    "benchmark_artifact_sha256": {"$ref": "#/$defs/sha256"},
+    "xbrl_artifact_fingerprint": {"$ref": "#/$defs/sha256"},
+    "mapping_algorithm_version": {"const": "xbrl_gold_mapping_algorithm_v0.1"},
+    "human_review_rubric_version": {"const": "xbrl_mapping_review_rubric_v0.1"},
+    "agent_outputs_generated_or_inspected_before_mapping_freeze": {"const": false},
+    "authorized_access_log_reference": {"type": ["string", "null"], "minLength": 1},
+    "targets": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/mapping_target"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"split": {"const": "TEST"}}, "required": ["split"]},
+      "then": {"properties": {"authorized_access_log_reference": {"type": "string", "minLength": 1}}},
+      "else": {"properties": {"authorized_access_log_reference": {"type": "null"}}}
+    }
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "plain_decimal": {"type": "string", "pattern": "^[+-]?[0-9]+(?:\\.[0-9]+)?$"},
+    "nonnegative_decimal": {"type": "string", "pattern": "^\\+?[0-9]+(?:\\.[0-9]+)?$"},
+    "positive_decimal": {"type": "string", "pattern": "^\\+?(?:0*\\.[0-9]*[1-9][0-9]*|0*[1-9][0-9]*(?:\\.[0-9]+)?)$"},
+    "date": {"type": "string", "format": "date"},
+    "accession": {"type": "string", "pattern": "^[0-9]{10}-[0-9]{2}-[0-9]{6}$"},
+    "unit_dimension": {
+      "enum": ["monetary", "share_count", "monetary_per_share", "ratio", "percentage_point"]
+    },
+    "submitted_unit": {
+      "enum": [
+        "USD", "USD_thousand", "USD_million", "USD_billion",
+        "shares", "shares_thousand", "shares_million", "shares_billion",
+        "USD_per_share", "USD_per_basic_share", "USD_per_diluted_share",
+        "pure", "percent", "percentage_point"
+      ]
+    },
+    "canonical_unit": {"enum": ["USD", "shares", "USD_per_share", "pure", "percentage_point"]},
+    "normalization_rule_id": {
+      "enum": [
+        "monetary_usd_identity_v0.1",
+        "monetary_usd_thousand_to_usd_v0.1",
+        "monetary_usd_million_to_usd_v0.1",
+        "monetary_usd_billion_to_usd_v0.1",
+        "shares_identity_v0.1",
+        "shares_thousand_to_shares_v0.1",
+        "shares_million_to_shares_v0.1",
+        "shares_billion_to_shares_v0.1",
+        "usd_per_share_identity_v0.1",
+        "usd_per_basic_share_alias_v0.1",
+        "usd_per_diluted_share_alias_v0.1",
+        "ratio_pure_identity_v0.1",
+        "ratio_percent_to_pure_v0.1",
+        "percentage_point_identity_v0.1"
+      ]
+    },
+    "raw_unit_alias_rule_id": {
+      "enum": [
+        "raw_xbrl_usd_v0.1",
+        "raw_xbrl_shares_v0.1",
+        "raw_xbrl_usd_per_shares_v0.1",
+        "raw_xbrl_pure_v0.1"
+      ]
+    },
+    "unit_equivalence_rule_id": {
+      "oneOf": [
+        {"$ref": "#/$defs/normalization_rule_id"},
+        {"$ref": "#/$defs/raw_unit_alias_rule_id"}
+      ]
+    },
+    "precision_rule_id": {
+      "enum": [
+        "precision_exact_v0.1",
+        "precision_rounding_quantum_v0.1",
+        "precision_absolute_tolerance_v0.1"
+      ]
+    },
+    "sign": {"enum": ["negative", "zero", "positive"]},
+    "sign_basis": {
+      "enum": [
+        "economic_signed_value",
+        "positive_magnitude",
+        "cash_flow_statement_sign",
+        "source_presentation_sign",
+        "unresolved"
+      ]
+    },
+    "sign_relationship": {
+      "enum": ["same_sign", "opposite_sign_explicitly_approved", "unresolved"]
+    },
+    "review_status": {"enum": ["APPROVE", "REJECT", "NEEDS_SOURCE_CHECK"]},
+    "registered_normalization_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "submitted_value", "submitted_unit", "unit_match_status", "dimension",
+        "canonical_value", "canonical_unit", "normalization_rule_id"
+      ],
+      "properties": {
+        "submitted_value": {"$ref": "#/$defs/plain_decimal"},
+        "submitted_unit": {"$ref": "#/$defs/submitted_unit"},
+        "unit_match_status": {"const": "registered"},
+        "dimension": {"$ref": "#/$defs/unit_dimension"},
+        "canonical_value": {"$ref": "#/$defs/plain_decimal"},
+        "canonical_unit": {"$ref": "#/$defs/canonical_unit"},
+        "normalization_rule_id": {"$ref": "#/$defs/normalization_rule_id"}
+      },
+      "oneOf": [
+        {"properties": {"submitted_unit": {"const": "USD"}, "dimension": {"const": "monetary"}, "canonical_unit": {"const": "USD"}, "normalization_rule_id": {"const": "monetary_usd_identity_v0.1"}}},
+        {"properties": {"submitted_unit": {"const": "USD_thousand"}, "dimension": {"const": "monetary"}, "canonical_unit": {"const": "USD"}, "normalization_rule_id": {"const": "monetary_usd_thousand_to_usd_v0.1"}}},
+        {"properties": {"submitted_unit": {"const": "USD_million"}, "dimension": {"const": "monetary"}, "canonical_unit": {"const": "USD"}, "normalization_rule_id": {"const": "monetary_usd_million_to_usd_v0.1"}}},
+        {"properties": {"submitted_unit": {"const": "USD_billion"}, "dimension": {"const": "monetary"}, "canonical_unit": {"const": "USD"}, "normalization_rule_id": {"const": "monetary_usd_billion_to_usd_v0.1"}}},
+        {"properties": {"submitted_unit": {"const": "shares"}, "dimension": {"const": "share_count"}, "canonical_unit": {"const": "shares"}, "normalization_rule_id": {"const": "shares_identity_v0.1"}}},
+        {"properties": {"submitted_unit": {"const": "shares_thousand"}, "dimension": {"const": "share_count"}, "canonical_unit": {"const": "shares"}, "normalization_rule_id": {"const": "shares_thousand_to_shares_v0.1"}}},
+        {"properties": {"submitted_unit": {"const": "shares_million"}, "dimension": {"const": "share_count"}, "canonical_unit": {"const": "shares"}, "normalization_rule_id": {"const": "shares_million_to_shares_v0.1"}}},
+        {"properties": {"submitted_unit": {"const": "shares_billion"}, "dimension": {"const": "share_count"}, "canonical_unit": {"const": "shares"}, "normalization_rule_id": {"const": "shares_billion_to_shares_v0.1"}}},
+        {"properties": {"submitted_unit": {"const": "USD_per_share"}, "dimension": {"const": "monetary_per_share"}, "canonical_unit": {"const": "USD_per_share"}, "normalization_rule_id": {"const": "usd_per_share_identity_v0.1"}}},
+        {"properties": {"submitted_unit": {"const": "USD_per_basic_share"}, "dimension": {"const": "monetary_per_share"}, "canonical_unit": {"const": "USD_per_share"}, "normalization_rule_id": {"const": "usd_per_basic_share_alias_v0.1"}}},
+        {"properties": {"submitted_unit": {"const": "USD_per_diluted_share"}, "dimension": {"const": "monetary_per_share"}, "canonical_unit": {"const": "USD_per_share"}, "normalization_rule_id": {"const": "usd_per_diluted_share_alias_v0.1"}}},
+        {"properties": {"submitted_unit": {"const": "pure"}, "dimension": {"const": "ratio"}, "canonical_unit": {"const": "pure"}, "normalization_rule_id": {"const": "ratio_pure_identity_v0.1"}}},
+        {"properties": {"submitted_unit": {"const": "percent"}, "dimension": {"const": "ratio"}, "canonical_unit": {"const": "pure"}, "normalization_rule_id": {"const": "ratio_percent_to_pure_v0.1"}}},
+        {"properties": {"submitted_unit": {"const": "percentage_point"}, "dimension": {"const": "percentage_point"}, "canonical_unit": {"const": "percentage_point"}, "normalization_rule_id": {"const": "percentage_point_identity_v0.1"}}}
+      ]
+    },
+    "unregistered_normalization_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "submitted_value", "submitted_unit", "unit_match_status", "dimension",
+        "canonical_value", "canonical_unit", "normalization_rule_id"
+      ],
+      "properties": {
+        "submitted_value": {"$ref": "#/$defs/plain_decimal"},
+        "submitted_unit": {"type": "string", "minLength": 1},
+        "unit_match_status": {"const": "unregistered_unit"},
+        "dimension": {"type": "null"},
+        "canonical_value": {"type": "null"},
+        "canonical_unit": {"type": "null"},
+        "normalization_rule_id": {"type": "null"}
+      },
+      "allOf": [{"not": {"properties": {"submitted_unit": {"$ref": "#/$defs/submitted_unit"}}, "required": ["submitted_unit"]}}]
+    },
+    "normalization_record": {
+      "oneOf": [
+        {"$ref": "#/$defs/registered_normalization_record"},
+        {"$ref": "#/$defs/unregistered_normalization_record"}
+      ]
+    },
+    "comparison_interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lower", "upper", "lower_inclusive", "upper_inclusive", "canonical_unit", "comparison_unit_basis"],
+      "properties": {
+        "lower": {"$ref": "#/$defs/plain_decimal"},
+        "upper": {"$ref": "#/$defs/plain_decimal"},
+        "lower_inclusive": {"type": "boolean"},
+        "upper_inclusive": {"type": "boolean"},
+        "canonical_unit": {"type": "string", "minLength": 1},
+        "comparison_unit_basis": {"enum": ["registered_canonical", "exact_label"]}
+      }
+    },
+    "precision_rule": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["rule_id", "rule_source", "source_precision_text"],
+          "properties": {
+            "rule_id": {"const": "precision_exact_v0.1"},
+            "rule_source": {"type": "string", "minLength": 1},
+            "source_precision_text": {"type": "string", "minLength": 1}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "rule_id", "rule_source", "source_precision_text", "quantum",
+            "submitted_unit", "canonical_quantum", "canonical_unit", "comparison_unit_basis",
+            "rounding_mode", "canonical_comparison_interval"
+          ],
+          "properties": {
+            "rule_id": {"const": "precision_rounding_quantum_v0.1"},
+            "rule_source": {"type": "string", "minLength": 1},
+            "source_precision_text": {"type": "string", "minLength": 1},
+            "quantum": {"$ref": "#/$defs/positive_decimal"},
+            "submitted_unit": {"type": "string", "minLength": 1},
+            "canonical_quantum": {"$ref": "#/$defs/positive_decimal"},
+            "canonical_unit": {"type": "string", "minLength": 1},
+            "comparison_unit_basis": {"enum": ["registered_canonical", "exact_label"]},
+            "rounding_mode": {"const": "ROUND_HALF_EVEN"},
+            "canonical_comparison_interval": {"$ref": "#/$defs/comparison_interval"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "rule_id", "rule_source", "source_precision_text", "absolute_tolerance",
+            "submitted_unit", "canonical_absolute_tolerance", "canonical_unit", "comparison_unit_basis",
+            "canonical_comparison_interval"
+          ],
+          "properties": {
+            "rule_id": {"const": "precision_absolute_tolerance_v0.1"},
+            "rule_source": {"type": "string", "minLength": 1},
+            "source_precision_text": {"type": "string", "minLength": 1},
+            "absolute_tolerance": {"$ref": "#/$defs/nonnegative_decimal"},
+            "submitted_unit": {"type": "string", "minLength": 1},
+            "canonical_absolute_tolerance": {"$ref": "#/$defs/nonnegative_decimal"},
+            "canonical_unit": {"type": "string", "minLength": 1},
+            "comparison_unit_basis": {"enum": ["registered_canonical", "exact_label"]},
+            "canonical_comparison_interval": {"$ref": "#/$defs/comparison_interval"}
+          }
+        }
+      ]
+    },
+    "answer_variant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["variant_id", "normalization", "precision", "basis", "sign_convention", "answer_sign", "variant_family"],
+      "properties": {
+        "variant_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9_.-]+$"},
+        "normalization": {"$ref": "#/$defs/normalization_record"},
+        "precision": {"$ref": "#/$defs/precision_rule"},
+        "basis": {"type": "string", "minLength": 1},
+        "sign_convention": {"$ref": "#/$defs/sign_basis"},
+        "answer_sign": {"$ref": "#/$defs/sign"},
+        "variant_family": {"type": ["string", "null"], "minLength": 1}
+      }
+    },
+    "dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["axis", "member"],
+      "properties": {
+        "axis": {"type": "string", "minLength": 1},
+        "member": {"type": "string", "minLength": 1}
+      }
+    },
+    "dimensional_requirement": {
+      "oneOf": [
+        {"type": "object", "additionalProperties": false, "required": ["availability", "dimensions"], "properties": {"availability": {"const": "exact"}, "dimensions": {"type": "array", "items": {"$ref": "#/$defs/dimension"}}}},
+        {"type": "object", "additionalProperties": false, "required": ["availability"], "properties": {"availability": {"const": "unavailable"}}}
+      ]
+    },
+    "temporal": {
+      "oneOf": [
+        {"type": "object", "additionalProperties": false, "required": ["kind", "instant"], "properties": {"kind": {"const": "instant"}, "instant": {"$ref": "#/$defs/date"}}},
+        {"type": "object", "additionalProperties": false, "required": ["kind", "period_start", "period_end"], "properties": {"kind": {"const": "duration"}, "period_start": {"$ref": "#/$defs/date"}, "period_end": {"$ref": "#/$defs/date"}}}
+      ]
+    },
+    "temporal_requirement": {
+      "oneOf": [
+        {"$ref": "#/$defs/temporal"},
+        {"type": "object", "additionalProperties": false, "required": ["kind", "source_period_label"], "properties": {"kind": {"const": "unresolved"}, "source_period_label": {"type": "string", "minLength": 1}}}
+      ]
+    },
+    "legacy_chunk_path": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path_id", "chunk_id", "accession", "locator"],
+      "properties": {
+        "path_id": {"type": "string", "minLength": 1},
+        "chunk_id": {"type": "string", "minLength": 1},
+        "accession": {"$ref": "#/$defs/accession"},
+        "locator": {"type": "string", "minLength": 1}
+      }
+    },
+    "xbrl_fact_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fact_locator", "accession", "company", "concept", "context_ref",
+        "raw_unit", "raw_unit_alias_rule_id", "normalized_value",
+        "normalization", "temporal", "dimensions"
+      ],
+      "properties": {
+        "fact_locator": {"type": "string", "minLength": 1},
+        "accession": {"$ref": "#/$defs/accession"},
+        "company": {"type": "string", "minLength": 1},
+        "concept": {"type": "string", "minLength": 1},
+        "context_ref": {"type": "string", "minLength": 1},
+        "raw_unit": {"type": "string", "minLength": 1},
+        "raw_unit_alias_rule_id": {
+          "anyOf": [
+            {"$ref": "#/$defs/raw_unit_alias_rule_id"},
+            {"type": "null"}
+          ]
+        },
+        "normalized_value": {"$ref": "#/$defs/plain_decimal"},
+        "normalization": {"$ref": "#/$defs/normalization_record"},
+        "temporal": {"$ref": "#/$defs/temporal"},
+        "dimensions": {"type": "array", "items": {"$ref": "#/$defs/dimension"}},
+        "chunk_id": {"type": "string", "minLength": 1}
+      },
+      "oneOf": [
+        {"properties": {"raw_unit": {"const": "USD"}, "raw_unit_alias_rule_id": {"const": "raw_xbrl_usd_v0.1"}, "normalization": {"properties": {"dimension": {"const": "monetary"}, "canonical_unit": {"const": "USD"}}}}},
+        {"properties": {"raw_unit": {"const": "shares"}, "raw_unit_alias_rule_id": {"const": "raw_xbrl_shares_v0.1"}, "normalization": {"properties": {"dimension": {"const": "share_count"}, "canonical_unit": {"const": "shares"}}}}},
+        {"properties": {"raw_unit": {"const": "USD/shares"}, "raw_unit_alias_rule_id": {"const": "raw_xbrl_usd_per_shares_v0.1"}, "normalization": {"properties": {"dimension": {"const": "monetary_per_share"}, "canonical_unit": {"const": "USD_per_share"}}}}},
+        {"properties": {"raw_unit": {"const": "pure"}, "raw_unit_alias_rule_id": {"const": "raw_xbrl_pure_v0.1"}, "normalization": {"properties": {"dimension": {"const": "ratio"}, "canonical_unit": {"const": "pure"}}}}},
+        {"properties": {"raw_unit_alias_rule_id": {"type": "null"}, "normalization": {"$ref": "#/$defs/unregistered_normalization_record"}}}
+      ]
+    },
+    "approved_xbrl_path": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path_id", "candidate_id", "fact", "accepted_sign_relationship",
+        "gold_display_sign", "gold_canonical_economic_sign", "authoritative_xbrl_sign",
+        "submitted_unit_label", "reference_unit_label",
+        "unit_match_status", "unit_equivalence_rule_id",
+        "declared_basis_relationship", "source_check_completed",
+        "review_status", "review_rationale"
+      ],
+      "properties": {
+        "path_id": {"type": "string", "minLength": 1},
+        "candidate_id": {"type": "string", "minLength": 1},
+        "fact": {"$ref": "#/$defs/xbrl_fact_identity"},
+        "accepted_sign_relationship": {"enum": ["same_sign", "opposite_sign_explicitly_approved"]},
+        "gold_display_sign": {"$ref": "#/$defs/sign"},
+        "gold_canonical_economic_sign": {"$ref": "#/$defs/sign"},
+        "authoritative_xbrl_sign": {"$ref": "#/$defs/sign"},
+        "submitted_unit_label": {"type": "string", "minLength": 1},
+        "reference_unit_label": {"type": "string", "minLength": 1},
+        "unit_match_status": {"enum": ["exact_label_match", "registered_equivalence"]},
+        "unit_equivalence_rule_id": {
+          "anyOf": [
+            {"$ref": "#/$defs/unit_equivalence_rule_id"},
+            {"type": "null"}
+          ]
+        },
+        "declared_basis_relationship": {"type": "string", "minLength": 1},
+        "source_check_completed": {"type": "boolean"},
+        "review_status": {"const": "APPROVE"},
+        "review_rationale": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"unit_match_status": {"const": "exact_label_match"}}, "required": ["unit_match_status"]},
+          "then": {"properties": {"unit_equivalence_rule_id": {"type": "null"}}}
+        },
+        {
+          "if": {"properties": {"unit_match_status": {"const": "registered_equivalence"}}, "required": ["unit_match_status"]},
+          "then": {"properties": {"unit_equivalence_rule_id": {"$ref": "#/$defs/unit_equivalence_rule_id"}}}
+        },
+        {
+          "if": {"properties": {"accepted_sign_relationship": {"const": "same_sign"}}, "required": ["accepted_sign_relationship"]},
+          "then": {
+            "oneOf": [
+              {"properties": {"gold_canonical_economic_sign": {"const": "positive"}, "authoritative_xbrl_sign": {"const": "positive"}}},
+              {"properties": {"gold_canonical_economic_sign": {"const": "negative"}, "authoritative_xbrl_sign": {"const": "negative"}}},
+              {"properties": {"gold_canonical_economic_sign": {"const": "zero"}, "authoritative_xbrl_sign": {"const": "zero"}}}
+            ]
+          }
+        },
+        {
+          "if": {"properties": {"accepted_sign_relationship": {"const": "opposite_sign_explicitly_approved"}}, "required": ["accepted_sign_relationship"]},
+          "then": {
+            "properties": {"source_check_completed": {"const": true}},
+            "oneOf": [
+              {"properties": {"gold_canonical_economic_sign": {"const": "positive"}, "authoritative_xbrl_sign": {"const": "negative"}}},
+              {"properties": {"gold_canonical_economic_sign": {"const": "negative"}, "authoritative_xbrl_sign": {"const": "positive"}}}
+            ]
+          }
+        }
+      ]
+    },
+    "review_candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id", "candidate_stage", "lineage_id", "generation_rule_id",
+        "fact", "concept_relation", "numeric_relation", "comparison_value_relation",
+        "submitted_unit_label", "reference_unit_label", "unit_match_status",
+        "unit_equivalence_rule_id", "precision_rule_id", "proposed_sign_relationship",
+        "reason_codes", "initial_review_status", "source_check_completed",
+        "review_status", "review_rationale"
+      ],
+      "properties": {
+        "candidate_id": {"type": "string", "minLength": 1},
+        "candidate_stage": {"enum": [1, 2, 3]},
+        "lineage_id": {"type": "string", "minLength": 1},
+        "parent_candidate_id": {"type": "string", "minLength": 1},
+        "parent_review_status": {"$ref": "#/$defs/review_status"},
+        "generation_rule_id": {
+          "enum": [
+            "stage1_direct_chunk_link_v0.1",
+            "stage2_approved_stage1_same_concept_cross_filing_v0.1",
+            "stage3_deterministic_constrained_search_v0.1"
+          ]
+        },
+        "fact": {"$ref": "#/$defs/xbrl_fact_identity"},
+        "concept_relation": {"enum": ["same_exact_concept", "different_concept", "unknown"]},
+        "numeric_relation": {"enum": ["signed_equivalent", "opposite_sign_magnitude_only", "not_equivalent"]},
+        "comparison_value_relation": {"enum": ["exact_equal", "different"]},
+        "submitted_unit_label": {"type": "string", "minLength": 1},
+        "reference_unit_label": {"type": "string", "minLength": 1},
+        "unit_match_status": {"enum": ["exact_label_match", "registered_equivalence", "dimension_mismatch", "unregistered_unit", "alias_mismatch"]},
+        "unit_equivalence_rule_id": {
+          "anyOf": [
+            {"$ref": "#/$defs/unit_equivalence_rule_id"},
+            {"type": "null"}
+          ]
+        },
+        "precision_rule_id": {"$ref": "#/$defs/precision_rule_id"},
+        "proposed_sign_relationship": {"$ref": "#/$defs/sign_relationship"},
+        "reason_codes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "direct_chunk_link", "same_concept_cross_filing",
+              "constrained_unlinked_fact", "different_concept_requires_source_check",
+              "sign_relationship_unresolved", "gold_temporal_constraint_unresolved",
+              "gold_dimension_constraint_unresolved", "unit_unregistered"
+            ]
+          }
+        },
+        "initial_review_status": {"const": "NEEDS_SOURCE_CHECK"},
+        "source_check_completed": {"type": "boolean"},
+        "review_status": {"$ref": "#/$defs/review_status"},
+        "review_rationale": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"unit_match_status": {"const": "exact_label_match"}}, "required": ["unit_match_status"]},
+          "then": {"properties": {"unit_equivalence_rule_id": {"type": "null"}}}
+        },
+        {
+          "if": {"properties": {"unit_match_status": {"const": "registered_equivalence"}}, "required": ["unit_match_status"]},
+          "then": {"properties": {"unit_equivalence_rule_id": {"$ref": "#/$defs/unit_equivalence_rule_id"}}}
+        },
+        {
+          "if": {"properties": {"candidate_stage": {"const": 1}}, "required": ["candidate_stage"]},
+          "then": {
+            "properties": {"generation_rule_id": {"const": "stage1_direct_chunk_link_v0.1"}, "concept_relation": {"enum": ["same_exact_concept", "unknown"]}},
+            "not": {"anyOf": [{"required": ["parent_candidate_id"]}, {"required": ["parent_review_status"]}]}
+          }
+        },
+        {
+          "if": {"properties": {"candidate_stage": {"const": 2}}, "required": ["candidate_stage"]},
+          "then": {
+            "required": ["parent_candidate_id", "parent_review_status"],
+            "properties": {
+              "parent_review_status": {"const": "APPROVE"},
+              "generation_rule_id": {"const": "stage2_approved_stage1_same_concept_cross_filing_v0.1"},
+              "concept_relation": {"const": "same_exact_concept"},
+              "numeric_relation": {"const": "signed_equivalent"},
+              "comparison_value_relation": {"const": "exact_equal"},
+              "unit_match_status": {"enum": ["exact_label_match", "registered_equivalence"]}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"candidate_stage": {"const": 3}}, "required": ["candidate_stage"]},
+          "then": {"properties": {"generation_rule_id": {"const": "stage3_deterministic_constrained_search_v0.1"}}}
+        },
+        {
+          "if": {"properties": {"candidate_stage": {"const": 3}, "concept_relation": {"const": "different_concept"}}, "required": ["candidate_stage", "concept_relation"]},
+          "then": {
+            "properties": {"initial_review_status": {"const": "NEEDS_SOURCE_CHECK"}},
+            "allOf": [
+              {
+                "if": {"properties": {"review_status": {"const": "APPROVE"}}, "required": ["review_status"]},
+                "then": {"properties": {"source_check_completed": {"const": true}}}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "gold_numeric_target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "normalization", "precision", "gold_basis", "gold_display_sign",
+        "gold_sign_basis", "gold_canonical_economic_value",
+        "gold_canonical_economic_sign", "per_share_economic_subtype",
+        "registered_answer_variants"
+      ],
+      "properties": {
+        "normalization": {"$ref": "#/$defs/normalization_record"},
+        "precision": {"$ref": "#/$defs/precision_rule"},
+        "gold_basis": {"type": "string", "minLength": 1},
+        "gold_display_sign": {"$ref": "#/$defs/sign"},
+        "gold_sign_basis": {"$ref": "#/$defs/sign_basis"},
+        "gold_canonical_economic_value": {"anyOf": [{"$ref": "#/$defs/plain_decimal"}, {"type": "null"}]},
+        "gold_canonical_economic_sign": {"enum": ["negative", "zero", "positive", null]},
+        "per_share_economic_subtype": {"enum": ["not_applicable", "unspecified", "basic", "diluted"]},
+        "registered_answer_variants": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/answer_variant"}}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"gold_sign_basis": {"const": "unresolved"}}, "required": ["gold_sign_basis"]},
+          "then": {"properties": {"gold_canonical_economic_value": {"type": "null"}, "gold_canonical_economic_sign": {"type": "null"}}},
+          "else": {"properties": {"gold_canonical_economic_value": {"$ref": "#/$defs/plain_decimal"}, "gold_canonical_economic_sign": {"$ref": "#/$defs/sign"}}}
+        }
+      ]
+    },
+    "stage_completion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage1_completed", "stage2_state", "stage3_completed", "approved_candidate_count", "unresolved_candidate_count"],
+      "properties": {
+        "stage1_completed": {"type": "boolean"},
+        "stage2_state": {"enum": ["completed", "not_applicable"]},
+        "stage3_completed": {"type": "boolean"},
+        "approved_candidate_count": {"type": "integer", "minimum": 0},
+        "unresolved_candidate_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "derived_input_support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input_target_id", "support_status", "provenance_route", "adjudication_note"],
+      "properties": {
+        "input_target_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9_.-]+$"},
+        "support_status": {"enum": ["adjudicable_supported", "unsupported"]},
+        "provenance_route": {"enum": ["legacy_chunk_path", "approved_xbrl_path", "none"]},
+        "adjudication_note": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"support_status": {"const": "unsupported"}}, "required": ["support_status"]},
+          "then": {"properties": {"provenance_route": {"const": "none"}}}
+        },
+        {
+          "if": {"properties": {"support_status": {"const": "adjudicable_supported"}}, "required": ["support_status"]},
+          "then": {"properties": {"provenance_route": {"enum": ["legacy_chunk_path", "approved_xbrl_path"]}}}
+        }
+      ]
+    },
+    "mapping_target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gold_target_id", "source_gold_ref", "target_kind",
+        "required_input_target_ids", "derived_input_support",
+        "derived_grounding_eligibility", "entity", "source_accessions",
+        "legacy_chunk_paths", "gold_numeric_target", "temporal_requirement",
+        "dimensional_requirement", "mapping_resolution_mode", "mapping_status",
+        "stage_completion", "finalization_notes", "approved_xbrl_paths",
+        "review_candidates", "mapping_algorithm_version",
+        "human_review_rubric_version"
+      ],
+      "properties": {
+        "gold_target_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9_.-]+$"},
+        "source_gold_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["q_id", "fact_id", "role"],
+          "properties": {
+            "q_id": {"type": "string", "minLength": 1},
+            "fact_id": {"type": "string", "minLength": 1},
+            "role": {"enum": ["answer", "input"]}
+          }
+        },
+        "target_kind": {"enum": ["direct", "derived"]},
+        "required_input_target_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9_.-]+$"}},
+        "derived_input_support": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/derived_input_support"}},
+        "derived_grounding_eligibility": {"enum": ["not_applicable", "eligible", "ineligible_unsupported_input"]},
+        "entity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["company", "cik"],
+          "properties": {"company": {"type": "string", "minLength": 1}, "cik": {"type": ["string", "null"], "pattern": "^[0-9]+$"}}
+        },
+        "source_accessions": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/accession"}},
+        "legacy_chunk_paths": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/legacy_chunk_path"}},
+        "gold_numeric_target": {"$ref": "#/$defs/gold_numeric_target"},
+        "temporal_requirement": {"$ref": "#/$defs/temporal_requirement"},
+        "dimensional_requirement": {"$ref": "#/$defs/dimensional_requirement"},
+        "mapping_resolution_mode": {"enum": ["direct_xbrl_paths", "legacy_chunk_only", "derived_via_inputs"]},
+        "mapping_status": {"enum": ["mapped", "no_xbrl_counterpart_in_frozen_corpus", "unmappable", null]},
+        "stage_completion": {"anyOf": [{"$ref": "#/$defs/stage_completion"}, {"type": "null"}]},
+        "finalization_notes": {"type": "string", "minLength": 1},
+        "no_xbrl_counterpart_reason": {"type": "string", "minLength": 1},
+        "unmappable_reason": {"type": "string", "minLength": 1},
+        "approved_xbrl_paths": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/approved_xbrl_path"}},
+        "review_candidates": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/review_candidate"}},
+        "mapping_algorithm_version": {"const": "xbrl_gold_mapping_algorithm_v0.1"},
+        "human_review_rubric_version": {"const": "xbrl_mapping_review_rubric_v0.1"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"target_kind": {"const": "direct"}}, "required": ["target_kind"]},
+          "then": {
+            "properties": {
+              "required_input_target_ids": {"maxItems": 0},
+              "derived_input_support": {"maxItems": 0},
+              "derived_grounding_eligibility": {"const": "not_applicable"},
+              "legacy_chunk_paths": {"minItems": 1},
+              "mapping_status": {"enum": ["mapped", "no_xbrl_counterpart_in_frozen_corpus", "unmappable"]},
+              "stage_completion": {"$ref": "#/$defs/stage_completion"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"target_kind": {"const": "derived"}}, "required": ["target_kind"]},
+          "then": {
+            "properties": {
+              "required_input_target_ids": {"minItems": 1},
+              "derived_input_support": {"minItems": 1},
+              "derived_grounding_eligibility": {"enum": ["eligible", "ineligible_unsupported_input"]},
+              "mapping_resolution_mode": {"const": "derived_via_inputs"},
+              "mapping_status": {"type": "null"},
+              "stage_completion": {"type": "null"},
+              "approved_xbrl_paths": {"maxItems": 0},
+              "review_candidates": {"maxItems": 0}
+            },
+            "not": {"anyOf": [{"required": ["no_xbrl_counterpart_reason"]}, {"required": ["unmappable_reason"]}]}
+          }
+        },
+        {
+          "if": {"properties": {"mapping_status": {"const": "mapped"}}, "required": ["mapping_status"]},
+          "then": {
+            "properties": {
+              "mapping_resolution_mode": {"const": "direct_xbrl_paths"},
+              "approved_xbrl_paths": {"minItems": 1},
+              "stage_completion": {"properties": {"approved_candidate_count": {"minimum": 1}}}
+            },
+            "not": {"anyOf": [{"required": ["no_xbrl_counterpart_reason"]}, {"required": ["unmappable_reason"]}]}
+          }
+        },
+        {
+          "if": {"properties": {"mapping_status": {"const": "no_xbrl_counterpart_in_frozen_corpus"}}, "required": ["mapping_status"]},
+          "then": {
+            "required": ["no_xbrl_counterpart_reason"],
+            "properties": {
+              "mapping_resolution_mode": {"const": "legacy_chunk_only"},
+              "approved_xbrl_paths": {"maxItems": 0},
+              "stage_completion": {
+                "properties": {
+                  "stage1_completed": {"const": true},
+                  "stage2_state": {"enum": ["completed", "not_applicable"]},
+                  "stage3_completed": {"const": true},
+                  "approved_candidate_count": {"const": 0},
+                  "unresolved_candidate_count": {"const": 0}
+                }
+              }
+            },
+            "not": {"required": ["unmappable_reason"]}
+          }
+        },
+        {
+          "if": {"properties": {"mapping_status": {"const": "unmappable"}}, "required": ["mapping_status"]},
+          "then": {
+            "required": ["unmappable_reason"],
+            "properties": {"mapping_resolution_mode": {"const": "legacy_chunk_only"}, "approved_xbrl_paths": {"maxItems": 0}},
+            "not": {"required": ["no_xbrl_counterpart_reason"]}
+          }
+        },
+        {
+          "if": {"properties": {"derived_grounding_eligibility": {"const": "eligible"}}, "required": ["derived_grounding_eligibility"]},
+          "then": {
+            "properties": {
+              "derived_input_support": {
+                "items": {
+                  "properties": {"support_status": {"const": "adjudicable_supported"}},
+                  "required": ["support_status"]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {"properties": {"derived_grounding_eligibility": {"const": "ineligible_unsupported_input"}}, "required": ["derived_grounding_eligibility"]},
+          "then": {
+            "properties": {
+              "derived_input_support": {
+                "contains": {
+                  "properties": {"support_status": {"const": "unsupported"}},
+                  "required": ["support_status"]
+                },
+                "minContains": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
