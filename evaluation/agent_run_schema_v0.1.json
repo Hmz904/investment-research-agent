@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/agent_run_schema_v0.1.json",
+  "title": "ThesisAgent observable AgentRunRecord v0.1",
+  "description": "Observable execution record only; private chain-of-thought is excluded. Only canonical_record participates in deterministic hashing.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_record_schema_version", "canonical_record"],
+  "properties": {
+    "run_record_schema_version": {"const": "agent_run_record_v0.1"},
+    "canonical_record": {"$ref": "#/$defs/canonical_record"},
+    "noncanonical_metadata": {"$ref": "#/$defs/noncanonical_metadata"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "canonical_json_value": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "boolean"},
+        {"type": "integer"},
+        {"type": "number"},
+        {"type": "string"},
+        {"type": "array", "items": {"$ref": "#/$defs/canonical_json_value"}},
+        {"type": "object", "additionalProperties": {"$ref": "#/$defs/canonical_json_value"}}
+      ]
+    },
+    "sampling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["temperature", "top_p", "seed", "other_parameters"],
+      "properties": {
+        "temperature": {"type": "number"},
+        "top_p": {"type": "number", "minimum": 0, "maximum": 1},
+        "seed": {"type": ["integer", "null"]},
+        "other_parameters": {"type": "object", "additionalProperties": {"$ref": "#/$defs/canonical_json_value"}}
+      }
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "model_id", "model_version", "api_or_sdk_version"],
+      "properties": {
+        "provider": {"type": "string", "minLength": 1},
+        "model_id": {"type": "string", "minLength": 1},
+        "model_version": {"type": "string", "minLength": 1},
+        "api_or_sdk_version": {"type": "string", "minLength": 1}
+      }
+    },
+    "tool_call_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["call_id", "tool_name", "operation", "status", "invocation_record_sha256"],
+      "properties": {
+        "call_id": {"type": "string", "pattern": "^tool_call_[0-9]{4}$"},
+        "tool_name": {"enum": ["calculator", "retrieval", "xbrl"]},
+        "operation": {"enum": ["calculate", "search", "query_facts", "search_concepts"]},
+        "status": {"enum": ["success", "error"]},
+        "invocation_record_sha256": {"$ref": "#/$defs/sha256"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"tool_name": {"const": "calculator"}}, "required": ["tool_name"]},
+          "then": {"properties": {"operation": {"const": "calculate"}}}
+        },
+        {
+          "if": {"properties": {"tool_name": {"const": "retrieval"}}, "required": ["tool_name"]},
+          "then": {"properties": {"operation": {"const": "search"}}}
+        },
+        {
+          "if": {"properties": {"tool_name": {"const": "xbrl"}}, "required": ["tool_name"]},
+          "then": {"properties": {"operation": {"enum": ["query_facts", "search_concepts"]}}}
+        }
+      ]
+    },
+    "failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "stage", "safe_message"],
+      "properties": {
+        "code": {
+          "enum": [
+            "tool_budget_exhausted",
+            "step_budget_exhausted",
+            "unrecoverable_tool_error",
+            "malformed_final_output",
+            "provider_failure",
+            "orchestration_failure"
+          ]
+        },
+        "stage": {"enum": ["model_request", "tool_dispatch", "final_validation", "orchestration"]},
+        "safe_message": {"type": "string", "minLength": 1},
+        "last_call_id": {"type": ["string", "null"], "pattern": "^tool_call_[0-9]{4}$"}
+      }
+    },
+    "canonical_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "run_id",
+        "question_id",
+        "question_text",
+        "question_sha256",
+        "agent_version",
+        "agent_manifest_sha256",
+        "eval_protocol_version",
+        "eval_protocol_sha256",
+        "system_prompt_version",
+        "system_prompt_sha256",
+        "tool_runtime_version",
+        "tool_trace_ledger_version",
+        "tool_spec_sha256",
+        "output_schema_version",
+        "output_schema_sha256",
+        "model",
+        "sampling",
+        "status",
+        "max_tool_calls",
+        "max_agent_steps",
+        "tool_call_count",
+        "agent_step_count",
+        "tool_call_ledger_sha256",
+        "ordered_call_ids",
+        "ordered_tool_calls",
+        "final_output",
+        "final_output_sha256",
+        "failure"
+      ],
+      "properties": {
+        "run_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9_.-]+_run[1-9][0-9]*$"},
+        "question_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9_.-]+$"},
+        "question_text": {"type": "string", "minLength": 1},
+        "question_sha256": {"$ref": "#/$defs/sha256"},
+        "agent_version": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9_.-]+$"},
+        "agent_manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "eval_protocol_version": {"const": "eval_protocol_v0.2.1"},
+        "eval_protocol_sha256": {"const": "d98b63268c78ca3a516de02ab931ea6efa8d2590a402118d33c268d5013074d4"},
+        "system_prompt_version": {"type": "string", "minLength": 1},
+        "system_prompt_sha256": {"const": "9093d04ac2fc3e30460a4132049c838f2da7d3c16ad3579d5545fce22e008986"},
+        "tool_runtime_version": {"const": "tool_runtime_v0.1"},
+        "tool_trace_ledger_version": {"const": "tool_trace_ledger_v0.1"},
+        "tool_spec_sha256": {"const": "879a710485ac42b6dc0793b0556ce811d4efb151b52a7ae69f90334d489db70d"},
+        "output_schema_version": {"const": "agent_output_v0.1.1"},
+        "output_schema_sha256": {"const": "8d3cab3d5d4a07e9474ef26173631898e195ea08d5ef4f2dc7a88bb008831657"},
+        "model": {"$ref": "#/$defs/model"},
+        "sampling": {"$ref": "#/$defs/sampling"},
+        "status": {"enum": ["success", "failure"]},
+        "max_tool_calls": {"const": 12},
+        "max_agent_steps": {"const": 16},
+        "tool_call_count": {"type": "integer", "minimum": 0, "maximum": 12},
+        "agent_step_count": {"type": "integer", "minimum": 0, "maximum": 16},
+        "tool_call_ledger_sha256": {"$ref": "#/$defs/sha256"},
+        "ordered_call_ids": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {"type": "string", "pattern": "^tool_call_[0-9]{4}$"}
+        },
+        "ordered_tool_calls": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {"$ref": "#/$defs/tool_call_summary"}
+        },
+        "final_output": {
+          "anyOf": [
+            {"$ref": "agent_output_schema_v0.1.1.json"},
+            {"type": "null"}
+          ]
+        },
+        "final_output_sha256": {
+          "anyOf": [
+            {"$ref": "#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        },
+        "failure": {
+          "anyOf": [
+            {"$ref": "#/$defs/failure"},
+            {"type": "null"}
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "success"}}, "required": ["status"]},
+          "then": {
+            "properties": {
+              "final_output": {"$ref": "agent_output_schema_v0.1.1.json"},
+              "final_output_sha256": {"$ref": "#/$defs/sha256"},
+              "failure": {"type": "null"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"status": {"const": "failure"}}, "required": ["status"]},
+          "then": {
+            "properties": {
+              "final_output": {"type": "null"},
+              "final_output_sha256": {"type": "null"},
+              "failure": {"$ref": "#/$defs/failure"}
+            }
+          }
+        }
+      ]
+    },
+    "noncanonical_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Excluded from the canonical record hash. Populate only when actually captured; never reconstruct unavailable values.",
+      "properties": {
+        "started_at": {"type": "string", "format": "date-time"},
+        "ended_at": {"type": "string", "format": "date-time"},
+        "latency_ms": {"type": "number", "minimum": 0},
+        "usage": {"type": "object", "additionalProperties": {"$ref": "#/$defs/canonical_json_value"}},
+        "measurement_method": {"type": "string", "minLength": 1},
+        "provider_request_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "debug_metadata": {"type": "object", "additionalProperties": {"$ref": "#/$defs/canonical_json_value"}}
+      }
+    }
+  },
+  "x-canonicalization": {
+    "hashed_member": "canonical_record only",
+    "encoding": "UTF-8",
+    "json_form": "RFC 8259",
+    "object_key_order": "lexicographic",
+    "array_order": "preserved; tool arrays are invocation order",
+    "whitespace": "compact separators",
+    "terminal_newline": true,
+    "non_finite_numbers": "forbidden",
+    "excluded": "noncanonical_metadata, timestamps, provider request IDs, random UUIDs, memory addresses, and temporary paths"
+  }
+}

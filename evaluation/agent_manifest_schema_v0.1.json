@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/agent_manifest_schema_v0.1.json",
+  "title": "ThesisAgent frozen agent manifest v0.1",
+  "description": "Required reproducibility contract for a frozen, reportable single-agent version. This schema is not an instantiated manifest.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_schema_version",
+    "agent_version",
+    "architecture_version",
+    "status",
+    "model",
+    "sampling",
+    "system_prompt",
+    "tool_contract",
+    "output_schema",
+    "evaluation_contract",
+    "control_policy",
+    "context_policy",
+    "question_isolation",
+    "runtime",
+    "canonical_serialization"
+  ],
+  "properties": {
+    "manifest_schema_version": {"const": "agent_manifest_v0.1"},
+    "agent_version": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9_.-]+$"},
+    "architecture_version": {"type": "string", "minLength": 1},
+    "status": {"const": "frozen"},
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "model_id", "model_version", "api_or_sdk_version"],
+      "properties": {
+        "provider": {"type": "string", "minLength": 1},
+        "model_id": {"type": "string", "minLength": 1},
+        "model_version": {"type": "string", "minLength": 1, "description": "Immutable snapshot/version where available; otherwise an explicit provider limitation statement."},
+        "api_or_sdk_version": {"type": "string", "minLength": 1}
+      }
+    },
+    "sampling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["temperature", "top_p", "seed_policy", "other_parameters"],
+      "properties": {
+        "temperature": {"type": "number"},
+        "top_p": {"type": "number", "minimum": 0, "maximum": 1},
+        "seed_policy": {"type": "string", "minLength": 1},
+        "other_parameters": {"type": "object", "description": "Every configurable provider sampling/generation setting, including explicit unsupported or provider-default decisions."}
+      }
+    },
+    "system_prompt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "path", "sha256"],
+      "properties": {
+        "version": {"type": "string", "minLength": 1},
+        "path": {"const": "docs/agent/agent_v0.1_system_prompt.txt"},
+        "sha256": {"const": "9093d04ac2fc3e30460a4132049c838f2da7d3c16ad3579d5545fce22e008986"}
+      }
+    },
+    "tool_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tool_policy_version", "tool_runtime_version", "tool_runtime_commit", "tool_trace_ledger_version", "tool_spec_sha256", "allowed_operations", "dependencies"],
+      "properties": {
+        "tool_policy_version": {"type": "string", "minLength": 1},
+        "tool_runtime_version": {"const": "tool_runtime_v0.1"},
+        "tool_runtime_commit": {"const": "9aff4d5c31ec9ac4c1c52434d67da99da8ec696c"},
+        "tool_trace_ledger_version": {"const": "tool_trace_ledger_v0.1"},
+        "tool_spec_sha256": {"const": "879a710485ac42b6dc0793b0556ce811d4efb151b52a7ae69f90334d489db70d"},
+        "allowed_operations": {
+          "type": "array",
+          "prefixItems": [
+            {"const": "calculator.calculate"},
+            {"const": "retrieval.search"},
+            {"const": "xbrl.query_facts"},
+            {"const": "xbrl.search_concepts"}
+          ],
+          "items": false,
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "dependencies": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["retrieval_stack", "retrieval_tool", "xbrl_tool", "calculator_tool"],
+          "properties": {
+            "retrieval_stack": {"const": "963b089e17983eec954c30970e408c7efc53a9f8"},
+            "retrieval_tool": {"const": "cce61f3fa6b2e4f1fca548c0c931330d9de5a96c"},
+            "xbrl_tool": {"const": "d3bceec1db9d608bd702a5cf3b5329f9710697ea"},
+            "calculator_tool": {"const": "72108f24b03b3d6114f04a29366178cde9de97d9"}
+          }
+        }
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "path", "sha256"],
+      "properties": {
+        "version": {"const": "agent_output_v0.1.1"},
+        "path": {"const": "evaluation/agent_output_schema_v0.1.1.json"},
+        "sha256": {"const": "8d3cab3d5d4a07e9474ef26173631898e195ea08d5ef4f2dc7a88bb008831657"}
+      }
+    },
+    "evaluation_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eval_protocol_version", "path", "sha256", "agent_scorer_version"],
+      "properties": {
+        "eval_protocol_version": {"const": "eval_protocol_v0.2.1"},
+        "path": {"const": "evaluation/eval_protocol_v0.2.1.md"},
+        "sha256": {"const": "d98b63268c78ca3a516de02ab931ea6efa8d2590a402118d33c268d5013074d4"},
+        "agent_scorer_version": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Separately versioned end-to-end agent evaluator; must not identify a retrieval scorer."
+        }
+      }
+    },
+    "control_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_tool_calls", "max_agent_steps", "one_tool_call_per_step", "retry_policy", "repair_policy", "judge_in_loop"],
+      "properties": {
+        "max_tool_calls": {"const": 12},
+        "max_agent_steps": {"const": 16},
+        "one_tool_call_per_step": {"const": true},
+        "retry_policy": {"const": "none_automatic"},
+        "repair_policy": {"const": "none"},
+        "judge_in_loop": {"const": false}
+      }
+    },
+    "context_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["construction", "tool_result_inclusion", "context_window", "truncation_policy", "max_input_tokens", "max_output_tokens"],
+      "properties": {
+        "construction": {"const": "system_prompt_then_one_user_question_then_current_run_tool_exchanges"},
+        "tool_result_inclusion": {"const": "explicit_current_run_outputs_only"},
+        "context_window": {"type": "integer", "minimum": 1},
+        "truncation_policy": {"type": "string", "minLength": 1},
+        "max_input_tokens": {"type": "integer", "minimum": 1},
+        "max_output_tokens": {"type": "integer", "minimum": 1}
+      }
+    },
+    "question_isolation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fresh_conversation_per_question", "cross_question_memory", "shared_mutable_semantic_state"],
+      "properties": {
+        "fresh_conversation_per_question": {"const": true},
+        "cross_question_memory": {"const": false},
+        "shared_mutable_semantic_state": {"const": false}
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["orchestrator_name", "orchestrator_version", "language_runtime", "operating_environment", "libraries"],
+      "properties": {
+        "orchestrator_name": {"type": "string", "minLength": 1},
+        "orchestrator_version": {"type": "string", "minLength": 1},
+        "language_runtime": {"type": "string", "minLength": 1},
+        "operating_environment": {"type": "string", "minLength": 1},
+        "libraries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "version"],
+            "properties": {
+              "name": {"type": "string", "minLength": 1},
+              "version": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "canonical_serialization": {"$ref": "#/$defs/canonical_serialization"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "canonical_serialization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["encoding", "json_form", "object_key_order", "whitespace", "terminal_newline", "non_finite_numbers"],
+      "properties": {
+        "encoding": {"const": "UTF-8"},
+        "json_form": {"const": "RFC 8259"},
+        "object_key_order": {"const": "lexicographic"},
+        "whitespace": {"const": "compact separators"},
+        "terminal_newline": {"const": true},
+        "non_finite_numbers": {"const": "forbidden"}
+      }
+    }
+  }
+}

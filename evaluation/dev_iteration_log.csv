@@ -1,0 +1,1 @@
+sequence_id,timestamp,change_id,baseline_agent_version,candidate_version,predeclared_target,files_changed,prompt_hash_before,prompt_hash_after,tool_spec_sha256,judge_protocol_version,run_type,deterministic_metric_summary,judge_metric_summary,acceptance_decision,notes
