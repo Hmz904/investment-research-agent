@@ -88,6 +88,11 @@ COMPARISON_FIELDS = (
     "scope", "domain", "q_id", "k", "metric", "bm25_v0.1",
     "embedding_v0.1", "absolute_difference",
 )
+THREE_WAY_COMPARISON_FIELDS = (
+    "scope", "domain", "q_id", "k", "metric", "bm25_v0.1",
+    "embedding_v0.1", "hybrid_v0.1", "hybrid_minus_bm25",
+    "hybrid_minus_embedding",
+)
 
 EVIDENCE_COMPARISON_METRICS = (
     ("part_recall", "mean_part_recall"),
@@ -117,12 +122,15 @@ class FrozenSystem:
     version: str
     retrieval_method: str
     query_version: str
-    config_field: str
+    config_field: str | None
     result_sha256: str
     artifact_type: str
     result_binding_key: str
     version_binding_key: str
-    required_metadata: tuple[tuple[str, str], ...] = ()
+    required_metadata: tuple[tuple[str, Any], ...] = ()
+    config_metadata_fields: tuple[str, ...] = ()
+    result_depth: int | None = None
+    ingestion_tag: str | None = None
 
 
 BM25_SYSTEM = FrozenSystem(
@@ -150,7 +158,37 @@ EMBEDDING_SYSTEM = FrozenSystem(
         ("model_revision", EMBEDDING_MODEL_REVISION),
     ),
 )
-FROZEN_SYSTEMS = (BM25_SYSTEM, EMBEDDING_SYSTEM)
+HYBRID_SYSTEM = FrozenSystem(
+    version="hybrid_v0.1",
+    retrieval_method="hybrid_v0.1",
+    query_version="retrieval_queries_v0.1.1",
+    config_field=None,
+    result_sha256=(
+        "17f2f07fd24163b443dd3909aaa81fd188a8dbef77786532d7eb432094769846"
+    ),
+    artifact_type="frozen_hybrid_retrieval_evaluation",
+    result_binding_key="hybrid_result_sha256",
+    version_binding_key="hybrid_version",
+    required_metadata=(
+        ("retrieval_query_sha256", RETRIEVAL_QUERY_SHA256),
+        ("bm25_input_artifact_sha256", BM25_RESULT_SHA256),
+        ("bm25_version", BM25_VERSION),
+        ("embedding_input_artifact_sha256", EMBEDDING_RESULT_SHA256),
+        ("embedding_version", "embedding_v0.1"),
+        ("embedding_model", EMBEDDING_MODEL_ID),
+        ("embedding_model_revision", EMBEDDING_MODEL_REVISION),
+        ("fusion_method", "reciprocal_rank_fusion"),
+        ("rrf_k", 60),
+        ("component_weights", {"bm25": 1.0, "embedding": 1.0}),
+        ("candidate_depth", {"bm25": 50, "embedding": 50}),
+    ),
+    config_metadata_fields=(
+        "fusion_method", "rrf_k", "component_weights", "candidate_depth",
+    ),
+    result_depth=50,
+    ingestion_tag="ingestion_v0.1.1",
+)
+FROZEN_SYSTEMS = (BM25_SYSTEM, EMBEDDING_SYSTEM, HYBRID_SYSTEM)
 
 
 @dataclass(frozen=True)
@@ -221,6 +259,19 @@ def load_ranked_results(path: Path) -> list[dict[str, Any]]:
     return records
 
 
+def _retrieval_config(record: dict[str, Any], system: FrozenSystem) -> dict[str, Any]:
+    """Return one system's frozen configuration without changing score semantics."""
+    if system.config_field is not None:
+        config = record.get(system.config_field)
+        if not isinstance(config, dict):
+            raise EvaluationError(f"missing retrieval config for {record.get('q_id')}")
+        return config
+    config = {field: record.get(field) for field in system.config_metadata_fields}
+    if any(value is None for value in config.values()):
+        raise EvaluationError(f"missing retrieval config for {record.get('q_id')}")
+    return config
+
+
 def validate_ranked_results(
     records: Sequence[dict[str, Any]],
     queries: dict[str, str],
@@ -243,9 +294,8 @@ def validate_ranked_results(
             raise EvaluationError(f"retrieval query version mismatch for {q_id}")
         if record.get("retrieval_method") != system.retrieval_method:
             raise EvaluationError(f"retrieval method mismatch for {q_id}")
-        if not isinstance(record.get(system.config_field), dict):
-            raise EvaluationError(f"missing retrieval config for {q_id}")
-        configs.add(json.dumps(record[system.config_field], sort_keys=True))
+        config = _retrieval_config(record, system)
+        configs.add(json.dumps(config, sort_keys=True))
         for field, expected in system.required_metadata:
             if record.get(field) != expected:
                 raise EvaluationError(f"{field} mismatch for {q_id}")
@@ -256,6 +306,8 @@ def validate_ranked_results(
         ranked = record.get("ranked_results")
         if not isinstance(ranked, list) or len(ranked) < max(K_VALUES):
             raise EvaluationError(f"{q_id} has fewer than {max(K_VALUES)} saved results")
+        if system.result_depth is not None and len(ranked) != system.result_depth:
+            raise EvaluationError(f"{q_id} has unexpected frozen result depth")
         expected_ranks = list(range(1, len(ranked) + 1))
         actual_ranks = [result.get("rank") for result in ranked]
         if actual_ranks != expected_ranks:
@@ -275,8 +327,8 @@ def validate_ranked_results(
         raise EvaluationError("retrieval config differs across questions")
     if len(corpus_fingerprints) != 1:
         raise EvaluationError("corpus fingerprint differs across ranked-result records")
-    config = records[0][system.config_field]
-    if config.get("top_k", 0) < max(K_VALUES):
+    config = _retrieval_config(records[0], system)
+    if system.config_field is not None and config.get("top_k", 0) < max(K_VALUES):
         raise EvaluationError("saved top_k does not support requested K values")
     return by_q
 
@@ -905,7 +957,8 @@ def evaluate(
         raise EvaluationError("ranked-result corpus fingerprint mismatch")
     if corpus_fingerprint != binding.get("corpus_fingerprint"):
         raise EvaluationError("ranked-result corpus fingerprint does not match gold binding")
-    if records[0].get("ingestion_tag") != binding.get("ingestion_tag"):
+    ingestion_tag = records[0].get("ingestion_tag", selected_system.ingestion_tag)
+    if ingestion_tag != binding.get("ingestion_tag"):
         raise EvaluationError("ranked-result ingestion tag does not match gold binding")
     answer_facts = [fact for fact in numeric["facts"] if fact["role"] == "answer"]
     provenance = NumericProvenance(numeric["facts"])
@@ -938,8 +991,8 @@ def evaluate(
             },
             "gold_map_fingerprint": GOLD_MAP_FINGERPRINT,
             "gold_map_version": GOLD_MAP_VERSION,
-            "ingestion_tag": binding["ingestion_tag"],
-            "retrieval_config": records[0][selected_system.config_field],
+            "ingestion_tag": ingestion_tag,
+            "retrieval_config": _retrieval_config(records[0], selected_system),
             "retrieval_query_artifact_sha256": RETRIEVAL_QUERY_SHA256,
             "retrieval_query_version": selected_system.query_version,
         },
@@ -1073,6 +1126,116 @@ def build_comparison_rows(
     return rows
 
 
+def _three_way_comparison_row(
+    scope: str,
+    domain: str,
+    q_id: str,
+    k: int,
+    metric: str,
+    bm25_value: Any,
+    embedding_value: Any,
+    hybrid_value: Any,
+) -> dict[str, Any]:
+    values = tuple(
+        _comparison_value(value)
+        for value in (bm25_value, embedding_value, hybrid_value)
+    )
+    bm25_value, embedding_value, hybrid_value = values
+    hybrid_minus_bm25: float | str = ""
+    hybrid_minus_embedding: float | str = ""
+    if hybrid_value != "" and bm25_value != "":
+        hybrid_minus_bm25 = round(float(hybrid_value) - float(bm25_value), 12)
+    if hybrid_value != "" and embedding_value != "":
+        hybrid_minus_embedding = round(float(hybrid_value) - float(embedding_value), 12)
+    return {
+        "scope": scope,
+        "domain": domain,
+        "q_id": q_id,
+        "k": k,
+        "metric": metric,
+        "bm25_v0.1": bm25_value,
+        "embedding_v0.1": embedding_value,
+        "hybrid_v0.1": hybrid_value,
+        "hybrid_minus_bm25": hybrid_minus_bm25,
+        "hybrid_minus_embedding": hybrid_minus_embedding,
+    }
+
+
+def build_three_way_comparison_rows(
+    bm25_scores: dict[str, Any],
+    bm25_per_question: Sequence[dict[str, Any]],
+    embedding_scores: dict[str, Any],
+    embedding_per_question: Sequence[dict[str, Any]],
+    hybrid_scores: dict[str, Any],
+    hybrid_per_question: Sequence[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Compare all frozen metrics for BM25, embedding, and hybrid."""
+    for label, scores in (
+        ("BM25", bm25_scores),
+        ("embedding", embedding_scores),
+        ("hybrid", hybrid_scores),
+    ):
+        if scores.get("k_values") != list(K_VALUES):
+            raise EvaluationError(f"{label} scores do not contain the frozen K values")
+    rows: list[dict[str, Any]] = []
+    metric_groups = (
+        ("evidence", "evidence_metrics", EVIDENCE_COMPARISON_METRICS),
+        ("numeric", "numeric_metrics", NUMERIC_COMPARISON_METRICS),
+    )
+    for domain, score_key, metrics in metric_groups:
+        for k in K_VALUES:
+            system_values = tuple(
+                scores[score_key][str(k)]
+                for scores in (bm25_scores, embedding_scores, hybrid_scores)
+            )
+            for metric, field in metrics:
+                rows.append(
+                    _three_way_comparison_row(
+                        "aggregate", domain, "", k, metric,
+                        *(values[field] for values in system_values),
+                    )
+                )
+
+    per_question_maps = []
+    for system_rows in (
+        bm25_per_question, embedding_per_question, hybrid_per_question,
+    ):
+        per_question_maps.append({
+            (row["domain"], row["q_id"], int(row["k"])): row
+            for row in system_rows
+        })
+    if not (
+        set(per_question_maps[0])
+        == set(per_question_maps[1])
+        == set(per_question_maps[2])
+    ):
+        raise EvaluationError("per-question comparison keys differ between systems")
+    per_question_fields = {
+        "evidence": EVIDENCE_COMPARISON_METRICS,
+        "numeric": tuple(
+            (
+                metric,
+                "numeric_question_complete"
+                if field == "numeric_question_complete_rate"
+                else field,
+            )
+            for metric, field in NUMERIC_COMPARISON_METRICS
+        ),
+    }
+    for domain, q_id, k in sorted(per_question_maps[0]):
+        system_rows = tuple(
+            mapping[(domain, q_id, k)] for mapping in per_question_maps
+        )
+        for metric, field in per_question_fields[domain]:
+            rows.append(
+                _three_way_comparison_row(
+                    "per_question", domain, q_id, k, metric,
+                    *(row[field] for row in system_rows),
+                )
+            )
+    return rows
+
+
 def run(
     gold_dir: Path = GOLD_DIR,
     query_path: Path = QUERY_PATH,
@@ -1100,21 +1263,42 @@ def run(
     _write_csv(per_question_path, PER_QUESTION_FIELDS, per_question)
     _write_csv(misses_path, MISS_FIELDS, misses)
     if comparison_path is not None:
-        if scores["bindings"].get("embedding_version") != EMBEDDING_SYSTEM.version:
-            raise EvaluationError("comparison output requires embedding_v0.1 results")
         bm25_scores, bm25_per_question, _ = evaluate(
             gold_dir=gold_dir,
             query_path=query_path,
             result_path=RESULT_PATH,
             system=BM25_SYSTEM,
         )
-        comparison_rows = build_comparison_rows(
-            bm25_scores,
-            bm25_per_question,
-            scores,
-            per_question,
-        )
-        _write_csv(comparison_path, COMPARISON_FIELDS, comparison_rows)
+        if scores["bindings"].get("embedding_version") == EMBEDDING_SYSTEM.version:
+            comparison_rows = build_comparison_rows(
+                bm25_scores,
+                bm25_per_question,
+                scores,
+                per_question,
+            )
+            _write_csv(comparison_path, COMPARISON_FIELDS, comparison_rows)
+        elif scores["bindings"].get("hybrid_version") == HYBRID_SYSTEM.version:
+            embedding_scores, embedding_per_question, _ = evaluate(
+                gold_dir=gold_dir,
+                query_path=query_path,
+                result_path=ROOT / "evaluation" / "results" / "embedding_v0.1.jsonl",
+                system=EMBEDDING_SYSTEM,
+            )
+            comparison_rows = build_three_way_comparison_rows(
+                bm25_scores,
+                bm25_per_question,
+                embedding_scores,
+                embedding_per_question,
+                scores,
+                per_question,
+            )
+            _write_csv(
+                comparison_path, THREE_WAY_COMPARISON_FIELDS, comparison_rows
+            )
+        else:
+            raise EvaluationError(
+                "comparison output requires embedding_v0.1 or hybrid_v0.1 results"
+            )
     frozen_after = sha256_file(result_path)
     if frozen_after != frozen_before:
         raise EvaluationError("frozen ranked-result artifact changed during scoring")
