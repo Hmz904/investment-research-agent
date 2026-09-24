@@ -194,7 +194,7 @@ below:
 1. omitted `top_k`: insert configured K;
 2. explicit `top_k == K`: dispatch normally; and
 3. explicit `top_k != K`: emit deterministic recoverable
-   `retrieval_fixed_top_k_conflict`, do not dispatch ToolRuntime, consume one
+   `EVT_FIXED_TOP_K_VIOLATION`, do not dispatch ToolRuntime, consume one
    attempted domain-tool call and one model response step, and continue if
    budgets remain.
 
@@ -410,27 +410,12 @@ It tests API/runtime compatibility, not research quality.
 
 ## 10. Category A — recoverable agent events
 
-Recoverable agent events are observable agent mistakes or domain-tool outcomes
-that do not end the run while the applicable budgets remain. The final list is:
-
-- conflicting fixed `top_k`;
-- pre-dispatch argument or schema rejection;
-- invalid model-generated tool parameters;
-- zero-result tool response;
-- recoverable ToolRuntime or domain-tool error; and
-- an XBRL query that the model can correct with another explicit valid call.
-
-| event class | call budget | step budget | model-visible response | logging |
-|---|---|---|---|---|
-| rejected attempted domain call | consumes one attempted domain call | consumes the model response step | deterministic safe policy/validation error; no ToolRuntime dispatch | policy-event ledger |
-| dispatched recoverable error | consumes one dispatched domain call | consumes the model response step | deterministic ToolRuntime/domain error envelope | tool ledger plus event classification |
-| zero-result success | consumes one dispatched domain call | consumes the model response step | normal empty response | tool ledger plus event classification |
-| corrected XBRL follow-up | each explicit call consumes its normal call budget | each model response consumes its normal step | prior result/error remains visible | each call and event logged in order |
-
-These events may be shown back to the model and the run may continue while
-budget remains. They are reported separately and do not automatically reduce
-final correctness if the run later succeeds. Agent-generated invalid requests
-are not infrastructure failures.
+Stable recoverable-event IDs and their budget/dispatch semantics are defined
+only by `docs/agent/execution_taxonomy_v0.1.md`. This preflight applies those
+events to the execution mechanisms described above; it does not redefine them.
+In particular, the taxonomy's reserved `EVT_TOOL_RESULT_TOO_LARGE` is not
+activated here. Activation requires a later frozen oversized-result policy
+that defines a result budget, recovery mechanism, and model-visible behavior.
 
 The current run schema has no canonical policy-event array. Until a reviewed
 schema amendment, use an append-only, content-hashed sidecar ledger and link
@@ -439,81 +424,33 @@ pre-dispatch rejection was a ToolRuntime dispatch.
 
 ## 11. Category B — terminal agent failures
 
-The final terminal-agent-failure list is:
-
-- `max_tool_calls` exhausted before a valid final submission;
-- `max_agent_steps` exhausted;
-- final output fails frozen schema validation;
-- the model ends without a valid required final output; and
-- unrecoverable agent-controlled orchestration state.
-
-These failures terminate the run. They are never retried, rerun, or replaced;
-remain in the reportable denominator; receive zero credit for metrics requiring
-a valid final answer; and are reported separately by failure category.
-Infrastructure exhaustion is not placed in this category.
+Terminal agent-failure IDs and operational meanings are defined only by
+`docs/agent/execution_taxonomy_v0.1.md`. The reporting treatment remains in
+Section 14. Infrastructure exhaustion is not a terminal agent failure.
 
 ## 12. Category C — valid but incorrect or poorly grounded output
 
-A schema-valid final object is an ordinary completed run even when its content
-is wrong or inadequately grounded. Examples include:
-
-- wrong numeric result;
-- unsupported material claim;
-- hallucinated or invalid citation;
-- wrong period, context, or unit;
-- incomplete evidence; and
-- causal overreach.
-
-These outcomes are not terminal execution failures. They are scored by the
-frozen evaluator as ordinary completed runs and are never retried or replaced.
-Schema validity is an execution property, not a correctness determination.
+The completed-run status and its separation from answer-quality outcomes are
+defined only by `docs/agent/execution_taxonomy_v0.1.md`. Evaluation treatment
+is defined by `evaluation/eval_protocol_v0.2.2.md`; this preflight adds no
+independent completed-run semantics.
 
 ## 13. Category D — infrastructure failure and approved retry policy
 
-Provider and local infrastructure failures are neither recoverable agent events
-nor agent-quality failures. Agent-generated invalid requests are never
-reclassified as infrastructure.
-
-`HUMAN-APPROVED` limits:
-
-- `max_provider_attempts_per_request = 3`, including the original request and
-  therefore allowing at most two retries for one logical provider request;
-- `max_total_infrastructure_retries_per_run = 8`, counting retries only and
-  excluding original requests; and
-- `max_replacement_runs_per_scheduled_replicate = 1`.
-
-Retry only the same logical request for the same turn. Preserve all prior
-successful conversation and tool state, system prompt, tool specifications,
-model configuration, structured-output configuration, and logical turn
-identity. A later-turn infrastructure failure never restarts turns 1 through
-N-1 or the entire run. Do not alter prompt or policy between attempts.
-
-Provider/API retryable classes are 429/rate limit, provider 5xx, transport
-interruption or connection reset, and documented transient provider errors.
-Waiting/backoff may vary, but model-visible request content may not.
-
-Local infrastructure failure is classified separately. It is retryable only
-when the same logical model/tool step can be repeated without changing prior
-model-visible state and immutable artifacts can be revalidated. Examples are a
-local model process crash before a response, reranker process failure before a
-completed result, or transient filesystem/resource failure with intact hashes.
-Missing/corrupt artifacts, changed revalidation, persistent resource failure,
-or inability to preserve the same logical request are not safely retryable.
+The sole normative definitions of infrastructure states, retry/replacement
+invariants, and human-approved limits are in
+`docs/agent/execution_taxonomy_v0.1.md`. Provider and local infrastructure
+failures remain separate from agent quality. Same-turn retry and replacement
+are applied exactly by reference to that contract.
 
 Every original and retry attempt is observable in noncanonical/debug telemetry
 and a versioned infrastructure-attempt sidecar; the canonical run record retains
 only fields its frozen schema can represent until amended.
 
-After either infrastructure limit is exhausted, mark the run
-`infrastructure_failed`. One mechanically triggered replacement is allowed only
-for that status. It starts a fresh conversation with the identical frozen
-configuration and a new run ID, for example `DEV01_rep03_repl01_run1`, while
-retaining scheduled-replicate identity. After replacement exhaustion, report
-the evaluation as incomplete and do not impute a score.
-
-Never retry or replace a bad answer, schema failure, tool misuse, agent budget
-exhaustion, recoverable agent event, hallucination, or other valid-but-wrong
-output.
+Run-level infrastructure exhaustion and evaluation-level incompleteness use the
+taxonomy-defined `INFRA_RUN_RETRY_EXHAUSTED`, `infrastructure_failed`, and
+`EVAL_INCOMPLETE` states. These states must not be reclassified as agent
+failure.
 
 The approved retry mechanism remains external to ToolRuntime, which itself has
 no retry. `ARCHITECTURE_STATUS = REQUIRES_ARCHITECTURE_AMENDMENT` under the
@@ -541,6 +478,8 @@ evaluator assigns, not automatic execution-failure zeroing. An unresolved
 infrastructure slot after replacement exhaustion is missing infrastructure:
 exclude it from the scored denominator, report the scheduled count and
 incomplete status explicitly, and do not convert it into an agent zero.
+The evaluation-level status for that condition is the taxonomy-defined
+`EVAL_INCOMPLETE`.
 
 ## 15. DEV revision accounting
 
@@ -620,6 +559,20 @@ agent implementation was changed in this preflight.
    are not evidence confidence.
 4. State the selected oversized-XBRL behavior after human decision (explicit
    refinement/error or an amended continuation protocol).
+5. Add **NUMERIC SIGN DISCIPLINE**:
+   - when grounding a numeric fact in structured XBRL evidence, preserve the
+     authoritative numeric sign returned by XBRLTool;
+   - do not flip sign merely because a nearby rendered table uses parentheses,
+     cash-flow presentation conventions, or another display convention;
+   - communicate direction or interpretation explicitly in the claim/basis
+     instead of silently changing the numeric sign;
+   - when only narrative/table evidence supports a fact, preserve the
+     source-reported value/sign and state the relevant basis when needed; and
+   - never use absolute-value matching as a reasoning shortcut.
+
+The sign discipline is generic source-consistency guidance. It creates no
+company-, benchmark-, or concept-specific sign reversal and does not let the
+agent create a new acceptable gold answer variant.
 
 The frozen prompt was not modified here.
 
