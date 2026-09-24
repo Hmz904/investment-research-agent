@@ -29,6 +29,17 @@ FROZEN_EMBEDDING_OUTPUTS = {
     "misses.csv": ROOT / "evaluation" / "results" / "embedding_v0.1_misses.csv",
 }
 FROZEN_HYBRID_RESULT = ROOT / "evaluation" / "results" / "hybrid_v0.1.jsonl"
+FROZEN_HYBRID_OUTPUTS = {
+    "scores.json": ROOT / "evaluation" / "results" / "hybrid_v0.1_scores.json",
+    "per_question.csv": (
+        ROOT / "evaluation" / "results" / "hybrid_v0.1_per_question.csv"
+    ),
+    "misses.csv": ROOT / "evaluation" / "results" / "hybrid_v0.1_misses.csv",
+    "comparison.csv": (
+        ROOT / "evaluation" / "results" / "retrieval_comparison_v0.1.csv"
+    ),
+}
+FROZEN_RERANKER_RESULT = ROOT / "evaluation" / "results" / "reranker_v0.1.jsonl"
 
 
 def _source(chunk_id: str, accession: str = "A1") -> dict[str, str]:
@@ -233,6 +244,49 @@ def test_hybrid_metadata_adapter_and_three_way_comparison(tmp_path: Path) -> Non
     assert comparison.startswith(
         "scope,domain,q_id,k,metric,bm25_v0.1,embedding_v0.1,hybrid_v0.1,"
         "hybrid_minus_bm25,hybrid_minus_embedding\n"
+    )
+    assert "aggregate,evidence,,1,part_recall," in comparison
+    assert "per_question,numeric," in comparison
+
+
+def test_hybrid_reproduction_remains_byte_identical(tmp_path: Path) -> None:
+    score_retrieval.run(
+        result_path=FROZEN_HYBRID_RESULT,
+        scores_path=tmp_path / "scores.json",
+        per_question_path=tmp_path / "per_question.csv",
+        misses_path=tmp_path / "misses.csv",
+        comparison_path=tmp_path / "comparison.csv",
+    )
+    for name, frozen_path in FROZEN_HYBRID_OUTPUTS.items():
+        assert (tmp_path / name).read_bytes() == frozen_path.read_bytes()
+
+
+def test_reranker_metadata_adapter_and_four_way_comparison(tmp_path: Path) -> None:
+    output_paths = {
+        "scores_path": tmp_path / "scores.json",
+        "per_question_path": tmp_path / "per_question.csv",
+        "misses_path": tmp_path / "misses.csv",
+        "comparison_path": tmp_path / "comparison.csv",
+    }
+    hashes = score_retrieval.run(
+        result_path=FROZEN_RERANKER_RESULT,
+        **output_paths,
+    )
+    scores = json.loads(output_paths["scores_path"].read_text(encoding="utf-8"))
+    assert scores["bindings"]["reranker_result_sha256"] == (
+        "a1df7aec78ae883c0a5e5e66b217c68c9c9c0d80a705e3f8eb59317b01d9125b"
+    )
+    assert scores["bindings"]["reranker_version"] == "reranker_v0.1"
+    assert scores["bindings"]["retrieval_config"]["model_revision"] == (
+        "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e"
+    )
+    assert scores["bindings"]["retrieval_config"]["max_length"] == 1024
+    assert len(hashes) == 4
+    comparison = output_paths["comparison_path"].read_text(encoding="utf-8")
+    assert comparison.startswith(
+        "scope,domain,q_id,k,metric,bm25_v0.1,embedding_v0.1,hybrid_v0.1,"
+        "reranker_v0.1,hybrid_minus_bm25,hybrid_minus_embedding,"
+        "reranker_minus_bm25,reranker_minus_embedding,reranker_minus_hybrid\n"
     )
     assert "aggregate,evidence,,1,part_recall," in comparison
     assert "per_question,numeric," in comparison

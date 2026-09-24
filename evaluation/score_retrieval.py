@@ -56,6 +56,9 @@ BM25_RESULT_SHA256 = (
 EMBEDDING_RESULT_SHA256 = (
     "d997bb8ac72ba2e003eea440b0e805e3dd9722b053874162bee7d6754bc2bfa3"
 )
+RERANKER_RESULT_SHA256 = (
+    "a1df7aec78ae883c0a5e5e66b217c68c9c9c0d80a705e3f8eb59317b01d9125b"
+)
 RETRIEVAL_QUERY_SHA256 = (
     "4de3208bf457e0670d691e95284c5675006c825be85a2dca159e6f5268a61c1c"
 )
@@ -64,6 +67,8 @@ CORPUS_FINGERPRINT = (
 )
 EMBEDDING_MODEL_ID = "BAAI/bge-base-en-v1.5"
 EMBEDDING_MODEL_REVISION = "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a"
+RERANKER_MODEL_ID = "BAAI/bge-reranker-v2-m3"
+RERANKER_MODEL_REVISION = "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e"
 IMPORTANCE_WEIGHTS = {"core": 3.0, "supporting": 1.5, "optional": 0.5}
 
 PER_QUESTION_FIELDS = (
@@ -92,6 +97,12 @@ THREE_WAY_COMPARISON_FIELDS = (
     "scope", "domain", "q_id", "k", "metric", "bm25_v0.1",
     "embedding_v0.1", "hybrid_v0.1", "hybrid_minus_bm25",
     "hybrid_minus_embedding",
+)
+FOUR_WAY_COMPARISON_FIELDS = (
+    "scope", "domain", "q_id", "k", "metric", "bm25_v0.1",
+    "embedding_v0.1", "hybrid_v0.1", "reranker_v0.1",
+    "hybrid_minus_bm25", "hybrid_minus_embedding", "reranker_minus_bm25",
+    "reranker_minus_embedding", "reranker_minus_hybrid",
 )
 
 EVIDENCE_COMPARISON_METRICS = (
@@ -188,7 +199,47 @@ HYBRID_SYSTEM = FrozenSystem(
     result_depth=50,
     ingestion_tag="ingestion_v0.1.1",
 )
-FROZEN_SYSTEMS = (BM25_SYSTEM, EMBEDDING_SYSTEM, HYBRID_SYSTEM)
+RERANKER_SYSTEM = FrozenSystem(
+    version="reranker_v0.1",
+    retrieval_method="reranker_v0.1",
+    query_version="retrieval_queries_v0.1.1",
+    config_field=None,
+    result_sha256=RERANKER_RESULT_SHA256,
+    artifact_type="frozen_reranker_retrieval_evaluation",
+    result_binding_key="reranker_result_sha256",
+    version_binding_key="reranker_version",
+    required_metadata=(
+        ("retrieval_query_sha256", RETRIEVAL_QUERY_SHA256),
+        ("bm25_input_artifact_sha256", BM25_RESULT_SHA256),
+        ("embedding_input_artifact_sha256", EMBEDDING_RESULT_SHA256),
+        (
+            "hybrid_input_artifact_sha256",
+            "17f2f07fd24163b443dd3909aaa81fd188a8dbef77786532d7eb432094769846",
+        ),
+        ("model_id", RERANKER_MODEL_ID),
+        ("model_revision", RERANKER_MODEL_REVISION),
+        ("max_length", 1024),
+        (
+            "candidate_pool",
+            {
+                "version": "bm25_v0.1_top50_union_embedding_v0.1_top50",
+                "definition": (
+                    "frozen bm25_v0.1 top50 UNION frozen embedding_v0.1 top50"
+                ),
+                "deduplication_key": "chunk_id",
+                "bm25_depth": 50,
+                "embedding_depth": 50,
+            },
+        ),
+    ),
+    config_metadata_fields=(
+        "candidate_pool", "model_id", "model_revision", "model_file_sha256",
+        "max_length", "runtime_config",
+    ),
+    result_depth=50,
+    ingestion_tag="ingestion_v0.1.1",
+)
+FROZEN_SYSTEMS = (BM25_SYSTEM, EMBEDDING_SYSTEM, HYBRID_SYSTEM, RERANKER_SYSTEM)
 
 
 @dataclass(frozen=True)
@@ -1236,6 +1287,125 @@ def build_three_way_comparison_rows(
     return rows
 
 
+def _four_way_comparison_row(
+    scope: str,
+    domain: str,
+    q_id: str,
+    k: int,
+    metric: str,
+    bm25_value: Any,
+    embedding_value: Any,
+    hybrid_value: Any,
+    reranker_value: Any,
+) -> dict[str, Any]:
+    values = tuple(
+        _comparison_value(value)
+        for value in (bm25_value, embedding_value, hybrid_value, reranker_value)
+    )
+    bm25_value, embedding_value, hybrid_value, reranker_value = values
+
+    def signed_delta(left: Any, right: Any) -> float | str:
+        if left == "" or right == "":
+            return ""
+        return round(float(left) - float(right), 12)
+
+    return {
+        "scope": scope,
+        "domain": domain,
+        "q_id": q_id,
+        "k": k,
+        "metric": metric,
+        "bm25_v0.1": bm25_value,
+        "embedding_v0.1": embedding_value,
+        "hybrid_v0.1": hybrid_value,
+        "reranker_v0.1": reranker_value,
+        "hybrid_minus_bm25": signed_delta(hybrid_value, bm25_value),
+        "hybrid_minus_embedding": signed_delta(hybrid_value, embedding_value),
+        "reranker_minus_bm25": signed_delta(reranker_value, bm25_value),
+        "reranker_minus_embedding": signed_delta(reranker_value, embedding_value),
+        "reranker_minus_hybrid": signed_delta(reranker_value, hybrid_value),
+    }
+
+
+def build_four_way_comparison_rows(
+    bm25_scores: dict[str, Any],
+    bm25_per_question: Sequence[dict[str, Any]],
+    embedding_scores: dict[str, Any],
+    embedding_per_question: Sequence[dict[str, Any]],
+    hybrid_scores: dict[str, Any],
+    hybrid_per_question: Sequence[dict[str, Any]],
+    reranker_scores: dict[str, Any],
+    reranker_per_question: Sequence[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Compare all frozen metrics for the four frozen retrieval systems."""
+    systems = (
+        ("BM25", bm25_scores),
+        ("embedding", embedding_scores),
+        ("hybrid", hybrid_scores),
+        ("reranker", reranker_scores),
+    )
+    for label, scores in systems:
+        if scores.get("k_values") != list(K_VALUES):
+            raise EvaluationError(f"{label} scores do not contain the frozen K values")
+
+    rows: list[dict[str, Any]] = []
+    metric_groups = (
+        ("evidence", "evidence_metrics", EVIDENCE_COMPARISON_METRICS),
+        ("numeric", "numeric_metrics", NUMERIC_COMPARISON_METRICS),
+    )
+    for domain, score_key, metrics in metric_groups:
+        for k in K_VALUES:
+            system_values = tuple(scores[score_key][str(k)] for _, scores in systems)
+            for metric, field in metrics:
+                rows.append(
+                    _four_way_comparison_row(
+                        "aggregate", domain, "", k, metric,
+                        *(values[field] for values in system_values),
+                    )
+                )
+
+    per_question_maps = []
+    for system_rows in (
+        bm25_per_question,
+        embedding_per_question,
+        hybrid_per_question,
+        reranker_per_question,
+    ):
+        per_question_maps.append({
+            (row["domain"], row["q_id"], int(row["k"])): row
+            for row in system_rows
+        })
+    if not all(
+        set(mapping) == set(per_question_maps[0])
+        for mapping in per_question_maps[1:]
+    ):
+        raise EvaluationError("per-question comparison keys differ between systems")
+    per_question_fields = {
+        "evidence": EVIDENCE_COMPARISON_METRICS,
+        "numeric": tuple(
+            (
+                metric,
+                "numeric_question_complete"
+                if field == "numeric_question_complete_rate"
+                else field,
+            )
+            for metric, field in NUMERIC_COMPARISON_METRICS
+        ),
+    }
+    for domain, q_id, k in sorted(per_question_maps[0]):
+        system_rows = tuple(
+            mapping[(domain, q_id, k)] for mapping in per_question_maps
+        )
+        for metric, field in per_question_fields[domain]:
+            rows.append(
+                _four_way_comparison_row(
+                    "per_question", domain, q_id, k, metric,
+                    *(row[field] for row in system_rows),
+                )
+            )
+    return rows
+
+
 def run(
     gold_dir: Path = GOLD_DIR,
     query_path: Path = QUERY_PATH,
@@ -1295,9 +1465,36 @@ def run(
             _write_csv(
                 comparison_path, THREE_WAY_COMPARISON_FIELDS, comparison_rows
             )
+        elif scores["bindings"].get("reranker_version") == RERANKER_SYSTEM.version:
+            embedding_scores, embedding_per_question, _ = evaluate(
+                gold_dir=gold_dir,
+                query_path=query_path,
+                result_path=ROOT / "evaluation" / "results" / "embedding_v0.1.jsonl",
+                system=EMBEDDING_SYSTEM,
+            )
+            hybrid_scores, hybrid_per_question, _ = evaluate(
+                gold_dir=gold_dir,
+                query_path=query_path,
+                result_path=ROOT / "evaluation" / "results" / "hybrid_v0.1.jsonl",
+                system=HYBRID_SYSTEM,
+            )
+            comparison_rows = build_four_way_comparison_rows(
+                bm25_scores,
+                bm25_per_question,
+                embedding_scores,
+                embedding_per_question,
+                hybrid_scores,
+                hybrid_per_question,
+                scores,
+                per_question,
+            )
+            _write_csv(
+                comparison_path, FOUR_WAY_COMPARISON_FIELDS, comparison_rows
+            )
         else:
             raise EvaluationError(
-                "comparison output requires embedding_v0.1 or hybrid_v0.1 results"
+                "comparison output requires embedding_v0.1, hybrid_v0.1, "
+                "or reranker_v0.1 results"
             )
     frozen_after = sha256_file(result_path)
     if frozen_after != frozen_before:
