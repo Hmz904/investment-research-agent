@@ -9,6 +9,7 @@ benchmark/frozen/questions.csv
 benchmark/frozen/numeric_answers.csv
 benchmark/frozen/evidence_checklist.csv
 benchmark/frozen/source_manifest.csv
+benchmark/frozen/protocol.md
 evaluation/d2/deterministic_evaluator.py
 tests/evaluation/test_deterministic_evaluator.py
 tests/evaluation/test_gold_provenance.py

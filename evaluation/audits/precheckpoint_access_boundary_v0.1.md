@@ -2,6 +2,12 @@
 
 Historical accidental pre-checkpoint exposure incident count: **3**.
 
+Current-session additional incident: **1**. Total recorded accidental
+pre-checkpoint exposure incidents: **4**. See
+`precheckpoint_test_access_event_v0.3.md` for the mixed-content protocol
+exposure and incomplete sparse allowlist. The original three-event history
+below is retained unchanged; this session cannot claim no TEST access.
+
 1. Over-broad provenance search: `precheckpoint_test_access_event_v0.1.md`.
 2. Embedded release-integrity expectations printed while classifying tests:
    `mapping_contract_repair_access_note_v0.1.md`. Preserve that note's cautious

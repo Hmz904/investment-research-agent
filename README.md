@@ -1,7 +1,8 @@
 # Investment Research Agent — Week 1 SEC Filing Ingestion
 
 Pre-checkpoint development boundary: historical accidental exposure count is
-**3**; see [the permanent honesty record](evaluation/audits/precheckpoint_access_boundary_v0.1.md).
+**3**, plus **1 new incident** during sparse-boundary repair (total **4**);
+see [the permanent honesty record](evaluation/audits/precheckpoint_access_boundary_v0.1.md).
 D2 contract/test authoring uses the [allowlisted sparse worktree](packaging/d2_sparse_development_v0.1.md).
 Do not run unrestricted searches or the full test suite in the canonical
 checkout during pre-checkpoint development.

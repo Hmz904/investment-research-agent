@@ -8,14 +8,18 @@ sparse checkout. Entries were selected from Git path metadata, the
 `locked_test_data` marker, the existing access notes, the production-boundary
 path list, and evaluation protocols. Forbidden contents were not inspected.
 It admits runtime source, evaluation protocols/schemas, execution taxonomy,
-permitted DEV inputs, and narrowly selected test infrastructure. It admits
-`benchmark/frozen/protocol.md`, not the four locked data files beside it.
+permitted DEV inputs, and narrowly selected test infrastructure. It excludes
+each currently known locked file in `benchmark/frozen/` by exact path,
+including its mixed-content protocol. The initial allowlist mistakenly
+admitted that protocol; see `precheckpoint_test_access_event_v0.3.md`. This
+correction does not introduce a blanket exclusion for future non-TEST files.
 New D2 contract/test files may be authored locally and added explicitly.
 Historical D2 normative documents absent from the base commit may be imported
 by exact filename and recorded with source hashes; never copy the evaluator
 or old evaluator tests.
 
-Create from the isolation commit (no full checkout occurs first):
+Create from the latest isolation correction commit, not the superseded
+initial isolation commit (no full checkout occurs first):
 
 ```sh
 git worktree add --no-checkout -b d2-v2-contract-tests /tmp/thesisagent-d2-v2-dev ISOLATION_COMMIT

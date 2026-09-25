@@ -3,7 +3,6 @@
 /pytest.ini
 /requirements.txt
 /requirements.lock
-/benchmark/frozen/protocol.md
 /benchmark/dev/v0.1/README.md
 /benchmark/dev/v0.1/evidence_checklist.csv
 /benchmark/dev/v0.1/numeric_answers.csv
@@ -29,6 +28,7 @@
 /evaluation/audits/precheckpoint_access_boundary_v0.1.md
 /evaluation/audits/precheckpoint_test_access_event_v0.1.md
 /evaluation/audits/precheckpoint_test_access_event_v0.2.md
+/evaluation/audits/precheckpoint_test_access_event_v0.3.md
 /evaluation/audits/mapping_contract_repair_access_note_v0.1.md
 /evaluation/test_access_log.csv
 /packaging/d2_sparse_development_v0.1.md
