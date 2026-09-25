@@ -1,0 +1,2693 @@
+{
+  "agent_outputs_generated_or_inspected": false,
+  "artifact_purpose": "pending human review; not a frozen final DEV map",
+  "benchmark_version": "dev_v0.1",
+  "candidate_schema_version": "dev_xbrl_mapping_candidates_v0.1",
+  "dev_gold_input_fingerprint": "42f2306e2f9751c3c6307c1c9d71772b6cd5f65325c5462d0610ed3d8b12d127",
+  "human_review_completed": false,
+  "human_review_status_namespace": [
+    "APPROVE",
+    "REJECT",
+    "NEEDS_SOURCE_CHECK"
+  ],
+  "mapping_algorithm_version": "xbrl_gold_mapping_algorithm_v0.1",
+  "mapping_spec_version": "xbrl_gold_mapping_spec_v0.1",
+  "source_check_namespace": [
+    "SOURCE_CHECK_PASS",
+    "SOURCE_CHECK_REJECT",
+    "SOURCE_CHECK_UNRESOLVED"
+  ],
+  "split": "DEV",
+  "targets": [
+    {
+      "anchor_logic": "OR",
+      "answer_group": null,
+      "approved_chunk_ids": [
+        "69f2e4ec59c4d8b3",
+        "e0a63c352c577950"
+      ],
+      "candidates": [],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "NVIDIA",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": null,
+      "gold_basis": "company_defined_free_cash_flow",
+      "gold_display_sign": "positive",
+      "gold_locator": "Exhibit 99.1; Q1 and Q2 GAAP to non-GAAP reconciliations",
+      "gold_normalization": {
+        "canonical_unit": "USD",
+        "canonical_value": "48554000000",
+        "dimension": "monetary",
+        "normalization_rule_id": "monetary_usd_million_to_usd_v0.1",
+        "submitted_unit": "USD_million",
+        "submitted_value": "48554",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "Same FY27Q1 company-defined free cash flow is independently shown in the Q1 release and the Q2 release's prior-quarter column; OR alternatives.",
+      "gold_period_label": "FY27Q1_single_quarter",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_million",
+      "gold_value": "48554",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [
+        {
+          "accession": "0001045810-26-000051",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q1",
+          "chunk_id": "e0a63c352c577950",
+          "company": "NVIDIA",
+          "doc_id": "NVDA_FY27Q1_8K_EX991",
+          "fiscal_period": "FY27Q1",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; GAAP to non-GAAP reconciliation",
+          "reference_id": "NCR001",
+          "source_check_status": "SOURCE_CHECK_PASS"
+        },
+        {
+          "accession": "0001045810-26-000073",
+          "audit_note": "Independent OR candidate: the FY27Q2 release's prior-quarter column shows the same FY27Q1 company-defined free cash flow value, basis, and precision.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "69f2e4ec59c4d8b3",
+          "company": "NVIDIA",
+          "doc_id": "NVDA_FY27Q2_8K_EX991",
+          "fiscal_period": "FY27Q2",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; Q2 reconciliation prior-quarter column",
+          "reference_id": "NCR009",
+          "source_check_status": "SOURCE_CHECK_PASS"
+        }
+      ],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "48553500000",
+          "lower_inclusive": true,
+          "upper": "48554500000",
+          "upper_inclusive": true
+        },
+        "canonical_quantum": "1000000",
+        "canonical_unit": "USD",
+        "comparison_gold_value": "48554000000",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "1",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "0"
+      },
+      "proposed_target_status": "PROPOSED_UNMAPPABLE",
+      "proposed_target_status_rationale": "Exact target temporal metadata are absent from frozen DEV gold, so frozen Stage 3 cannot infer or broaden the temporal predicate and cannot be completed safely.",
+      "question_consistency_group": null,
+      "question_id": "DEV01",
+      "required_input_ids": [],
+      "role": "input",
+      "source_accessions": [
+        "0001045810-26-000051",
+        "0001045810-26-000073"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001045810-26-000051",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q1",
+          "chunk_id": "e0a63c352c577950",
+          "company": "NVIDIA",
+          "doc_id": "NVDA_FY27Q1_8K_EX991",
+          "fiscal_period": "FY27Q1",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; GAAP to non-GAAP reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0001",
+          "reference_id": "NCR001",
+          "reference_kind": "direct_candidate",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": null
+        },
+        {
+          "accession": "0001045810-26-000073",
+          "audit_note": "Independent OR candidate: the FY27Q2 release's prior-quarter column shows the same FY27Q1 company-defined free cash flow value, basis, and precision.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "69f2e4ec59c4d8b3",
+          "company": "NVIDIA",
+          "doc_id": "NVDA_FY27Q2_8K_EX991",
+          "fiscal_period": "FY27Q2",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; Q2 reconciliation prior-quarter column",
+          "member_index": "1",
+          "provenance_id": "PR0108",
+          "reference_id": "NCR009",
+          "reference_kind": "direct_candidate",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": null
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001045810-26-000051",
+        "0001045810-26-000073"
+      ],
+      "stage_completion": {
+        "stage1": "completed",
+        "stage2": "not_applicable_no_passing_stage1_lineage",
+        "stage3": "blocked_missing_exact_temporal_requirement"
+      },
+      "target_id": "NF001",
+      "target_kind": "direct",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY27Q1_single_quarter"
+      },
+      "variant_family": null,
+      "variant_group": null
+    },
+    {
+      "anchor_logic": "OR",
+      "answer_group": null,
+      "approved_chunk_ids": [
+        "69f2e4ec59c4d8b3"
+      ],
+      "candidates": [],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "NVIDIA",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": null,
+      "gold_basis": "company_defined_free_cash_flow",
+      "gold_display_sign": "positive",
+      "gold_locator": "Exhibit 99.1; GAAP to non-GAAP reconciliation",
+      "gold_normalization": {
+        "canonical_unit": "USD",
+        "canonical_value": "21341000000",
+        "dimension": "monetary",
+        "normalization_rule_id": "monetary_usd_million_to_usd_v0.1",
+        "submitted_unit": "USD_million",
+        "submitted_value": "21341",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "Company-defined free cash flow input.",
+      "gold_period_label": "FY27Q2_single_quarter",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_million",
+      "gold_value": "21341",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [
+        {
+          "accession": "0001045810-26-000073",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "69f2e4ec59c4d8b3",
+          "company": "NVIDIA",
+          "doc_id": "NVDA_FY27Q2_8K_EX991",
+          "fiscal_period": "FY27Q2",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; GAAP to non-GAAP reconciliation",
+          "reference_id": "NCR002",
+          "source_check_status": "SOURCE_CHECK_PASS"
+        }
+      ],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "21340500000",
+          "lower_inclusive": false,
+          "upper": "21341500000",
+          "upper_inclusive": false
+        },
+        "canonical_quantum": "1000000",
+        "canonical_unit": "USD",
+        "comparison_gold_value": "21341000000",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "1",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "0"
+      },
+      "proposed_target_status": "PROPOSED_UNMAPPABLE",
+      "proposed_target_status_rationale": "Exact target temporal metadata are absent from frozen DEV gold, so frozen Stage 3 cannot infer or broaden the temporal predicate and cannot be completed safely.",
+      "question_consistency_group": null,
+      "question_id": "DEV01",
+      "required_input_ids": [],
+      "role": "input",
+      "source_accessions": [
+        "0001045810-26-000073"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001045810-26-000073",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "69f2e4ec59c4d8b3",
+          "company": "NVIDIA",
+          "doc_id": "NVDA_FY27Q2_8K_EX991",
+          "fiscal_period": "FY27Q2",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; GAAP to non-GAAP reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0002",
+          "reference_id": "NCR002",
+          "reference_kind": "direct_candidate",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": null
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001045810-26-000073"
+      ],
+      "stage_completion": {
+        "stage1": "completed",
+        "stage2": "not_applicable_no_passing_stage1_lineage",
+        "stage3": "blocked_missing_exact_temporal_requirement"
+      },
+      "target_id": "NF002",
+      "target_kind": "direct",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY27Q2_single_quarter"
+      },
+      "variant_family": null,
+      "variant_group": null
+    },
+    {
+      "anchor_logic": "AND",
+      "answer_group": "G1",
+      "approved_chunk_ids": [
+        "69f2e4ec59c4d8b3",
+        "e0a63c352c577950"
+      ],
+      "candidates": [],
+      "derived_grounding_eligibility": "eligible_via_independently_source_checked_legacy_inputs",
+      "derived_input_lineage": [
+        {
+          "input_target_id": "NF001",
+          "legacy_chunk_ids": [
+            "e0a63c352c577950",
+            "69f2e4ec59c4d8b3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR001",
+            "NCR009"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        },
+        {
+          "input_target_id": "NF002",
+          "legacy_chunk_ids": [
+            "69f2e4ec59c4d8b3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR002"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        }
+      ],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "NVIDIA",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": "NF001-NF002",
+      "gold_basis": "absolute_decrease",
+      "gold_display_sign": "positive",
+      "gold_locator": "Exhibit 99.1; free-cash-flow reconciliations",
+      "gold_normalization": {
+        "canonical_unit": "USD",
+        "canonical_value": "27213000000",
+        "dimension": "monetary",
+        "normalization_rule_id": "monetary_usd_million_to_usd_v0.1",
+        "submitted_unit": "USD_million",
+        "submitted_value": "27213",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "Positive magnitude of the decrease.",
+      "gold_period_label": "FY27Q1_to_FY27Q2",
+      "gold_sign_basis": "positive_magnitude",
+      "gold_unit": "USD_million",
+      "gold_value": "27213",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "27212500000",
+          "lower_inclusive": false,
+          "upper": "27213500000",
+          "upper_inclusive": false
+        },
+        "canonical_quantum": "1000000",
+        "canonical_unit": "USD",
+        "comparison_gold_value": "27213000000",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "1",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "0"
+      },
+      "proposed_target_status": "PROPOSED_DERIVED_VIA_INPUTS",
+      "proposed_target_status_rationale": "Frozen gold defines this target through the displayed formula and required inputs; eligibility is separately based on each input's source-checked legacy route.",
+      "question_consistency_group": null,
+      "question_id": "DEV01",
+      "required_input_ids": [
+        "NF001",
+        "NF002"
+      ],
+      "role": "answer",
+      "source_accessions": [
+        "0001045810-26-000051",
+        "0001045810-26-000073"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001045810-26-000051",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q1",
+          "chunk_id": "e0a63c352c577950",
+          "company": "NVIDIA",
+          "doc_id": "NVDA_FY27Q1_8K_EX991",
+          "fiscal_period": "FY27Q1",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; GAAP to non-GAAP reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0003",
+          "reference_id": "NDU001",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF001"
+        },
+        {
+          "accession": "0001045810-26-000073",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "69f2e4ec59c4d8b3",
+          "company": "NVIDIA",
+          "doc_id": "NVDA_FY27Q2_8K_EX991",
+          "fiscal_period": "FY27Q2",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; GAAP to non-GAAP reconciliation",
+          "member_index": "2",
+          "provenance_id": "PR0004",
+          "reference_id": "NDU001",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF002"
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001045810-26-000051",
+        "0001045810-26-000073"
+      ],
+      "stage_completion": {
+        "stage1": "not_applicable",
+        "stage2": "not_applicable",
+        "stage3": "not_applicable"
+      },
+      "target_id": "NF003",
+      "target_kind": "derived",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY27Q1_to_FY27Q2"
+      },
+      "variant_family": null,
+      "variant_group": "V1"
+    },
+    {
+      "anchor_logic": "AND",
+      "answer_group": "G2",
+      "approved_chunk_ids": [
+        "69f2e4ec59c4d8b3",
+        "e0a63c352c577950"
+      ],
+      "candidates": [],
+      "derived_grounding_eligibility": "eligible_via_independently_source_checked_legacy_inputs",
+      "derived_input_lineage": [
+        {
+          "input_target_id": "NF001",
+          "legacy_chunk_ids": [
+            "e0a63c352c577950",
+            "69f2e4ec59c4d8b3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR001",
+            "NCR009"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        },
+        {
+          "input_target_id": "NF002",
+          "legacy_chunk_ids": [
+            "69f2e4ec59c4d8b3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR002"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        }
+      ],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "NVIDIA",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": "(NF001-NF002)/NF001*100",
+      "gold_basis": "relative_decrease",
+      "gold_display_sign": "positive",
+      "gold_locator": "Exhibit 99.1; free-cash-flow reconciliations",
+      "gold_normalization": {
+        "canonical_unit": "pure",
+        "canonical_value": "0.560468756436",
+        "dimension": "ratio",
+        "normalization_rule_id": "ratio_percent_to_pure_v0.1",
+        "submitted_unit": "percent",
+        "submitted_value": "56.0468756436",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "Accept 56.0% at requested display precision.",
+      "gold_period_label": "FY27Q1_to_FY27Q2",
+      "gold_sign_basis": "positive_magnitude",
+      "gold_unit": "percent",
+      "gold_value": "56.0468756436",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "pure",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "0.5595",
+          "lower_inclusive": true,
+          "upper": "0.5605",
+          "upper_inclusive": true
+        },
+        "canonical_quantum": "0.001",
+        "canonical_unit": "pure",
+        "comparison_gold_value": "0.56",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "0.1",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "1"
+      },
+      "proposed_target_status": "PROPOSED_DERIVED_VIA_INPUTS",
+      "proposed_target_status_rationale": "Frozen gold defines this target through the displayed formula and required inputs; eligibility is separately based on each input's source-checked legacy route.",
+      "question_consistency_group": null,
+      "question_id": "DEV01",
+      "required_input_ids": [
+        "NF001",
+        "NF002"
+      ],
+      "role": "answer",
+      "source_accessions": [
+        "0001045810-26-000051",
+        "0001045810-26-000073"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001045810-26-000051",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q1",
+          "chunk_id": "e0a63c352c577950",
+          "company": "NVIDIA",
+          "doc_id": "NVDA_FY27Q1_8K_EX991",
+          "fiscal_period": "FY27Q1",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; GAAP to non-GAAP reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0005",
+          "reference_id": "NDU002",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF001"
+        },
+        {
+          "accession": "0001045810-26-000073",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "69f2e4ec59c4d8b3",
+          "company": "NVIDIA",
+          "doc_id": "NVDA_FY27Q2_8K_EX991",
+          "fiscal_period": "FY27Q2",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; GAAP to non-GAAP reconciliation",
+          "member_index": "2",
+          "provenance_id": "PR0006",
+          "reference_id": "NDU002",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF002"
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001045810-26-000051",
+        "0001045810-26-000073"
+      ],
+      "stage_completion": {
+        "stage1": "not_applicable",
+        "stage2": "not_applicable",
+        "stage3": "not_applicable"
+      },
+      "target_id": "NF004",
+      "target_kind": "derived",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY27Q1_to_FY27Q2"
+      },
+      "variant_family": null,
+      "variant_group": "V1"
+    },
+    {
+      "anchor_logic": "OR",
+      "answer_group": null,
+      "approved_chunk_ids": [
+        "caedf248cf5435a3"
+      ],
+      "candidates": [],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "Microsoft",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": null,
+      "gold_basis": "GAAP_diluted_EPS",
+      "gold_display_sign": "positive",
+      "gold_locator": "Exhibit 99.1; OpenAI reconciliation",
+      "gold_normalization": {
+        "canonical_unit": "USD_per_share",
+        "canonical_value": "4.81",
+        "dimension": "monetary_per_share",
+        "normalization_rule_id": "usd_per_diluted_share_alias_v0.1",
+        "submitted_unit": "USD_per_diluted_share",
+        "submitted_value": "4.81",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "FY26Q4 as-reported GAAP diluted EPS.",
+      "gold_period_label": "FY26Q4_single_quarter",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_per_diluted_share",
+      "gold_value": "4.81",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "reference_id": "NCR003",
+          "source_check_status": "SOURCE_CHECK_PASS"
+        }
+      ],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD_per_share",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "4.805",
+          "lower_inclusive": false,
+          "upper": "4.815",
+          "upper_inclusive": false
+        },
+        "canonical_quantum": "0.01",
+        "canonical_unit": "USD_per_share",
+        "comparison_gold_value": "4.81",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "0.01",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "2"
+      },
+      "proposed_target_status": "PROPOSED_UNMAPPABLE",
+      "proposed_target_status_rationale": "Exact target temporal metadata are absent from frozen DEV gold, so frozen Stage 3 cannot infer or broaden the temporal predicate and cannot be completed safely.",
+      "question_consistency_group": null,
+      "question_id": "DEV02",
+      "required_input_ids": [],
+      "role": "input",
+      "source_accessions": [
+        "0001193125-26-323632"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0007",
+          "reference_id": "NCR003",
+          "reference_kind": "direct_candidate",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": null
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001193125-26-323632"
+      ],
+      "stage_completion": {
+        "stage1": "completed",
+        "stage2": "not_applicable_no_passing_stage1_lineage",
+        "stage3": "blocked_missing_exact_temporal_requirement"
+      },
+      "target_id": "NF005",
+      "target_kind": "direct",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY26Q4_single_quarter"
+      },
+      "variant_family": null,
+      "variant_group": null
+    },
+    {
+      "anchor_logic": "OR",
+      "answer_group": null,
+      "approved_chunk_ids": [
+        "caedf248cf5435a3"
+      ],
+      "candidates": [],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "Microsoft",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": null,
+      "gold_basis": "non_GAAP_diluted_EPS_ex_OpenAI_investment_impact",
+      "gold_display_sign": "positive",
+      "gold_locator": "Exhibit 99.1; OpenAI reconciliation",
+      "gold_normalization": {
+        "canonical_unit": "USD_per_share",
+        "canonical_value": "4.74",
+        "dimension": "monetary_per_share",
+        "normalization_rule_id": "usd_per_diluted_share_alias_v0.1",
+        "submitted_unit": "USD_per_diluted_share",
+        "submitted_value": "4.74",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "FY26Q4 adjusted diluted EPS.",
+      "gold_period_label": "FY26Q4_single_quarter",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_per_diluted_share",
+      "gold_value": "4.74",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "reference_id": "NCR004",
+          "source_check_status": "SOURCE_CHECK_PASS"
+        }
+      ],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD_per_share",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "4.735",
+          "lower_inclusive": true,
+          "upper": "4.745",
+          "upper_inclusive": true
+        },
+        "canonical_quantum": "0.01",
+        "canonical_unit": "USD_per_share",
+        "comparison_gold_value": "4.74",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "0.01",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "2"
+      },
+      "proposed_target_status": "PROPOSED_UNMAPPABLE",
+      "proposed_target_status_rationale": "Exact target temporal metadata are absent from frozen DEV gold, so frozen Stage 3 cannot infer or broaden the temporal predicate and cannot be completed safely.",
+      "question_consistency_group": null,
+      "question_id": "DEV02",
+      "required_input_ids": [],
+      "role": "input",
+      "source_accessions": [
+        "0001193125-26-323632"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0008",
+          "reference_id": "NCR004",
+          "reference_kind": "direct_candidate",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": null
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001193125-26-323632"
+      ],
+      "stage_completion": {
+        "stage1": "completed",
+        "stage2": "not_applicable_no_passing_stage1_lineage",
+        "stage3": "blocked_missing_exact_temporal_requirement"
+      },
+      "target_id": "NF006",
+      "target_kind": "direct",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY26Q4_single_quarter"
+      },
+      "variant_family": null,
+      "variant_group": null
+    },
+    {
+      "anchor_logic": "OR",
+      "answer_group": null,
+      "approved_chunk_ids": [
+        "caedf248cf5435a3"
+      ],
+      "candidates": [],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "Microsoft",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": null,
+      "gold_basis": "GAAP_diluted_EPS",
+      "gold_display_sign": "positive",
+      "gold_locator": "Exhibit 99.1; OpenAI reconciliation",
+      "gold_normalization": {
+        "canonical_unit": "USD_per_share",
+        "canonical_value": "3.65",
+        "dimension": "monetary_per_share",
+        "normalization_rule_id": "usd_per_diluted_share_alias_v0.1",
+        "submitted_unit": "USD_per_diluted_share",
+        "submitted_value": "3.65",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "Prior-year as-reported GAAP diluted EPS.",
+      "gold_period_label": "FY25Q4_single_quarter",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_per_diluted_share",
+      "gold_value": "3.65",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "reference_id": "NCR005",
+          "source_check_status": "SOURCE_CHECK_PASS"
+        }
+      ],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD_per_share",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "3.645",
+          "lower_inclusive": false,
+          "upper": "3.655",
+          "upper_inclusive": false
+        },
+        "canonical_quantum": "0.01",
+        "canonical_unit": "USD_per_share",
+        "comparison_gold_value": "3.65",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "0.01",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "2"
+      },
+      "proposed_target_status": "PROPOSED_UNMAPPABLE",
+      "proposed_target_status_rationale": "Exact target temporal metadata are absent from frozen DEV gold, so frozen Stage 3 cannot infer or broaden the temporal predicate and cannot be completed safely.",
+      "question_consistency_group": null,
+      "question_id": "DEV02",
+      "required_input_ids": [],
+      "role": "input",
+      "source_accessions": [
+        "0001193125-26-323632"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0009",
+          "reference_id": "NCR005",
+          "reference_kind": "direct_candidate",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": null
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001193125-26-323632"
+      ],
+      "stage_completion": {
+        "stage1": "completed",
+        "stage2": "not_applicable_no_passing_stage1_lineage",
+        "stage3": "blocked_missing_exact_temporal_requirement"
+      },
+      "target_id": "NF007",
+      "target_kind": "direct",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY25Q4_single_quarter"
+      },
+      "variant_family": null,
+      "variant_group": null
+    },
+    {
+      "anchor_logic": "OR",
+      "answer_group": null,
+      "approved_chunk_ids": [
+        "caedf248cf5435a3"
+      ],
+      "candidates": [],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "Microsoft",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": null,
+      "gold_basis": "non_GAAP_diluted_EPS_ex_OpenAI_investment_impact",
+      "gold_display_sign": "positive",
+      "gold_locator": "Exhibit 99.1; OpenAI reconciliation",
+      "gold_normalization": {
+        "canonical_unit": "USD_per_share",
+        "canonical_value": "3.86",
+        "dimension": "monetary_per_share",
+        "normalization_rule_id": "usd_per_diluted_share_alias_v0.1",
+        "submitted_unit": "USD_per_diluted_share",
+        "submitted_value": "3.86",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "Prior-year adjusted diluted EPS.",
+      "gold_period_label": "FY25Q4_single_quarter",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_per_diluted_share",
+      "gold_value": "3.86",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "reference_id": "NCR006",
+          "source_check_status": "SOURCE_CHECK_PASS"
+        }
+      ],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD_per_share",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "3.855",
+          "lower_inclusive": true,
+          "upper": "3.865",
+          "upper_inclusive": true
+        },
+        "canonical_quantum": "0.01",
+        "canonical_unit": "USD_per_share",
+        "comparison_gold_value": "3.86",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "0.01",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "2"
+      },
+      "proposed_target_status": "PROPOSED_UNMAPPABLE",
+      "proposed_target_status_rationale": "Exact target temporal metadata are absent from frozen DEV gold, so frozen Stage 3 cannot infer or broaden the temporal predicate and cannot be completed safely.",
+      "question_consistency_group": null,
+      "question_id": "DEV02",
+      "required_input_ids": [],
+      "role": "input",
+      "source_accessions": [
+        "0001193125-26-323632"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0010",
+          "reference_id": "NCR006",
+          "reference_kind": "direct_candidate",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": null
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001193125-26-323632"
+      ],
+      "stage_completion": {
+        "stage1": "completed",
+        "stage2": "not_applicable_no_passing_stage1_lineage",
+        "stage3": "blocked_missing_exact_temporal_requirement"
+      },
+      "target_id": "NF008",
+      "target_kind": "direct",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY25Q4_single_quarter"
+      },
+      "variant_family": null,
+      "variant_group": null
+    },
+    {
+      "anchor_logic": "OR",
+      "answer_group": "G1",
+      "approved_chunk_ids": [
+        "caedf248cf5435a3"
+      ],
+      "candidates": [],
+      "derived_grounding_eligibility": "eligible_via_independently_source_checked_legacy_inputs",
+      "derived_input_lineage": [
+        {
+          "input_target_id": "NF005",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR003"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        },
+        {
+          "input_target_id": "NF006",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR004"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        }
+      ],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "Microsoft",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": "NF005-NF006",
+      "gold_basis": "GAAP_minus_non_GAAP_OpenAI_impact",
+      "gold_display_sign": "positive",
+      "gold_locator": "Exhibit 99.1; OpenAI reconciliation",
+      "gold_normalization": {
+        "canonical_unit": "USD_per_share",
+        "canonical_value": "0.07",
+        "dimension": "monetary_per_share",
+        "normalization_rule_id": "usd_per_diluted_share_alias_v0.1",
+        "submitted_unit": "USD_per_diluted_share",
+        "submitted_value": "0.07",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "GAAP EPS was $0.07 higher than adjusted EPS.",
+      "gold_period_label": "FY26Q4_single_quarter",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_per_diluted_share",
+      "gold_value": "0.07",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD_per_share",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "0.065",
+          "lower_inclusive": false,
+          "upper": "0.075",
+          "upper_inclusive": false
+        },
+        "canonical_quantum": "0.01",
+        "canonical_unit": "USD_per_share",
+        "comparison_gold_value": "0.07",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "0.01",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "2"
+      },
+      "proposed_target_status": "PROPOSED_DERIVED_VIA_INPUTS",
+      "proposed_target_status_rationale": "Frozen gold defines this target through the displayed formula and required inputs; eligibility is separately based on each input's source-checked legacy route.",
+      "question_consistency_group": "DEV02_OPENAI_SIGN_CONVENTION",
+      "question_id": "DEV02",
+      "required_input_ids": [
+        "NF005",
+        "NF006"
+      ],
+      "role": "answer",
+      "source_accessions": [
+        "0001193125-26-323632"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0011",
+          "reference_id": "NDU003",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF005"
+        },
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "2",
+          "provenance_id": "PR0012",
+          "reference_id": "NDU003",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF006"
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001193125-26-323632"
+      ],
+      "stage_completion": {
+        "stage1": "not_applicable",
+        "stage2": "not_applicable",
+        "stage3": "not_applicable"
+      },
+      "target_id": "NF009",
+      "target_kind": "derived",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY26Q4_single_quarter"
+      },
+      "variant_family": "V1_GAAP_MINUS_NON_GAAP",
+      "variant_group": "V1"
+    },
+    {
+      "anchor_logic": "OR",
+      "answer_group": "G2",
+      "approved_chunk_ids": [
+        "caedf248cf5435a3"
+      ],
+      "candidates": [],
+      "derived_grounding_eligibility": "eligible_via_independently_source_checked_legacy_inputs",
+      "derived_input_lineage": [
+        {
+          "input_target_id": "NF007",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR005"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        },
+        {
+          "input_target_id": "NF008",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR006"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        }
+      ],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "Microsoft",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": "NF007-NF008",
+      "gold_basis": "GAAP_minus_non_GAAP_OpenAI_impact",
+      "gold_display_sign": "negative",
+      "gold_locator": "Exhibit 99.1; OpenAI reconciliation",
+      "gold_normalization": {
+        "canonical_unit": "USD_per_share",
+        "canonical_value": "-0.21",
+        "dimension": "monetary_per_share",
+        "normalization_rule_id": "usd_per_diluted_share_alias_v0.1",
+        "submitted_unit": "USD_per_diluted_share",
+        "submitted_value": "-0.21",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "GAAP EPS was $0.21 lower than adjusted EPS.",
+      "gold_period_label": "FY25Q4_single_quarter",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_per_diluted_share",
+      "gold_value": "-0.21",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD_per_share",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "-0.215",
+          "lower_inclusive": false,
+          "upper": "-0.205",
+          "upper_inclusive": false
+        },
+        "canonical_quantum": "0.01",
+        "canonical_unit": "USD_per_share",
+        "comparison_gold_value": "-0.21",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "0.01",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "2"
+      },
+      "proposed_target_status": "PROPOSED_DERIVED_VIA_INPUTS",
+      "proposed_target_status_rationale": "Frozen gold defines this target through the displayed formula and required inputs; eligibility is separately based on each input's source-checked legacy route.",
+      "question_consistency_group": "DEV02_OPENAI_SIGN_CONVENTION",
+      "question_id": "DEV02",
+      "required_input_ids": [
+        "NF007",
+        "NF008"
+      ],
+      "role": "answer",
+      "source_accessions": [
+        "0001193125-26-323632"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0013",
+          "reference_id": "NDU004",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF007"
+        },
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "2",
+          "provenance_id": "PR0014",
+          "reference_id": "NDU004",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF008"
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001193125-26-323632"
+      ],
+      "stage_completion": {
+        "stage1": "not_applicable",
+        "stage2": "not_applicable",
+        "stage3": "not_applicable"
+      },
+      "target_id": "NF010",
+      "target_kind": "derived",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY25Q4_single_quarter"
+      },
+      "variant_family": "V1_GAAP_MINUS_NON_GAAP",
+      "variant_group": "V1"
+    },
+    {
+      "anchor_logic": "OR",
+      "answer_group": "G3",
+      "approved_chunk_ids": [
+        "caedf248cf5435a3"
+      ],
+      "candidates": [],
+      "derived_grounding_eligibility": "eligible_via_independently_source_checked_legacy_inputs",
+      "derived_input_lineage": [
+        {
+          "input_target_id": "NF005",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR003"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        },
+        {
+          "input_target_id": "NF006",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR004"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        },
+        {
+          "input_target_id": "NF007",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR005"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        },
+        {
+          "input_target_id": "NF008",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR006"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        }
+      ],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "Microsoft",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": "(NF005-NF006)-(NF007-NF008)",
+      "gold_basis": "change_in_GAAP_minus_non_GAAP_OpenAI_impact",
+      "gold_display_sign": "positive",
+      "gold_locator": "Exhibit 99.1; OpenAI reconciliation",
+      "gold_normalization": {
+        "canonical_unit": "USD_per_share",
+        "canonical_value": "0.28",
+        "dimension": "monetary_per_share",
+        "normalization_rule_id": "usd_per_diluted_share_alias_v0.1",
+        "submitted_unit": "USD_per_diluted_share",
+        "submitted_value": "0.28",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "Impact swung positively by $0.28 per diluted share.",
+      "gold_period_label": "FY25Q4_to_FY26Q4",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_per_diluted_share",
+      "gold_value": "0.28",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD_per_share",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "0.275",
+          "lower_inclusive": true,
+          "upper": "0.285",
+          "upper_inclusive": true
+        },
+        "canonical_quantum": "0.01",
+        "canonical_unit": "USD_per_share",
+        "comparison_gold_value": "0.28",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "0.01",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "2"
+      },
+      "proposed_target_status": "PROPOSED_DERIVED_VIA_INPUTS",
+      "proposed_target_status_rationale": "Frozen gold defines this target through the displayed formula and required inputs; eligibility is separately based on each input's source-checked legacy route.",
+      "question_consistency_group": "DEV02_OPENAI_SIGN_CONVENTION",
+      "question_id": "DEV02",
+      "required_input_ids": [
+        "NF005",
+        "NF006",
+        "NF007",
+        "NF008"
+      ],
+      "role": "answer",
+      "source_accessions": [
+        "0001193125-26-323632"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0015",
+          "reference_id": "NDU005",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF005"
+        },
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "2",
+          "provenance_id": "PR0016",
+          "reference_id": "NDU005",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF006"
+        },
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "3",
+          "provenance_id": "PR0017",
+          "reference_id": "NDU005",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF007"
+        },
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "4",
+          "provenance_id": "PR0018",
+          "reference_id": "NDU005",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF008"
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001193125-26-323632"
+      ],
+      "stage_completion": {
+        "stage1": "not_applicable",
+        "stage2": "not_applicable",
+        "stage3": "not_applicable"
+      },
+      "target_id": "NF011",
+      "target_kind": "derived",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY25Q4_to_FY26Q4"
+      },
+      "variant_family": "V1_GAAP_MINUS_NON_GAAP",
+      "variant_group": "V1"
+    },
+    {
+      "anchor_logic": "OR",
+      "answer_group": null,
+      "approved_chunk_ids": [
+        "10daa5bc9323d8f6"
+      ],
+      "candidates": [
+        {
+          "candidate_comparison_value": "541000000",
+          "candidate_id": "XBRLCAND-64c41d8cf6d297f8",
+          "candidate_stage": 1,
+          "canonical_unit": "USD",
+          "comparison_dimension": "monetary",
+          "concept_relation": "same_exact_concept",
+          "fact": {
+            "accession": "0001628280-26-028526",
+            "calendar_period": "2026Q1",
+            "chunk_id": "10daa5bc9323d8f6",
+            "cik": "1326801",
+            "company": "Meta",
+            "concept": "us-gaap:IncomeTaxesPaidNet",
+            "context_ref": "c-1",
+            "decimals": "-6",
+            "dimensions": [],
+            "doc_id": "META_2026Q1_10Q",
+            "doc_role": "primary",
+            "duration_days": 90,
+            "entity_identifier": "0001326801",
+            "entity_scheme": "http://www.sec.gov/CIK",
+            "fact_id": "f-258",
+            "fact_locator": "META_2026Q1_10Q#f-258",
+            "filing_date": "2026-04-30",
+            "filing_fiscal_period": "2026Q1",
+            "form_type": "10-Q",
+            "instant": null,
+            "is_negative": false,
+            "local_name": "IncomeTaxesPaidNet",
+            "namespace_prefix": "us-gaap",
+            "normalized_value": "541000000",
+            "period_end": "2026-03-31",
+            "period_of_report": "2026-03-31",
+            "period_start": "2026-01-01",
+            "period_type": "duration",
+            "raw_unit_alias_rule_id": "raw_xbrl_usd_v0.1",
+            "raw_unit_label": "USD",
+            "raw_value": "541",
+            "scale": 6,
+            "sign": null,
+            "source_role": "benchmark_period",
+            "stable_fact_id": "META_2026Q1_10Q::f-258",
+            "unit": "usd",
+            "unit_denominator": [],
+            "unit_measures": [
+              "iso4217:USD"
+            ],
+            "unit_numerator": []
+          },
+          "fact_locator": "META_2026Q1_10Q#f-258",
+          "generation_reason": "Authoritative fact chunk_id intersects approved gold chunk provenance; entity, frozen unit comparison, precision, and sign-generation predicates passed.",
+          "generation_rule_id": "stage1_direct_chunk_link_v0.1",
+          "gold_comparison_value": "541000000",
+          "human_review_notes": "",
+          "human_review_status": "",
+          "initial_source_check_status": "SOURCE_CHECK_UNRESOLVED",
+          "numeric_relation": "signed_equivalent",
+          "parent_candidate_id": null,
+          "parent_source_check_status": null,
+          "precision_rule_id": "precision_rounding_quantum_v0.1",
+          "proposed_sign_relationship": "same_sign",
+          "reference_unit_label": "USD",
+          "source_check_evidence": "META 2026 Q1 10-Q accession 0001628280-26-028526; context c-1; 2026-01-01/2026-03-31; approved chunk 10daa5bc9323d8f6 row 'Cash paid for income taxes, net'; inline fact f-258.",
+          "source_check_rationale": "Entity/CIK, IncomeTaxesPaidNet concept, positive 541 USD million quantity, registered USD conversion, nearest-million precision, cash-tax basis, three-month duration, empty dimensions, current-period filing role, chunk linkage, and authoritative fact identity all agree; the fact is the same economic target.",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "submitted_unit_label": "USD_million",
+          "target_id": "NF012",
+          "unit_equivalence_rule_id": "raw_xbrl_usd_v0.1",
+          "unit_match_status": "registered_equivalence"
+        }
+      ],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "Meta",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": null,
+      "gold_basis": "cash_paid_for_income_taxes_net",
+      "gold_display_sign": "positive",
+      "gold_locator": "10-Q; supplemental cash flow data",
+      "gold_normalization": {
+        "canonical_unit": "USD",
+        "canonical_value": "541000000",
+        "dimension": "monetary",
+        "normalization_rule_id": "monetary_usd_million_to_usd_v0.1",
+        "submitted_unit": "USD_million",
+        "submitted_value": "541",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "Q1 cash taxes paid net.",
+      "gold_period_label": "2026Q1_three_months",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_million",
+      "gold_value": "541",
+      "gold_xbrl_concept": "us-gaap:IncomeTaxesPaidNet",
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [
+        {
+          "accession": "0001628280-26-028526",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q1",
+          "chunk_id": "10daa5bc9323d8f6",
+          "company": "Meta",
+          "doc_id": "META_2026Q1_10Q",
+          "fiscal_period": "2026Q1",
+          "form": "10-Q",
+          "locator": "10-Q; supplemental cash flow data",
+          "reference_id": "NCR007",
+          "source_check_status": "SOURCE_CHECK_PASS"
+        }
+      ],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "540500000",
+          "lower_inclusive": false,
+          "upper": "541500000",
+          "upper_inclusive": false
+        },
+        "canonical_quantum": "1000000",
+        "canonical_unit": "USD",
+        "comparison_gold_value": "541000000",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "1",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "0"
+      },
+      "proposed_target_status": "PROPOSED_MAPPED",
+      "proposed_target_status_rationale": "At least one generated candidate has SOURCE_CHECK_PASS; human adjudication remains blank.",
+      "question_consistency_group": null,
+      "question_id": "DEV03",
+      "required_input_ids": [],
+      "role": "input",
+      "source_accessions": [
+        "0001628280-26-028526"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001628280-26-028526",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q1",
+          "chunk_id": "10daa5bc9323d8f6",
+          "company": "Meta",
+          "doc_id": "META_2026Q1_10Q",
+          "fiscal_period": "2026Q1",
+          "form": "10-Q",
+          "locator": "10-Q; supplemental cash flow data",
+          "member_index": "1",
+          "provenance_id": "PR0019",
+          "reference_id": "NCR007",
+          "reference_kind": "direct_candidate",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": null
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001628280-26-028526"
+      ],
+      "stage_completion": {
+        "stage1": "completed",
+        "stage2": "completed",
+        "stage3": "not_applicable_target_resolved_by_passing_candidate"
+      },
+      "target_id": "NF012",
+      "target_kind": "direct",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "2026Q1_three_months"
+      },
+      "variant_family": null,
+      "variant_group": null
+    },
+    {
+      "anchor_logic": "OR",
+      "answer_group": null,
+      "approved_chunk_ids": [
+        "7f60f540623c11ab"
+      ],
+      "candidates": [
+        {
+          "candidate_comparison_value": "1999000000",
+          "candidate_id": "XBRLCAND-7c4b2618999be1ab",
+          "candidate_stage": 1,
+          "canonical_unit": "USD",
+          "comparison_dimension": "monetary",
+          "concept_relation": "same_exact_concept",
+          "fact": {
+            "accession": "0001628280-26-050705",
+            "calendar_period": "2026Q2",
+            "chunk_id": "7f60f540623c11ab",
+            "cik": "1326801",
+            "company": "Meta",
+            "concept": "us-gaap:IncomeTaxesPaidNet",
+            "context_ref": "c-1",
+            "decimals": "-6",
+            "dimensions": [],
+            "doc_id": "META_2026Q2_10Q",
+            "doc_role": "primary",
+            "duration_days": 181,
+            "entity_identifier": "0001326801",
+            "entity_scheme": "http://www.sec.gov/CIK",
+            "fact_id": "f-351",
+            "fact_locator": "META_2026Q2_10Q#f-351",
+            "filing_date": "2026-07-30",
+            "filing_fiscal_period": "2026Q2",
+            "form_type": "10-Q",
+            "instant": null,
+            "is_negative": false,
+            "local_name": "IncomeTaxesPaidNet",
+            "namespace_prefix": "us-gaap",
+            "normalized_value": "1999000000",
+            "period_end": "2026-06-30",
+            "period_of_report": "2026-06-30",
+            "period_start": "2026-01-01",
+            "period_type": "duration",
+            "raw_unit_alias_rule_id": "raw_xbrl_usd_v0.1",
+            "raw_unit_label": "USD",
+            "raw_value": "1,999",
+            "scale": 6,
+            "sign": null,
+            "source_role": "benchmark_period",
+            "stable_fact_id": "META_2026Q2_10Q::f-351",
+            "unit": "usd",
+            "unit_denominator": [],
+            "unit_measures": [
+              "iso4217:USD"
+            ],
+            "unit_numerator": []
+          },
+          "fact_locator": "META_2026Q2_10Q#f-351",
+          "generation_reason": "Authoritative fact chunk_id intersects approved gold chunk provenance; entity, frozen unit comparison, precision, and sign-generation predicates passed.",
+          "generation_rule_id": "stage1_direct_chunk_link_v0.1",
+          "gold_comparison_value": "1999000000",
+          "human_review_notes": "",
+          "human_review_status": "",
+          "initial_source_check_status": "SOURCE_CHECK_UNRESOLVED",
+          "numeric_relation": "signed_equivalent",
+          "parent_candidate_id": null,
+          "parent_source_check_status": null,
+          "precision_rule_id": "precision_rounding_quantum_v0.1",
+          "proposed_sign_relationship": "same_sign",
+          "reference_unit_label": "USD",
+          "source_check_evidence": "META 2026 Q2 10-Q accession 0001628280-26-050705; context c-1; 2026-01-01/2026-06-30; approved chunk 7f60f540623c11ab row 'Cash paid for income taxes, net'; inline fact f-351.",
+          "source_check_rationale": "Entity/CIK, IncomeTaxesPaidNet concept, positive 1,999 USD million quantity, registered USD conversion, nearest-million precision, cash-tax basis, six-month YTD duration, empty dimensions, current-period filing role, chunk linkage, and authoritative fact identity all agree; the fact is the same economic target.",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "submitted_unit_label": "USD_million",
+          "target_id": "NF013",
+          "unit_equivalence_rule_id": "raw_xbrl_usd_v0.1",
+          "unit_match_status": "registered_equivalence"
+        }
+      ],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "Meta",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": null,
+      "gold_basis": "cash_paid_for_income_taxes_net",
+      "gold_display_sign": "positive",
+      "gold_locator": "10-Q; supplemental cash flow data",
+      "gold_normalization": {
+        "canonical_unit": "USD",
+        "canonical_value": "1999000000",
+        "dimension": "monetary",
+        "normalization_rule_id": "monetary_usd_million_to_usd_v0.1",
+        "submitted_unit": "USD_million",
+        "submitted_value": "1999",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "H1 cumulative cash taxes paid net; not the Q2-only answer.",
+      "gold_period_label": "2026H1_six_months_YTD",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_million",
+      "gold_value": "1999",
+      "gold_xbrl_concept": "us-gaap:IncomeTaxesPaidNet",
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [
+        {
+          "accession": "0001628280-26-050705",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "7f60f540623c11ab",
+          "company": "Meta",
+          "doc_id": "META_2026Q2_10Q",
+          "fiscal_period": "2026Q2",
+          "form": "10-Q",
+          "locator": "10-Q; supplemental cash flow data",
+          "reference_id": "NCR008",
+          "source_check_status": "SOURCE_CHECK_PASS"
+        }
+      ],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "1998500000",
+          "lower_inclusive": false,
+          "upper": "1999500000",
+          "upper_inclusive": false
+        },
+        "canonical_quantum": "1000000",
+        "canonical_unit": "USD",
+        "comparison_gold_value": "1999000000",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "1",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "0"
+      },
+      "proposed_target_status": "PROPOSED_MAPPED",
+      "proposed_target_status_rationale": "At least one generated candidate has SOURCE_CHECK_PASS; human adjudication remains blank.",
+      "question_consistency_group": null,
+      "question_id": "DEV03",
+      "required_input_ids": [],
+      "role": "input",
+      "source_accessions": [
+        "0001628280-26-050705"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001628280-26-050705",
+          "audit_note": "Direct fact source checked for value, unit, basis, sign, and period.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "7f60f540623c11ab",
+          "company": "Meta",
+          "doc_id": "META_2026Q2_10Q",
+          "fiscal_period": "2026Q2",
+          "form": "10-Q",
+          "locator": "10-Q; supplemental cash flow data",
+          "member_index": "1",
+          "provenance_id": "PR0020",
+          "reference_id": "NCR008",
+          "reference_kind": "direct_candidate",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": null
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001628280-26-050705"
+      ],
+      "stage_completion": {
+        "stage1": "completed",
+        "stage2": "completed",
+        "stage3": "not_applicable_target_resolved_by_passing_candidate"
+      },
+      "target_id": "NF013",
+      "target_kind": "direct",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "2026H1_six_months_YTD"
+      },
+      "variant_family": null,
+      "variant_group": null
+    },
+    {
+      "anchor_logic": "AND",
+      "answer_group": "G1",
+      "approved_chunk_ids": [
+        "10daa5bc9323d8f6",
+        "7f60f540623c11ab"
+      ],
+      "candidates": [],
+      "derived_grounding_eligibility": "eligible_via_independently_source_checked_legacy_inputs",
+      "derived_input_lineage": [
+        {
+          "input_target_id": "NF012",
+          "legacy_chunk_ids": [
+            "10daa5bc9323d8f6"
+          ],
+          "legacy_provenance_ids": [
+            "NCR007"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_MAPPED"
+        },
+        {
+          "input_target_id": "NF013",
+          "legacy_chunk_ids": [
+            "7f60f540623c11ab"
+          ],
+          "legacy_provenance_ids": [
+            "NCR008"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_MAPPED"
+        }
+      ],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "Meta",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": "NF013-NF012",
+      "gold_basis": "cash_paid_for_income_taxes_net",
+      "gold_display_sign": "positive",
+      "gold_locator": "10-Q; supplemental cash flow data",
+      "gold_normalization": {
+        "canonical_unit": "USD",
+        "canonical_value": "1458000000",
+        "dimension": "monetary",
+        "normalization_rule_id": "monetary_usd_million_to_usd_v0.1",
+        "submitted_unit": "USD_million",
+        "submitted_value": "1458",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "Derived Q2-only value from H1 YTD less Q1.",
+      "gold_period_label": "2026Q2_single_quarter",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_million",
+      "gold_value": "1458",
+      "gold_xbrl_concept": "us-gaap:IncomeTaxesPaidNet",
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "1457500000",
+          "lower_inclusive": true,
+          "upper": "1458500000",
+          "upper_inclusive": true
+        },
+        "canonical_quantum": "1000000",
+        "canonical_unit": "USD",
+        "comparison_gold_value": "1458000000",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "1",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "0"
+      },
+      "proposed_target_status": "PROPOSED_DERIVED_VIA_INPUTS",
+      "proposed_target_status_rationale": "Frozen gold defines this target through the displayed formula and required inputs; eligibility is separately based on each input's source-checked legacy route.",
+      "question_consistency_group": null,
+      "question_id": "DEV03",
+      "required_input_ids": [
+        "NF012",
+        "NF013"
+      ],
+      "role": "answer",
+      "source_accessions": [
+        "0001628280-26-028526",
+        "0001628280-26-050705"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001628280-26-028526",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q1",
+          "chunk_id": "10daa5bc9323d8f6",
+          "company": "Meta",
+          "doc_id": "META_2026Q1_10Q",
+          "fiscal_period": "2026Q1",
+          "form": "10-Q",
+          "locator": "10-Q; supplemental cash flow data",
+          "member_index": "1",
+          "provenance_id": "PR0021",
+          "reference_id": "NDU006",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF012"
+        },
+        {
+          "accession": "0001628280-26-050705",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "7f60f540623c11ab",
+          "company": "Meta",
+          "doc_id": "META_2026Q2_10Q",
+          "fiscal_period": "2026Q2",
+          "form": "10-Q",
+          "locator": "10-Q; supplemental cash flow data",
+          "member_index": "2",
+          "provenance_id": "PR0022",
+          "reference_id": "NDU006",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF013"
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001628280-26-028526",
+        "0001628280-26-050705"
+      ],
+      "stage_completion": {
+        "stage1": "not_applicable",
+        "stage2": "not_applicable",
+        "stage3": "not_applicable"
+      },
+      "target_id": "NF014",
+      "target_kind": "derived",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "2026Q2_single_quarter"
+      },
+      "variant_family": null,
+      "variant_group": "V1"
+    },
+    {
+      "anchor_logic": "OR",
+      "answer_group": "G1",
+      "approved_chunk_ids": [
+        "caedf248cf5435a3"
+      ],
+      "candidates": [],
+      "derived_grounding_eligibility": "eligible_via_independently_source_checked_legacy_inputs",
+      "derived_input_lineage": [
+        {
+          "input_target_id": "NF005",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR003"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        },
+        {
+          "input_target_id": "NF006",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR004"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        }
+      ],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "Microsoft",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": "NF006-NF005",
+      "gold_basis": "company_reported_adjustment_column_non_GAAP_minus_GAAP_OpenAI_impact",
+      "gold_display_sign": "negative",
+      "gold_locator": "Exhibit 99.1; OpenAI reconciliation",
+      "gold_normalization": {
+        "canonical_unit": "USD_per_share",
+        "canonical_value": "-0.07",
+        "dimension": "monetary_per_share",
+        "normalization_rule_id": "usd_per_diluted_share_alias_v0.1",
+        "submitted_unit": "USD_per_diluted_share",
+        "submitted_value": "-0.07",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "Accepted V2 because the Chinese question is neutral about subtraction direction; this distinct basis matches the company's displayed adjustment column.",
+      "gold_period_label": "FY26Q4_single_quarter",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_per_diluted_share",
+      "gold_value": "-0.07",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD_per_share",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "-0.075",
+          "lower_inclusive": false,
+          "upper": "-0.065",
+          "upper_inclusive": false
+        },
+        "canonical_quantum": "0.01",
+        "canonical_unit": "USD_per_share",
+        "comparison_gold_value": "-0.07",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "0.01",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "2"
+      },
+      "proposed_target_status": "PROPOSED_DERIVED_VIA_INPUTS",
+      "proposed_target_status_rationale": "Frozen gold defines this target through the displayed formula and required inputs; eligibility is separately based on each input's source-checked legacy route.",
+      "question_consistency_group": "DEV02_OPENAI_SIGN_CONVENTION",
+      "question_id": "DEV02",
+      "required_input_ids": [
+        "NF005",
+        "NF006"
+      ],
+      "role": "answer",
+      "source_accessions": [
+        "0001193125-26-323632"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact under this variant's explicit basis.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0109",
+          "reference_id": "NDU007",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF005"
+        },
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact under this variant's explicit basis.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "2",
+          "provenance_id": "PR0110",
+          "reference_id": "NDU007",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF006"
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001193125-26-323632"
+      ],
+      "stage_completion": {
+        "stage1": "not_applicable",
+        "stage2": "not_applicable",
+        "stage3": "not_applicable"
+      },
+      "target_id": "NF015",
+      "target_kind": "derived",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY26Q4_single_quarter"
+      },
+      "variant_family": "V2_COMPANY_REPORTED_ADJUSTMENT_COLUMN",
+      "variant_group": "V2"
+    },
+    {
+      "anchor_logic": "OR",
+      "answer_group": "G2",
+      "approved_chunk_ids": [
+        "caedf248cf5435a3"
+      ],
+      "candidates": [],
+      "derived_grounding_eligibility": "eligible_via_independently_source_checked_legacy_inputs",
+      "derived_input_lineage": [
+        {
+          "input_target_id": "NF007",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR005"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        },
+        {
+          "input_target_id": "NF008",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR006"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        }
+      ],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "Microsoft",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": "NF008-NF007",
+      "gold_basis": "company_reported_adjustment_column_non_GAAP_minus_GAAP_OpenAI_impact",
+      "gold_display_sign": "positive",
+      "gold_locator": "Exhibit 99.1; OpenAI reconciliation",
+      "gold_normalization": {
+        "canonical_unit": "USD_per_share",
+        "canonical_value": "0.21",
+        "dimension": "monetary_per_share",
+        "normalization_rule_id": "usd_per_diluted_share_alias_v0.1",
+        "submitted_unit": "USD_per_diluted_share",
+        "submitted_value": "0.21",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "Accepted V2 because the Chinese question is neutral about subtraction direction; this distinct basis matches the company's displayed adjustment column.",
+      "gold_period_label": "FY25Q4_single_quarter",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_per_diluted_share",
+      "gold_value": "0.21",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD_per_share",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "0.205",
+          "lower_inclusive": false,
+          "upper": "0.215",
+          "upper_inclusive": false
+        },
+        "canonical_quantum": "0.01",
+        "canonical_unit": "USD_per_share",
+        "comparison_gold_value": "0.21",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "0.01",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "2"
+      },
+      "proposed_target_status": "PROPOSED_DERIVED_VIA_INPUTS",
+      "proposed_target_status_rationale": "Frozen gold defines this target through the displayed formula and required inputs; eligibility is separately based on each input's source-checked legacy route.",
+      "question_consistency_group": "DEV02_OPENAI_SIGN_CONVENTION",
+      "question_id": "DEV02",
+      "required_input_ids": [
+        "NF007",
+        "NF008"
+      ],
+      "role": "answer",
+      "source_accessions": [
+        "0001193125-26-323632"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact under this variant's explicit basis.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0111",
+          "reference_id": "NDU008",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF007"
+        },
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact under this variant's explicit basis.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "2",
+          "provenance_id": "PR0112",
+          "reference_id": "NDU008",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF008"
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001193125-26-323632"
+      ],
+      "stage_completion": {
+        "stage1": "not_applicable",
+        "stage2": "not_applicable",
+        "stage3": "not_applicable"
+      },
+      "target_id": "NF016",
+      "target_kind": "derived",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY25Q4_single_quarter"
+      },
+      "variant_family": "V2_COMPANY_REPORTED_ADJUSTMENT_COLUMN",
+      "variant_group": "V2"
+    },
+    {
+      "anchor_logic": "OR",
+      "answer_group": "G3",
+      "approved_chunk_ids": [
+        "caedf248cf5435a3"
+      ],
+      "candidates": [],
+      "derived_grounding_eligibility": "eligible_via_independently_source_checked_legacy_inputs",
+      "derived_input_lineage": [
+        {
+          "input_target_id": "NF005",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR003"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        },
+        {
+          "input_target_id": "NF006",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR004"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        },
+        {
+          "input_target_id": "NF007",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR005"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        },
+        {
+          "input_target_id": "NF008",
+          "legacy_chunk_ids": [
+            "caedf248cf5435a3"
+          ],
+          "legacy_provenance_ids": [
+            "NCR006"
+          ],
+          "legacy_source_check_status": "SOURCE_CHECK_PASS",
+          "provenance_route": "legacy_chunk_path",
+          "support_status": "adjudicable_supported",
+          "xbrl_proposed_status": "PROPOSED_UNMAPPABLE"
+        }
+      ],
+      "dimensional_requirement": {
+        "availability": "unavailable",
+        "missing_metadata": "target axis/member requirements are not fields in frozen DEV numeric gold"
+      },
+      "entity_cik": null,
+      "entity_company": "Microsoft",
+      "entity_metadata_note": "CIK is absent from frozen DEV numeric gold; company is preserved from frozen provenance.",
+      "formula": "(NF006-NF005)-(NF008-NF007)",
+      "gold_basis": "change_in_company_reported_adjustment_column_OpenAI_impact",
+      "gold_display_sign": "negative",
+      "gold_locator": "Exhibit 99.1; OpenAI reconciliation",
+      "gold_normalization": {
+        "canonical_unit": "USD_per_share",
+        "canonical_value": "-0.28",
+        "dimension": "monetary_per_share",
+        "normalization_rule_id": "usd_per_diluted_share_alias_v0.1",
+        "submitted_unit": "USD_per_diluted_share",
+        "submitted_value": "-0.28",
+        "unit_match_status": "registered"
+      },
+      "gold_notes": "Accepted V2 under the company's displayed adjustment-column convention; never interchangeable with V1's GAAP-minus-non-GAAP basis label.",
+      "gold_period_label": "FY25Q4_to_FY26Q4",
+      "gold_sign_basis": "economic_signed_value",
+      "gold_unit": "USD_per_diluted_share",
+      "gold_value": "-0.28",
+      "gold_xbrl_concept": null,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "legacy_source_paths": [],
+      "missing_required_mapping_metadata": [
+        "exact_temporal_requirement",
+        "target_dimensional_requirement",
+        "entity_cik"
+      ],
+      "precision": {
+        "canonical_comparison_interval": {
+          "canonical_unit": "USD_per_share",
+          "comparison_unit_basis": "registered_canonical",
+          "lower": "-0.285",
+          "lower_inclusive": true,
+          "upper": "-0.275",
+          "upper_inclusive": true
+        },
+        "canonical_quantum": "0.01",
+        "canonical_unit": "USD_per_share",
+        "comparison_gold_value": "-0.28",
+        "comparison_unit_basis": "registered_canonical",
+        "quantum": "0.01",
+        "rounding_mode": "ROUND_HALF_EVEN",
+        "rule_id": "precision_rounding_quantum_v0.1",
+        "rule_source": "benchmark/dev/v0.1/numeric_answers.csv:display_precision",
+        "source_precision_text": "2"
+      },
+      "proposed_target_status": "PROPOSED_DERIVED_VIA_INPUTS",
+      "proposed_target_status_rationale": "Frozen gold defines this target through the displayed formula and required inputs; eligibility is separately based on each input's source-checked legacy route.",
+      "question_consistency_group": "DEV02_OPENAI_SIGN_CONVENTION",
+      "question_id": "DEV02",
+      "required_input_ids": [
+        "NF005",
+        "NF006",
+        "NF007",
+        "NF008"
+      ],
+      "role": "answer",
+      "source_accessions": [
+        "0001193125-26-323632"
+      ],
+      "source_provenance": [
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact under this variant's explicit basis.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "1",
+          "provenance_id": "PR0113",
+          "reference_id": "NDU009",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF005"
+        },
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact under this variant's explicit basis.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "2",
+          "provenance_id": "PR0114",
+          "reference_id": "NDU009",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF006"
+        },
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact under this variant's explicit basis.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "3",
+          "provenance_id": "PR0115",
+          "reference_id": "NDU009",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF007"
+        },
+        {
+          "accession": "0001193125-26-323632",
+          "audit_note": "Non-candidate lineage member; derived scoring requires every declared input fact under this variant's explicit basis.",
+          "calendar_period": "2026Q2",
+          "chunk_id": "caedf248cf5435a3",
+          "company": "Microsoft",
+          "doc_id": "MSFT_FY26Q4_8K_EX991",
+          "fiscal_period": "FY26Q4",
+          "form": "8-K",
+          "locator": "Exhibit 99.1; OpenAI reconciliation",
+          "member_index": "4",
+          "provenance_id": "PR0116",
+          "reference_id": "NDU009",
+          "reference_kind": "derived_input_union",
+          "source_check_status": "SOURCE_CHECK_PASS",
+          "via_input_fact_id": "NF008"
+        }
+      ],
+      "stage3_eligible_accessions": [
+        "0001193125-26-323632"
+      ],
+      "stage_completion": {
+        "stage1": "not_applicable",
+        "stage2": "not_applicable",
+        "stage3": "not_applicable"
+      },
+      "target_id": "NF017",
+      "target_kind": "derived",
+      "temporal_requirement": {
+        "kind": "unresolved",
+        "missing_metadata": "exact instant or duration dates are not fields in frozen DEV numeric gold",
+        "source_period_label": "FY25Q4_to_FY26Q4"
+      },
+      "variant_family": "V2_COMPANY_REPORTED_ADJUSTMENT_COLUMN",
+      "variant_group": "V2"
+    }
+  ],
+  "xbrl_artifact_fingerprint": "acaf087ee2c4fb7427377cae5f1968da26c75d4dfa565f67f1e056b2c4cc4eb6"
+}

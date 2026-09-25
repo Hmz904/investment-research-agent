@@ -1,0 +1,4 @@
+unit_label,classification,target_count,target_ids,dimension,canonical_unit,factor,frozen_registry_rule_id,required_contract_revision
+USD_million,registered,6,NF001;NF002;NF003;NF012;NF013;NF014,monetary,USD,1000000,monetary_usd_million_to_usd_v0.1,
+USD_per_diluted_share,registered,10,NF005;NF006;NF007;NF008;NF009;NF010;NF011;NF015;NF016;NF017,monetary_per_share,USD_per_share,1,usd_per_diluted_share_alias_v0.1,
+percent,registered,1,NF004,ratio,pure,0.01,ratio_percent_to_pure_v0.1,

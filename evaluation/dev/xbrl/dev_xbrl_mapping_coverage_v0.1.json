@@ -1,0 +1,78 @@
+{
+  "candidate_artifact_sha256": "2816b480f73f13d9490b4c75b758dbb60d36b295d6f618943b72a2681b7aad56",
+  "candidate_human_adjudications_required": 2,
+  "derived_lineage_recommendations_to_review": 9,
+  "derived_targets": 9,
+  "dev_numeric_targets": 17,
+  "direct_target_recommendations_to_review": 8,
+  "direct_targets": 8,
+  "distinct_dev_unit_labels": [
+    "USD_million",
+    "USD_per_diluted_share",
+    "percent"
+  ],
+  "distinct_dev_units": 3,
+  "human_review_packet_rows": 17,
+  "no_candidate_target_ids": [
+    "NF001",
+    "NF002",
+    "NF005",
+    "NF006",
+    "NF007",
+    "NF008"
+  ],
+  "passing_candidate_target_ids": [
+    "NF012",
+    "NF013"
+  ],
+  "proposed_no_xbrl_target_ids": [],
+  "proposed_unmappable_target_ids": [
+    "NF001",
+    "NF002",
+    "NF005",
+    "NF006",
+    "NF007",
+    "NF008"
+  ],
+  "provisional_target_status_counts": {
+    "PROPOSED_DERIVED_VIA_INPUTS": 9,
+    "PROPOSED_MAPPED": 2,
+    "PROPOSED_UNMAPPABLE": 6
+  },
+  "review_packet_sha256": "1fcc56252dff3460717703e63dadc4b4a978bf9e335bd9fef517e8f7e1489bcd",
+  "schema_version": "dev_xbrl_mapping_coverage_v0.1",
+  "stage3_blocked_missing_required_metadata_targets": [
+    "NF001",
+    "NF002",
+    "NF005",
+    "NF006",
+    "NF007",
+    "NF008"
+  ],
+  "stages": {
+    "stage1": {
+      "SOURCE_CHECK_PASS": 2,
+      "SOURCE_CHECK_REJECT": 0,
+      "SOURCE_CHECK_UNRESOLVED": 0,
+      "candidate_count": 2
+    },
+    "stage2": {
+      "SOURCE_CHECK_PASS": 0,
+      "SOURCE_CHECK_REJECT": 0,
+      "SOURCE_CHECK_UNRESOLVED": 0,
+      "candidate_count": 0
+    },
+    "stage3": {
+      "SOURCE_CHECK_PASS": 0,
+      "SOURCE_CHECK_REJECT": 0,
+      "SOURCE_CHECK_UNRESOLVED": 0,
+      "candidate_count": 0
+    }
+  },
+  "targets_with_at_least_one_passing_candidate": 2,
+  "targets_with_no_candidate": 6,
+  "targets_with_unresolved_candidates": 0,
+  "unlinked_xbrl_fact_locators": [],
+  "unlinked_xbrl_facts_surfaced_for_review": 0,
+  "unresolved_candidate_target_ids": []
+}
