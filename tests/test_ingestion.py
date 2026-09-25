@@ -9,6 +9,8 @@ from __future__ import annotations
 import json
 import re
 import hashlib
+import inspect
+import shutil
 from pathlib import Path
 from typing import Any, Iterator
 
@@ -37,6 +39,33 @@ def _load_json(path: Path) -> Any:
 
 def _manifest_entries() -> list[dict[str, Any]]:
     return _load_json(DATA / "manifest.json")["entries"]
+
+
+def _isolated_data_tree(tmp_path: Path) -> tuple[Path, set[Path]]:
+    """Copy the corpus raw inputs without following manifest-local absolute paths."""
+    source_manifest = _load_json(DATA / "manifest.json")
+    isolated_data = tmp_path / "data"
+    isolated_raw = isolated_data / "raw"
+    isolated_raw.mkdir(parents=True)
+
+    external_data_roots = {DATA.resolve()}
+    for entry in source_manifest["entries"]:
+        recorded_path = Path(entry["local_path"])
+        assert recorded_path.is_absolute()
+        external_data_roots.add(recorded_path.parent.parent)
+
+        source_raw = (DATA / "raw" / recorded_path.name).resolve()
+        assert source_raw.is_relative_to((DATA / "raw").resolve())
+        assert source_raw.is_file()
+        temporary_raw = isolated_raw / source_raw.name
+        shutil.copyfile(source_raw, temporary_raw)
+        entry["local_path"] = str(temporary_raw)
+
+    (isolated_data / "manifest.json").write_text(
+        json.dumps(source_manifest, indent=2, sort_keys=True),
+        encoding="utf-8",
+    )
+    return isolated_data, external_data_roots
 
 
 def _blocks(doc_id: str) -> list[dict[str, Any]]:
@@ -158,9 +187,23 @@ def test_f_meta_2026q2_free_cash_flow_cells() -> None:
     assert cells["8,549"]["period_end"] == "2025-06-30"
 
 
-def test_g_corpus_integrity_and_second_run_reuse() -> None:
-    manifest = _load_json(DATA / "manifest.json")
-    entries = _manifest_entries()
+def test_g_corpus_integrity_and_second_run_reuse(tmp_path: Path) -> None:
+    isolated_data, external_data_roots = _isolated_data_tree(tmp_path)
+    seed_entries = _load_json(isolated_data / "manifest.json")["entries"]
+    temporary_root = tmp_path.resolve()
+    for entry in seed_entries:
+        raw_path = Path(entry["local_path"]).resolve()
+        assert raw_path.is_relative_to(temporary_root)
+        assert all(not raw_path.is_relative_to(root) for root in external_data_roots)
+
+    from src.pipeline import run
+
+    first_summary = run(data_dir=isolated_data)
+    assert first_summary["downloaded_raw_files"] == 0
+    assert first_summary["reused_raw_files"] == 14
+
+    manifest = _load_json(isolated_data / "manifest.json")
+    entries = manifest["entries"]
     assert len(entries) == 14
     assert len({e["doc_id"] for e in entries}) == 14
     assert len({e["accession"] for e in entries}) == 14
@@ -168,23 +211,78 @@ def test_g_corpus_integrity_and_second_run_reuse() -> None:
     assert sum(1 for e in entries if e["source_role"] == "historical_reference") == 2
 
     for entry in entries:
-        raw_path = Path(entry["local_path"])
+        raw_path = Path(entry["local_path"]).resolve()
+        assert raw_path.is_relative_to(temporary_root)
+        assert all(not raw_path.is_relative_to(root) for root in external_data_roots)
         assert raw_path.exists()
         actual_sha = hashlib.sha256(raw_path.read_bytes()).hexdigest()
         assert actual_sha == entry["sha256"] == entry["raw_sha256"]
-        parsed_path = DATA / "parsed" / f"{entry['doc_id']}.json"
-        chunk_path = DATA / "chunks" / f"{entry['doc_id']}.json"
+        parsed_path = isolated_data / "parsed" / f"{entry['doc_id']}.json"
+        chunk_path = isolated_data / "chunks" / f"{entry['doc_id']}.json"
         assert hashlib.sha256(parsed_path.read_bytes()).hexdigest() == entry["parsed_sha256"]
         assert hashlib.sha256(chunk_path.read_bytes()).hexdigest() == entry["chunk_sha256"]
 
     assert manifest["ingestion_schema_version"] == INGESTION_SCHEMA_VERSION
     assert manifest["corpus_fingerprint"] == corpus_fingerprint(entries)
 
-    from src.pipeline import run
+    second_summary = run(data_dir=isolated_data)
+    assert second_summary["downloaded_raw_files"] == 0
+    assert second_summary["reused_raw_files"] == 14
+    assert second_summary["corpus_fingerprint"] == first_summary["corpus_fingerprint"]
 
-    summary = run()
-    assert summary["downloaded_raw_files"] == 0
-    assert summary["reused_raw_files"] == 14
+
+def test_pipeline_data_dir_override_and_default_interface(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import src.pipeline as pipeline
+
+    canonical_manifest_before = (DATA / "manifest.json").read_bytes()
+    default_data = tmp_path / "default-data"
+    explicit_data = tmp_path / "explicit-data"
+    raw_path = explicit_data / "raw" / "ISOLATION_FIXTURE.htm"
+    raw_path.parent.mkdir(parents=True)
+    raw_body = b"<html><body><p>isolated fixture</p></body></html>"
+    raw_path.write_bytes(raw_body)
+    source = {
+        "doc_id": "ISOLATION_FIXTURE",
+        "accession": "fixture-accession",
+        "source_role": "fixture",
+        "doc_role": "primary",
+        "exhibit_number": "",
+    }
+    seed_entry = {
+        **source,
+        "sha256": hashlib.sha256(raw_body).hexdigest(),
+        "local_path": str(raw_path),
+        "content_type": "text/html",
+    }
+    (explicit_data / "manifest.json").write_text(
+        json.dumps({"entries": [seed_entry]}),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(pipeline, "DATA_DIR", default_data)
+    monkeypatch.setattr(pipeline, "SOURCES", [source])
+    summary = pipeline.run(data_dir=explicit_data)
+
+    assert summary["reused_raw_files"] == 1
+    assert (explicit_data / "manifest.json").is_file()
+    assert (explicit_data / "parsed" / "ISOLATION_FIXTURE.json").is_file()
+    assert (explicit_data / "chunks" / "ISOLATION_FIXTURE.json").is_file()
+    assert not default_data.exists()
+    assert (DATA / "manifest.json").read_bytes() == canonical_manifest_before
+
+    signature = inspect.signature(pipeline.run)
+    assert signature.parameters["data_dir"].default is None
+    assert signature.parameters["data_dir"].kind is inspect.Parameter.KEYWORD_ONLY
+
+    monkeypatch.setattr(pipeline, "SOURCES", [])
+    pipeline.run()
+    assert (default_data / "manifest.json").is_file()
+    assert (default_data / "raw").is_dir()
+    assert (default_data / "parsed").is_dir()
+    assert (default_data / "chunks").is_dir()
+    assert (DATA / "manifest.json").read_bytes() == canonical_manifest_before
 
 
 def test_msft_cash_ppe_table_and_xbrl_paths_are_consistent() -> None:

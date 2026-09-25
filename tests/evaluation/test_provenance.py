@@ -12,6 +12,9 @@ import pytest
 from evaluation import build_provenance_repair_packet, provenance
 
 
+pytestmark = pytest.mark.locked_test_data
+
+
 ROOT = Path(__file__).resolve().parents[2]
 PROV = ROOT / "benchmark" / "provenance"
 EXPECTED_BINDING = {

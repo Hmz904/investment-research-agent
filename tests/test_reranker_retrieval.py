@@ -196,6 +196,7 @@ def test_production_source_has_no_gold_or_scoring_dependency() -> None:
     assert all(fragment not in source for fragment in forbidden_fragments)
 
 
+@pytest.mark.locked_test_data
 def test_frozen_upstream_ranked_artifacts_remain_byte_identical() -> None:
     root = Path(__file__).resolve().parent.parent
     expected = {

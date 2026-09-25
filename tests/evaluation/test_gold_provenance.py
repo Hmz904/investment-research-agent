@@ -6,7 +6,12 @@ import hashlib
 import json
 from pathlib import Path
 
+import pytest
+
 from evaluation import finalize_gold_provenance
+
+
+pytestmark = pytest.mark.locked_test_data
 
 
 ROOT = Path(__file__).resolve().parents[2]

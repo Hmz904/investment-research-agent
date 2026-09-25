@@ -11,6 +11,9 @@ import pytest
 from evaluation import materialize_release
 
 
+pytestmark = pytest.mark.locked_test_data
+
+
 ROOT = Path(__file__).resolve().parents[2]
 ERRATA = ROOT / "benchmark" / "errata" / "bench_v0.1.1.csv"
 RELEASE = ROOT / "benchmark" / "releases" / "v0.1.1"

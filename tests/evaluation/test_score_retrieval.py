@@ -10,6 +10,7 @@ import pytest
 
 from evaluation import score_retrieval
 
+pytestmark = pytest.mark.locked_test_data
 
 ROOT = Path(__file__).resolve().parents[2]
 FROZEN_RESULT = ROOT / "evaluation" / "results" / "bm25_v0.1.jsonl"

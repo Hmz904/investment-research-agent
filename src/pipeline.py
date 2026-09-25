@@ -25,9 +25,9 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 
 
-def _prepare_dirs() -> None:
+def _prepare_dirs(data_dir: Path) -> None:
     for sub in ("raw", "parsed", "chunks"):
-        (DATA_DIR / sub).mkdir(parents=True, exist_ok=True)
+        (data_dir / sub).mkdir(parents=True, exist_ok=True)
 
 
 def _content_type_from_path(path: Path) -> str:
@@ -39,10 +39,11 @@ def _content_type_from_path(path: Path) -> str:
     return "application/octet-stream"
 
 
-def run() -> dict[str, Any]:
-    _prepare_dirs()
+def run(*, data_dir: Path | str | None = None) -> dict[str, Any]:
+    active_data_dir = DATA_DIR if data_dir is None else Path(data_dir)
+    _prepare_dirs(active_data_dir)
     client = SECClient()
-    store = RawStore(DATA_DIR)
+    store = RawStore(active_data_dir)
 
     manifest_entries: list[dict[str, Any]] = []
     summary: dict[str, Any] = {
@@ -107,8 +108,8 @@ def run() -> dict[str, Any]:
             blocks=blocks,
         )
 
-        parsed_path = DATA_DIR / "parsed" / f"{doc_id}.json"
-        chunks_path = DATA_DIR / "chunks" / f"{doc_id}.json"
+        parsed_path = active_data_dir / "parsed" / f"{doc_id}.json"
+        chunks_path = active_data_dir / "chunks" / f"{doc_id}.json"
         parsed_path.write_text(
             json.dumps(
                 {
