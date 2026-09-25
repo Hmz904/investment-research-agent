@@ -1,5 +1,11 @@
 # Investment Research Agent — Week 1 SEC Filing Ingestion
 
+Pre-checkpoint development boundary: historical accidental exposure count is
+**3**; see [the permanent honesty record](evaluation/audits/precheckpoint_access_boundary_v0.1.md).
+D2 contract/test authoring uses the [allowlisted sparse worktree](packaging/d2_sparse_development_v0.1.md).
+Do not run unrestricted searches or the full test suite in the canonical
+checkout during pre-checkpoint development.
+
 This repository contains the SEC filing ingestion layer for the investment
 research agent. It downloads 14 specified SEC filings, stores immutable raw
 bytes, parses HTML/inline-XBRL into ordered blocks, extracts structured tables
