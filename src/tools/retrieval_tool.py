@@ -17,6 +17,17 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
+from src.frozen_data import FrozenDataError
+from src.frozen_models import (
+    BASE_MODEL_FILES,
+    BASE_MODEL_ID,
+    BASE_MODEL_REVISION,
+    RERANKER_MODEL_FILES,
+    RERANKER_MODEL_ID as PROVISIONED_RERANKER_MODEL_ID,
+    RERANKER_MODEL_REVISION as PROVISIONED_RERANKER_MODEL_REVISION,
+    model_payload_directory,
+    verify_model_payload,
+)
 from src.embedding_retrieval import (
     DEFAULT_MODEL_ID as EMBEDDING_MODEL_ID,
     DEFAULT_MODEL_REVISION as EMBEDDING_MODEL_REVISION,
@@ -53,11 +64,6 @@ EXPECTED_CORPUS_FINGERPRINT = (
 )
 EXPECTED_INGESTION_SCHEMA_VERSION = "0.1.1"
 MAX_TOP_K = 50
-
-_PROJECT_ROOT = Path(__file__).resolve().parents[2]
-_DEFAULT_DATA_DIR = _PROJECT_ROOT / "data"
-_DEFAULT_EMBEDDING_CACHE = _DEFAULT_DATA_DIR / "embedding_cache" / "embedding_v0.1"
-_DEFAULT_MODEL_CACHE = _DEFAULT_DATA_DIR / "model_cache" / "huggingface"
 
 _IDENTITY_FIELDS = (
     "doc_id",
@@ -237,14 +243,36 @@ class RetrievalTool:
     def from_frozen_stack(
         cls,
         *,
-        data_dir: str | Path = _DEFAULT_DATA_DIR,
-        embedding_cache_dir: str | Path = _DEFAULT_EMBEDDING_CACHE,
-        model_cache_dir: str | Path = _DEFAULT_MODEL_CACHE,
+        data_root: str | Path | None = None,
+        model_root: str | Path | None = None,
+        data_dir: str | Path | None = None,
+        embedding_cache_dir: str | Path | None = None,
+        model_cache_dir: str | Path | None = None,
     ) -> "RetrievalTool":
         """Initialize all frozen production resources once for repeated calls."""
-        data_path = Path(data_dir)
-        embedding_cache_path = Path(embedding_cache_dir)
-        model_cache_path = Path(model_cache_dir)
+        if data_root is not None and data_dir is not None:
+            raise RetrievalArtifactError("provide data_root or data_dir, not both")
+        if model_root is not None and model_cache_dir is not None:
+            raise RetrievalArtifactError("provide model_root or model_cache_dir, not both")
+        selected_data_root = data_root if data_root is not None else data_dir
+        selected_model_root = model_root if model_root is not None else model_cache_dir
+        if selected_data_root is None:
+            raise RetrievalArtifactError("frozen RetrievalTool requires explicit data_root")
+        if selected_model_root is None:
+            raise RetrievalArtifactError("frozen RetrievalTool requires explicit model_root")
+        data_path = Path(selected_data_root)
+        model_cache_path = Path(selected_model_root)
+        if not data_path.is_absolute():
+            raise RetrievalArtifactError("frozen data root must be absolute")
+        if not model_cache_path.is_absolute():
+            raise RetrievalArtifactError("frozen model root must be absolute")
+        data_path = data_path.resolve(strict=False)
+        model_cache_path = model_cache_path.resolve(strict=False)
+        embedding_cache_path = Path(
+            embedding_cache_dir
+            if embedding_cache_dir is not None
+            else data_path / "embedding_cache" / "embedding_v0.1"
+        )
         required = (
             (data_path / "manifest.json", "corpus manifest"),
             (data_path / "chunks", "corpus chunk directory"),
@@ -257,6 +285,24 @@ class RetrievalTool:
                 raise RetrievalArtifactError(f"missing {label}: {path}")
 
         try:
+            base_model_path = model_payload_directory(
+                model_cache_path, BASE_MODEL_ID, BASE_MODEL_REVISION
+            )
+            reranker_model_path = model_payload_directory(
+                model_cache_path,
+                PROVISIONED_RERANKER_MODEL_ID,
+                PROVISIONED_RERANKER_MODEL_REVISION,
+            )
+            verify_model_payload(
+                base_model_path,
+                BASE_MODEL_FILES,
+                containment_root=model_cache_path,
+            )
+            verify_model_payload(
+                reranker_model_path,
+                RERANKER_MODEL_FILES,
+                containment_root=model_cache_path,
+            )
             snapshot = load_ingested_corpus(
                 data_path,
                 expected_corpus_fingerprint=EXPECTED_CORPUS_FINGERPRINT,
@@ -280,7 +326,7 @@ class RetrievalTool:
                 )
                 dense = DenseRetriever(
                     cache_dir=temporary_cache,
-                    model_cache_dir=model_cache_path,
+                    model_path=base_model_path,
                     local_files_only=True,
                 )
                 dense.build_index(
@@ -295,14 +341,14 @@ class RetrievalTool:
             reranker = TransformerCrossEncoder(
                 model_id=RERANKER_MODEL_ID,
                 model_revision=RERANKER_MODEL_REVISION,
-                cache_dir=model_cache_path,
+                model_path=reranker_model_path,
                 local_files_only=True,
             )
         except RetrievalToolError:
             raise
         except FileNotFoundError as exc:
             raise RetrievalArtifactError(f"missing frozen artifact: {exc.filename}") from exc
-        except (OSError, RuntimeError) as exc:
+        except (OSError, RuntimeError, FrozenDataError) as exc:
             raise RetrievalArtifactError(
                 f"failed to initialize frozen retrieval artifacts: {exc}"
             ) from exc

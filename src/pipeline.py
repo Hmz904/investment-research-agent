@@ -6,7 +6,7 @@ import json
 import sys
 import warnings
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
 
@@ -39,11 +39,26 @@ def _content_type_from_path(path: Path) -> str:
     return "application/octet-stream"
 
 
-def run(*, data_dir: Path | str | None = None) -> dict[str, Any]:
-    active_data_dir = DATA_DIR if data_dir is None else Path(data_dir)
-    _prepare_dirs(active_data_dir)
-    client = SECClient()
-    store = RawStore(active_data_dir)
+def run(
+    *,
+    data_root: Path | str | None = None,
+    data_dir: Path | str | None = None,
+    mode: Literal["discovery", "frozen"] = "discovery",
+) -> dict[str, Any]:
+    if data_root is not None and data_dir is not None:
+        raise ValueError("provide data_root or data_dir, not both")
+    selected_root = data_root if data_root is not None else data_dir
+    if mode == "frozen" and selected_root is None:
+        raise ValueError("frozen pipeline mode requires an explicit data_root")
+    active_data_dir = DATA_DIR if selected_root is None else Path(selected_root)
+    if mode == "frozen" and not active_data_dir.is_absolute():
+        raise ValueError("frozen pipeline data_root must be absolute")
+    if mode == "discovery":
+        _prepare_dirs(active_data_dir)
+    elif not active_data_dir.is_dir():
+        raise FileNotFoundError(f"missing frozen data root: {active_data_dir}")
+    client: SECClient | None = None
+    store = RawStore(active_data_dir, mode=mode)
 
     manifest_entries: list[dict[str, Any]] = []
     summary: dict[str, Any] = {
@@ -62,6 +77,9 @@ def run(*, data_dir: Path | str | None = None) -> dict[str, Any]:
         entry = store.try_reuse(source)
         downloaded = False
         if entry is None:
+            if mode == "frozen":
+                raise RuntimeError(f"missing provisioned frozen input for {doc_id}")
+            client = SECClient()
             metadata, document_url, document_name = client.discover(source)
             entry, downloaded = store.ensure(
                 source=source,
@@ -76,7 +94,9 @@ def run(*, data_dir: Path | str | None = None) -> dict[str, Any]:
         else:
             summary["reused_raw_files"] += 1
 
-        raw_path = Path(entry["local_path"])
+        expected_parsed_hash = str(entry.get("parsed_sha256", ""))
+        expected_chunk_hash = str(entry.get("chunk_sha256", ""))
+        raw_path = store.resolve_entry(entry)
         body = raw_path.read_bytes()
         if not entry.get("content_type"):
             entry["content_type"] = _content_type_from_path(raw_path)
@@ -139,6 +159,17 @@ def run(*, data_dir: Path | str | None = None) -> dict[str, Any]:
         entry["raw_sha256"] = sha256_hex(body)
         entry["parsed_sha256"] = sha256_hex(parsed_path.read_bytes())
         entry["chunk_sha256"] = sha256_hex(chunks_path.read_bytes())
+        if mode == "frozen":
+            if entry["parsed_sha256"] != expected_parsed_hash:
+                raise RuntimeError(
+                    f"rebuilt parsed artifact drift for {doc_id}: "
+                    f"expected={expected_parsed_hash} actual={entry['parsed_sha256']}"
+                )
+            if entry["chunk_sha256"] != expected_chunk_hash:
+                raise RuntimeError(
+                    f"rebuilt chunk artifact drift for {doc_id}: "
+                    f"expected={expected_chunk_hash} actual={entry['chunk_sha256']}"
+                )
 
         summary["documents"] += 1
         summary["blocks"] += len(blocks)
@@ -147,7 +178,12 @@ def run(*, data_dir: Path | str | None = None) -> dict[str, Any]:
         summary["xbrl_facts"] += len(xbrl["facts"])
         summary["numeric_table_cells_with_header_periods"] += _count_header_period_cells(blocks)
 
-    summary["corpus_fingerprint"] = store.save_manifest(manifest_entries)
+    if mode == "frozen":
+        from .storage import corpus_fingerprint
+
+        summary["corpus_fingerprint"] = corpus_fingerprint(manifest_entries)
+    else:
+        summary["corpus_fingerprint"] = store.save_manifest(manifest_entries)
     return summary
 
 

@@ -6,6 +6,7 @@ import hashlib
 import inspect
 import json
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 import pytest
@@ -728,13 +729,13 @@ def test_from_frozen_tools_constructs_each_tool_once(monkeypatch) -> None:
 
     class RetrievalFactory(_RecordingRetrieval):
         @classmethod
-        def from_frozen_stack(cls):
+        def from_frozen_stack(cls, **kwargs):
             counts["retrieval"] += 1
             return cls()
 
     class XBRLFactory(_RecordingXBRL):
         @classmethod
-        def from_frozen_ingestion(cls):
+        def from_frozen_ingestion(cls, **kwargs):
             counts["xbrl"] += 1
             return cls()
 
@@ -746,7 +747,9 @@ def test_from_frozen_tools_constructs_each_tool_once(monkeypatch) -> None:
     monkeypatch.setattr(runtime_module, "RetrievalTool", RetrievalFactory)
     monkeypatch.setattr(runtime_module, "XBRLTool", XBRLFactory)
     monkeypatch.setattr(runtime_module, "CalculatorTool", CalculatorFactory)
-    registry = ToolRegistry.from_frozen_tools()
+    registry = ToolRegistry.from_frozen_tools(
+        data_root=Path("/explicit/data"), model_root=Path("/explicit/models")
+    )
     registry.invoke(
         ToolCallRequest("tool_call_0001", "retrieval", "search", {"query": "q"})
     )
@@ -763,7 +766,9 @@ def test_production_factory_rejects_frozen_module_version_mismatch(
         runtime_module, "NATIVE_RETRIEVAL_TOOL_VERSION", "retrieval_tool_v9.9"
     )
     with pytest.raises(ToolVersionMismatchError, match="module version mismatch"):
-        ToolRegistry.from_frozen_tools()
+        ToolRegistry.from_frozen_tools(
+            data_root=Path("/explicit/data"), model_root=Path("/explicit/models")
+        )
 
 
 def test_production_registry_rejects_mismatched_response_version() -> None:

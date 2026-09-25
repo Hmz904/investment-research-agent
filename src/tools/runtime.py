@@ -14,6 +14,7 @@ import re
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from datetime import date
+from pathlib import Path
 from typing import Any, Literal
 
 from .calculator_tool import (
@@ -802,11 +803,23 @@ class ToolRegistry:
         self._runtime = ToolRuntime(self)
 
     @classmethod
-    def from_frozen_tools(cls) -> "ToolRegistry":
+    def from_frozen_tools(
+        cls,
+        *,
+        data_root: str | Path | None = None,
+        model_root: str | Path | None = None,
+    ) -> "ToolRegistry":
         """Construct each production tool once for reuse by this registry."""
+        if data_root is None or model_root is None:
+            raise ToolRuntimeError(
+                "frozen ToolRegistry requires explicit data_root and model_root"
+            )
         _verify_frozen_factory_bindings()
-        retrieval = RetrievalTool.from_frozen_stack()
-        xbrl = XBRLTool.from_frozen_ingestion()
+        retrieval = RetrievalTool.from_frozen_stack(
+            data_root=data_root,
+            model_root=model_root,
+        )
+        xbrl = XBRLTool.from_frozen_ingestion(data_root=data_root)
         calculator = CalculatorTool()
         expected_types = (
             ("retrieval", retrieval, RetrievalTool),

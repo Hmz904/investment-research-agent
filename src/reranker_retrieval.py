@@ -292,6 +292,7 @@ class TransformerCrossEncoder:
         model_id: str = MODEL_ID,
         model_revision: str = MODEL_REVISION,
         cache_dir: str | Path | None = None,
+        model_path: str | Path | None = None,
         local_files_only: bool = False,
     ) -> None:
         if model_id != MODEL_ID:
@@ -322,19 +323,23 @@ class TransformerCrossEncoder:
             if torch.get_num_interop_threads() != TORCH_NUM_INTEROP_THREADS:
                 raise
 
+        model_source = model_id if model_path is None else str(Path(model_path))
         common_kwargs: dict[str, Any] = {
-            "revision": model_revision,
-            "cache_dir": None if cache_dir is None else str(cache_dir),
             "local_files_only": local_files_only,
             "trust_remote_code": False,
         }
+        if model_path is None:
+            common_kwargs.update(
+                revision=model_revision,
+                cache_dir=None if cache_dir is None else str(cache_dir),
+            )
         tokenizer = AutoTokenizer.from_pretrained(
-            model_id,
+            model_source,
             use_fast=True,
             **common_kwargs,
         )
         model = AutoModelForSequenceClassification.from_pretrained(
-            model_id,
+            model_source,
             use_safetensors=True,
             **common_kwargs,
         )
@@ -349,12 +354,16 @@ class TransformerCrossEncoder:
 
         resolved_fingerprints: dict[str, str] = {}
         for filename, expected_sha256 in sorted(MODEL_FILE_SHA256.items()):
-            resolved = hf_hub_download(
-                repo_id=model_id,
-                filename=filename,
-                revision=model_revision,
-                cache_dir=None if cache_dir is None else str(cache_dir),
-                local_files_only=local_files_only,
+            resolved = (
+                hf_hub_download(
+                    repo_id=model_id,
+                    filename=filename,
+                    revision=model_revision,
+                    cache_dir=None if cache_dir is None else str(cache_dir),
+                    local_files_only=local_files_only,
+                )
+                if model_path is None
+                else str(Path(model_path) / filename)
             )
             resolved_fingerprints[filename] = validate_artifact_hash(
                 resolved,

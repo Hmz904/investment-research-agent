@@ -134,10 +134,12 @@ def _candidate_review_counts(candidates: list[Mapping[str, Any]]) -> dict[str, i
     }
 
 
-def _review_artifact_identities() -> list[dict[str, str]]:
-    catalog_rendered = render_catalog_artifacts()
-    temporal_rendered = render_temporal_diagnostics()
-    d1_rendered = render_d1_artifacts()
+def _review_artifact_identities(
+    *, data_root: Path | str | None = None
+) -> list[dict[str, str]]:
+    catalog_rendered = render_catalog_artifacts(data_root=data_root)
+    temporal_rendered = render_temporal_diagnostics(data_root=data_root)
+    d1_rendered = render_d1_artifacts(data_root=data_root)
     identities = [
         (RULE_REVIEW_PATH, catalog_rendered[RULE_REVIEW_PATH]),
         (CONFLICT_REVIEW_PATH, catalog_rendered[CONFLICT_REVIEW_PATH]),
@@ -153,10 +155,14 @@ def _review_artifact_identities() -> list[dict[str, str]]:
     ]
 
 
-def build_final_map() -> dict[str, Any]:
+def build_final_map(*, data_root: Path | str | None = None) -> dict[str, Any]:
     d1 = json.loads(D1_PATH.read_text(encoding="utf-8"))
     catalog = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
-    facts = [fact.to_dict() for fact in XBRLTool.from_frozen_ingestion()._facts]
+    active_data_root = PROJECT_ROOT / "data" if data_root is None else Path(data_root)
+    facts = [
+        fact.to_dict()
+        for fact in XBRLTool.from_frozen_ingestion(data_root=active_data_root)._facts
+    ]
     checks = _read_source_checks()
     targets: list[dict[str, Any]] = []
 
@@ -371,7 +377,7 @@ def build_final_map() -> dict[str, Any]:
         "mapping_algorithm_version": d1["mapping_algorithm_version"],
         "temporal_catalog_version": catalog["catalog_version"],
         "temporal_catalog_sha256": hashlib.sha256(CATALOG_PATH.read_bytes()).hexdigest(),
-        "review_artifacts": _review_artifact_identities(),
+        "review_artifacts": _review_artifact_identities(data_root=data_root),
         "human_review_completed": True,
         "review_completion": {
             "layer_a_rule_families": "PASS",
@@ -434,8 +440,8 @@ def build_coverage(final_map: Mapping[str, Any], map_bytes: bytes) -> dict[str, 
     }
 
 
-def render_artifacts() -> dict[Path, bytes]:
-    final_map = build_final_map()
+def render_artifacts(*, data_root: Path | str | None = None) -> dict[Path, bytes]:
+    final_map = build_final_map(data_root=data_root)
     map_bytes = canonical_json_bytes(final_map)
     coverage = build_coverage(final_map, map_bytes)
     return {
@@ -447,8 +453,9 @@ def render_artifacts() -> dict[Path, bytes]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--data-root", type=Path)
     args = parser.parse_args()
-    rendered = render_artifacts()
+    rendered = render_artifacts(data_root=args.data_root)
     if args.check:
         stale = [
             path

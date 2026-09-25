@@ -8,7 +8,9 @@ import json
 import os
 import tempfile
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
+
+from .frozen_data import FrozenDataError, resolve_raw_document
 
 
 INGESTION_SCHEMA_VERSION = "0.1.1"
@@ -42,10 +44,21 @@ def corpus_fingerprint(
 
 
 class RawStore:
-    def __init__(self, data_dir: Path) -> None:
+    def __init__(
+        self, data_dir: Path, *, mode: Literal["discovery", "frozen"] = "discovery"
+    ) -> None:
+        if mode not in {"discovery", "frozen"}:
+            raise ValueError(f"unsupported RawStore mode: {mode}")
+        if mode == "frozen":
+            if not data_dir.is_absolute():
+                raise ValueError("frozen RawStore data root must be absolute")
+            if not data_dir.is_dir():
+                raise FileNotFoundError(f"missing frozen data root: {data_dir}")
         self.data_dir = data_dir
+        self.mode = mode
         self.raw_dir = data_dir / "raw"
-        self.raw_dir.mkdir(parents=True, exist_ok=True)
+        if mode == "discovery":
+            self.raw_dir.mkdir(parents=True, exist_ok=True)
         self.manifest_path = data_dir / "manifest.json"
 
     def load_manifest(self) -> dict[str, Any]:
@@ -64,17 +77,16 @@ class RawStore:
         entry = self._by_doc_id(manifest).get(doc_id)
         if entry is None:
             return None
-        raw_path = Path(entry.get("local_path", ""))
-        if not raw_path.exists():
+        try:
+            resolve_raw_document(data_root=self.data_dir, manifest_entry=entry)
+        except FrozenDataError:
+            if self.mode == "frozen":
+                raise
             return None
-        stored_hash = entry.get("sha256", "")
-        actual_hash = sha256_hex(raw_path.read_bytes())
-        if stored_hash and actual_hash != stored_hash:
-            raise RuntimeError(
-                f"raw file hash mismatch for {doc_id}: "
-                f"manifest={stored_hash} actual={actual_hash}"
-            )
         return dict(entry)
+
+    def resolve_entry(self, entry: dict[str, Any]) -> Path:
+        return resolve_raw_document(data_root=self.data_dir, manifest_entry=entry)
 
     def ensure(
         self,

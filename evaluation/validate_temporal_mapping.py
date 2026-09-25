@@ -323,9 +323,10 @@ def run_validation(
     }
 
 
-def render_artifacts() -> dict[Path, bytes]:
+def render_artifacts(*, data_root: Path | str | None = None) -> dict[Path, bytes]:
     catalog = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
-    tool = XBRLTool.from_frozen_ingestion()
+    active_data_root = PROJECT_ROOT / "data" if data_root is None else Path(data_root)
+    tool = XBRLTool.from_frozen_ingestion(data_root=active_data_root)
     facts = [fact.to_dict() for fact in tool._facts]
     selection = select_pseudo_targets(facts, catalog)
     validation = run_validation(selection, facts, catalog)
@@ -335,8 +336,9 @@ def render_artifacts() -> dict[Path, bytes]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--data-root", type=Path)
     args = parser.parse_args()
-    rendered = render_artifacts()
+    rendered = render_artifacts(data_root=args.data_root)
     if args.check:
         stale = [path for path, content in rendered.items() if not path.exists() or path.read_bytes() != content]
         if stale:

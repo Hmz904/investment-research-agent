@@ -188,12 +188,13 @@ def _conflict_review_bytes(catalog: Mapping[str, Any]) -> bytes:
     return _dict_csv_bytes(rows, CONFLICT_REVIEW_FIELDS)
 
 
-def render_artifacts() -> dict[Path, bytes]:
-    tool = XBRLTool.from_frozen_ingestion()
-    manifest = json.loads((PROJECT_ROOT / "data" / "manifest.json").read_text(encoding="utf-8"))
+def render_artifacts(*, data_root: Path | str | None = None) -> dict[Path, bytes]:
+    active_data_root = PROJECT_ROOT / "data" if data_root is None else Path(data_root)
+    tool = XBRLTool.from_frozen_ingestion(data_root=active_data_root)
+    manifest = json.loads((active_data_root / "manifest.json").read_text(encoding="utf-8"))
     chunk_documents = [
         json.loads(path.read_text(encoding="utf-8"))
-        for path in sorted((PROJECT_ROOT / "data" / "chunks").glob("*.json"))
+        for path in sorted((active_data_root / "chunks").glob("*.json"))
     ]
     predecessor_count = 0
     if PREDECESSOR_PATH.exists():
@@ -254,8 +255,9 @@ def render_artifacts() -> dict[Path, bytes]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--data-root", type=Path)
     args = parser.parse_args()
-    rendered = render_artifacts()
+    rendered = render_artifacts(data_root=args.data_root)
     if args.check:
         stale = [path for path, content in rendered.items() if not path.exists() or path.read_bytes() != content]
         if stale:

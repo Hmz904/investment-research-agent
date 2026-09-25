@@ -440,6 +440,12 @@ def test_frozen_factory_initializes_heavy_resources_once_per_tool_instance(
     monkeypatch.setattr(module, "BM25Retriever", FactoryBM25)
     monkeypatch.setattr(module, "DenseRetriever", FactoryDense)
     monkeypatch.setattr(module, "TransformerCrossEncoder", FactoryReranker)
+    monkeypatch.setattr(
+        module,
+        "model_payload_directory",
+        lambda root, model_id, revision: Path(root),
+    )
+    monkeypatch.setattr(module, "verify_model_payload", lambda *args, **kwargs: None)
     original_copy = module.shutil.copy2
 
     def counting_copy(source: object, destination: object) -> object:

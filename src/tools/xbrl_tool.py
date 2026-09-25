@@ -21,6 +21,7 @@ from typing import Any
 
 from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
 
+from src.frozen_data import FrozenDataError, resolve_raw_document
 from src.xbrl import parse_inline_xbrl
 
 
@@ -33,8 +34,6 @@ EXPECTED_CORPUS_FINGERPRINT = (
 )
 MAX_TOP_K = 50
 
-_PROJECT_ROOT = Path(__file__).resolve().parents[2]
-_DEFAULT_DATA_DIR = _PROJECT_ROOT / "data"
 _ACCESSION_RE = re.compile(r"^\d{10}-\d{2}-\d{6}$")
 _NUMBER_RE = re.compile(r"\d+(?:\.\d+)?")
 _WORD_RE = re.compile(
@@ -328,10 +327,21 @@ class XBRLTool:
 
     @classmethod
     def from_frozen_ingestion(
-        cls, *, data_dir: str | Path = _DEFAULT_DATA_DIR
+        cls,
+        *,
+        data_root: str | Path | None = None,
+        data_dir: str | Path | None = None,
     ) -> "XBRLTool":
         """Load and index immutable local artifacts once for repeated calls."""
-        data_path = Path(data_dir)
+        if data_root is not None and data_dir is not None:
+            raise XBRLArtifactError("provide data_root or data_dir, not both")
+        selected_root = data_root if data_root is not None else data_dir
+        if selected_root is None:
+            raise XBRLArtifactError("frozen XBRLTool requires explicit data_root")
+        data_path = Path(selected_root)
+        if not data_path.is_absolute():
+            raise XBRLArtifactError("frozen data root must be absolute")
+        data_path = data_path.resolve(strict=False)
         manifest_path = data_path / "manifest.json"
         if not manifest_path.is_file():
             raise XBRLArtifactError(f"missing local XBRL manifest: {manifest_path}")
@@ -367,7 +377,7 @@ class XBRLTool:
             )
         except XBRLToolError:
             raise
-        except (OSError, json.JSONDecodeError, TypeError, ValueError) as exc:
+        except (OSError, json.JSONDecodeError, TypeError, ValueError, FrozenDataError) as exc:
             raise XBRLArtifactError(
                 f"failed to load frozen local XBRL artifacts: {exc}"
             ) from exc
@@ -603,9 +613,8 @@ class XBRLTool:
                     f"malformed manifest accession for {doc_id}: {accession}"
                 )
 
-            raw_path = Path(cls._required_text(entry, "local_path"))
+            raw_path = resolve_raw_document(data_root=data_path, manifest_entry=entry)
             raw_hash = str(entry.get("raw_sha256") or entry.get("sha256") or "")
-            cls._verify_file(raw_path, raw_hash, "raw")
             parsed_path = data_path / "parsed" / f"{doc_id}.json"
             cls._verify_file(
                 parsed_path, str(entry.get("parsed_sha256", "")), "parsed"

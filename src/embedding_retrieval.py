@@ -115,6 +115,7 @@ class TransformerDenseEncoder:
         seed: int = DEFAULT_SEED,
         torch_threads: int = DEFAULT_TORCH_THREADS,
         cache_dir: str | Path | None = None,
+        model_path: str | Path | None = None,
         local_files_only: bool = False,
     ) -> None:
         if model_id != DEFAULT_MODEL_ID:
@@ -150,15 +151,19 @@ class TransformerDenseEncoder:
             # PyTorch permits setting this only before parallel work starts.
             interop_threads = torch.get_num_interop_threads()
 
+        model_source = model_id if model_path is None else str(Path(model_path))
         common_kwargs: dict[str, Any] = {
-            "revision": model_revision,
-            "cache_dir": None if cache_dir is None else str(cache_dir),
             "local_files_only": local_files_only,
             "trust_remote_code": False,
         }
-        tokenizer = AutoTokenizer.from_pretrained(model_id, **common_kwargs)
+        if model_path is None:
+            common_kwargs.update(
+                revision=model_revision,
+                cache_dir=None if cache_dir is None else str(cache_dir),
+            )
+        tokenizer = AutoTokenizer.from_pretrained(model_source, **common_kwargs)
         model = AutoModel.from_pretrained(
-            model_id,
+            model_source,
             use_safetensors=True,
             **common_kwargs,
         )
@@ -188,6 +193,10 @@ class TransformerDenseEncoder:
             ).hexdigest(),
         }
         model_config_payload = model.config.to_dict()
+        # ``transformers`` injects the load location into this otherwise
+        # semantic configuration. Preserve the frozen logical model identity
+        # when loading the same verified bytes from a relocated model root.
+        model_config_payload["_name_or_path"] = model_id
         model_config_fingerprint = hashlib.sha256(
             stable_json_dumps(model_config_payload).encode("utf-8")
         ).hexdigest()
@@ -344,10 +353,12 @@ class DenseRetriever:
         *,
         cache_dir: str | Path | None = None,
         model_cache_dir: str | Path | None = None,
+        model_path: str | Path | None = None,
         local_files_only: bool = False,
     ) -> None:
         self._encoder = encoder or TransformerDenseEncoder(
             cache_dir=model_cache_dir,
+            model_path=model_path,
             local_files_only=local_files_only,
         )
         self._cache_dir = None if cache_dir is None else Path(cache_dir)

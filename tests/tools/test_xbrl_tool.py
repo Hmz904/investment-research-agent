@@ -86,7 +86,9 @@ def production_tool() -> XBRLTool:
         raise AssertionError("network access attempted by XBRLTool")
 
     with patch("socket.socket", side_effect=blocked_network):
-        return XBRLTool.from_frozen_ingestion()
+        return XBRLTool.from_frozen_ingestion(
+            data_root=Path(__file__).resolve().parents[2] / "data"
+        )
 
 
 @pytest.mark.parametrize("query", ["", "   ", "\t\n"])

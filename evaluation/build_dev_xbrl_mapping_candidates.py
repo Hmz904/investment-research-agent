@@ -284,7 +284,9 @@ def _proposed_status(target: Mapping[str, Any], candidates: list[Mapping[str, An
     return "PROPOSED_UNMAPPABLE", f"Frozen Stage 3 did not complete: {stage3_state}."
 
 
-def build_payload() -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
+def build_payload(
+    *, data_root: Path | str | None = None
+) -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
     numeric_path = DEV_DIR / "numeric_answers.csv"
     questions_path = DEV_DIR / "questions.csv"
     provenance_path = DEV_DIR / "provenance.csv"
@@ -297,7 +299,8 @@ def build_payload() -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str
         for row in sorted(numeric_rows, key=lambda item: item["fact_id"])
     ]
 
-    tool = XBRLTool.from_frozen_ingestion()
+    active_data_root = PROJECT_ROOT / "data" if data_root is None else Path(data_root)
+    tool = XBRLTool.from_frozen_ingestion(data_root=active_data_root)
     facts = [fact.to_dict() for fact in tool._facts]
     checks = _load_source_checks(SOURCE_CHECKS_PATH)
     all_candidates: list[dict[str, Any]] = []
@@ -585,8 +588,8 @@ INVENTORY_FIELDS = ["question_id", "gold_target_id", "role", "direct_or_derived"
 REVIEW_FIELDS = ["row_type", "question_id", "gold_target_id", "target_kind", "gold_value", "gold_unit", "gold_period", "gold_basis", "gold_display_sign", "gold_source_provenance", "proposed_target_status", "proposed_target_status_rationale", "required_input_ids", "formula", "derived_input_status_json", "stage_completion_json", "missing_required_mapping_metadata", "candidate_id", "candidate_stage", "parent_candidate_id", "parent_source_check_status", "generation_rule_id", "generation_reason", "fact_locator", "accession", "concept", "context_ref", "value_raw_unit", "canonical_value_unit", "fact_period_json", "dimensions_json", "chunk_linkage", "source_check_status", "source_check_rationale", "source_check_evidence", "human_review_status", "human_review_notes"]
 
 
-def render_artifacts() -> dict[Path, bytes]:
-    payload, unit_rows, inventory_rows, coverage = build_payload()
+def render_artifacts(*, data_root: Path | str | None = None) -> dict[Path, bytes]:
+    payload, unit_rows, inventory_rows, coverage = build_payload(data_root=data_root)
     candidate_bytes = canonical_json_bytes(payload)
     review_bytes = _csv_bytes(REVIEW_FIELDS, _review_rows(payload))
     coverage = dict(coverage)
@@ -604,8 +607,9 @@ def render_artifacts() -> dict[Path, bytes]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true", help="verify checked-in artifacts byte-for-byte")
+    parser.add_argument("--data-root", type=Path)
     args = parser.parse_args()
-    rendered = render_artifacts()
+    rendered = render_artifacts(data_root=args.data_root)
     if args.check:
         mismatches = [path for path, content in rendered.items() if not path.exists() or path.read_bytes() != content]
         if mismatches:
