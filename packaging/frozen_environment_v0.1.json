@@ -1,0 +1,17 @@
+{
+  "environment_contract_version": "thesisagent_frozen_environment_v0.1",
+  "lock_file": "requirements.lock",
+  "lock_file_sha256": "87007eddfac0606ed943eaffc7a9f15304f0c1f285c4d33c584173cf7e78f671",
+  "model_loading": {
+    "sentence_transformers_package_required": false,
+    "implementation": "transformers AutoModel/AutoTokenizer"
+  },
+  "platform": {
+    "machine": "x86_64",
+    "operating_system": "Linux",
+    "python_implementation": "CPython",
+    "python_version": "3.14.7",
+    "pytorch_device": "cpu"
+  },
+  "schema_version": "frozen_environment_v0.1"
+}

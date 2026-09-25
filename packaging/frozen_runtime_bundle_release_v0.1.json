@@ -1,0 +1,10 @@
+{
+  "archive_bytes": 123637760,
+  "archive_format": "ustar-compatible deterministic POSIX tar with normalized metadata",
+  "archive_sha256": "fa010eb055e158ef1b49b41cb554e8017349de79473137e15dd3f5d8906374df",
+  "asset_name": "thesisagent-frozen-runtime-data-v0.1.tar",
+  "bundle_manifest": "packaging/frozen_runtime_bundle_v0.1.json",
+  "bundle_manifest_sha256": "e5db9ce8b1bebbd2f52ddc7f7b1bd073346506c1ac2dc48b1949a75f4b0835a9",
+  "future_release_tag": "frozen_runtime_data_v0.1",
+  "schema_version": "frozen_runtime_bundle_release_v0.1"
+}

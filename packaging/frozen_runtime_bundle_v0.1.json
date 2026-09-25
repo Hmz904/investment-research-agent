@@ -1,0 +1,285 @@
+{
+  "aggregate_algorithm": "sha256 of sorted `<file_sha256>  <path>` records terminated by LF",
+  "aggregate_sha256": "e504b8fcf310681ea404ec0381ecca743bc3898290fa446dc3d202b3eef0ce89",
+  "bundle_id": "thesisagent_frozen_runtime_data_v0.1",
+  "file_count": 45,
+  "files": [
+    {
+      "bytes": 3704928,
+      "path": "chunks/META_2026Q1_10Q.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "63dcded156b2557d97544bd2eb9856089078e03ea2306b4ad83d26778e825436"
+    },
+    {
+      "bytes": 438944,
+      "path": "chunks/META_2026Q1_8K_EX991.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "c469d5ee176787c12278e094eabfb2c3ea597ca47dd0c6f480655b4e9e6174ab"
+    },
+    {
+      "bytes": 5090158,
+      "path": "chunks/META_2026Q2_10Q.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "9cce00311253e5dfceef0768165569916351dc76aa1e263f7edb60e0e0c6afbd"
+    },
+    {
+      "bytes": 640591,
+      "path": "chunks/META_2026Q2_8K_EX991.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "27c078752dec5df7d4d23b5d992b24d9005b7d6fe21ab791985dc61cc2e7b095"
+    },
+    {
+      "bytes": 8220185,
+      "path": "chunks/MSFT_FY26Q3_10Q.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "a6cd4c81d0d54d705fe36adcf539790684343e350850abff17ed8234e670d2c5"
+    },
+    {
+      "bytes": 627251,
+      "path": "chunks/MSFT_FY26Q3_8K_EX991.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "71a5654e68a9b0844f943dbcad245373878e63b246194e36daf12400e7b3d2b1"
+    },
+    {
+      "bytes": 711550,
+      "path": "chunks/MSFT_FY26Q4_8K_EX991.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "88679c028183d6665e85333a95d2091800bf696a48ebc3c35ef827e4ffacdb0a"
+    },
+    {
+      "bytes": 9256927,
+      "path": "chunks/MSFT_FY26_10K.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "045bb33072850ee98c35cacc0c484fdc271bb729cde1bb1151b39765dcfd1103"
+    },
+    {
+      "bytes": 5011387,
+      "path": "chunks/NVDA_FY26Q2_10Q.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "535084ac6f5306c292a27dd004fd60a0d66d02973a28cb5e1332ecb1272affd5"
+    },
+    {
+      "bytes": 1007855,
+      "path": "chunks/NVDA_FY26Q4_8K_EX991.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "cdf5d5669a52ff40efe985e4d4c9e3eff57900bf2bb3385a967a17bf51a0fbd5"
+    },
+    {
+      "bytes": 4008594,
+      "path": "chunks/NVDA_FY27Q1_10Q.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "3d169107bdcb3c734d7f07af9e8298057e04c7d353840cfd3bb375fa24b12b12"
+    },
+    {
+      "bytes": 670384,
+      "path": "chunks/NVDA_FY27Q1_8K_EX991.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "341a39e527eae29d03cc858fa706bbe6e8d58447ba5ff75c0c41d9ce4b7a7250"
+    },
+    {
+      "bytes": 5301181,
+      "path": "chunks/NVDA_FY27Q2_10Q.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "7511af8f820b29ddefeea717c008d06deced35b2256d8889d7939b2f7f9d47d1"
+    },
+    {
+      "bytes": 894952,
+      "path": "chunks/NVDA_FY27Q2_8K_EX991.json",
+      "role": "CHUNK_ARTIFACT",
+      "sha256": "b60fd386ab49d2218c083dc2f637015e9fea7956b9952aa7dc63b7aaa860614d"
+    },
+    {
+      "bytes": 5105792,
+      "path": "embedding_cache/embedding_v0.1/embeddings.npy",
+      "role": "RETRIEVAL_INDEX_OR_RANKING_INPUT",
+      "sha256": "b8df96840c7e0a184324ba6fce0126e122d3b1da8fb6b710bd0ae070fe3c4b78"
+    },
+    {
+      "bytes": 1672,
+      "path": "embedding_cache/embedding_v0.1/index_metadata.json",
+      "role": "RETRIEVAL_INDEX_OR_RANKING_INPUT",
+      "sha256": "0268ea95fb77b83c5bcc9a12354b528dea17fe9214e05ffcc71471da5239109a"
+    },
+    {
+      "bytes": 15362,
+      "path": "manifest.json",
+      "role": "INGESTION_MANIFEST",
+      "sha256": "8498751b5d862950c800f92904492cf332b099842000c475941ac6cd7f8c8339"
+    },
+    {
+      "bytes": 3898321,
+      "path": "parsed/META_2026Q1_10Q.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "43433cf2fc03f7958e7bb322e59d6673080e8545eadebd04735744f7523f34c7"
+    },
+    {
+      "bytes": 431036,
+      "path": "parsed/META_2026Q1_8K_EX991.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "54ff4052811a7c63219f0a05543782e4654eed34e51276c7e8db379b1ca138ba"
+    },
+    {
+      "bytes": 5247259,
+      "path": "parsed/META_2026Q2_10Q.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "9c523ceb2a974107d5bae7ae1e9e838b3c142af286e2a3131ca628278200e2dd"
+    },
+    {
+      "bytes": 611823,
+      "path": "parsed/META_2026Q2_8K_EX991.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "36437bf5484eeb1273334ce815914dae36a29db4fa1f81c281367e8d1f4bd6b0"
+    },
+    {
+      "bytes": 8263960,
+      "path": "parsed/MSFT_FY26Q3_10Q.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "ccd8e1c98c51f3333426e6e1297624eab9e377d877a623d92abdb4322b54d468"
+    },
+    {
+      "bytes": 627372,
+      "path": "parsed/MSFT_FY26Q3_8K_EX991.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "e9af7bdcc3c49eda33702122e30c3b08f517ed931fc047d460f19a3ac3506672"
+    },
+    {
+      "bytes": 709391,
+      "path": "parsed/MSFT_FY26Q4_8K_EX991.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "3a0ce1333c11e42eec02b7aa346da843d51447529550624a0a902c8a606e49d7"
+    },
+    {
+      "bytes": 9436163,
+      "path": "parsed/MSFT_FY26_10K.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "ce81d3ac3736dc8466b45fc2aabb50ef51159c697d533b71eb1602f222c10412"
+    },
+    {
+      "bytes": 5010369,
+      "path": "parsed/NVDA_FY26Q2_10Q.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "405d25a26d9608c337743335812ece0095752bd00c227c5229b558d726e980fe"
+    },
+    {
+      "bytes": 960880,
+      "path": "parsed/NVDA_FY26Q4_8K_EX991.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "d67c7e168c61c1b1cc96b6b15faeeb7b1fe665c7fde1dd54cff25c68fc2ff1bd"
+    },
+    {
+      "bytes": 4038958,
+      "path": "parsed/NVDA_FY27Q1_10Q.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "651e97946b8028ed5e2fd5576312e78897d643d132d0de6c7c5238a1ecd46e2f"
+    },
+    {
+      "bytes": 641739,
+      "path": "parsed/NVDA_FY27Q1_8K_EX991.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "ae47ce4285a1639d8fadf89f561651bab80eb0fb4862d3efe3766d5fcbea70f9"
+    },
+    {
+      "bytes": 5308606,
+      "path": "parsed/NVDA_FY27Q2_10Q.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "1cbb08d9e6c17cb2c6e9ac9984365d5d942b3ed4bd1045bb5a17a6d6603f32ef"
+    },
+    {
+      "bytes": 851790,
+      "path": "parsed/NVDA_FY27Q2_8K_EX991.json",
+      "role": "PARSED_DOCUMENT",
+      "sha256": "5c300ce81e94b345d51396cfabd66117cfc7eaa497c1356a516a865fc463d600"
+    },
+    {
+      "bytes": 1486016,
+      "path": "raw/META_2026Q1_10Q.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "53421b6d2bf727e18e7b6850bb4fc627f51b5db37cf9562f5fef76954c13b368"
+    },
+    {
+      "bytes": 208257,
+      "path": "raw/META_2026Q1_8K_EX991.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "23daa2e0cdc7aacdc1dfb545429eb0547e672f4255c4a00d05d147642da94292"
+    },
+    {
+      "bytes": 1784004,
+      "path": "raw/META_2026Q2_10Q.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "bd8ec1457a2c2624a40cd0d19b921e3800b718bc5b990eac5524995730651c8b"
+    },
+    {
+      "bytes": 273738,
+      "path": "raw/META_2026Q2_8K_EX991.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "49c1d8d4b5799da02a8fe6d1cb5a547437b96b91923e024f0c68d11bd4f7986f"
+    },
+    {
+      "bytes": 7732058,
+      "path": "raw/MSFT_FY26Q3_10Q.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "1ca5b865d9f54b2a4cf60b332f87015be227ec476a716f954fb55b66557d54bd"
+    },
+    {
+      "bytes": 835717,
+      "path": "raw/MSFT_FY26Q3_8K_EX991.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "047d551da9c4d00756df7a7f8fbf946a22a8ece1cc9b681ced2f6b7f62b66779"
+    },
+    {
+      "bytes": 901710,
+      "path": "raw/MSFT_FY26Q4_8K_EX991.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "8f62b2390e1771bcf073710daf814fdb81bf5d10d3cb9719c26caa35039acfbe"
+    },
+    {
+      "bytes": 8585611,
+      "path": "raw/MSFT_FY26_10K.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "65e4826ff7e5a97d404ffafef1e46ed473474124c0cf7c551522344a2b69b03f"
+    },
+    {
+      "bytes": 1349533,
+      "path": "raw/NVDA_FY26Q2_10Q.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "2a718ff630716f23df4569c63f2f6135120ca8ed7fba1e77f89fc2662748cbf6"
+    },
+    {
+      "bytes": 394072,
+      "path": "raw/NVDA_FY26Q4_8K_EX991.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "eaaa9f18d075aaf26ae0e09d37151cccf9409da7314f96a5f21005c911b1fb20"
+    },
+    {
+      "bytes": 1167163,
+      "path": "raw/NVDA_FY27Q1_10Q.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "9bb623bd3b07e61488138e335d1a61ed40a3f0ad3b33c67334c97248735881c2"
+    },
+    {
+      "bytes": 274939,
+      "path": "raw/NVDA_FY27Q1_8K_EX991.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "852bc67338eebeff9515f34f8fd81fdf0ee00f54709afd7c0ceb4e31d888cff4"
+    },
+    {
+      "bytes": 1517157,
+      "path": "raw/NVDA_FY27Q2_10Q.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "d3eb56d349b22c60c9a8f6caf79fcdde4e1ae29f03fc8b90823f4b9fb022ece5"
+    },
+    {
+      "bytes": 341223,
+      "path": "raw/NVDA_FY27Q2_8K_EX991.htm",
+      "role": "RAW_SOURCE",
+      "sha256": "65c6233cd996477a8676757abf11e08d18d8bbcc2df8169489f81cb138db74fb"
+    }
+  ],
+  "identities": {
+    "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+    "embedding_index_fingerprint": "71639da4ebe7e207988035f6c74b766d6b517df8dcfda23e61dd4a6450f977a2",
+    "xbrl_artifact_fingerprint": "acaf087ee2c4fb7427377cae5f1968da26c75d4dfa565f67f1e056b2c4cc4eb6"
+  },
+  "schema_version": "frozen_runtime_bundle_v0.1",
+  "total_bytes": 123596578
+}
