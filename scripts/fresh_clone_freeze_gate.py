@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
+import re
 import secrets
 import subprocess
 import sys
@@ -13,6 +15,15 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+EXPECTED_TOOL_SPEC_SHA256 = (
+    "879a710485ac42b6dc0793b0556ce811d4efb151b52a7ae69f90334d489db70d"
+)
+EXPECTED_MODEL_VISIBLE_OPERATIONS = {
+    "calculator.calculate",
+    "retrieval.search",
+    "xbrl.query_facts",
+    "xbrl.search_concepts",
+}
 FROZEN_HASHES = {
     "data/manifest.json": "8498751b5d862950c800f92904492cf332b099842000c475941ac6cd7f8c8339",
     "evaluation/dev/xbrl/dev_xbrl_map_v0.1.json": "f129bf95b8a3428922ca5b87171f61e7a15481fc34586c37e22dfa23d33a2a53",
@@ -24,6 +35,63 @@ FROZEN_HASHES = {
 
 class FreezeGateError(RuntimeError):
     """A fresh-clone freeze invariant failed."""
+
+
+def verify_model_visible_tool_spec() -> dict[str, object]:
+    """Verify the authoritative runtime serialization and exposed operations."""
+    from src.tools.runtime import TOOL_SPEC_SHA256, canonical_tool_specs_json
+
+    canonical = canonical_tool_specs_json()
+    recomputed = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+    if TOOL_SPEC_SHA256 != EXPECTED_TOOL_SPEC_SHA256 or recomputed != EXPECTED_TOOL_SPEC_SHA256:
+        raise FreezeGateError(
+            "model-visible tool specification mismatch: "
+            f"expected={EXPECTED_TOOL_SPEC_SHA256} "
+            f"constant={TOOL_SPEC_SHA256} recomputed={recomputed}"
+        )
+    payload = json.loads(canonical)
+    operations = {
+        f"{entry['tool_name']}.{entry['operation']}"
+        for entry in payload["operations"]
+    }
+    if operations != EXPECTED_MODEL_VISIBLE_OPERATIONS:
+        raise FreezeGateError(
+            "model-visible operation set mismatch: "
+            f"expected={sorted(EXPECTED_MODEL_VISIBLE_OPERATIONS)!r} "
+            f"actual={sorted(operations)!r}"
+        )
+    forbidden = {"data_root", "model_root"}
+    exposed_configuration = {
+        name
+        for entry in payload["operations"]
+        for name in entry["argument_schema"].get("properties", {})
+        if name in forbidden
+    }
+    if exposed_configuration:
+        raise FreezeGateError(
+            "runtime construction parameters became model-visible: "
+            f"{sorted(exposed_configuration)!r}"
+        )
+    return {
+        "operations": sorted(operations),
+        "tool_spec_sha256": recomputed,
+    }
+
+
+def _pytest_result(output: str) -> dict[str, int]:
+    def count(label: str) -> int:
+        matches = re.findall(rf"(\d+) {label}", output)
+        return int(matches[-1]) if matches else 0
+
+    passed = count("passed")
+    if not passed:
+        raise FreezeGateError("pytest completed without a parseable passed count")
+    return {
+        "passed": passed,
+        "failed": count("failed"),
+        "deselected": count("deselected"),
+        "warnings": count("warnings?"),
+    }
 
 
 def _run(
@@ -103,6 +171,20 @@ def run_gate(
         model_root = (data_root / "frozen_models").resolve()
 
         _run([str(python), "scripts/verify_frozen_environment.py"], cwd=clone, env=env)
+        tool_spec = json.loads(
+            _run(
+                [
+                    str(python),
+                    "-c",
+                    "import json; "
+                    "from scripts.fresh_clone_freeze_gate import "
+                    "verify_model_visible_tool_spec; "
+                    "print(json.dumps(verify_model_visible_tool_spec(), sort_keys=True))",
+                ],
+                cwd=clone,
+                env=env,
+            )
+        )
         _run(
             [
                 str(python),
@@ -177,8 +259,17 @@ def run_gate(
             cwd=clone,
             env=env,
         )
-        _run(
-            [str(python), "-m", "pytest", "-q", "-m", "not locked_test_data"],
+        pytest_output = _run(
+            [
+                str(python),
+                "-m",
+                "pytest",
+                "-q",
+                "-m",
+                "not locked_test_data",
+                "-p",
+                "no:cacheprovider",
+            ],
             cwd=clone,
             env=env,
         )
@@ -197,8 +288,6 @@ def run_gate(
             env=env,
         )
 
-        import hashlib
-
         for relative, expected in FROZEN_HASHES.items():
             actual = hashlib.sha256((clone / relative).read_bytes()).hexdigest()
             if actual != expected:
@@ -215,7 +304,9 @@ def run_gate(
             "clone_commit": _run(["git", "rev-parse", "HEAD"], cwd=clone).strip(),
             "frozen_hash_count": len(FROZEN_HASHES),
             "network_guard": "Python sockets disabled after offline provisioning inputs selected",
+            "pytest": _pytest_result(pytest_output),
             "status": "PASS",
+            "tool_spec": tool_spec,
         }
 
 

@@ -12,6 +12,7 @@ from pathlib import Path
 import pytest
 
 from scripts.frozen_bundle import BundleError, sha256_file, verify_files
+from scripts.fresh_clone_freeze_gate import verify_model_visible_tool_spec
 from scripts.provision_frozen_data import _extract_archive, provision
 from scripts.verify_frozen_environment import verify_environment
 from src.frozen_data import (
@@ -24,6 +25,21 @@ from src.frozen_models import verify_model_payload
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_freeze_gate_verifies_authoritative_model_visible_tool_spec() -> None:
+    result = verify_model_visible_tool_spec()
+    assert result == {
+        "operations": [
+            "calculator.calculate",
+            "retrieval.search",
+            "xbrl.query_facts",
+            "xbrl.search_concepts",
+        ],
+        "tool_spec_sha256": (
+            "879a710485ac42b6dc0793b0556ce811d4efb151b52a7ae69f90334d489db70d"
+        ),
+    }
 
 
 def _entry(doc_id: str, historical: Path, content: bytes) -> dict[str, object]:

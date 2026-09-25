@@ -20,3 +20,9 @@ Every file below has status **ABANDONED / NEVER FROZEN** and was superseded by t
 | `tests/evaluation/test_fiscal_period_resolution.py` | `3ebbd218828e2806823a92d82c8c3dc7032334da551409388508065e5c5ab0c8` | ABANDONED / NEVER FROZEN | Superseded by v0.1.2 exact temporal-binding design |
 | `tests/evaluation/test_fiscal_period_resolution_artifacts.py` | `b950391473c214481ceac026dc9c73bc6c45e550d5ea0bb0b4c21930af50ca62` | ABANDONED / NEVER FROZEN | Superseded by v0.1.2 exact temporal-binding design |
 | `tests/evaluation/test_xbrl_mapping_spec_v0_1_1.py` | `1b456a4790b9266b20139b3a37e6b2acc9789a35a339a1f4aa85f343260bf3e6` | ABANDONED / NEVER FROZEN | Superseded by v0.1.2 exact temporal-binding design |
+
+The 16-file table is the complete recoverable abandoned v0.1.1 set. A
+separately noted accidental filesystem artifact named `10%` has no verified
+historical byte copy or recoverable path in the repository or known temporal
+cleanroom, so no SHA-256 can be stated without fabrication. It was not part of
+the frozen package and has not been restored.
