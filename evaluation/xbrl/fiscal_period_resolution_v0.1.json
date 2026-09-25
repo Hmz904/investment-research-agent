@@ -1,0 +1,2493 @@
+{
+  "accessions": [
+    "0001045810-25-000209",
+    "0001045810-26-000019",
+    "0001045810-26-000051",
+    "0001045810-26-000052",
+    "0001045810-26-000073",
+    "0001045810-26-000075",
+    "0001193125-26-191457",
+    "0001193125-26-191507",
+    "0001193125-26-323632",
+    "0001193125-26-323660",
+    "0001628280-26-028364",
+    "0001628280-26-028526",
+    "0001628280-26-050596",
+    "0001628280-26-050705"
+  ],
+  "artifact_scope": "all filings in the frozen local corpus; exact rows require authoritative XBRL fiscal-focus/context evidence",
+  "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96",
+  "entities": [
+    {
+      "cik": "1326801",
+      "entity": "Meta"
+    },
+    {
+      "cik": "789019",
+      "entity": "Microsoft"
+    },
+    {
+      "cik": "1045810",
+      "entity": "NVIDIA"
+    }
+  ],
+  "filing_diagnostics": [
+    {
+      "filing": {
+        "accession": "0001045810-25-000209",
+        "calendar_period": "2025Q2",
+        "cik": "1045810",
+        "company": "NVIDIA",
+        "doc_id": "NVDA_FY26Q2_10Q",
+        "filing_date": "2025-08-27",
+        "filing_fiscal_period": "FY26Q2",
+        "form_type": "10-Q",
+        "period_of_report": "2025-07-27"
+      },
+      "fiscal_period_values": [
+        "Q2"
+      ],
+      "fiscal_year_values": [
+        "2026"
+      ],
+      "focus_signature": [
+        "duration",
+        null,
+        "2025-01-27",
+        "2025-07-27"
+      ],
+      "status": "RESOLVED"
+    },
+    {
+      "filing": {
+        "accession": "0001045810-26-000019",
+        "calendar_period": "2025Q4",
+        "cik": "1045810",
+        "company": "NVIDIA",
+        "doc_id": "NVDA_FY26Q4_8K_EX991",
+        "doc_role": "exhibit",
+        "filing_date": "2026-02-25",
+        "filing_fiscal_period": "FY26Q4",
+        "form_type": "8-K",
+        "period_of_report": "2026-02-25",
+        "source_role": "historical_reference"
+      },
+      "fiscal_period_values": [],
+      "fiscal_year_values": [],
+      "reason": "filing has no authoritative inline-XBRL fiscal-focus/context facts in the frozen ingestion",
+      "status": "UNRESOLVED"
+    },
+    {
+      "filing": {
+        "accession": "0001045810-26-000051",
+        "calendar_period": "2026Q1",
+        "cik": "1045810",
+        "company": "NVIDIA",
+        "doc_id": "NVDA_FY27Q1_8K_EX991",
+        "doc_role": "exhibit",
+        "filing_date": "2026-05-20",
+        "filing_fiscal_period": "FY27Q1",
+        "form_type": "8-K",
+        "period_of_report": "2026-05-20",
+        "source_role": "benchmark_period"
+      },
+      "fiscal_period_values": [],
+      "fiscal_year_values": [],
+      "reason": "filing has no authoritative inline-XBRL fiscal-focus/context facts in the frozen ingestion",
+      "status": "UNRESOLVED"
+    },
+    {
+      "filing": {
+        "accession": "0001045810-26-000052",
+        "calendar_period": "2026Q1",
+        "cik": "1045810",
+        "company": "NVIDIA",
+        "doc_id": "NVDA_FY27Q1_10Q",
+        "filing_date": "2026-05-20",
+        "filing_fiscal_period": "FY27Q1",
+        "form_type": "10-Q",
+        "period_of_report": "2026-04-26"
+      },
+      "fiscal_period_values": [
+        "Q1"
+      ],
+      "fiscal_year_values": [
+        "2027"
+      ],
+      "focus_signature": [
+        "duration",
+        null,
+        "2026-01-26",
+        "2026-04-26"
+      ],
+      "status": "RESOLVED"
+    },
+    {
+      "filing": {
+        "accession": "0001045810-26-000073",
+        "calendar_period": "2026Q2",
+        "cik": "1045810",
+        "company": "NVIDIA",
+        "doc_id": "NVDA_FY27Q2_8K_EX991",
+        "doc_role": "exhibit",
+        "filing_date": "2026-08-26",
+        "filing_fiscal_period": "FY27Q2",
+        "form_type": "8-K",
+        "period_of_report": "2026-08-26",
+        "source_role": "benchmark_period"
+      },
+      "fiscal_period_values": [],
+      "fiscal_year_values": [],
+      "reason": "filing has no authoritative inline-XBRL fiscal-focus/context facts in the frozen ingestion",
+      "status": "UNRESOLVED"
+    },
+    {
+      "filing": {
+        "accession": "0001045810-26-000075",
+        "calendar_period": "2026Q2",
+        "cik": "1045810",
+        "company": "NVIDIA",
+        "doc_id": "NVDA_FY27Q2_10Q",
+        "filing_date": "2026-08-26",
+        "filing_fiscal_period": "FY27Q2",
+        "form_type": "10-Q",
+        "period_of_report": "2026-07-26"
+      },
+      "fiscal_period_values": [
+        "Q2"
+      ],
+      "fiscal_year_values": [
+        "2027"
+      ],
+      "focus_signature": [
+        "duration",
+        null,
+        "2026-01-26",
+        "2026-07-26"
+      ],
+      "status": "RESOLVED"
+    },
+    {
+      "filing": {
+        "accession": "0001193125-26-191457",
+        "calendar_period": "2026Q1",
+        "cik": "789019",
+        "company": "Microsoft",
+        "doc_id": "MSFT_FY26Q3_8K_EX991",
+        "doc_role": "exhibit",
+        "filing_date": "2026-04-29",
+        "filing_fiscal_period": "FY26Q3",
+        "form_type": "8-K",
+        "period_of_report": "2026-04-29",
+        "source_role": "benchmark_period"
+      },
+      "fiscal_period_values": [],
+      "fiscal_year_values": [],
+      "reason": "filing has no authoritative inline-XBRL fiscal-focus/context facts in the frozen ingestion",
+      "status": "UNRESOLVED"
+    },
+    {
+      "filing": {
+        "accession": "0001193125-26-191507",
+        "calendar_period": "2026Q1",
+        "cik": "789019",
+        "company": "Microsoft",
+        "doc_id": "MSFT_FY26Q3_10Q",
+        "filing_date": "2026-04-29",
+        "filing_fiscal_period": "FY26Q3",
+        "form_type": "10-Q",
+        "period_of_report": "2026-03-31"
+      },
+      "fiscal_period_values": [
+        "Q3"
+      ],
+      "fiscal_year_values": [
+        "2026"
+      ],
+      "focus_signature": [
+        "duration",
+        null,
+        "2025-07-01",
+        "2026-03-31"
+      ],
+      "status": "RESOLVED"
+    },
+    {
+      "filing": {
+        "accession": "0001193125-26-323632",
+        "calendar_period": "2026Q2",
+        "cik": "789019",
+        "company": "Microsoft",
+        "doc_id": "MSFT_FY26Q4_8K_EX991",
+        "doc_role": "exhibit",
+        "filing_date": "2026-07-29",
+        "filing_fiscal_period": "FY26Q4",
+        "form_type": "8-K",
+        "period_of_report": "2026-07-29",
+        "source_role": "benchmark_period"
+      },
+      "fiscal_period_values": [],
+      "fiscal_year_values": [],
+      "reason": "filing has no authoritative inline-XBRL fiscal-focus/context facts in the frozen ingestion",
+      "status": "UNRESOLVED"
+    },
+    {
+      "filing": {
+        "accession": "0001193125-26-323660",
+        "calendar_period": "2025Q3-2026Q2",
+        "cik": "789019",
+        "company": "Microsoft",
+        "doc_id": "MSFT_FY26_10K",
+        "filing_date": "2026-07-29",
+        "filing_fiscal_period": "FY26",
+        "form_type": "10-K",
+        "period_of_report": "2026-06-30"
+      },
+      "fiscal_period_values": [
+        "FY"
+      ],
+      "fiscal_year_values": [
+        "2026"
+      ],
+      "focus_signature": [
+        "duration",
+        null,
+        "2025-07-01",
+        "2026-06-30"
+      ],
+      "status": "RESOLVED"
+    },
+    {
+      "filing": {
+        "accession": "0001628280-26-028364",
+        "calendar_period": "2026Q1",
+        "cik": "1326801",
+        "company": "Meta",
+        "doc_id": "META_2026Q1_8K_EX991",
+        "doc_role": "exhibit",
+        "filing_date": "2026-04-29",
+        "filing_fiscal_period": "2026Q1",
+        "form_type": "8-K",
+        "period_of_report": "2026-04-29",
+        "source_role": "benchmark_period"
+      },
+      "fiscal_period_values": [],
+      "fiscal_year_values": [],
+      "reason": "filing has no authoritative inline-XBRL fiscal-focus/context facts in the frozen ingestion",
+      "status": "UNRESOLVED"
+    },
+    {
+      "filing": {
+        "accession": "0001628280-26-028526",
+        "calendar_period": "2026Q1",
+        "cik": "1326801",
+        "company": "Meta",
+        "doc_id": "META_2026Q1_10Q",
+        "filing_date": "2026-04-30",
+        "filing_fiscal_period": "2026Q1",
+        "form_type": "10-Q",
+        "period_of_report": "2026-03-31"
+      },
+      "fiscal_period_values": [
+        "Q1"
+      ],
+      "fiscal_year_values": [
+        "2026"
+      ],
+      "focus_signature": [
+        "duration",
+        null,
+        "2026-01-01",
+        "2026-03-31"
+      ],
+      "status": "RESOLVED"
+    },
+    {
+      "filing": {
+        "accession": "0001628280-26-050596",
+        "calendar_period": "2026Q2",
+        "cik": "1326801",
+        "company": "Meta",
+        "doc_id": "META_2026Q2_8K_EX991",
+        "doc_role": "exhibit",
+        "filing_date": "2026-07-29",
+        "filing_fiscal_period": "2026Q2",
+        "form_type": "8-K",
+        "period_of_report": "2026-07-29",
+        "source_role": "benchmark_period"
+      },
+      "fiscal_period_values": [],
+      "fiscal_year_values": [],
+      "reason": "filing has no authoritative inline-XBRL fiscal-focus/context facts in the frozen ingestion",
+      "status": "UNRESOLVED"
+    },
+    {
+      "filing": {
+        "accession": "0001628280-26-050705",
+        "calendar_period": "2026Q2",
+        "cik": "1326801",
+        "company": "Meta",
+        "doc_id": "META_2026Q2_10Q",
+        "filing_date": "2026-07-30",
+        "filing_fiscal_period": "2026Q2",
+        "form_type": "10-Q",
+        "period_of_report": "2026-06-30"
+      },
+      "fiscal_period_values": [
+        "Q2"
+      ],
+      "fiscal_year_values": [
+        "2026"
+      ],
+      "focus_signature": [
+        "duration",
+        null,
+        "2026-01-01",
+        "2026-06-30"
+      ],
+      "status": "RESOLVED"
+    }
+  ],
+  "parser_version": "fiscal_label_parser_v0.1",
+  "prohibited_inputs": [
+    "benchmark_answers",
+    "benchmark_target_ids",
+    "agent_outputs"
+  ],
+  "resolver_version": "fiscal_period_resolution_v0.1",
+  "rows": [
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q1",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q1_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "prior_comparative_period_end_instant_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-f82abc604a834738",
+      "source_accessions": [
+        "0001628280-26-028526"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-028526",
+          "context_refs": [
+            "c-30"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_period_end_instant_v0.1",
+          "supporting_numeric_fact_count": 6,
+          "supporting_numeric_fact_ids_sha256": "721d8fdbf0f8a77c685b6e9ebd1e47055615d7f9e12efeed3c65b0787ae7acde",
+          "temporal": {
+            "instant": "2025-03-31",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2025-03-31",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q1",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q1_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "prior_comparative_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-42c7ad676a0c65df",
+      "source_accessions": [
+        "0001628280-26-028526"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-028526",
+          "context_refs": [
+            "c-10"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 80,
+          "supporting_numeric_fact_ids_sha256": "ebce6cd96d5b70d473ba8016889d30b3946e057ba55be4d1f34db3656d371763",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-03-31",
+            "period_start": "2025-01-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-03-31",
+        "period_start": "2025-01-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q1",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q1_YTD",
+      "period_kind": "YTD",
+      "resolution_rule_ids": [
+        "prior_comparative_matching_duration_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-45f4c5a60f42b4dc",
+      "source_accessions": [
+        "0001628280-26-028526"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-028526",
+          "context_refs": [
+            "c-10"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_matching_duration_context_v0.1",
+          "supporting_numeric_fact_count": 80,
+          "supporting_numeric_fact_ids_sha256": "ebce6cd96d5b70d473ba8016889d30b3946e057ba55be4d1f34db3656d371763",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-03-31",
+            "period_start": "2025-01-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-03-31",
+        "period_start": "2025-01-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q2_H1",
+      "period_kind": "H1",
+      "resolution_rule_ids": [
+        "prior_q2_comparative_h1_alias_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-1ae926e154f0756d",
+      "source_accessions": [
+        "0001628280-26-050705"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-050705",
+          "context_refs": [
+            "c-12"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_q2_comparative_h1_alias_v0.1",
+          "supporting_numeric_fact_count": 82,
+          "supporting_numeric_fact_ids_sha256": "be94d8c2809772768d14c43dcd3303dea1c0de55ffe86e468ac1f945f9e92605",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-06-30",
+            "period_start": "2025-01-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-06-30",
+        "period_start": "2025-01-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q2_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "prior_comparative_period_end_instant_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-a5b488c94a4eb7ef",
+      "source_accessions": [
+        "0001628280-26-050705"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-050705",
+          "context_refs": [
+            "c-33"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_period_end_instant_v0.1",
+          "supporting_numeric_fact_count": 7,
+          "supporting_numeric_fact_ids_sha256": "cc86a9d5b3eee67e2aeda5b6b1b182d474feee74afd0d4bd58f29b3d4c87a79e",
+          "temporal": {
+            "instant": "2025-06-30",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2025-06-30",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q2_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "prior_comparative_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-162e6495c1652ad5",
+      "source_accessions": [
+        "0001628280-26-050705"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-050705",
+          "context_refs": [
+            "c-11"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 48,
+          "supporting_numeric_fact_ids_sha256": "4b0715aefd0c105edb6230c98ec59850c64747800a1f06aad37e5426007c84e7",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-06-30",
+            "period_start": "2025-04-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-06-30",
+        "period_start": "2025-04-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q2_YTD",
+      "period_kind": "YTD",
+      "resolution_rule_ids": [
+        "prior_comparative_matching_duration_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-d31df758eaa15a5d",
+      "source_accessions": [
+        "0001628280-26-050705"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-050705",
+          "context_refs": [
+            "c-12"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_matching_duration_context_v0.1",
+          "supporting_numeric_fact_count": 82,
+          "supporting_numeric_fact_ids_sha256": "be94d8c2809772768d14c43dcd3303dea1c0de55ffe86e468ac1f945f9e92605",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-06-30",
+            "period_start": "2025-01-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-06-30",
+        "period_start": "2025-01-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q1",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q1_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "document_period_end_instant_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-9effa6259e8bd38c",
+      "source_accessions": [
+        "0001628280-26-028526"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-028526",
+          "context_refs": [
+            "c-4"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "document_period_end_instant_context_v0.1",
+          "supporting_numeric_fact_count": 68,
+          "supporting_numeric_fact_ids_sha256": "676871dab4883318ea69c3cd0b74caa27dabf13ec770c65e77bc78984e3df8a6",
+          "temporal": {
+            "instant": "2026-03-31",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2026-03-31",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q1",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q1_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "focus_end_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-e376a03bf988a68e",
+      "source_accessions": [
+        "0001628280-26-028526"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-028526",
+          "context_refs": [
+            "c-1"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "focus_end_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 80,
+          "supporting_numeric_fact_ids_sha256": "9e7e7685fca1f1bfc5e3f1a85dbd6fe847a701a4d2e416c45f15ef358c451c25",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-03-31",
+            "period_start": "2026-01-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-03-31",
+        "period_start": "2026-01-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q1",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q1_YTD",
+      "period_kind": "YTD",
+      "resolution_rule_ids": [
+        "dei_focus_duration_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-863ce5c7822340c1",
+      "source_accessions": [
+        "0001628280-26-028526"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-028526",
+          "context_refs": [
+            "c-1"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "dei_focus_duration_v0.1",
+          "supporting_numeric_fact_count": 80,
+          "supporting_numeric_fact_ids_sha256": "9e7e7685fca1f1bfc5e3f1a85dbd6fe847a701a4d2e416c45f15ef358c451c25",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-03-31",
+            "period_start": "2026-01-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-03-31",
+        "period_start": "2026-01-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q2_H1",
+      "period_kind": "H1",
+      "resolution_rule_ids": [
+        "dei_q2_focus_h1_alias_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-7e4316f8a92d0fdc",
+      "source_accessions": [
+        "0001628280-26-050705"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-050705",
+          "context_refs": [
+            "c-1"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "dei_q2_focus_h1_alias_v0.1",
+          "supporting_numeric_fact_count": 84,
+          "supporting_numeric_fact_ids_sha256": "1c4193e78ad9970189a355a02c6588f5be1f0a66728846df54e916b09d8bd89f",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-06-30",
+            "period_start": "2026-01-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-06-30",
+        "period_start": "2026-01-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q2_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "document_period_end_instant_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-9664bd2d3835cada",
+      "source_accessions": [
+        "0001628280-26-050705"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-050705",
+          "context_refs": [
+            "c-4"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "document_period_end_instant_context_v0.1",
+          "supporting_numeric_fact_count": 78,
+          "supporting_numeric_fact_ids_sha256": "2bcc559e7a226054aa46d1105cfaaae8d9595a736f8e340cab4d03074ae36c54",
+          "temporal": {
+            "instant": "2026-06-30",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2026-06-30",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q2_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "focus_end_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-8fbe0a47631463c0",
+      "source_accessions": [
+        "0001628280-26-050705"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-050705",
+          "context_refs": [
+            "c-10"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "focus_end_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 48,
+          "supporting_numeric_fact_ids_sha256": "bec6dbad3fccf841e6af1f4007b549bcea9c82f07e9f87e584601c02d51a2468",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-06-30",
+            "period_start": "2026-04-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-06-30",
+        "period_start": "2026-04-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1326801",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Meta",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q2_YTD",
+      "period_kind": "YTD",
+      "resolution_rule_ids": [
+        "dei_focus_duration_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-3e1560c2d7f3e94e",
+      "source_accessions": [
+        "0001628280-26-050705"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001628280-26-050705",
+          "context_refs": [
+            "c-1"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "dei_focus_duration_v0.1",
+          "supporting_numeric_fact_count": 84,
+          "supporting_numeric_fact_ids_sha256": "1c4193e78ad9970189a355a02c6588f5be1f0a66728846df54e916b09d8bd89f",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-06-30",
+            "period_start": "2026-01-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-06-30",
+        "period_start": "2026-01-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "FY",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_FY_FY",
+      "period_kind": "FY",
+      "resolution_rule_ids": [
+        "prior_comparative_matching_duration_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-b663cba2ca102bfc",
+      "source_accessions": [
+        "0001193125-26-323660"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-323660",
+          "context_refs": [
+            "C_7575f467-7692-4974-a3da-f27e7e8e1c47"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_matching_duration_context_v0.1",
+          "supporting_numeric_fact_count": 134,
+          "supporting_numeric_fact_ids_sha256": "e1139ae0fdd5283b749921760c1b4b3ef657be0fcc2da4b5aa0adb9861713d6c",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-06-30",
+            "period_start": "2024-07-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-06-30",
+        "period_start": "2024-07-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "FY",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_FY_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "prior_comparative_period_end_instant_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-6fdd1ede3bb3d096",
+      "source_accessions": [
+        "0001193125-26-323660"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-323660",
+          "context_refs": [
+            "C_528a2210-872f-4ed7-b006-dd38f90dd456"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_period_end_instant_v0.1",
+          "supporting_numeric_fact_count": 131,
+          "supporting_numeric_fact_ids_sha256": "e93ddec332147faeb824e552de5cc31194f79dd3c3be1d9f2b0c01d9aedf5e1f",
+          "temporal": {
+            "instant": "2025-06-30",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2025-06-30",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "Q3",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q3_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "prior_comparative_period_end_instant_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-37a7d7cd84b6e76f",
+      "source_accessions": [
+        "0001193125-26-191507"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-191507",
+          "context_refs": [
+            "C_a9eb09a1-82a7-4128-8f0d-669a01e9fa99"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_period_end_instant_v0.1",
+          "supporting_numeric_fact_count": 4,
+          "supporting_numeric_fact_ids_sha256": "da0a6e3d23eb2d8bae89979bdc6a879bf72f53a4cb9dd7033515d3fbb3feaedb",
+          "temporal": {
+            "instant": "2025-03-31",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2025-03-31",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "Q3",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q3_NINE_MONTH",
+      "period_kind": "NINE_MONTH",
+      "resolution_rule_ids": [
+        "prior_q3_comparative_nine_month_alias_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-1d885a647dfdeda3",
+      "source_accessions": [
+        "0001193125-26-191507"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-191507",
+          "context_refs": [
+            "C_aba640f0-e68d-483a-91d3-04cd50ffa4d7"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_q3_comparative_nine_month_alias_v0.1",
+          "supporting_numeric_fact_count": 91,
+          "supporting_numeric_fact_ids_sha256": "44e9680c051e0a3f8499f550d1975f8ef35976d51d9663b577a5a92a96922d47",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-03-31",
+            "period_start": "2024-07-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-03-31",
+        "period_start": "2024-07-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "Q3",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q3_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "prior_comparative_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-734b2356bbc3704d",
+      "source_accessions": [
+        "0001193125-26-191507"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-191507",
+          "context_refs": [
+            "C_a562144f-ae22-48e1-bf50-6ab7684810df"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 91,
+          "supporting_numeric_fact_ids_sha256": "6b30eaa6296850b32d090705c13d334f25648a9710d61660baa6c4298abfc572",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-03-31",
+            "period_start": "2025-01-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-03-31",
+        "period_start": "2025-01-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "Q3",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q3_YTD",
+      "period_kind": "YTD",
+      "resolution_rule_ids": [
+        "prior_comparative_matching_duration_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-d45ba3dbeace30c6",
+      "source_accessions": [
+        "0001193125-26-191507"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-191507",
+          "context_refs": [
+            "C_aba640f0-e68d-483a-91d3-04cd50ffa4d7"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_matching_duration_context_v0.1",
+          "supporting_numeric_fact_count": 91,
+          "supporting_numeric_fact_ids_sha256": "44e9680c051e0a3f8499f550d1975f8ef35976d51d9663b577a5a92a96922d47",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-03-31",
+            "period_start": "2024-07-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-03-31",
+        "period_start": "2024-07-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "Q4",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q4_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "prior_comparative_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-48df4a2faddefba5",
+      "source_accessions": [
+        "0001193125-26-323660"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-323660",
+          "context_refs": [
+            "C_3b9d72c4-a95a-4ac9-96b9-741f41d6a607"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 2,
+          "supporting_numeric_fact_ids_sha256": "bb6ccf6f735acc29aac90992a90a1d80b495f40239245268a393d4e672ca0f96",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-06-30",
+            "period_start": "2025-04-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-06-30",
+        "period_start": "2025-04-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "FY",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_FY_FY",
+      "period_kind": "FY",
+      "resolution_rule_ids": [
+        "dei_focus_duration_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-2b5ed7ec583ce1b4",
+      "source_accessions": [
+        "0001193125-26-323660"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-323660",
+          "context_refs": [
+            "C_29985a27-1d12-4b7e-9a06-156523f6e71e"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "dei_focus_duration_v0.1",
+          "supporting_numeric_fact_count": 157,
+          "supporting_numeric_fact_ids_sha256": "f9a90f9a38c96e81d8d6ec23998525908ada6b5ada30b4a50f477f89319be708",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-06-30",
+            "period_start": "2025-07-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-06-30",
+        "period_start": "2025-07-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "FY",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_FY_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "document_period_end_instant_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-560c59a8dfdf9362",
+      "source_accessions": [
+        "0001193125-26-323660"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-323660",
+          "context_refs": [
+            "C_ca004a37-7abb-4b0e-8638-a7c6b14ebb45"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "document_period_end_instant_context_v0.1",
+          "supporting_numeric_fact_count": 173,
+          "supporting_numeric_fact_ids_sha256": "55662b67c1e83fd6aa2ccc76eb512856eaf3f8f411e61b02c1d5182c4dc9c9d4",
+          "temporal": {
+            "instant": "2026-06-30",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2026-06-30",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "Q3",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q3_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "document_period_end_instant_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-d3a5abc169391a29",
+      "source_accessions": [
+        "0001193125-26-191507"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-191507",
+          "context_refs": [
+            "C_eef9b0c3-cb22-498c-8a40-a6d3fe2cfb8d"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "document_period_end_instant_context_v0.1",
+          "supporting_numeric_fact_count": 147,
+          "supporting_numeric_fact_ids_sha256": "aad23fa245691e75a320aa39dc40e19ccdb3df79affe45f9352c4569c4bc6f91",
+          "temporal": {
+            "instant": "2026-03-31",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2026-03-31",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "Q3",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q3_NINE_MONTH",
+      "period_kind": "NINE_MONTH",
+      "resolution_rule_ids": [
+        "dei_q3_focus_nine_month_alias_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-cf72850e7dbc8752",
+      "source_accessions": [
+        "0001193125-26-191507"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-191507",
+          "context_refs": [
+            "C_febdcaf2-b495-4375-a7e2-d8c584325fc8"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "dei_q3_focus_nine_month_alias_v0.1",
+          "supporting_numeric_fact_count": 101,
+          "supporting_numeric_fact_ids_sha256": "560cdfaf4e97e6e524b39fbbe999f22452ddd6969c3c804fef8c775b26ab8be3",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-03-31",
+            "period_start": "2025-07-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-03-31",
+        "period_start": "2025-07-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "Q3",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q3_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "focus_end_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-21e4d26842952061",
+      "source_accessions": [
+        "0001193125-26-191507"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-191507",
+          "context_refs": [
+            "C_c2ccc5b0-c925-4f23-934c-ae4c5790d1f6"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "focus_end_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 91,
+          "supporting_numeric_fact_ids_sha256": "8b8780c2437c80fe5bd7672034db1fd206284b3ba907938f1c0421895bfab55c",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-03-31",
+            "period_start": "2026-01-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-03-31",
+        "period_start": "2026-01-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "Q3",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q3_YTD",
+      "period_kind": "YTD",
+      "resolution_rule_ids": [
+        "dei_focus_duration_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-fda9dc3925503cf9",
+      "source_accessions": [
+        "0001193125-26-191507"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-191507",
+          "context_refs": [
+            "C_febdcaf2-b495-4375-a7e2-d8c584325fc8"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "dei_focus_duration_v0.1",
+          "supporting_numeric_fact_count": 101,
+          "supporting_numeric_fact_ids_sha256": "560cdfaf4e97e6e524b39fbbe999f22452ddd6969c3c804fef8c775b26ab8be3",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-03-31",
+            "period_start": "2025-07-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-03-31",
+        "period_start": "2025-07-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "789019",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "Microsoft",
+      "fiscal_period": "Q4",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q4_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "focus_end_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-ad527789ba43055f",
+      "source_accessions": [
+        "0001193125-26-323660"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001193125-26-323660",
+          "context_refs": [
+            "C_6e9895b2-a13b-41e6-b74c-b9513c86aec9"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "focus_end_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 2,
+          "supporting_numeric_fact_ids_sha256": "f48f6f73bb8227898b94d18306637ff49d82873fc8b5a3a2a690842ef295ff1c",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-06-30",
+            "period_start": "2026-04-01"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-06-30",
+        "period_start": "2026-04-01"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q2_H1",
+      "period_kind": "H1",
+      "resolution_rule_ids": [
+        "prior_q2_comparative_h1_alias_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-02d907f895a6adc8",
+      "source_accessions": [
+        "0001045810-25-000209"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-25-000209",
+          "context_refs": [
+            "c-5"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_q2_comparative_h1_alias_v0.1",
+          "supporting_numeric_fact_count": 95,
+          "supporting_numeric_fact_ids_sha256": "99eb6cd0d6048d76088d91bb51d18b7f10a645ef36b25e0dacb74bee106a7ad9",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2024-07-28",
+            "period_start": "2024-01-29"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2024-07-28",
+        "period_start": "2024-01-29"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q2_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "prior_comparative_period_end_instant_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-3f4c42461c80b223",
+      "source_accessions": [
+        "0001045810-25-000209"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-25-000209",
+          "context_refs": [
+            "c-34"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_period_end_instant_v0.1",
+          "supporting_numeric_fact_count": 10,
+          "supporting_numeric_fact_ids_sha256": "65f8690a27ef3057f558f9719583d29b14510f5d9f152a4d70216e452e536bee",
+          "temporal": {
+            "instant": "2024-07-28",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2024-07-28",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q2_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "prior_comparative_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-405086288c164d0d",
+      "source_accessions": [
+        "0001045810-25-000209"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-25-000209",
+          "context_refs": [
+            "c-4"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 57,
+          "supporting_numeric_fact_ids_sha256": "417685414216bdfe78584613016e48c6dbe6feca786a498ee6b910345505c151",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2024-07-28",
+            "period_start": "2024-04-29"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2024-07-28",
+        "period_start": "2024-04-29"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2025,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2025_Q2_YTD",
+      "period_kind": "YTD",
+      "resolution_rule_ids": [
+        "prior_comparative_matching_duration_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-e9ee1d2302772c11",
+      "source_accessions": [
+        "0001045810-25-000209"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-25-000209",
+          "context_refs": [
+            "c-5"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_matching_duration_context_v0.1",
+          "supporting_numeric_fact_count": 95,
+          "supporting_numeric_fact_ids_sha256": "99eb6cd0d6048d76088d91bb51d18b7f10a645ef36b25e0dacb74bee106a7ad9",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2024-07-28",
+            "period_start": "2024-01-29"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2024-07-28",
+        "period_start": "2024-01-29"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q1",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q1_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "prior_comparative_period_end_instant_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-d0add3780bcbca1a",
+      "source_accessions": [
+        "0001045810-26-000052"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000052",
+          "context_refs": [
+            "c-31"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_period_end_instant_v0.1",
+          "supporting_numeric_fact_count": 7,
+          "supporting_numeric_fact_ids_sha256": "ec6660e74498ecadc1698bb4502a1a0116f590b855707930d2caa9fc13b5c3d8",
+          "temporal": {
+            "instant": "2025-04-27",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2025-04-27",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q1",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q1_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "prior_comparative_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-733697fc367a0b62",
+      "source_accessions": [
+        "0001045810-26-000052"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000052",
+          "context_refs": [
+            "c-3"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 92,
+          "supporting_numeric_fact_ids_sha256": "8d0665c046ae415063aa29d4e52627146019e80c3080493ff82ad92c0f54ee47",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-04-27",
+            "period_start": "2025-01-27"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-04-27",
+        "period_start": "2025-01-27"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q1",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q1_YTD",
+      "period_kind": "YTD",
+      "resolution_rule_ids": [
+        "prior_comparative_matching_duration_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-ccd03f33e1e372a9",
+      "source_accessions": [
+        "0001045810-26-000052"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000052",
+          "context_refs": [
+            "c-3"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_matching_duration_context_v0.1",
+          "supporting_numeric_fact_count": 92,
+          "supporting_numeric_fact_ids_sha256": "8d0665c046ae415063aa29d4e52627146019e80c3080493ff82ad92c0f54ee47",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-04-27",
+            "period_start": "2025-01-27"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-04-27",
+        "period_start": "2025-01-27"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q2_H1",
+      "period_kind": "H1",
+      "resolution_rule_ids": [
+        "dei_q2_focus_h1_alias_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-9af5e0d59efbdaf3",
+      "source_accessions": [
+        "0001045810-25-000209"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-25-000209",
+          "context_refs": [
+            "c-1"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "dei_q2_focus_h1_alias_v0.1",
+          "supporting_numeric_fact_count": 102,
+          "supporting_numeric_fact_ids_sha256": "96e34ae662dfa1a3e08b35839d90226959da8bad8b312696bd52de9159df0415",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-07-27",
+            "period_start": "2025-01-27"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-07-27",
+        "period_start": "2025-01-27"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q2_H1",
+      "period_kind": "H1",
+      "resolution_rule_ids": [
+        "prior_q2_comparative_h1_alias_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-378c63f3b9794fa1",
+      "source_accessions": [
+        "0001045810-26-000075"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000075",
+          "context_refs": [
+            "c-5"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_q2_comparative_h1_alias_v0.1",
+          "supporting_numeric_fact_count": 96,
+          "supporting_numeric_fact_ids_sha256": "6cb292bc5da47d62bf1acb77a065209733138503bffbc1fabf2391621b3c02b8",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-07-27",
+            "period_start": "2025-01-27"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-07-27",
+        "period_start": "2025-01-27"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q2_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "document_period_end_instant_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-56505e54a430ecd4",
+      "source_accessions": [
+        "0001045810-25-000209"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-25-000209",
+          "context_refs": [
+            "c-6"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "document_period_end_instant_context_v0.1",
+          "supporting_numeric_fact_count": 114,
+          "supporting_numeric_fact_ids_sha256": "f2e64773c840a7a57f2b2798f269830632be6fe60f5ccdbf648031ed00d44ed8",
+          "temporal": {
+            "instant": "2025-07-27",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2025-07-27",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q2_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "prior_comparative_period_end_instant_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-d4b61a8c21e79c39",
+      "source_accessions": [
+        "0001045810-26-000075"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000075",
+          "context_refs": [
+            "c-34"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_period_end_instant_v0.1",
+          "supporting_numeric_fact_count": 10,
+          "supporting_numeric_fact_ids_sha256": "7edcacb92d308450a98d176f08d5123d6f75947f8727f2eb26ed0a8d7111f89d",
+          "temporal": {
+            "instant": "2025-07-27",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2025-07-27",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q2_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "focus_end_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-42314155d9bd14ea",
+      "source_accessions": [
+        "0001045810-25-000209"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-25-000209",
+          "context_refs": [
+            "c-3"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "focus_end_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 58,
+          "supporting_numeric_fact_ids_sha256": "b0387abafbb8bc8f9da59e7d4618422f96310bf6bbe5a7baec82160b5f660fb0",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-07-27",
+            "period_start": "2025-04-28"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-07-27",
+        "period_start": "2025-04-28"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q2_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "prior_comparative_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-f2955e226e023ab3",
+      "source_accessions": [
+        "0001045810-26-000075"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000075",
+          "context_refs": [
+            "c-4"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 58,
+          "supporting_numeric_fact_ids_sha256": "24704dd53a57fb42c956621fa3b6e7da668bbeacb11cb61aeb645932a0079a3c",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-07-27",
+            "period_start": "2025-04-28"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-07-27",
+        "period_start": "2025-04-28"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q2_YTD",
+      "period_kind": "YTD",
+      "resolution_rule_ids": [
+        "dei_focus_duration_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-d5b06fb5683e1e32",
+      "source_accessions": [
+        "0001045810-25-000209"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-25-000209",
+          "context_refs": [
+            "c-1"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "dei_focus_duration_v0.1",
+          "supporting_numeric_fact_count": 102,
+          "supporting_numeric_fact_ids_sha256": "96e34ae662dfa1a3e08b35839d90226959da8bad8b312696bd52de9159df0415",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-07-27",
+            "period_start": "2025-01-27"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-07-27",
+        "period_start": "2025-01-27"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "prior_year_comparative",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2026,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2026_Q2_YTD",
+      "period_kind": "YTD",
+      "resolution_rule_ids": [
+        "prior_comparative_matching_duration_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-afa0572596e5a98a",
+      "source_accessions": [
+        "0001045810-26-000075"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000075",
+          "context_refs": [
+            "c-5"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "prior_comparative_matching_duration_context_v0.1",
+          "supporting_numeric_fact_count": 96,
+          "supporting_numeric_fact_ids_sha256": "6cb292bc5da47d62bf1acb77a065209733138503bffbc1fabf2391621b3c02b8",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2025-07-27",
+            "period_start": "2025-01-27"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2025-07-27",
+        "period_start": "2025-01-27"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q1",
+      "fiscal_year": 2027,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2027_Q1_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "document_period_end_instant_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-5fbec69f7efc5551",
+      "source_accessions": [
+        "0001045810-26-000052"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000052",
+          "context_refs": [
+            "c-4"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "document_period_end_instant_context_v0.1",
+          "supporting_numeric_fact_count": 97,
+          "supporting_numeric_fact_ids_sha256": "750ecf3800e9b0851196301884025d2dc7c6d33353d1f30b23d171fa68b70e72",
+          "temporal": {
+            "instant": "2026-04-26",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2026-04-26",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q1",
+      "fiscal_year": 2027,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2027_Q1_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "focus_end_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-b8e98d89283dd7b7",
+      "source_accessions": [
+        "0001045810-26-000052"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000052",
+          "context_refs": [
+            "c-1"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "focus_end_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 98,
+          "supporting_numeric_fact_ids_sha256": "0df39c7c693dc6cd7e691f29e8715c22a125bae43d7603cb04238331fa9aa639",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-04-26",
+            "period_start": "2026-01-26"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-04-26",
+        "period_start": "2026-01-26"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q1",
+      "fiscal_year": 2027,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2027_Q1_YTD",
+      "period_kind": "YTD",
+      "resolution_rule_ids": [
+        "dei_focus_duration_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-a0d150f9da480711",
+      "source_accessions": [
+        "0001045810-26-000052"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000052",
+          "context_refs": [
+            "c-1"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "dei_focus_duration_v0.1",
+          "supporting_numeric_fact_count": 98,
+          "supporting_numeric_fact_ids_sha256": "0df39c7c693dc6cd7e691f29e8715c22a125bae43d7603cb04238331fa9aa639",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-04-26",
+            "period_start": "2026-01-26"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-04-26",
+        "period_start": "2026-01-26"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2027,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2027_Q2_H1",
+      "period_kind": "H1",
+      "resolution_rule_ids": [
+        "dei_q2_focus_h1_alias_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-0c8840f7825a84ff",
+      "source_accessions": [
+        "0001045810-26-000075"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000075",
+          "context_refs": [
+            "c-1"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "dei_q2_focus_h1_alias_v0.1",
+          "supporting_numeric_fact_count": 104,
+          "supporting_numeric_fact_ids_sha256": "10f2c99d05a26644cf81c8cd96c84d77ad68b2587fb463f7ce69d7bb208cdd68",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-07-26",
+            "period_start": "2026-01-26"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-07-26",
+        "period_start": "2026-01-26"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2027,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2027_Q2_INSTANT",
+      "period_kind": "INSTANT",
+      "resolution_rule_ids": [
+        "document_period_end_instant_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-00cb8d917bc26096",
+      "source_accessions": [
+        "0001045810-26-000075"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000075",
+          "context_refs": [
+            "c-6"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "document_period_end_instant_context_v0.1",
+          "supporting_numeric_fact_count": 99,
+          "supporting_numeric_fact_ids_sha256": "7137b14a2c3b2ffdc1073ede17143f2b14b7fec7939edf109d04a840d5055961",
+          "temporal": {
+            "instant": "2026-07-26",
+            "kind": "instant"
+          }
+        }
+      ],
+      "temporal": {
+        "instant": "2026-07-26",
+        "kind": "instant"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2027,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2027_Q2_SINGLE_QUARTER",
+      "period_kind": "SINGLE_QUARTER",
+      "resolution_rule_ids": [
+        "focus_end_single_quarter_context_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-03dd3042409aa59d",
+      "source_accessions": [
+        "0001045810-26-000075"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000075",
+          "context_refs": [
+            "c-3"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "focus_end_single_quarter_context_v0.1",
+          "supporting_numeric_fact_count": 60,
+          "supporting_numeric_fact_ids_sha256": "a6a3f741e97155a1a1841e26e2210872586c12aac3991932cb9281f185d1eb40",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-07-26",
+            "period_start": "2026-04-27"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-07-26",
+        "period_start": "2026-04-27"
+      }
+    },
+    {
+      "automatic_rationale": "All resolved authoritative observations for this key agree on one exact temporal signature.",
+      "cik": "1045810",
+      "comparison_role": "current",
+      "conflict_diagnostics": [],
+      "entity": "NVIDIA",
+      "fiscal_period": "Q2",
+      "fiscal_year": 2027,
+      "human_review_notes": "",
+      "human_review_status": "",
+      "normalized_fiscal_label": "FY2027_Q2_YTD",
+      "period_kind": "YTD",
+      "resolution_rule_ids": [
+        "dei_focus_duration_v0.1"
+      ],
+      "resolution_status": "RESOLVED",
+      "resolver_row_id": "FPR-54236d6e20a2fd8a",
+      "source_accessions": [
+        "0001045810-26-000075"
+      ],
+      "source_context_evidence": [
+        {
+          "accession": "0001045810-26-000075",
+          "context_refs": [
+            "c-1"
+          ],
+          "observation_status": "RESOLVED",
+          "rule_id": "dei_focus_duration_v0.1",
+          "supporting_numeric_fact_count": 104,
+          "supporting_numeric_fact_ids_sha256": "10f2c99d05a26644cf81c8cd96c84d77ad68b2587fb463f7ce69d7bb208cdd68",
+          "temporal": {
+            "kind": "duration",
+            "period_end": "2026-07-26",
+            "period_start": "2026-01-26"
+          }
+        }
+      ],
+      "temporal": {
+        "kind": "duration",
+        "period_end": "2026-07-26",
+        "period_start": "2026-01-26"
+      }
+    }
+  ],
+  "schema_version": "fiscal_period_resolution_v0.1",
+  "xbrl_artifact_fingerprint": "acaf087ee2c4fb7427377cae5f1968da26c75d4dfa565f67f1e056b2c4cc4eb6",
+  "xbrl_bearing_accessions": [
+    "0001045810-25-000209",
+    "0001045810-26-000052",
+    "0001045810-26-000075",
+    "0001193125-26-191507",
+    "0001193125-26-323660",
+    "0001628280-26-028526",
+    "0001628280-26-050705"
+  ]
+}
