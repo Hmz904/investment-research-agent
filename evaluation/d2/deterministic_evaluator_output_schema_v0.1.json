@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/deterministic_evaluator_output_schema_v0.1.json",
+  "title": "Deterministic evaluator result v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "result_schema_version",
+    "evaluator_version",
+    "question_id",
+    "scheduled_replicate_id",
+    "scheduled_slot_id",
+    "effective_attempt_id",
+    "execution_status",
+    "evaluator_status",
+    "included_in_scored_denominator",
+    "checkpoint_valid",
+    "contract_identity",
+    "metrics",
+    "reason_codes",
+    "errors"
+  ],
+  "properties": {
+    "result_schema_version": {"const": "deterministic_evaluator_result_v0.1"},
+    "evaluator_version": {"const": "deterministic_evaluator_v0.1"},
+    "question_id": {"type": ["string", "null"]},
+    "scheduled_replicate_id": {"type": ["string", "null"]},
+    "scheduled_slot_id": {"type": ["string", "null"]},
+    "effective_attempt_id": {"type": ["string", "null"]},
+    "execution_status": {"type": ["string", "null"]},
+    "evaluator_status": {"enum": ["EVAL_OK", "EVAL_INPUT_INVALID", "EVAL_CONTRACT_MISMATCH", "EVAL_INTERNAL_ERROR"]},
+    "included_in_scored_denominator": {"type": "boolean"},
+    "checkpoint_valid": {"type": "boolean"},
+    "contract_identity": {"type": "object", "additionalProperties": {"type": "string"}},
+    "metrics": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "schema_valid",
+            "completion_dependent_zero",
+            "answer_group_results",
+            "numeric_value_correctness",
+            "required_input_correctness",
+            "complete_numeric_answer_correctness",
+            "formula_correctness",
+            "arithmetic_correctness",
+            "variant_consistency",
+            "provenance_validity",
+            "chunk_provenance_validity",
+            "xbrl_provenance_validity",
+            "benchmark_provenance_correctness",
+            "provenance_completeness",
+            "derived_calculation_result",
+            "provenance_path_type",
+            "deterministic_subtotal",
+            "judge_dependent"
+          ],
+          "properties": {
+            "schema_valid": {"type": "boolean"},
+            "completion_dependent_zero": {"type": "boolean"},
+            "answer_group_results": {"type": "array", "items": {"type": "object"}},
+            "numeric_value_correctness": {"$ref": "#/$defs/ratio"},
+            "required_input_correctness": {"$ref": "#/$defs/nullable_ratio"},
+            "complete_numeric_answer_correctness": {"type": ["boolean", "null"]},
+            "formula_correctness": {"type": ["boolean", "null"]},
+            "arithmetic_correctness": {"type": ["boolean", "null"]},
+            "variant_consistency": {"enum": ["PASS", "FAIL", "NOT_APPLICABLE"]},
+            "provenance_validity": {"$ref": "#/$defs/ratio"},
+            "chunk_provenance_validity": {"$ref": "#/$defs/nullable_ratio"},
+            "xbrl_provenance_validity": {"$ref": "#/$defs/nullable_ratio"},
+            "benchmark_provenance_correctness": {"$ref": "#/$defs/nullable_ratio"},
+            "provenance_completeness": {"type": ["boolean", "null"]},
+            "derived_calculation_result": {"type": ["object", "null"]},
+            "provenance_path_type": {"enum": ["chunk", "xbrl", "derived_inputs", "mixed", "none", "not_applicable"]},
+            "deterministic_subtotal": {"type": "null"},
+            "judge_dependent": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "semantic_item_match", "citation_support", "material_claim_requires_citation",
+                "causal_overreach", "answer_claim_consistency", "evidence_item_coverage",
+                "evidence_all_parts_rate", "evidence_weighted_partial_coverage",
+                "evidence_weighted_strict_coverage", "evidence_core_coverage",
+                "evidence_strict_grounded_correctness", "unsupported_material_claim_rate",
+                "numeric_strict_grounded_correctness"
+              ],
+              "properties": {
+                "semantic_item_match": {"const": "PENDING_JUDGE"},
+                "citation_support": {"const": "PENDING_JUDGE"},
+                "material_claim_requires_citation": {"const": "PENDING_JUDGE"},
+                "causal_overreach": {"const": "PENDING_JUDGE"},
+                "answer_claim_consistency": {"const": "PENDING_JUDGE"},
+                "evidence_item_coverage": {"const": "PENDING_JUDGE"},
+                "evidence_all_parts_rate": {"const": "PENDING_JUDGE"},
+                "evidence_weighted_partial_coverage": {"const": "PENDING_JUDGE"},
+                "evidence_weighted_strict_coverage": {"const": "PENDING_JUDGE"},
+                "evidence_core_coverage": {"const": "PENDING_JUDGE"},
+                "evidence_strict_grounded_correctness": {"const": "PENDING_JUDGE"},
+                "unsupported_material_claim_rate": {"const": "PENDING_JUDGE"},
+                "numeric_strict_grounded_correctness": {"const": "PENDING_JUDGE"}
+              }
+            }
+          }
+        }
+      ]
+    },
+    "reason_codes": {"type": "array", "items": {"type": "string"}},
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "message", "path"],
+        "properties": {
+          "code": {"type": "string", "minLength": 1},
+          "message": {"type": "string", "minLength": 1},
+          "path": {"type": "string"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "ratio": {
+      "type": "object", "additionalProperties": false,
+      "required": ["numerator", "denominator"],
+      "properties": {"numerator": {"type": "integer", "minimum": 0}, "denominator": {"type": "integer", "minimum": 0}}
+    },
+    "nullable_ratio": {"anyOf": [{"$ref": "#/$defs/ratio"}, {"type": "null"}]}
+  }
+}

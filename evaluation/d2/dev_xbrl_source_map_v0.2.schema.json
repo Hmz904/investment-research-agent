@@ -1,0 +1,1378 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/dev_xbrl_source_map_v0.2.schema.json",
+  "title": "Strict concrete DEVXBRLMap source contract v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "agent_outputs_used",
+    "artifact_status",
+    "benchmark_version",
+    "final_status_counts",
+    "final_status_namespace",
+    "human_readable_period_labels_used",
+    "human_review_completed",
+    "mapping_algorithm_version",
+    "mapping_spec_version",
+    "mapping_version",
+    "original_d1_candidate_artifact_overwritten",
+    "review_artifacts",
+    "review_completion",
+    "schema_version",
+    "split",
+    "targets",
+    "temporal_catalog_sha256",
+    "temporal_catalog_version"
+  ],
+  "properties": {
+    "agent_outputs_used": {
+      "const": false
+    },
+    "artifact_status": {
+      "type": "string"
+    },
+    "benchmark_version": {
+      "type": "string"
+    },
+    "final_status_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "derived_via_inputs",
+        "mapped",
+        "no_xbrl_counterpart_in_frozen_corpus",
+        "unmappable"
+      ],
+      "properties": {
+        "derived_via_inputs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mapped": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "no_xbrl_counterpart_in_frozen_corpus": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unmappable": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "final_status_namespace": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "mapped",
+          "unmappable",
+          "no_xbrl_counterpart_in_frozen_corpus",
+          "derived_via_inputs"
+        ]
+      }
+    },
+    "human_readable_period_labels_used": {
+      "const": false
+    },
+    "human_review_completed": {
+      "const": true
+    },
+    "mapping_algorithm_version": {
+      "const": "xbrl_gold_mapping_algorithm_v0.1"
+    },
+    "mapping_spec_version": {
+      "const": "xbrl_gold_mapping_spec_v0.1.2"
+    },
+    "mapping_version": {
+      "const": "dev_xbrl_map_v0.1"
+    },
+    "original_d1_candidate_artifact_overwritten": {
+      "const": false
+    },
+    "review_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "review_completion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "layer_a_rule_families",
+        "layer_b_actually_used_dev_rows",
+        "layer_c_conflict_sample"
+      ],
+      "properties": {
+        "layer_a_rule_families": {
+          "type": "string"
+        },
+        "layer_b_actually_used_dev_rows": {
+          "type": "string"
+        },
+        "layer_c_conflict_sample": {
+          "type": "string"
+        }
+      }
+    },
+    "schema_version": {
+      "const": "dev_xbrl_map_v0.1"
+    },
+    "split": {
+      "const": "DEV"
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "approved_candidate_ids",
+          "approved_chunk_ids",
+          "final_mapping_status",
+          "formula",
+          "gold_basis",
+          "gold_display_sign",
+          "gold_sign_basis",
+          "gold_unit",
+          "gold_value",
+          "gold_xbrl_concept",
+          "human_review_lineage",
+          "legacy_source_paths",
+          "provenance_lineage",
+          "question_id",
+          "rejected_candidate_ids",
+          "required_input_ids",
+          "role",
+          "source_accessions",
+          "stage1_candidates",
+          "stage2_candidates",
+          "stage3_candidates",
+          "stage_completion",
+          "target_id",
+          "target_kind",
+          "temporal_resolution",
+          "unmappable_reason_code",
+          "unresolved_candidate_ids"
+        ],
+        "properties": {
+          "approved_candidate_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "approved_chunk_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "candidate_review_counts": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "approved",
+              "rejected",
+              "unresolved"
+            ],
+            "properties": {
+              "approved": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "rejected": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "unresolved": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "derived_input_lineage": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "input_target_id",
+                "legacy_chunk_ids",
+                "legacy_provenance_ids",
+                "legacy_source_check_status",
+                "provenance_route",
+                "support_status",
+                "xbrl_proposed_status"
+              ],
+              "properties": {
+                "input_target_id": {
+                  "type": "string"
+                },
+                "legacy_chunk_ids": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "legacy_provenance_ids": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "legacy_source_check_status": {
+                  "enum": [
+                    "SOURCE_CHECK_PASS",
+                    "SOURCE_CHECK_FAIL",
+                    "SOURCE_CHECK_UNRESOLVED"
+                  ]
+                },
+                "provenance_route": {
+                  "type": "string"
+                },
+                "support_status": {
+                  "type": "string"
+                },
+                "xbrl_proposed_status": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "final_mapping_status": {
+            "enum": [
+              "mapped",
+              "unmappable",
+              "no_xbrl_counterpart_in_frozen_corpus",
+              "derived_via_inputs"
+            ]
+          },
+          "formula": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "gold_basis": {
+            "type": "string",
+            "minLength": 1
+          },
+          "gold_display_sign": {
+            "enum": [
+              "positive",
+              "negative",
+              "zero"
+            ]
+          },
+          "gold_sign_basis": {
+            "enum": [
+              "economic_signed_value",
+              "positive_magnitude",
+              "cash_flow_statement_sign",
+              "source_presentation_sign",
+              "unresolved"
+            ]
+          },
+          "gold_unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "gold_value": {
+            "type": "string",
+            "pattern": "^[+-]?[0-9]+(?:\\.[0-9]+)?$"
+          },
+          "gold_xbrl_concept": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "human_review_lineage": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "artifact",
+                "decision",
+                "review_type"
+              ],
+              "properties": {
+                "artifact": {
+                  "type": "string"
+                },
+                "decision": {
+                  "type": "string"
+                },
+                "review_type": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "legacy_source_paths": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "accession",
+                "audit_note",
+                "calendar_period",
+                "chunk_id",
+                "company",
+                "doc_id",
+                "fiscal_period",
+                "form",
+                "locator",
+                "reference_id",
+                "source_check_status"
+              ],
+              "properties": {
+                "accession": {
+                  "type": "string",
+                  "pattern": "^[0-9]{10}-[0-9]{2}-[0-9]{6}$"
+                },
+                "audit_note": {
+                  "type": "string"
+                },
+                "calendar_period": {
+                  "type": "string"
+                },
+                "chunk_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "company": {
+                  "type": "string"
+                },
+                "doc_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "fiscal_period": {
+                  "type": "string"
+                },
+                "form": {
+                  "type": "string"
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "reference_id": {
+                  "type": "string"
+                },
+                "source_check_status": {
+                  "enum": [
+                    "SOURCE_CHECK_PASS",
+                    "SOURCE_CHECK_FAIL",
+                    "SOURCE_CHECK_UNRESOLVED"
+                  ]
+                }
+              }
+            }
+          },
+          "provenance_lineage": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [],
+            "properties": {
+              "approved_xbrl_fact_locators": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "input_lineage": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "input_target_id",
+                    "legacy_chunk_ids",
+                    "legacy_provenance_ids",
+                    "legacy_source_check_status",
+                    "provenance_route",
+                    "support_status",
+                    "xbrl_proposed_status"
+                  ],
+                  "properties": {
+                    "input_target_id": {
+                      "type": "string"
+                    },
+                    "legacy_chunk_ids": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "legacy_provenance_ids": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "legacy_source_check_status": {
+                      "enum": [
+                        "SOURCE_CHECK_PASS",
+                        "SOURCE_CHECK_FAIL",
+                        "SOURCE_CHECK_UNRESOLVED"
+                      ]
+                    },
+                    "provenance_route": {
+                      "type": "string"
+                    },
+                    "support_status": {
+                      "type": "string"
+                    },
+                    "xbrl_proposed_status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "legacy_source_paths": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "accession",
+                    "audit_note",
+                    "calendar_period",
+                    "chunk_id",
+                    "company",
+                    "doc_id",
+                    "fiscal_period",
+                    "form",
+                    "locator",
+                    "reference_id",
+                    "source_check_status"
+                  ],
+                  "properties": {
+                    "accession": {
+                      "type": "string",
+                      "pattern": "^[0-9]{10}-[0-9]{2}-[0-9]{6}$"
+                    },
+                    "audit_note": {
+                      "type": "string"
+                    },
+                    "calendar_period": {
+                      "type": "string"
+                    },
+                    "chunk_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "company": {
+                      "type": "string"
+                    },
+                    "doc_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "fiscal_period": {
+                      "type": "string"
+                    },
+                    "form": {
+                      "type": "string"
+                    },
+                    "locator": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "reference_id": {
+                      "type": "string"
+                    },
+                    "source_check_status": {
+                      "enum": [
+                        "SOURCE_CHECK_PASS",
+                        "SOURCE_CHECK_FAIL",
+                        "SOURCE_CHECK_UNRESOLVED"
+                      ]
+                    }
+                  }
+                }
+              },
+              "mode": {
+                "type": "string"
+              },
+              "required_input_ids": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "selected_temporal_candidate": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "accessions",
+                      "contributing_temporal_row_ids",
+                      "entity",
+                      "evidence_fingerprints",
+                      "generation_rule_ids",
+                      "source_identities",
+                      "temporal",
+                      "temporal_candidate_id",
+                      "temporal_evidence_types"
+                    ],
+                    "properties": {
+                      "accessions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "contributing_temporal_row_ids": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "entity": {
+                        "type": "string"
+                      },
+                      "evidence_fingerprints": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "generation_rule_ids": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "source_identities": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "chunk_ids",
+                            "concepts",
+                            "context_refs",
+                            "doc_id",
+                            "fact_locators",
+                            "stable_fact_ids",
+                            "table_identity"
+                          ],
+                          "properties": {
+                            "chunk_ids": {
+                              "type": "array",
+                              "uniqueItems": true,
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "concepts": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "context_refs": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "doc_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "fact_locators": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "stable_fact_ids": {
+                              "type": "array",
+                              "uniqueItems": true,
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "table_identity": {
+                              "type": "null"
+                            }
+                          }
+                        }
+                      },
+                      "temporal": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "kind",
+                          "period_end",
+                          "period_start"
+                        ],
+                        "properties": {
+                          "kind": {
+                            "type": "string"
+                          },
+                          "period_end": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "period_start": {
+                            "type": "string",
+                            "format": "date"
+                          }
+                        }
+                      },
+                      "temporal_candidate_id": {
+                        "type": "string"
+                      },
+                      "temporal_evidence_types": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "selected_temporal_candidate_id": {
+                "type": "string"
+              }
+            }
+          },
+          "question_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rejected_candidate_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required_input_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "role": {
+            "enum": [
+              "answer",
+              "input"
+            ]
+          },
+          "source_accessions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "stage1_candidates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "candidate_comparison_value",
+                "candidate_id",
+                "candidate_stage",
+                "canonical_unit",
+                "comparison_dimension",
+                "concept_relation",
+                "fact",
+                "fact_locator",
+                "generation_reason",
+                "generation_rule_id",
+                "gold_comparison_value",
+                "human_review_notes",
+                "human_review_status",
+                "initial_source_check_status",
+                "numeric_relation",
+                "parent_candidate_id",
+                "parent_source_check_status",
+                "precision_rule_id",
+                "proposed_sign_relationship",
+                "reference_unit_label",
+                "source_check_evidence",
+                "source_check_rationale",
+                "source_check_status",
+                "submitted_unit_label",
+                "target_id",
+                "temporal_consistency_status",
+                "unit_equivalence_rule_id",
+                "unit_match_status"
+              ],
+              "properties": {
+                "candidate_comparison_value": {
+                  "type": "string",
+                  "pattern": "^[+-]?[0-9]+(?:\\.[0-9]+)?$"
+                },
+                "candidate_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "candidate_stage": {
+                  "const": 1
+                },
+                "canonical_unit": {
+                  "type": "string"
+                },
+                "comparison_dimension": {
+                  "enum": [
+                    "monetary",
+                    "share_count",
+                    "monetary_per_share",
+                    "ratio",
+                    "percentage_point"
+                  ]
+                },
+                "concept_relation": {
+                  "const": "same_exact_concept"
+                },
+                "fact": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "accession",
+                    "calendar_period",
+                    "chunk_id",
+                    "cik",
+                    "company",
+                    "concept",
+                    "context_ref",
+                    "decimals",
+                    "dimensions",
+                    "doc_id",
+                    "doc_role",
+                    "duration_days",
+                    "entity_identifier",
+                    "entity_scheme",
+                    "fact_id",
+                    "fact_locator",
+                    "filing_date",
+                    "filing_fiscal_period",
+                    "form_type",
+                    "instant",
+                    "is_negative",
+                    "local_name",
+                    "namespace_prefix",
+                    "normalized_value",
+                    "period_end",
+                    "period_of_report",
+                    "period_start",
+                    "period_type",
+                    "raw_unit_alias_rule_id",
+                    "raw_unit_label",
+                    "raw_value",
+                    "scale",
+                    "sign",
+                    "source_role",
+                    "stable_fact_id",
+                    "unit",
+                    "unit_denominator",
+                    "unit_measures",
+                    "unit_numerator"
+                  ],
+                  "properties": {
+                    "accession": {
+                      "type": "string",
+                      "pattern": "^[0-9]{10}-[0-9]{2}-[0-9]{6}$"
+                    },
+                    "calendar_period": {
+                      "type": "string"
+                    },
+                    "chunk_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "cik": {
+                      "type": "string"
+                    },
+                    "company": {
+                      "type": "string"
+                    },
+                    "concept": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "context_ref": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "decimals": {
+                      "type": "string"
+                    },
+                    "dimensions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "axis",
+                          "member"
+                        ],
+                        "properties": {
+                          "axis": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "member": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        }
+                      }
+                    },
+                    "doc_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "doc_role": {
+                      "type": "string"
+                    },
+                    "duration_days": {
+                      "type": "integer"
+                    },
+                    "entity_identifier": {
+                      "type": "string"
+                    },
+                    "entity_scheme": {
+                      "type": "string"
+                    },
+                    "fact_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "fact_locator": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "filing_date": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "filing_fiscal_period": {
+                      "type": "string"
+                    },
+                    "form_type": {
+                      "type": "string"
+                    },
+                    "instant": {
+                      "type": "null"
+                    },
+                    "is_negative": {
+                      "type": "boolean"
+                    },
+                    "local_name": {
+                      "type": "string"
+                    },
+                    "namespace_prefix": {
+                      "type": "string"
+                    },
+                    "normalized_value": {
+                      "type": "string",
+                      "pattern": "^[+-]?[0-9]+(?:\\.[0-9]+)?$"
+                    },
+                    "period_end": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "period_of_report": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "period_start": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "period_type": {
+                      "type": "string"
+                    },
+                    "raw_unit_alias_rule_id": {
+                      "type": "string"
+                    },
+                    "raw_unit_label": {
+                      "type": "string"
+                    },
+                    "raw_value": {
+                      "type": "string"
+                    },
+                    "scale": {
+                      "type": "integer"
+                    },
+                    "sign": {
+                      "type": "null"
+                    },
+                    "source_role": {
+                      "type": "string"
+                    },
+                    "stable_fact_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "unit": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "unit_denominator": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "unit_measures": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "unit_numerator": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                },
+                "fact_locator": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "generation_reason": {
+                  "type": "string"
+                },
+                "generation_rule_id": {
+                  "type": "string"
+                },
+                "gold_comparison_value": {
+                  "type": "string",
+                  "pattern": "^[+-]?[0-9]+(?:\\.[0-9]+)?$"
+                },
+                "human_review_notes": {
+                  "type": "string"
+                },
+                "human_review_status": {
+                  "enum": [
+                    "APPROVE",
+                    "REJECT",
+                    "NEEDS_SOURCE_CHECK"
+                  ]
+                },
+                "initial_source_check_status": {
+                  "enum": [
+                    "SOURCE_CHECK_PASS",
+                    "SOURCE_CHECK_FAIL",
+                    "SOURCE_CHECK_UNRESOLVED"
+                  ]
+                },
+                "numeric_relation": {
+                  "const": "signed_equivalent"
+                },
+                "parent_candidate_id": {
+                  "type": "null"
+                },
+                "parent_source_check_status": {
+                  "type": "null"
+                },
+                "precision_rule_id": {
+                  "enum": [
+                    "precision_exact_v0.1",
+                    "precision_rounding_quantum_v0.1",
+                    "precision_absolute_tolerance_v0.1"
+                  ]
+                },
+                "proposed_sign_relationship": {
+                  "enum": [
+                    "same_sign",
+                    "opposite_sign_explicitly_approved",
+                    "unresolved"
+                  ]
+                },
+                "reference_unit_label": {
+                  "type": "string"
+                },
+                "source_check_evidence": {
+                  "type": "string"
+                },
+                "source_check_rationale": {
+                  "type": "string"
+                },
+                "source_check_status": {
+                  "enum": [
+                    "SOURCE_CHECK_PASS",
+                    "SOURCE_CHECK_FAIL",
+                    "SOURCE_CHECK_UNRESOLVED"
+                  ]
+                },
+                "submitted_unit_label": {
+                  "type": "string"
+                },
+                "target_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "temporal_consistency_status": {
+                  "const": "PASS_EXACT_BOUND_TEMPORAL"
+                },
+                "unit_equivalence_rule_id": {
+                  "type": "string"
+                },
+                "unit_match_status": {
+                  "enum": [
+                    "exact_label_match",
+                    "registered_equivalence",
+                    "unregistered_unit"
+                  ]
+                }
+              }
+            }
+          },
+          "stage2_candidates": {
+            "type": "array",
+            "items": false
+          },
+          "stage3_candidates": {
+            "type": "array",
+            "items": false
+          },
+          "stage_completion": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "stage1",
+              "stage2",
+              "stage3"
+            ],
+            "properties": {
+              "stage1": {
+                "enum": [
+                  "completed",
+                  "not_applicable_no_passing_stage1_lineage",
+                  "not_applicable_derived_target",
+                  "not_applicable_target_resolved_by_passing_candidate",
+                  "blocked_missing_exact_temporal_requirement"
+                ]
+              },
+              "stage2": {
+                "enum": [
+                  "completed",
+                  "not_applicable_no_passing_stage1_lineage",
+                  "not_applicable_derived_target",
+                  "not_applicable_target_resolved_by_passing_candidate",
+                  "blocked_missing_exact_temporal_requirement"
+                ]
+              },
+              "stage3": {
+                "enum": [
+                  "completed",
+                  "not_applicable_no_passing_stage1_lineage",
+                  "not_applicable_derived_target",
+                  "not_applicable_target_resolved_by_passing_candidate",
+                  "blocked_missing_exact_temporal_requirement"
+                ]
+              }
+            }
+          },
+          "target_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_kind": {
+            "enum": [
+              "direct",
+              "derived"
+            ]
+          },
+          "temporal_resolution": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "resolved_temporal",
+              "status"
+            ],
+            "properties": {
+              "closed_candidate_ids": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "human_readable_period_labels_used": {
+                "type": "boolean"
+              },
+              "mode": {
+                "enum": [
+                  null,
+                  "EXACT_TARGET_DATE",
+                  "ANCHOR_TABLE_PERIOD",
+                  "ANCHOR_XBRL_CONTEXT",
+                  "ANCHOR_EXACT_SOURCE_METADATA",
+                  "HUMAN_CLOSED_SET_SELECTION"
+                ]
+              },
+              "resolution_rule_id": {
+                "type": "string"
+              },
+              "resolved_temporal": {
+                "anyOf": [
+                  {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "kind": {
+                            "const": "instant"
+                          },
+                          "instant": {
+                            "type": "string",
+                            "format": "date"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "instant"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "kind": {
+                            "const": "duration"
+                          },
+                          "period_start": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "period_end": {
+                            "type": "string",
+                            "format": "date"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "period_start",
+                          "period_end"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "selected_temporal_candidate_id": {
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "RESOLVED_EXACT_TARGET_DATE",
+                  "RESOLVED_ANCHOR_METADATA",
+                  "RESOLVED_HUMAN_CLOSED_SET",
+                  "NEEDS_HUMAN_CLOSED_SET",
+                  "UNRESOLVED_NO_CANDIDATE",
+                  "AMBIGUOUS_MACHINE_EVIDENCE",
+                  "not_applicable_derived_target"
+                ]
+              }
+            }
+          },
+          "unmappable_reason_code": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "unresolved_candidate_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "target_kind": {
+                  "const": "direct"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "approved_candidate_ids",
+                "approved_chunk_ids",
+                "candidate_review_counts",
+                "final_mapping_status",
+                "formula",
+                "gold_basis",
+                "gold_display_sign",
+                "gold_sign_basis",
+                "gold_unit",
+                "gold_value",
+                "gold_xbrl_concept",
+                "human_review_lineage",
+                "legacy_source_paths",
+                "provenance_lineage",
+                "question_id",
+                "rejected_candidate_ids",
+                "required_input_ids",
+                "role",
+                "source_accessions",
+                "stage1_candidates",
+                "stage2_candidates",
+                "stage3_candidates",
+                "stage_completion",
+                "target_id",
+                "target_kind",
+                "temporal_resolution",
+                "unmappable_reason_code",
+                "unresolved_candidate_ids"
+              ],
+              "properties": {
+                "formula": {
+                  "type": "null"
+                },
+                "required_input_ids": {
+                  "maxItems": 0
+                }
+              }
+            },
+            "else": {
+              "required": [
+                "approved_candidate_ids",
+                "approved_chunk_ids",
+                "derived_input_lineage",
+                "final_mapping_status",
+                "formula",
+                "gold_basis",
+                "gold_display_sign",
+                "gold_sign_basis",
+                "gold_unit",
+                "gold_value",
+                "gold_xbrl_concept",
+                "human_review_lineage",
+                "legacy_source_paths",
+                "provenance_lineage",
+                "question_id",
+                "rejected_candidate_ids",
+                "required_input_ids",
+                "role",
+                "source_accessions",
+                "stage1_candidates",
+                "stage2_candidates",
+                "stage3_candidates",
+                "stage_completion",
+                "target_id",
+                "target_kind",
+                "temporal_resolution",
+                "unmappable_reason_code",
+                "unresolved_candidate_ids"
+              ],
+              "properties": {
+                "final_mapping_status": {
+                  "const": "derived_via_inputs"
+                },
+                "required_input_ids": {
+                  "minItems": 1
+                },
+                "formula": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "temporal_catalog_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "temporal_catalog_version": {
+      "const": "temporal_context_catalog_v0.1"
+    }
+  },
+  "x-semantic-validation": [
+    "Supplement S6: validate ALL fields before normalization; schema is necessary, not sufficient.",
+    "Unique IDs, counts, partitions, duplicate identities, temporal decisions, stage prerequisites and source hashes must agree.",
+    "Every approved source candidate must match the authoritative full fact index and numeric-value catalog exactly.",
+    "No-counterpart requires completed applicable search and resolved exact temporal binding with no pending candidate."
+  ]
+}

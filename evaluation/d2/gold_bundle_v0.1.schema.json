@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/gold_bundle_v0.1.schema.json",
+  "title": "GoldBundle v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["bundle_schema_version", "adapter_version", "source_format_version", "question_id", "numeric_targets", "answer_groups", "judge_dependent_gold"],
+  "properties": {
+    "bundle_schema_version": {"const": "gold_bundle_v0.1"},
+    "adapter_version": {"const": "gold_bundle_adapter_v0.1"},
+    "source_format_version": {"enum": ["gold_bundle_v0.1", "dev_gold_csv_bundle_v0.1"]},
+    "question_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9_.-]+$"},
+    "numeric_targets": {"type": "array", "items": {"$ref": "#/$defs/numeric_target"}},
+    "answer_groups": {"type": "array", "items": {"$ref": "#/$defs/answer_group"}},
+    "judge_dependent_gold": {"type": "object", "additionalProperties": true}
+  },
+  "$defs": {
+    "plain_decimal": {"type": "string", "pattern": "^[+-]?[0-9]+(?:\\.[0-9]+)?$"},
+    "precision_record": {
+      "type": "object", "additionalProperties": false,
+      "required": ["precision_schema_version", "mode", "quantum", "absolute_tolerance", "rounding_mode", "source_encoding", "source_value"],
+      "properties": {
+        "precision_schema_version": {"const": "precision_record_v0.1"},
+        "mode": {"enum": ["EXACT", "QUANTUM", "ABS_TOLERANCE"]},
+        "quantum": {"type": ["string", "null"]},
+        "absolute_tolerance": {"type": ["string", "null"]},
+        "rounding_mode": {"enum": ["ROUND_HALF_EVEN", null]},
+        "source_encoding": {"type": "string", "minLength": 1},
+        "source_value": {"type": ["string", "null"]}
+      }
+    },
+    "chunk_identity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["chunk_id", "accession", "locator"],
+      "properties": {
+        "chunk_id": {"type": "string", "minLength": 1},
+        "accession": {"type": "string", "pattern": "^[0-9]{10}-[0-9]{2}-[0-9]{6}$"},
+        "locator": {"type": "string", "minLength": 1}
+      }
+    },
+    "chunk_path": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path_id", "members"],
+      "properties": {
+        "path_id": {"type": "string", "minLength": 1},
+        "members": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/chunk_identity"}}
+      }
+    },
+    "xbrl_path": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path_id", "fact_locator", "accession", "concept", "context_ref", "unit", "temporal"],
+      "properties": {
+        "path_id": {"type": "string", "minLength": 1},
+        "fact_locator": {"type": "string", "minLength": 1},
+        "accession": {"type": "string", "pattern": "^[0-9]{10}-[0-9]{2}-[0-9]{6}$"},
+        "concept": {"type": "string", "minLength": 1},
+        "context_ref": {"type": "string", "minLength": 1},
+        "unit": {"type": "string", "minLength": 1},
+        "temporal": {"type": "object", "minProperties": 1}
+      }
+    },
+    "numeric_target": {
+      "type": "object", "additionalProperties": false,
+      "required": ["target_id", "accepted_value", "unit", "period", "basis", "precision", "variant_family", "approved_chunk_paths", "approved_xbrl_paths"],
+      "properties": {
+        "target_id": {"type": "string", "minLength": 1},
+        "accepted_value": {"$ref": "#/$defs/plain_decimal"},
+        "unit": {"type": "string", "minLength": 1},
+        "period": {"type": "string", "minLength": 1},
+        "basis": {"type": "string", "minLength": 1},
+        "precision": {"$ref": "#/$defs/precision_record"},
+        "variant_family": {"type": ["string", "null"], "minLength": 1},
+        "approved_chunk_paths": {"type": "array", "items": {"$ref": "#/$defs/chunk_path"}},
+        "approved_xbrl_paths": {"type": "array", "items": {"$ref": "#/$defs/xbrl_path"}}
+      }
+    },
+    "required_input": {
+      "type": "object", "additionalProperties": false,
+      "required": ["input_role", "source_target_id", "source_answer_group_id"],
+      "properties": {
+        "input_role": {"type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"},
+        "source_target_id": {"type": "string", "minLength": 1},
+        "source_answer_group_id": {"type": ["string", "null"], "minLength": 1}
+      }
+    },
+    "formula_variant": {
+      "type": "object", "additionalProperties": false,
+      "required": ["formula_variant_id", "canonical_formula"],
+      "properties": {
+        "formula_variant_id": {"type": "string", "minLength": 1},
+        "canonical_formula": {"type": "string", "minLength": 1}
+      }
+    },
+    "derived_specification": {
+      "type": "object", "additionalProperties": false,
+      "required": ["derived_target_id", "required_inputs", "allowed_formula_variants", "output_unit", "output_precision"],
+      "properties": {
+        "derived_target_id": {"type": "string", "minLength": 1},
+        "required_inputs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/required_input"}},
+        "allowed_formula_variants": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/formula_variant"}},
+        "output_unit": {"type": "string", "minLength": 1},
+        "output_precision": {"$ref": "#/$defs/precision_record"}
+      }
+    },
+    "variant": {
+      "type": "object", "additionalProperties": false,
+      "required": ["variant_id", "variant_family", "numeric_target_id", "accepted_value", "unit", "period", "basis", "sign_policy", "precision", "approved_chunk_paths", "approved_xbrl_paths", "derived_specification"],
+      "properties": {
+        "variant_id": {"type": "string", "minLength": 1},
+        "variant_family": {"type": ["string", "null"], "minLength": 1},
+        "numeric_target_id": {"type": "string", "minLength": 1},
+        "accepted_value": {"$ref": "#/$defs/plain_decimal"},
+        "unit": {"type": "string", "minLength": 1},
+        "period": {"type": "string", "minLength": 1},
+        "basis": {"type": "string", "minLength": 1},
+        "sign_policy": {"enum": ["SIGNED_EXACT", "REGISTERED_VARIANT"]},
+        "precision": {"$ref": "#/$defs/precision_record"},
+        "approved_chunk_paths": {"type": "array", "items": {"$ref": "#/$defs/chunk_path"}},
+        "approved_xbrl_paths": {"type": "array", "items": {"$ref": "#/$defs/xbrl_path"}},
+        "derived_specification": {"anyOf": [{"$ref": "#/$defs/derived_specification"}, {"type": "null"}]}
+      }
+    },
+    "answer_group": {
+      "type": "object", "additionalProperties": false,
+      "required": ["answer_group_id", "multiplicity", "question_consistency_group", "variants"],
+      "properties": {
+        "answer_group_id": {"type": "string", "minLength": 1},
+        "multiplicity": {"type": "integer", "minimum": 1},
+        "question_consistency_group": {"type": ["string", "null"], "minLength": 1},
+        "variants": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/variant"}}
+      }
+    }
+  },
+  "x-cross-record-constraints": [
+    "answer_group_id values are unique and ordered as serialized.",
+    "numeric target IDs are unique and every answer variant target resolves.",
+    "variant_id and numeric_target_id values are unique where identity requires it.",
+    "required input target IDs resolve without cycles.",
+    "formula input_role tokens exactly equal required_inputs roles."
+  ]
+}

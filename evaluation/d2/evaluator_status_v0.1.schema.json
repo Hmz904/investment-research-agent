@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/evaluator_status_v0.1.schema.json",
+  "title": "EvaluatorStatus v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evaluator_status_schema_version", "evaluator_status"],
+  "properties": {
+    "evaluator_status_schema_version": {"const": "evaluator_status_v0.1"},
+    "evaluator_status": {
+      "enum": ["EVAL_OK", "EVAL_INPUT_INVALID", "EVAL_CONTRACT_MISMATCH", "EVAL_INTERNAL_ERROR"]
+    }
+  }
+}

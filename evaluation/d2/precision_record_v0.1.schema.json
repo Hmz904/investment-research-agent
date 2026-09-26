@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/precision_record_v0.1.schema.json",
+  "title": "PrecisionRecord v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["precision_schema_version", "mode", "quantum", "absolute_tolerance", "rounding_mode", "source_encoding", "source_value"],
+  "properties": {
+    "precision_schema_version": {"const": "precision_record_v0.1"},
+    "mode": {"enum": ["EXACT", "QUANTUM", "ABS_TOLERANCE"]},
+    "quantum": {"anyOf": [{"$ref": "#/$defs/positive_decimal"}, {"type": "null"}]},
+    "absolute_tolerance": {"anyOf": [{"$ref": "#/$defs/nonnegative_decimal"}, {"type": "null"}]},
+    "rounding_mode": {"enum": ["ROUND_HALF_EVEN", null]},
+    "source_encoding": {"type": "string", "minLength": 1},
+    "source_value": {"type": ["string", "null"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"mode": {"const": "EXACT"}}, "required": ["mode"]},
+      "then": {"properties": {"quantum": {"type": "null"}, "absolute_tolerance": {"type": "null"}, "rounding_mode": {"type": "null"}}}
+    },
+    {
+      "if": {"properties": {"mode": {"const": "QUANTUM"}}, "required": ["mode"]},
+      "then": {"properties": {"quantum": {"$ref": "#/$defs/positive_decimal"}, "absolute_tolerance": {"type": "null"}, "rounding_mode": {"const": "ROUND_HALF_EVEN"}}}
+    },
+    {
+      "if": {"properties": {"mode": {"const": "ABS_TOLERANCE"}}, "required": ["mode"]},
+      "then": {"properties": {"quantum": {"type": "null"}, "absolute_tolerance": {"$ref": "#/$defs/nonnegative_decimal"}, "rounding_mode": {"type": "null"}}}
+    }
+  ],
+  "$defs": {
+    "positive_decimal": {"type": "string", "pattern": "^\\+?(?:0*\\.[0-9]*[1-9][0-9]*|0*[1-9][0-9]*(?:\\.[0-9]+)?)$"},
+    "nonnegative_decimal": {"type": "string", "pattern": "^\\+?[0-9]+(?:\\.[0-9]+)?$"}
+  }
+}

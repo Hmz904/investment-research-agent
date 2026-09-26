@@ -1,0 +1,858 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/deterministic_evaluator_output_schema_v0.2.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "result_schema_version": {
+      "const": "deterministic_evaluator_result_v0.2"
+    },
+    "evaluator_version": {
+      "const": "deterministic_evaluator_v0.2"
+    },
+    "question_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "scheduled_slot_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "effective_attempt_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "execution_status": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "evaluator_status": {
+      "enum": [
+        "EVAL_OK",
+        "EVAL_INPUT_INVALID",
+        "EVAL_CONTRACT_MISMATCH",
+        "EVAL_INTERNAL_ERROR"
+      ]
+    },
+    "evaluation_completion": {
+      "anyOf": [
+        {
+          "$ref": "evaluation_completion_v0.2.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "agent_output_contract_valid": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "calculation_graph": {
+      "anyOf": [
+        {
+          "$ref": "calculation_graph_validation_v0.2.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "assignment": {
+      "anyOf": [
+        {
+          "$ref": "answer_group_assignment_v0.2.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "included_in_scored_denominator": {
+      "type": "boolean"
+    },
+    "checkpoint_valid": {
+      "type": "boolean"
+    },
+    "metrics": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "schema_valid": {
+              "type": "boolean"
+            },
+            "completion_dependent_zero": {
+              "type": "boolean"
+            },
+            "answer_group_results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "answer_group_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "multiplicity": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "correct": {
+                    "type": "boolean"
+                  },
+                  "occurrences": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "occurrence": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "claim_id": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "variant_id": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "numeric_correct": {
+                          "type": "boolean"
+                        },
+                        "formula_correct": {
+                          "anyOf": [
+                            {
+                              "type": "boolean"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "arithmetic_correct": {
+                          "anyOf": [
+                            {
+                              "type": "boolean"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "approved_path_valid": {
+                          "type": "boolean"
+                        },
+                        "input_correctness": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "properties": {
+                                "numerator": {
+                                  "type": "integer",
+                                  "minimum": 0
+                                },
+                                "denominator": {
+                                  "type": "integer",
+                                  "minimum": 1
+                                }
+                              },
+                              "required": [
+                                "numerator",
+                                "denominator"
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "unit_result": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "status",
+                                "comparison_unit",
+                                "normalization_rule_id",
+                                "candidate_value",
+                                "reference_value"
+                              ],
+                              "properties": {
+                                "status": {
+                                  "enum": [
+                                    "exact_label_match",
+                                    "registered_equivalence",
+                                    "unregistered_unit"
+                                  ]
+                                },
+                                "comparison_unit": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "normalization_rule_id": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "candidate_value": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "reference_value": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "precision_result": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "mode",
+                                "matched",
+                                "rule_id"
+                              ],
+                              "properties": {
+                                "mode": {
+                                  "enum": [
+                                    "EXACT",
+                                    "QUANTUM",
+                                    "ABS_TOLERANCE"
+                                  ]
+                                },
+                                "matched": {
+                                  "type": "boolean"
+                                },
+                                "rule_id": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "sign_result": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "basis_result": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "variant_selection": {
+                          "$ref": "variant_selection_v0.2.schema.json"
+                        },
+                        "input_results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "input_role": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "source_target_id": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "numeric_correct": {
+                                "type": "boolean"
+                              },
+                              "approved_path_valid": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "input_role",
+                              "source_target_id",
+                              "numeric_correct",
+                              "approved_path_valid"
+                            ]
+                          }
+                        },
+                        "reason_codes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "uniqueItems": true
+                        }
+                      },
+                      "required": [
+                        "occurrence",
+                        "claim_id",
+                        "variant_id",
+                        "numeric_correct",
+                        "formula_correct",
+                        "arithmetic_correct",
+                        "approved_path_valid",
+                        "input_correctness",
+                        "unit_result",
+                        "precision_result",
+                        "sign_result",
+                        "basis_result",
+                        "variant_selection",
+                        "input_results",
+                        "reason_codes"
+                      ]
+                    },
+                    "minItems": 1
+                  }
+                },
+                "required": [
+                  "answer_group_id",
+                  "multiplicity",
+                  "correct",
+                  "occurrences"
+                ]
+              }
+            },
+            "numeric_value_correctness": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "numerator": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "denominator": {
+                      "type": "integer",
+                      "minimum": 1
+                    }
+                  },
+                  "required": [
+                    "numerator",
+                    "denominator"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required_input_correctness": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "numerator": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "denominator": {
+                      "type": "integer",
+                      "minimum": 1
+                    }
+                  },
+                  "required": [
+                    "numerator",
+                    "denominator"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "complete_numeric_answer": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "formula_correctness": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "arithmetic_correctness": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "variant_consistency": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "provenance_validity": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "numerator": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "denominator": {
+                      "type": "integer",
+                      "minimum": 1
+                    }
+                  },
+                  "required": [
+                    "numerator",
+                    "denominator"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "benchmark_provenance_correctness": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "numerator": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "denominator": {
+                      "type": "integer",
+                      "minimum": 1
+                    }
+                  },
+                  "required": [
+                    "numerator",
+                    "denominator"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "provenance_completeness": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "deterministic_grounded_prerequisites": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "invalid_identity_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hallucinated_identity_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "outside_source_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "deterministic_subtotal": {
+              "type": "null"
+            },
+            "judge_dependent": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "semantic_item_match",
+                "citation_support",
+                "material_claim_requires_citation",
+                "causal_overreach",
+                "answer_claim_consistency",
+                "evidence_item_coverage",
+                "evidence_all_parts_rate",
+                "evidence_weighted_partial_coverage",
+                "evidence_weighted_strict_coverage",
+                "evidence_core_coverage",
+                "evidence_strict_grounded_correctness",
+                "unsupported_material_claim_rate",
+                "numeric_strict_grounded_correctness"
+              ],
+              "properties": {
+                "semantic_item_match": {
+                  "const": "PENDING_JUDGE"
+                },
+                "citation_support": {
+                  "const": "PENDING_JUDGE"
+                },
+                "material_claim_requires_citation": {
+                  "const": "PENDING_JUDGE"
+                },
+                "causal_overreach": {
+                  "const": "PENDING_JUDGE"
+                },
+                "answer_claim_consistency": {
+                  "const": "PENDING_JUDGE"
+                },
+                "evidence_item_coverage": {
+                  "const": "PENDING_JUDGE"
+                },
+                "evidence_all_parts_rate": {
+                  "const": "PENDING_JUDGE"
+                },
+                "evidence_weighted_partial_coverage": {
+                  "const": "PENDING_JUDGE"
+                },
+                "evidence_weighted_strict_coverage": {
+                  "const": "PENDING_JUDGE"
+                },
+                "evidence_core_coverage": {
+                  "const": "PENDING_JUDGE"
+                },
+                "evidence_strict_grounded_correctness": {
+                  "const": "PENDING_JUDGE"
+                },
+                "unsupported_material_claim_rate": {
+                  "const": "PENDING_JUDGE"
+                },
+                "numeric_strict_grounded_correctness": {
+                  "const": "PENDING_JUDGE"
+                }
+              }
+            },
+            "provenance_findings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "owner_type",
+                  "owner_id",
+                  "record_index",
+                  "provenance_type",
+                  "identity_valid",
+                  "FACT_IDENTITY_VALID",
+                  "APPROVED_PATH_VALID",
+                  "numeric_eligible",
+                  "reason_codes"
+                ],
+                "properties": {
+                  "owner_type": {
+                    "enum": [
+                      "claim",
+                      "calculation_input"
+                    ]
+                  },
+                  "owner_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "record_index": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "provenance_type": {
+                    "enum": [
+                      "chunk",
+                      "xbrl_fact"
+                    ]
+                  },
+                  "identity_valid": {
+                    "type": "boolean"
+                  },
+                  "FACT_IDENTITY_VALID": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "APPROVED_PATH_VALID": {
+                    "type": "boolean"
+                  },
+                  "numeric_eligible": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "reason_codes": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              }
+            },
+            "event_counts": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "EVT_FIXED_TOP_K_VIOLATION",
+                "EVT_TOOL_ARGUMENT_REJECTED",
+                "EVT_TOOL_ZERO_RESULT",
+                "EVT_TOOL_DOMAIN_ERROR_RECOVERABLE"
+              ],
+              "properties": {
+                "EVT_FIXED_TOP_K_VIOLATION": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "EVT_TOOL_ARGUMENT_REJECTED": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "EVT_TOOL_ZERO_RESULT": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "EVT_TOOL_DOMAIN_ERROR_RECOVERABLE": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            }
+          },
+          "required": [
+            "schema_valid",
+            "completion_dependent_zero",
+            "answer_group_results",
+            "numeric_value_correctness",
+            "required_input_correctness",
+            "complete_numeric_answer",
+            "formula_correctness",
+            "arithmetic_correctness",
+            "variant_consistency",
+            "provenance_validity",
+            "benchmark_provenance_correctness",
+            "provenance_completeness",
+            "deterministic_grounded_prerequisites",
+            "invalid_identity_count",
+            "hallucinated_identity_count",
+            "outside_source_count",
+            "deterministic_subtotal",
+            "judge_dependent",
+            "provenance_findings",
+            "event_counts"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "code",
+          "path",
+          "message"
+        ]
+      }
+    }
+  },
+  "required": [
+    "result_schema_version",
+    "evaluator_version",
+    "question_id",
+    "scheduled_slot_id",
+    "effective_attempt_id",
+    "execution_status",
+    "evaluator_status",
+    "evaluation_completion",
+    "agent_output_contract_valid",
+    "calculation_graph",
+    "assignment",
+    "included_in_scored_denominator",
+    "checkpoint_valid",
+    "metrics",
+    "reason_codes",
+    "errors"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "evaluator_status": {
+            "not": {
+              "const": "EVAL_OK"
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "metrics": {
+            "type": "null"
+          },
+          "included_in_scored_denominator": {
+            "const": false
+          },
+          "checkpoint_valid": {
+            "const": false
+          },
+          "evaluation_completion": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "reason_codes": {
+            "contains": {
+              "const": "INVALID_CALCULATION_REFERENCE_GRAPH"
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "execution_status": {
+            "const": "RUN_COMPLETED"
+          },
+          "evaluator_status": {
+            "const": "EVAL_OK"
+          },
+          "agent_output_contract_valid": {
+            "const": false
+          },
+          "included_in_scored_denominator": {
+            "const": true
+          },
+          "metrics": {
+            "type": "object",
+            "properties": {
+              "complete_numeric_answer": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

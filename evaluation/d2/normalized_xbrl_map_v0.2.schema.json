@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/normalized_xbrl_map_v0.2.schema.json",
+  "title": "NormalizedXBRLMap v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "normalized_map_schema_version": {
+      "const": "normalized_xbrl_map_v0.2"
+    },
+    "adapter_version": {
+      "const": "dev_xbrl_map_adapter_v0.2"
+    },
+    "source_schema_version": {
+      "enum": [
+        "dev_xbrl_map_v0.1",
+        "normalized_xbrl_map_v0.2"
+      ]
+    },
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "xbrl_artifact_fingerprint": {
+      "const": "acaf087ee2c4fb7427377cae5f1968da26c75d4dfa565f67f1e056b2c4cc4eb6"
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/target"
+      }
+    }
+  },
+  "required": [
+    "normalized_map_schema_version",
+    "adapter_version",
+    "source_schema_version",
+    "source_sha256",
+    "xbrl_artifact_fingerprint",
+    "targets"
+  ],
+  "$defs": {
+    "fact_path": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "candidate_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fact_identity": {
+          "$ref": "frozen_xbrl_fact_index_v0.1.schema.json#/$defs/fact"
+        },
+        "normalized_value": {
+          "type": "string",
+          "pattern": "^[+-]?[0-9]+(?:\\.[0-9]+)?$"
+        },
+        "review_status": {
+          "const": "APPROVE"
+        },
+        "sign_relationship": {
+          "enum": [
+            "same_sign",
+            "opposite_sign_explicitly_approved"
+          ]
+        },
+        "sign_approval": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "gold_display_sign": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "gold_economic_sign": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "xbrl_sign": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "basis_relation": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "rationale": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "gold_display_sign",
+                "gold_economic_sign",
+                "xbrl_sign",
+                "basis_relation",
+                "rationale"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "path_id",
+        "candidate_id",
+        "fact_identity",
+        "normalized_value",
+        "review_status",
+        "sign_relationship",
+        "sign_approval"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "sign_relationship": {
+                "const": "opposite_sign_explicitly_approved"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "sign_approval": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "target_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state": {
+          "enum": [
+            "DIRECT_APPROVED",
+            "DERIVED_VIA_APPROVED_INPUTS",
+            "NO_APPROVED_XBRL_PATH"
+          ]
+        },
+        "source_state": {
+          "enum": [
+            "mapped",
+            "derived_via_inputs",
+            "unmappable",
+            "no_xbrl_counterpart_in_frozen_corpus"
+          ]
+        },
+        "direct_approved_paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/fact_path"
+          }
+        },
+        "required_input_target_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "approved_upstream_path_target_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "target_id",
+        "question_id",
+        "state",
+        "source_state",
+        "direct_approved_paths",
+        "required_input_target_ids",
+        "approved_upstream_path_target_ids"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "DIRECT_APPROVED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_state": {
+                "const": "mapped"
+              },
+              "direct_approved_paths": {
+                "minItems": 1
+              },
+              "required_input_target_ids": {
+                "maxItems": 0
+              },
+              "approved_upstream_path_target_ids": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "DERIVED_VIA_APPROVED_INPUTS"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_state": {
+                "const": "derived_via_inputs"
+              },
+              "direct_approved_paths": {
+                "maxItems": 0
+              },
+              "required_input_target_ids": {
+                "minItems": 1
+              },
+              "approved_upstream_path_target_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "NO_APPROVED_XBRL_PATH"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "direct_approved_paths": {
+                "maxItems": 0
+              },
+              "approved_upstream_path_target_ids": {
+                "maxItems": 0
+              },
+              "source_state": {
+                "enum": [
+                  "unmappable",
+                  "no_xbrl_counterpart_in_frozen_corpus",
+                  "derived_via_inputs"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
