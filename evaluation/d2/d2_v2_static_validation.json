@@ -1,0 +1,403 @@
+{
+  "cd02_request_structures_checked": 10,
+  "cd02_selection_response_and_occurrence_structures": "PASS",
+  "cd02_selector_input_structure": "PASS",
+  "evaluator_imported": false,
+  "fixture_structural_checks": "PASS",
+  "historical_import_count": 9,
+  "historical_import_hashes_unchanged": true,
+  "matrix_counts": {
+    "CONTRACT_DECISION_REQUIRED": 0,
+    "COVERED_DETERMINISTIC": 39,
+    "PENDING_JUDGE": 3
+  },
+  "parameterized_cases": 237,
+  "parameterized_functions": 52,
+  "permitted_source_sha256": {
+    "docs/agent/execution_taxonomy_v0.1.md": "50ae8b31d4ae95084a008d4e0dcb861b85e5cd457b0eb11b1e7ad0ba7dabfd6e",
+    "docs/tools/calculator_tool_v0.1.md": "28444dcbf0b7511e7f84d0b87397f880bd27de922d15866418c47226d2d56d72",
+    "docs/tools/xbrl_tool_v0.1.md": "d24784c7f024ede19fab87301d9d0d82699e80457c334e5a9577528a52c257e0",
+    "evaluation/agent_output_schema_v0.1.1.json": "8d3cab3d5d4a07e9474ef26173631898e195ea08d5ef4f2dc7a88bb008831657",
+    "evaluation/dev/xbrl/dev_xbrl_map_v0.1.json": "f129bf95b8a3428922ca5b87171f61e7a15481fc34586c37e22dfa23d33a2a53",
+    "evaluation/eval_protocol_v0.2.1.md": "d98b63268c78ca3a516de02ab931ea6efa8d2590a402118d33c268d5013074d4",
+    "evaluation/eval_protocol_v0.2.2.md": "9715c5fc5fd629b747ac4c79f9059b0aa843cc0f6445c346c5eca730d6140472",
+    "evaluation/eval_protocol_v0.2.md": "c11d18b9d1d1febe8a01e3201e04d59b434afdd7fce86444020df1fe20767254",
+    "evaluation/xbrl_gold_mapping_spec_v0.1.2.md": "6ef7c9b9b4c7c9130f9ab69655238b97e87bfd4256f826e50f6693b05545128d",
+    "evaluation/xbrl_gold_mapping_spec_v0.1.md": "3d1e0a186b67d2c01a1b3ae7cafd03878c6230fd98403c07d79d337a66f33ba5",
+    "evaluation/xbrl_mapping_schema_v0.1.json": "6070e143355803401bdfedb50b56330d28688375e3f9bd4348c15a752a76abfb",
+    "packaging/frozen_runtime_bundle_v0.1.json": "e5db9ce8b1bebbd2f52ddc7f7b1bd073346506c1ac2dc48b1949a75f4b0835a9"
+  },
+  "physical_absence_checks": "PASS",
+  "recursive_discovery_checks": "PASS",
+  "schema_local_reference_resolution": "PASS",
+  "schema_self_validation_count": 18,
+  "status": "STATIC_VALIDATION_PASSED",
+  "successor_schema_count": 12,
+  "test_cases_executed": 0,
+  "test_collection_performed": false,
+  "test_counts": [
+    {
+      "cases": 7,
+      "function": "test_D01_contract_identity",
+      "parameterized": true
+    },
+    {
+      "cases": 1,
+      "function": "test_D01_output_hash_binding",
+      "parameterized": false
+    },
+    {
+      "cases": 6,
+      "function": "test_D02_schema_invalid_completed_payload",
+      "parameterized": true
+    },
+    {
+      "cases": 2,
+      "function": "test_D02_D27_valid_provenance_representations",
+      "parameterized": true
+    },
+    {
+      "cases": 5,
+      "function": "test_D03_CD01_invalid_graph",
+      "parameterized": true
+    },
+    {
+      "cases": 1,
+      "function": "test_D03_valid_DAG",
+      "parameterized": false
+    },
+    {
+      "cases": 1,
+      "function": "test_D03_CD01_independent_direct_claim",
+      "parameterized": false
+    },
+    {
+      "cases": 3,
+      "function": "test_D03_D32_non_graph_reference_errors",
+      "parameterized": true
+    },
+    {
+      "cases": 5,
+      "function": "test_D04_D09_exact_decimal",
+      "parameterized": true
+    },
+    {
+      "cases": 7,
+      "function": "test_D04_malformed_gold_decimal",
+      "parameterized": true
+    },
+    {
+      "cases": 16,
+      "function": "test_D05_D08_units",
+      "parameterized": true
+    },
+    {
+      "cases": 10,
+      "function": "test_D10_quantum_exact_power_and_half_even",
+      "parameterized": true
+    },
+    {
+      "cases": 5,
+      "function": "test_D10_invalid_quantum_is_input_invalid",
+      "parameterized": true
+    },
+    {
+      "cases": 5,
+      "function": "test_D11_invalid_tolerance_is_not_agent_mismatch",
+      "parameterized": true
+    },
+    {
+      "cases": 5,
+      "function": "test_D11_inclusive_tolerance",
+      "parameterized": true
+    },
+    {
+      "cases": 3,
+      "function": "test_D09_D11_legacy_precision_precedence",
+      "parameterized": true
+    },
+    {
+      "cases": 1,
+      "function": "test_D11_no_precision_fallback_after_bad_tolerance",
+      "parameterized": false
+    },
+    {
+      "cases": 2,
+      "function": "test_D12_no_sign_repair",
+      "parameterized": true
+    },
+    {
+      "cases": 2,
+      "function": "test_D13_registered_signed_variant",
+      "parameterized": true
+    },
+    {
+      "cases": 4,
+      "function": "test_D14_multiplicity",
+      "parameterized": true
+    },
+    {
+      "cases": 3,
+      "function": "test_D14_positional_assignment_no_rescue",
+      "parameterized": true
+    },
+    {
+      "cases": 2,
+      "function": "test_D15_variant_family_coherence",
+      "parameterized": true
+    },
+    {
+      "cases": 1,
+      "function": "test_D15_identical_pass_reporting_tie",
+      "parameterized": false
+    },
+    {
+      "cases": 2,
+      "function": "test_D16_D19_required_input_independent_of_final",
+      "parameterized": true
+    },
+    {
+      "cases": 10,
+      "function": "test_D17_D18_formula_and_arithmetic",
+      "parameterized": true
+    },
+    {
+      "cases": 1,
+      "function": "test_D17_explicitly_frozen_formula_alternative",
+      "parameterized": false
+    },
+    {
+      "cases": 2,
+      "function": "test_D18_wrong_submitted_result",
+      "parameterized": true
+    },
+    {
+      "cases": 2,
+      "function": "test_D20_D23_D28_required_provenance",
+      "parameterized": true
+    },
+    {
+      "cases": 3,
+      "function": "test_D21_D29_chunk_identity_errors",
+      "parameterized": true
+    },
+    {
+      "cases": 1,
+      "function": "test_D22_wrong_target_chunk_remains_identity_valid",
+      "parameterized": false
+    },
+    {
+      "cases": 3,
+      "function": "test_D22_chunk_path_AND",
+      "parameterized": true
+    },
+    {
+      "cases": 3,
+      "function": "test_D24_D25_authoritative_identity_vs_approval",
+      "parameterized": true
+    },
+    {
+      "cases": 6,
+      "function": "test_D24_identity_field_disagreement",
+      "parameterized": true
+    },
+    {
+      "cases": 1,
+      "function": "test_D24_nonnumeric_identity_is_not_numeric_provenance",
+      "parameterized": false
+    },
+    {
+      "cases": 5,
+      "function": "test_D24_D25_invalid_authoritative_configuration",
+      "parameterized": true
+    },
+    {
+      "cases": 2,
+      "function": "test_D26_nonmapped_legacy_route",
+      "parameterized": true
+    },
+    {
+      "cases": 8,
+      "function": "test_D25_D26_strict_concrete_source_schema",
+      "parameterized": true
+    },
+    {
+      "cases": 1,
+      "function": "test_D30_outside_source_identity",
+      "parameterized": false
+    },
+    {
+      "cases": 13,
+      "function": "test_D31_D32_D33_literal_judge_boundary",
+      "parameterized": true
+    },
+    {
+      "cases": 4,
+      "function": "test_D34_recoverable_events",
+      "parameterized": true
+    },
+    {
+      "cases": 5,
+      "function": "test_D36_all_literal_terminal_statuses",
+      "parameterized": true
+    },
+    {
+      "cases": 2,
+      "function": "test_D37_D38_replacement_completion",
+      "parameterized": true
+    },
+    {
+      "cases": 5,
+      "function": "test_D39_unknown_or_wrong_namespace_status",
+      "parameterized": true
+    },
+    {
+      "cases": 1,
+      "function": "test_D35_completed_wrong_answer",
+      "parameterized": false
+    },
+    {
+      "cases": 1,
+      "function": "test_D40_nonapplicable_numeric_panel",
+      "parameterized": false
+    },
+    {
+      "cases": 1,
+      "function": "test_D41_canonical_bytes_and_hash",
+      "parameterized": false
+    },
+    {
+      "cases": 1,
+      "function": "test_D42_same_algorithm_for_synthetic_split_labels",
+      "parameterized": false
+    },
+    {
+      "cases": 3,
+      "function": "test_D42_unsupported_source_dispatch",
+      "parameterized": true
+    },
+    {
+      "cases": 6,
+      "function": "test_D16_explicit_or_positional_input_binding",
+      "parameterized": true
+    },
+    {
+      "cases": 5,
+      "function": "test_D17_no_algebraic_formula_repair",
+      "parameterized": true
+    },
+    {
+      "cases": 6,
+      "function": "test_D18_calculator_component_contract",
+      "parameterized": true
+    },
+    {
+      "cases": 2,
+      "function": "test_D26_concrete_source_valid_nonmapped_states",
+      "parameterized": true
+    },
+    {
+      "cases": 6,
+      "function": "test_D25_source_semantic_validation_before_adaptation",
+      "parameterized": true
+    },
+    {
+      "cases": 4,
+      "function": "test_D37_invalid_replacement_lineage",
+      "parameterized": true
+    },
+    {
+      "cases": 3,
+      "function": "test_D01_D39_evaluator_error_schema",
+      "parameterized": true
+    },
+    {
+      "cases": 1,
+      "function": "test_D40_aggregate_denominators",
+      "parameterized": false
+    },
+    {
+      "cases": 3,
+      "function": "test_D05_D07_unit_audit_status",
+      "parameterized": true
+    },
+    {
+      "cases": 2,
+      "function": "test_D13_D14_no_period_or_basis_rescue",
+      "parameterized": true
+    },
+    {
+      "cases": 1,
+      "function": "test_D23_derived_AND_of_two_provenance_routes",
+      "parameterized": false
+    },
+    {
+      "cases": 1,
+      "function": "test_D24_exact_duration_identity",
+      "parameterized": false
+    },
+    {
+      "cases": 1,
+      "function": "test_D29_stable_multiple_identity_counts",
+      "parameterized": false
+    },
+    {
+      "cases": 1,
+      "function": "test_D30_no_prose_source_scope_heuristic",
+      "parameterized": false
+    },
+    {
+      "cases": 4,
+      "function": "test_CD02_A_B_E_complete_alternatives",
+      "parameterized": true
+    },
+    {
+      "cases": 4,
+      "function": "test_CD02_C_D_E_all_partial_diagnostics_canonical",
+      "parameterized": true
+    },
+    {
+      "cases": 5,
+      "function": "test_CD02_F_explicit_identifier_restricts_before_results",
+      "parameterized": true
+    },
+    {
+      "cases": 3,
+      "function": "test_CD02_G_invalid_identifier_no_fallback",
+      "parameterized": true
+    },
+    {
+      "cases": 3,
+      "function": "test_CD02_H_empty_eligibility",
+      "parameterized": true
+    },
+    {
+      "cases": 1,
+      "function": "test_CD02_H_unmatched_occurrence_no_selected_variant",
+      "parameterized": false
+    },
+    {
+      "cases": 3,
+      "function": "test_CD02_raw_v011_does_not_gain_identifier_fields",
+      "parameterized": true
+    },
+    {
+      "cases": 6,
+      "function": "test_CD02_selector_fail_closed",
+      "parameterized": true
+    },
+    {
+      "cases": 2,
+      "function": "test_CD02_D19_canonical_input_denominator",
+      "parameterized": true
+    },
+    {
+      "cases": 1,
+      "function": "test_CD02_D14_multiplicity_cannot_mix_families",
+      "parameterized": false
+    }
+  ],
+  "test_file_compilation": "PASS_WITHOUT_IMPORT",
+  "test_functions": 72,
+  "total_cases": 257
+}
