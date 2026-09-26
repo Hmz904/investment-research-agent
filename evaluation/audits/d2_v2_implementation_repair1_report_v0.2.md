@@ -154,7 +154,7 @@ Canonical outputs and all eight DEV result hashes are persisted in
 
 ## Candidate identity
 
-D2_REPAIR1_COMMIT: `PENDING_REPAIR_COMMIT`.
+D2_REPAIR1_COMMIT: `20d6efd74e466dcc592768b43efdb38b59fba44a`.
 
 New manifest: `evaluation/d2/D2_V2_IMPLEMENTATION_CANDIDATE_V0_2_SHA256.txt`.
 The original blocked candidate manifest remains unchanged. The new manifest
