@@ -1,0 +1,1348 @@
+{
+  "expectation_representation_version": "d2_v2_audit_expectations_v0.2",
+  "contract_interpretation": "d2_contract_v0.2.1",
+  "historical_evidence_root": "/mnt/d/projects/d2-v2-independent-audit-blocked-v0.1",
+  "historical_all_probe_results_sha256": "c667cb78fcf60e65f6277a0e04496a0222b90bacd847b63094febae57aaee606",
+  "historical_harness_source_sha256": {
+    "probes.py": "f50f818c5fe7d9ce99b976fa3c749f2a0b59506a7e5dd3c8c5c79bdffcfe3a70",
+    "extra_probes.py": "4f439a908684135b9d75b2e6ec471297cf737b3822f11b3de4d5c3b4967ddc59",
+    "runtime_probes.py": "202f9d3599b72fa5efe6d1fff91c367f00b76674aaaae06cc12a6e6ad3fdf997",
+    "precision_repro.py": "cf367cbbe015fe7b03ee49f013f9dc7636a7562f8ea9e38be9e0fdd7a4e4ede2",
+    "map_states.py": "61c98868381dbfc275f8a6b78afbe6b13fca46da94b476ebaf4c1052fd5e90ab",
+    "final_probes.py": "4d00c3a59642e99f3407d90e230de3b3257cc831bbce40944f724083c9d3fcf7",
+    "collect_evidence.py": "aa45c9e1c9135a25bf78b793e246f90114029df5b5486410f5a846fd27d3f39d"
+  },
+  "historical_harness_identity_encoding": "SHA-256 of sorted UTF-8 lines: <file_sha256>  <relative_name>\\n",
+  "historical_harness_identity_sha256": "f0c0ee4320be80ccfe6d053308ed7f52ee62088190541c5f5066c7dc8aa978d9",
+  "probe_count": 150,
+  "unchanged_expectation_count": 148,
+  "changed_expectation_count": 2,
+  "input_policy": "All 150 original probe inputs and original harness sources remain unchanged. This artifact replaces only the two named expectation predicates when the original harness is run under the externally bound v0.2.1 interpretation. No input patch is specified or permitted.",
+  "normalization_policy": "S1 interpretation derives QUANTUM acceptance from original reference_value, quantum and ROUND_HALF_EVEN. Historical intervals are preserved in evidence and superseded in successor normalization; see supplement v0.2.1 P3.",
+  "historical_d19_request": {
+    "path": "inconsistent_derived_output_precision.request.json",
+    "sha256": "e0fb2e80d3cee77ae99fc383c3e3e394c16bb54769f9063d03384be1c7e758b4"
+  },
+  "offgrid_gold_input_binding": {
+    "source": "probes.py",
+    "constructor_function": "main",
+    "candidate": "37.1",
+    "reference": "37.1",
+    "quantum": "1",
+    "source_sha256": "f50f818c5fe7d9ce99b976fa3c749f2a0b59506a7e5dd3c8c5c79bdffcfe3a70"
+  },
+  "changes": [
+    {
+      "name": "offgrid_gold",
+      "old_expected": "complete=False",
+      "new_expected": "EVAL_OK; complete_numeric_answer=true",
+      "successor_result_requirements": {
+        "evaluator_status": "EVAL_OK",
+        "metrics.complete_numeric_answer": true
+      },
+      "reason": "S1 independently quantizes both operands; historical S2 QUANTUM interval is superseded derived metadata under v0.2.1 P3."
+    },
+    {
+      "name": "inconsistent_derived_output_precision",
+      "old_expected": "reject inconsistent gold precision before scoring",
+      "new_expected": "EVAL_OK; complete_numeric_answer=true",
+      "successor_result_requirements": {
+        "evaluator_status": "EVAL_OK",
+        "metrics.complete_numeric_answer": true
+      },
+      "reason": "S1 independently quantizes both operands; historical S2 QUANTUM interval is superseded derived metadata under v0.2.1 P3."
+    }
+  ],
+  "probes": [
+    {
+      "name": "baseline",
+      "rows": [
+        "D01",
+        "D02",
+        "D35"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "derived_baseline",
+      "rows": [
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "self_cycle",
+      "rows": [
+        "D03",
+        "D40"
+      ],
+      "expected": "EVAL_OK; invalid graph; denominator retained; numeric=0; complete=false"
+    },
+    {
+      "name": "two_cycle",
+      "rows": [
+        "D03",
+        "D40"
+      ],
+      "expected": "EVAL_OK; invalid graph; denominator retained; numeric=0; complete=false"
+    },
+    {
+      "name": "long_cycle",
+      "rows": [
+        "D03",
+        "D40"
+      ],
+      "expected": "EVAL_OK; invalid graph; denominator retained; numeric=0; complete=false"
+    },
+    {
+      "name": "unresolved",
+      "rows": [
+        "D03",
+        "D40"
+      ],
+      "expected": "EVAL_OK; invalid graph; denominator retained; numeric=0; complete=false"
+    },
+    {
+      "name": "dependent_closure",
+      "rows": [
+        "D03",
+        "D40"
+      ],
+      "expected": "EVAL_OK; invalid graph; denominator retained; numeric=0; complete=false"
+    },
+    {
+      "name": "disconnected_graph_direct",
+      "rows": [
+        "D03"
+      ],
+      "expected": "direct numeric=1; complete=false"
+    },
+    {
+      "name": "valid_DAG",
+      "rows": [
+        "D03",
+        "D20"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "multiplicity_1",
+      "rows": [
+        "D14",
+        "D40"
+      ],
+      "expected": "complete=False"
+    },
+    {
+      "name": "multiplicity_2",
+      "rows": [
+        "D14",
+        "D40"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "multiplicity_3",
+      "rows": [
+        "D14",
+        "D40"
+      ],
+      "expected": "complete=False"
+    },
+    {
+      "name": "coincident_order_False",
+      "rows": [
+        "D14",
+        "D22"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "coincident_order_True",
+      "rows": [
+        "D14",
+        "D22"
+      ],
+      "expected": "complete=False"
+    },
+    {
+      "name": "explicit_raw_answer_group_id",
+      "rows": [
+        "D02",
+        "D14",
+        "D15"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "explicit_raw_variant_id",
+      "rows": [
+        "D02",
+        "D14",
+        "D15"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "explicit_raw_variant_family",
+      "rows": [
+        "D02",
+        "D14",
+        "D15"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "duplicate_claim",
+      "rows": [
+        "D03",
+        "D32"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "duplicate_calc",
+      "rows": [
+        "D03",
+        "D32"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "unknown_answer",
+      "rows": [
+        "D03",
+        "D32"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "invalid_tolerance_-0.7",
+      "rows": [
+        "D11"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "invalid_tolerance_broken",
+      "rows": [
+        "D11"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "invalid_tolerance_NaN",
+      "rows": [
+        "D11"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "quantum_1",
+      "rows": [
+        "D10"
+      ],
+      "expected": "EVAL_OK"
+    },
+    {
+      "name": "quantum_10",
+      "rows": [
+        "D10"
+      ],
+      "expected": "EVAL_OK"
+    },
+    {
+      "name": "quantum_100",
+      "rows": [
+        "D10"
+      ],
+      "expected": "EVAL_OK"
+    },
+    {
+      "name": "quantum_0.1",
+      "rows": [
+        "D10"
+      ],
+      "expected": "EVAL_OK"
+    },
+    {
+      "name": "quantum_0.01",
+      "rows": [
+        "D10"
+      ],
+      "expected": "EVAL_OK"
+    },
+    {
+      "name": "quantum_0",
+      "rows": [
+        "D10"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "quantum_-1",
+      "rows": [
+        "D10"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "quantum_0.03",
+      "rows": [
+        "D10"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "quantum_0.25",
+      "rows": [
+        "D10"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "quantum_0.300000000000000000000000000000000000001",
+      "rows": [
+        "D10"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "scale",
+      "rows": [
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D12"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "percent",
+      "rows": [
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D12"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "percentage_point",
+      "rows": [
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D12"
+      ],
+      "expected": "complete=False"
+    },
+    {
+      "name": "same_unknown",
+      "rows": [
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D12"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "different_unknown",
+      "rows": [
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D12"
+      ],
+      "expected": "complete=False"
+    },
+    {
+      "name": "sign",
+      "rows": [
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D12"
+      ],
+      "expected": "complete=False"
+    },
+    {
+      "name": "trailing",
+      "rows": [
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D12"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "large",
+      "rows": [
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D12"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "small",
+      "rows": [
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D12"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "negative_zero",
+      "rows": [
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D12"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "half_even_down",
+      "rows": [
+        "D09",
+        "D10",
+        "D11"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "half_even_up",
+      "rows": [
+        "D09",
+        "D10",
+        "D11"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "offgrid_gold",
+      "rows": [
+        "D09",
+        "D10",
+        "D11"
+      ],
+      "expected": "EVAL_OK; complete_numeric_answer=true"
+    },
+    {
+      "name": "tolerance_edge",
+      "rows": [
+        "D09",
+        "D10",
+        "D11"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "tolerance_out",
+      "rows": [
+        "D09",
+        "D10",
+        "D11"
+      ],
+      "expected": "complete=False"
+    },
+    {
+      "name": "conversion_before_tolerance",
+      "rows": [
+        "D06",
+        "D11"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "derived_wrong_identity",
+      "rows": [
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=False; final numeric retained"
+    },
+    {
+      "name": "derived_wrong_unit",
+      "rows": [
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=False; final numeric retained"
+    },
+    {
+      "name": "derived_wrong_period",
+      "rows": [
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=False; final numeric retained"
+    },
+    {
+      "name": "derived_wrong_basis",
+      "rows": [
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=False; final numeric retained"
+    },
+    {
+      "name": "derived_extra_input",
+      "rows": [
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=False; final numeric retained"
+    },
+    {
+      "name": "derived_wrong_formula",
+      "rows": [
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=False; final numeric retained"
+    },
+    {
+      "name": "derived_wrong_arithmetic",
+      "rows": [
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=False; final numeric retained"
+    },
+    {
+      "name": "derived_positional",
+      "rows": [
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=True; final numeric retained"
+    },
+    {
+      "name": "derived_missing_input",
+      "rows": [
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=False; final numeric retained"
+    },
+    {
+      "name": "chunk_wrong_accession",
+      "rows": [
+        "D21",
+        "D29"
+      ],
+      "expected": "invalid identity; incomplete"
+    },
+    {
+      "name": "chunk_wrong_locator",
+      "rows": [
+        "D21",
+        "D29"
+      ],
+      "expected": "invalid identity; incomplete"
+    },
+    {
+      "name": "chunk_forged",
+      "rows": [
+        "D21",
+        "D29"
+      ],
+      "expected": "invalid identity; incomplete"
+    },
+    {
+      "name": "cross_question_chunk",
+      "rows": [
+        "D22"
+      ],
+      "expected": "identity true, path false"
+    },
+    {
+      "name": "outside_source",
+      "rows": [
+        "D30"
+      ],
+      "expected": "outside source=1"
+    },
+    {
+      "name": "AND_path_1",
+      "rows": [
+        "D22",
+        "D28"
+      ],
+      "expected": "complete=False"
+    },
+    {
+      "name": "AND_path_2",
+      "rows": [
+        "D22",
+        "D28"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "FAIL_AGENT_ORCHESTRATION_UNRECOVERABLE",
+      "rows": [
+        "D36",
+        "D40"
+      ],
+      "expected": "retained zero"
+    },
+    {
+      "name": "FAIL_FINAL_SCHEMA_INVALID",
+      "rows": [
+        "D36",
+        "D40"
+      ],
+      "expected": "retained zero"
+    },
+    {
+      "name": "FAIL_NO_VALID_FINAL_OUTPUT",
+      "rows": [
+        "D36",
+        "D40"
+      ],
+      "expected": "retained zero"
+    },
+    {
+      "name": "FAIL_STEP_BUDGET_EXHAUSTED",
+      "rows": [
+        "D36",
+        "D40"
+      ],
+      "expected": "retained zero"
+    },
+    {
+      "name": "FAIL_TOOL_BUDGET_EXHAUSTED",
+      "rows": [
+        "D36",
+        "D40"
+      ],
+      "expected": "retained zero"
+    },
+    {
+      "name": "replacement_RUN_COMPLETED",
+      "rows": [
+        "D37",
+        "D38",
+        "D40"
+      ],
+      "expected": "same slot; scored iff completed"
+    },
+    {
+      "name": "replacement_INFRA_RUN_RETRY_EXHAUSTED",
+      "rows": [
+        "D37",
+        "D38",
+        "D40"
+      ],
+      "expected": "same slot; scored iff completed"
+    },
+    {
+      "name": "EVT_FIXED_TOP_K_VIOLATION",
+      "rows": [
+        "D34"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "EVT_TOOL_ARGUMENT_REJECTED",
+      "rows": [
+        "D34"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "EVT_TOOL_ZERO_RESULT",
+      "rows": [
+        "D34"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "EVT_TOOL_DOMAIN_ERROR_RECOVERABLE",
+      "rows": [
+        "D34"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "unknown_execution_status",
+      "rows": [
+        "D39"
+      ],
+      "expected": "contract mismatch; null"
+    },
+    {
+      "name": "unknown_events",
+      "rows": [
+        "D39"
+      ],
+      "expected": "contract mismatch; null"
+    },
+    {
+      "name": "invalid_gold",
+      "rows": [
+        "D01",
+        "D04",
+        "D39"
+      ],
+      "expected": "input invalid; null"
+    },
+    {
+      "name": "hash_mismatch",
+      "rows": [
+        "D01"
+      ],
+      "expected": "contract mismatch"
+    },
+    {
+      "name": "unsupported_source",
+      "rows": [
+        "D42"
+      ],
+      "expected": "input invalid"
+    },
+    {
+      "name": "synthetic_split_identity",
+      "rows": [
+        "D42"
+      ],
+      "expected": true
+    },
+    {
+      "name": "judge_literals",
+      "rows": [
+        "D31",
+        "D32",
+        "D33"
+      ],
+      "expected": true
+    },
+    {
+      "name": "no_judge_text_proxy",
+      "rows": [
+        "D30",
+        "D31",
+        "D33"
+      ],
+      "expected": true
+    },
+    {
+      "name": "internal_error_namespace",
+      "rows": [
+        "D39"
+      ],
+      "expected": "internal error; null"
+    },
+    {
+      "name": "lexical_all_partial",
+      "rows": [
+        "D14",
+        "D15"
+      ],
+      "expected": [
+        "V1",
+        "V10",
+        "V2"
+      ]
+    },
+    {
+      "name": "lexical_complete",
+      "rows": [
+        "D14",
+        "D15"
+      ],
+      "expected": "V10"
+    },
+    {
+      "name": "explicit_family",
+      "rows": [
+        "D15"
+      ],
+      "expected": "V2"
+    },
+    {
+      "name": "invalid_family",
+      "rows": [
+        "D15"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "CD02_later_better_partial",
+      "rows": [
+        "D14",
+        "D15",
+        "D16",
+        "D19"
+      ],
+      "expected": "select V1; formula false; no complete pass"
+    },
+    {
+      "name": "inconsistent_derived_output_precision",
+      "rows": [
+        "D19"
+      ],
+      "expected": "EVAL_OK; complete_numeric_answer=true"
+    },
+    {
+      "name": "duplicate_gold_role",
+      "rows": [
+        "D16"
+      ],
+      "expected": "input invalid"
+    },
+    {
+      "name": "large_exponent_valid_agent",
+      "rows": [
+        "D04",
+        "D35",
+        "D40"
+      ],
+      "expected": "EVAL_OK mismatch; slot retained"
+    },
+    {
+      "name": "determinism_10",
+      "rows": [
+        "D41"
+      ],
+      "expected": true
+    },
+    {
+      "name": "deep_valid_DAG",
+      "rows": [
+        "D03",
+        "D16",
+        "D20",
+        "D35",
+        "D40"
+      ],
+      "expected": "EVAL_OK; valid DAG; complete true; denominator retained"
+    },
+    {
+      "name": "mixed_derived_family",
+      "rows": [
+        "D15",
+        "D16"
+      ],
+      "expected": "no complete pass"
+    },
+    {
+      "name": "mixed_question_family",
+      "rows": [
+        "D15"
+      ],
+      "expected": "no complete pass"
+    },
+    {
+      "name": "registered_negative_variant",
+      "rows": [
+        "D13"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "registered_formula_variant",
+      "rows": [
+        "D17"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "roles_explicit_reversed",
+      "rows": [
+        "D16",
+        "D17",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "roles_positional_correct",
+      "rows": [
+        "D16",
+        "D17",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=True"
+    },
+    {
+      "name": "roles_positional_swapped",
+      "rows": [
+        "D16",
+        "D17",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=False"
+    },
+    {
+      "name": "roles_mixed_names",
+      "rows": [
+        "D16",
+        "D17",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=False"
+    },
+    {
+      "name": "roles_missing_role",
+      "rows": [
+        "D16",
+        "D17",
+        "D23",
+        "D28"
+      ],
+      "expected": "complete=False"
+    },
+    {
+      "name": "OR_paths",
+      "rows": [
+        "D22",
+        "D28"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "legacy_unmappable",
+      "rows": [
+        "D26"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "legacy_no_xbrl_counterpart_in_frozen_corpus",
+      "rows": [
+        "D26"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "aggregate_counts",
+      "rows": [
+        "D38",
+        "D40"
+      ],
+      "expected": {
+        "scheduled_slot_count": 3,
+        "scored_slot_count": 2,
+        "metric": {
+          "numerator": 2,
+          "denominator": 6
+        },
+        "missing_infrastructure_slot_ids": [
+          "c"
+        ],
+        "evaluation_status": "EVAL_INCOMPLETE",
+        "deterministic_subtotal": null
+      }
+    },
+    {
+      "name": "variant_array_order",
+      "rows": [
+        "D14",
+        "D15",
+        "D41"
+      ],
+      "expected": true
+    },
+    {
+      "name": "full_V10_V2",
+      "rows": [
+        "D14",
+        "D15"
+      ],
+      "expected": "V10"
+    },
+    {
+      "name": "calculator_50",
+      "rows": [
+        "D18"
+      ],
+      "expected": true
+    },
+    {
+      "name": "DEV_bundle_1",
+      "rows": [
+        "D42"
+      ],
+      "expected": "EVAL_OK validation only"
+    },
+    {
+      "name": "DEV_bundle_2",
+      "rows": [
+        "D42"
+      ],
+      "expected": "EVAL_OK validation only"
+    },
+    {
+      "name": "DEV_bundle_3",
+      "rows": [
+        "D42"
+      ],
+      "expected": "EVAL_OK validation only"
+    },
+    {
+      "name": "DEV_bundle_4",
+      "rows": [
+        "D42"
+      ],
+      "expected": "EVAL_OK validation only"
+    },
+    {
+      "name": "DEV_bundle_5",
+      "rows": [
+        "D42"
+      ],
+      "expected": "EVAL_OK validation only"
+    },
+    {
+      "name": "DEV_bundle_6",
+      "rows": [
+        "D42"
+      ],
+      "expected": "EVAL_OK validation only"
+    },
+    {
+      "name": "DEV_bundle_7",
+      "rows": [
+        "D42"
+      ],
+      "expected": "EVAL_OK validation only"
+    },
+    {
+      "name": "DEV_bundle_8",
+      "rows": [
+        "D42"
+      ],
+      "expected": "EVAL_OK validation only"
+    },
+    {
+      "name": "xbrl_real_approved",
+      "rows": [
+        "D24",
+        "D25"
+      ],
+      "expected": "identity=True; approved=True"
+    },
+    {
+      "name": "xbrl_real_unapproved",
+      "rows": [
+        "D24",
+        "D25"
+      ],
+      "expected": "identity=True; approved=False"
+    },
+    {
+      "name": "xbrl_forged_locator",
+      "rows": [
+        "D24",
+        "D25"
+      ],
+      "expected": "identity=False; approved=False"
+    },
+    {
+      "name": "xbrl_wrong_context",
+      "rows": [
+        "D24",
+        "D25"
+      ],
+      "expected": "identity=False; approved=False"
+    },
+    {
+      "name": "xbrl_wrong_accession",
+      "rows": [
+        "D24",
+        "D25"
+      ],
+      "expected": "identity=False; approved=False"
+    },
+    {
+      "name": "xbrl_wrong_concept",
+      "rows": [
+        "D24",
+        "D25"
+      ],
+      "expected": "identity=False; approved=False"
+    },
+    {
+      "name": "xbrl_wrong_unit",
+      "rows": [
+        "D24",
+        "D25"
+      ],
+      "expected": "identity=False; approved=False"
+    },
+    {
+      "name": "xbrl_wrong_chunk",
+      "rows": [
+        "D24",
+        "D25"
+      ],
+      "expected": "identity=False; approved=False"
+    },
+    {
+      "name": "xbrl_dimension_mismatch",
+      "rows": [
+        "D24",
+        "D25"
+      ],
+      "expected": "input invalid"
+    },
+    {
+      "name": "map_missing_semantic",
+      "rows": [
+        "D25",
+        "D26"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "map_partial_identity",
+      "rows": [
+        "D25",
+        "D26"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "map_false_same_sign_approval",
+      "rows": [
+        "D25",
+        "D26"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "valid_unmappable",
+      "rows": [
+        "D25",
+        "D26"
+      ],
+      "expected": "EVAL_OK"
+    },
+    {
+      "name": "derived_output_precision_ignored",
+      "rows": [
+        "D19"
+      ],
+      "expected": "conflicting output precision rejected or exact output precision prevents complete pass"
+    },
+    {
+      "name": "no_counterpart_all_complete",
+      "rows": [
+        "D25",
+        "D26"
+      ],
+      "expected": "EVAL_OK"
+    },
+    {
+      "name": "no_counterpart_stage1_blocked",
+      "rows": [
+        "D25",
+        "D26"
+      ],
+      "expected": "EVAL_INPUT_INVALID"
+    },
+    {
+      "name": "representation_legacy",
+      "rows": [
+        "D02",
+        "D27"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "representation_dual",
+      "rows": [
+        "D02",
+        "D27"
+      ],
+      "expected": "input invalid"
+    },
+    {
+      "name": "representation_duplicate_key",
+      "rows": [
+        "D02",
+        "D27"
+      ],
+      "expected": "input invalid"
+    },
+    {
+      "name": "representation_nonfinite",
+      "rows": [
+        "D02",
+        "D27"
+      ],
+      "expected": "input invalid"
+    },
+    {
+      "name": "representation_missing_unit",
+      "rows": [
+        "D02",
+        "D27"
+      ],
+      "expected": "input invalid"
+    },
+    {
+      "name": "version_protocol_version",
+      "rows": [
+        "D01"
+      ],
+      "expected": "contract mismatch"
+    },
+    {
+      "name": "version_taxonomy_version",
+      "rows": [
+        "D01"
+      ],
+      "expected": "contract mismatch"
+    },
+    {
+      "name": "version_agent_output_schema_version",
+      "rows": [
+        "D01"
+      ],
+      "expected": "contract mismatch"
+    },
+    {
+      "name": "version_mapping_spec_version",
+      "rows": [
+        "D01"
+      ],
+      "expected": "contract mismatch"
+    },
+    {
+      "name": "version_evaluator_contract_version",
+      "rows": [
+        "D01"
+      ],
+      "expected": "contract mismatch"
+    },
+    {
+      "name": "version_xbrl_artifact_fingerprint",
+      "rows": [
+        "D01"
+      ],
+      "expected": "contract mismatch"
+    },
+    {
+      "name": "version_corpus_fingerprint",
+      "rows": [
+        "D01"
+      ],
+      "expected": "contract mismatch"
+    },
+    {
+      "name": "gold_negative_tolerance",
+      "rows": [
+        "D11"
+      ],
+      "expected": "input invalid"
+    },
+    {
+      "name": "answer_id_order",
+      "rows": [
+        "D14"
+      ],
+      "expected": "complete pass"
+    },
+    {
+      "name": "pending_replacement",
+      "rows": [
+        "D37"
+      ],
+      "expected": "input invalid"
+    }
+  ],
+  "execution_policy": "Keep original constructors and all other predicates. For the two named probes replace the predicate with all successor_result_requirements. Never execute this representation against historical observed results and rewrite historical passed flags. No production execution occurred in authoring."
+}
