@@ -180,6 +180,11 @@ def adapt_dev_xbrl_map_v0_2(source, *, source_sha256, fact_index, numeric_values
                         gold_value = plain(t['gold_value']) * plain(factor)
                         require(gold_value == plain(c['gold_comparison_value']) and
                                 plain(values[loc]) == plain(c['candidate_comparison_value']), 'Source comparison coordinate disagreement')
+                        # The approved same-sign label must describe the signed
+                        # quantities themselves, including zero as its own sign.
+                        fact_value = plain(values[loc])
+                        require((gold_value > 0) == (fact_value > 0) and
+                                (gold_value < 0) == (fact_value < 0), 'False same-sign relationship')
                     paths[tid].append(dict(path_id=c['candidate_id'], candidate_id=c['candidate_id'],
                         fact_identity=f, normalized_value=c['fact']['normalized_value'], review_status='APPROVE',
                         sign_relationship='same_sign', sign_approval=None))
@@ -210,7 +215,15 @@ def adapt_dev_xbrl_map_v0_2(source, *, source_sha256, fact_index, numeric_values
                 if state == 'mapped':
                     require(bool(paths[tid]), 'Mapped target has no approved paths')
                 if state == 'no_xbrl_counterpart_in_frozen_corpus':
-                    require(not paths[tid] and not t['unresolved_candidate_ids'] and t['stage_completion']['stage3'] == 'completed',
+                    stages = t['stage_completion']
+                    # Stage 2 searches only approved Stage-1 lineage (mapping
+                    # spec 6.2); Stage 1 and Stage 3 must finish for absence to
+                    # be conclusive (spec 7 and v0.1.2 temporal finalization).
+                    stage2_applicable = any(c['human_review_status'] == 'APPROVE' for c in t['stage1_candidates'])
+                    stage2_complete = stages['stage2'] == 'completed' or (
+                        not stage2_applicable and stages['stage2'] == 'not_applicable_no_passing_stage1_lineage')
+                    require(not paths[tid] and not t['unresolved_candidate_ids'] and
+                            stages['stage1'] == 'completed' and stage2_complete and stages['stage3'] == 'completed',
                             'Incomplete no-counterpart search')
         active = set(); ready = {}
         def resolve(tid):

@@ -1,0 +1,34 @@
+FFFF.                                                                    [100%]
+=================================== FAILURES ===================================
+_____________________ test_f1_deep_valid_calculation_chain _____________________
+tests/evaluation/test_d2_v2_audit_regressions_v0_1.py:40: in test_f1_deep_valid_calculation_chain
+    assert result['evaluator_status'] == 'EVAL_OK', result['errors']
+E   AssertionError: [{'code': 'INTERNAL_ERROR', 'path': '/', 'message': 'RecursionError: maximum recursion depth exceeded'}]
+E   assert 'EVAL_INTERNAL_ERROR' == 'EVAL_OK'
+E
+E     - EVAL_OK
+E     + EVAL_INTERNAL_ERROR
+_________ test_f2_derived_precision_is_independent_of_target_tolerance _________
+tests/evaluation/test_d2_v2_audit_regressions_v0_1.py:54: in test_f2_derived_precision_is_independent_of_target_tolerance
+    assert occurrence['variant_selection']['complete_deterministic_pass'] is False
+E   assert True is False
+_________________ test_f3_false_same_sign_approval_is_invalid __________________
+tests/evaluation/test_d2_v2_audit_regressions_v0_1.py:67: in test_f3_false_same_sign_approval_is_invalid
+    assert result['evaluator_status'] == 'EVAL_INPUT_INVALID'
+E   AssertionError: assert 'EVAL_OK' == 'EVAL_INPUT_INVALID'
+E
+E     - EVAL_INPUT_INVALID
+E     + EVAL_OK
+_________ test_f4_blocked_earlier_stage_cannot_finalize_no_counterpart _________
+tests/evaluation/test_d2_v2_audit_regressions_v0_1.py:79: in test_f4_blocked_earlier_stage_cannot_finalize_no_counterpart
+    assert result['evaluator_status'] == 'EVAL_INPUT_INVALID'
+E   AssertionError: assert 'EVAL_OK' == 'EVAL_INPUT_INVALID'
+E
+E     - EVAL_INPUT_INVALID
+E     + EVAL_OK
+=========================== short test summary info ============================
+FAILED tests/evaluation/test_d2_v2_audit_regressions_v0_1.py::test_f1_deep_valid_calculation_chain
+FAILED tests/evaluation/test_d2_v2_audit_regressions_v0_1.py::test_f2_derived_precision_is_independent_of_target_tolerance
+FAILED tests/evaluation/test_d2_v2_audit_regressions_v0_1.py::test_f3_false_same_sign_approval_is_invalid
+FAILED tests/evaluation/test_d2_v2_audit_regressions_v0_1.py::test_f4_blocked_earlier_stage_cannot_finalize_no_counterpart
+4 failed, 1 passed in 12.23s

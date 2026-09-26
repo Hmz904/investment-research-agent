@@ -276,6 +276,30 @@ class _Scorer:
         return bool(accepted), {key: accepted}
 
     def derived(self, calc_id, spec, family, active=None):
+        # Resolve dependency frames on an explicit stack. Yielding a child frame
+        # preserves the existing depth-first order without using Python's call
+        # stack for calculation depth. Unknown exceptions still reach EVAL_INTERNAL_ERROR.
+        stack = [self._derived(calc_id, spec, family, active)]
+        value = None
+        while stack:
+            try:
+                child = stack[-1].send(value)
+            except StopIteration as done:
+                stack.pop()
+                value = done.value
+            else:
+                stack.append(child)
+                value = None
+        return value
+
+    @staticmethod
+    def output_precision_matches(candidate, spec):
+        precision = spec['output_precision']
+        target = dict(accepted_value=precision['reference_value'], unit=spec['output_unit'],
+                      precision=precision, basis=candidate.get('basis'), period=candidate.get('period'))
+        return numeric_match(candidate, target)[0]
+
+    def _derived(self, calc_id, spec, family, active=None):
         active = set() if active is None else active
         calc = self.calcs.get(calc_id)
         roles = spec['required_inputs']
@@ -303,7 +327,7 @@ class _Scorer:
                 key = ('calculation_input', calc_id + '/' + item['input_id'])
                 if item['source_type'] == 'prior_calculation':
                     prior = item['source_calculation_id']
-                    approved, prior_ok, prior_bindings = self.upstream(prior, target, active | {calc_id})
+                    approved, prior_ok, prior_bindings = yield self._upstream(prior, target, active | {calc_id})
                     bindings.update(prior_bindings)
                     upstream_ok &= prior_ok
                     if prior in self.calcs:
@@ -328,9 +352,10 @@ class _Scorer:
             arithmetic_ok &= calc['result']['unit'] == spec['output_unit'] and upstream_ok
         family_ok = not families or (len(families) == 1 and (family is None or family in families))
         return dict(input_results=input_results, formula_correct=bool(formula_ok), arithmetic_correct=bool(arithmetic_ok),
-            approved_path_valid=all(i['approved_path_valid'] for i in input_results), bindings=bindings, family_ok=family_ok)
+            approved_path_valid=all(i['approved_path_valid'] for i in input_results), bindings=bindings, family_ok=family_ok,
+            output_precision_correct=calc is not None and self.output_precision_matches(calc['result'], spec))
 
-    def upstream(self, calc_id, target, active):
+    def _upstream(self, calc_id, target, active):
         if calc_id in active or calc_id in self.graph['invalid_calculation_ids'] or calc_id not in self.calcs:
             return False, False, {}
         calc = self.calcs[calc_id]
@@ -339,9 +364,11 @@ class _Scorer:
         specs = [v['derived_specification'] for v in variants]
         if specs:
             # Evaluate coherent candidates; canonical first passing specification.
-            outcomes = [self.derived(calc_id, s, target['variant_family'], active) for s in specs]
+            outcomes = []
+            for spec in specs:
+                outcomes.append((yield self._derived(calc_id, spec, target['variant_family'], active)))
             passed = [o for o in outcomes if o['formula_correct'] and o['arithmetic_correct'] and o['approved_path_valid'] and
-                      all(i['numeric_correct'] for i in o['input_results']) and o['family_ok']]
+                      all(i['numeric_correct'] for i in o['input_results']) and o['family_ok'] and o['output_precision_correct']]
             chosen = (passed or outcomes)[0]
             return chosen['approved_path_valid'], bool(passed), chosen['bindings']
         # A direct target forwarded through an identity calculation retains its
@@ -357,7 +384,7 @@ class _Scorer:
         arithmetic = audit_arithmetic_v0_2(calc['expression'], {item['input_id']: canonical_decimal(item['value'])},
                                           canonical_decimal(calc['result']['value']))['arithmetic_correct']
         if item['source_type'] == 'prior_calculation':
-            approved, valid, bindings = self.upstream(item['source_calculation_id'], target, active | {calc_id})
+            approved, valid, bindings = yield self._upstream(item['source_calculation_id'], target, active | {calc_id})
         elif item['source_type'] == 'cited_fact':
             approved, bindings = self.path(('calculation_input', calc_id + '/' + item['input_id']), target)
             valid = True
@@ -385,7 +412,8 @@ class _Scorer:
             calc = self.calcs.get(calc_id)
             if calc is not None:
                 result_candidate = dict(calc['result'], period=claim['numeric_value']['period'], basis=claim['numeric_value']['basis'])
-                out['result_bound'] = numeric_match(result_candidate, variant)[0]
+                out['result_bound'] = (numeric_match(result_candidate, variant)[0] and
+                    derived['output_precision_correct'] and self.output_precision_matches(claim['numeric_value'], spec))
                 if not out['result_bound']:
                     out['reason_codes'].append('CALCULATION_OUTPUT_MISMATCH')
             out['input_correctness'] = ratio(sum(i['numeric_correct'] for i in out['input_results']), len(out['input_results']))
