@@ -578,6 +578,24 @@ def evaluate_v0_2(request):
         return result
 
 
+def checkpoint_reportability_v0_2_1(results, *, gold_integrity_passed):
+    """P6 operational gate, applied before publishing any checkpoint aggregate.
+
+    Call with every scheduled evaluation result and the authorized split's
+    integrity-gate outcome. Row scoring and the historical aggregate wire
+    contract remain separate from this reportability decision.
+    """
+    require(isinstance(results, list) and type(gold_integrity_passed) is bool,
+            'Malformed checkpoint gate input')
+    for result in results:
+        validate('deterministic_evaluator_output_schema_v0.2.json', result)
+    internal_error = any(r['evaluator_status'] == 'EVAL_INTERNAL_ERROR' for r in results)
+    valid = gold_integrity_passed and all(r['checkpoint_valid'] for r in results) and not internal_error
+    return dict(checkpoint_valid=valid,
+                aggregate_reportability='REPORTABLE' if valid else 'NON-REPORTABLE',
+                evaluator_repair_and_rerun_required=internal_error)
+
+
 def aggregate_metrics_v0_2(slots):
     require(isinstance(slots, list), 'Aggregate records must be an array')
     for slot in slots:

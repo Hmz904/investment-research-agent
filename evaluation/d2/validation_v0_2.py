@@ -218,13 +218,10 @@ def precision_interval(p):
             low, high = ref - amount, ref + amount
         else:
             require(amount > 0 and amount.normalize().as_tuple().digits == (1,), 'Quantum must be power of ten')
-            k = ref / amount
-            if k != k.to_integral_value():
-                low = high = ref
-                inclusive = False
-            else:
-                low, high = ref - amount / 2, ref + amount / 2
-                inclusive = k % 2 == 0
+            k = (ref / amount).to_integral_value(rounding=ROUND_HALF_EVEN)
+            center = k * amount
+            low, high = center - amount / 2, center + amount / 2
+            inclusive = k % 2 == 0
     return {'lower': canonical_decimal(low), 'upper': canonical_decimal(high),
             'lower_inclusive': inclusive, 'upper_inclusive': inclusive}
 
@@ -234,9 +231,16 @@ def validate_precision(p, value, unit):
     require(plain(p['reference_value']) == plain(value) and p['comparison_unit'] == unit,
             'Precision coordinate disagrees with gold')
     expected = precision_interval(p)
-    require(all(plain(p['interval'][k]) == plain(expected[k]) for k in ('lower', 'upper')) and
-            all(p['interval'][k] == expected[k] for k in ('lower_inclusive', 'upper_inclusive')),
-            'Precision interval disagreement')
+    if p['mode'] != 'QUANTUM':
+        require(all(plain(p['interval'][k]) == plain(expected[k]) for k in ('lower', 'upper')) and
+                all(p['interval'][k] == expected[k] for k in ('lower_inclusive', 'upper_inclusive')),
+                'Precision interval disagreement')
+    # P3: historical wire records keep their bytes and identity. Only their
+    # QUANTUM derived interval is superseded in this separate S1 projection.
+    successor = deepcopy(p)
+    successor.update(precision_schema_version='precision_record_v0.2.1', interval=expected)
+    validate('precision_record_v0.2.1.schema.json', successor)
+    return successor
 
 
 def adapt_precision_v0_2(metadata, *, reference_value, unit):
@@ -307,7 +311,8 @@ def numeric_match(candidate, target):
                 match = abs(cv - gv) <= plain(p['absolute_tolerance']) * factor
             else:
                 q = plain(p['quantum']) * factor
-                match = q * (cv / q).to_integral_value(rounding=ROUND_HALF_EVEN) == gv
+                match = (q * (cv / q).to_integral_value(rounding=ROUND_HALF_EVEN) ==
+                         q * (gv / q).to_integral_value(rounding=ROUND_HALF_EVEN))
     basis = candidate.get('basis') == target['basis']
     correct = bool(match and sign and basis and candidate.get('period') == target['period'])
     return correct, unit, {'mode': p['mode'], 'matched': bool(match), 'rule_id': p['precision_rule_id']}, sign, basis
