@@ -1,0 +1,77 @@
+{
+  "audit_version": "d2_v2_implementation_validation_v0.1",
+  "base_commit": "4946e302027f4aab7b09e493ae82f208d5ad75ee",
+  "chunk_catalog_sha256": "e086618b54f19f3bb674bce444958421d799795f9f60c73db697b6fb19993dc7",
+  "chunk_count": 1662,
+  "data_root": "/mnt/d/projects/thesisagent-d2-v2-runtime-data",
+  "dev_csv_source_hashes": {
+    "evidence_checklist.csv": "5f6cec18f47fe5b568b55e24882af17f6c9688d9550b5d6a710c526ff53e9da9",
+    "numeric_answers.csv": "c6f82689fe8dd1adb1b5b054c393c4a7a5c2ffbc046ff8d100909127fcefcb0e",
+    "provenance.csv": "1e1347ec0b2c95c065f9a4f0a78ce5541ee0838533f14ce5d4490e1b1d4b53c7",
+    "questions.csv": "fbe81d8cbf01696d53616483276f4156bbb9ef263a999b47c9b3554f25377b04"
+  },
+  "dev_gold_bundle_count": 8,
+  "dev_gold_bundles_sha256": "15612f244880d86330a300ebd9c9f2d61209b84068e74cbd770ec01434d89b7f",
+  "dev_map_source_bytes_sha256": "f129bf95b8a3428922ca5b87171f61e7a15481fc34586c37e22dfa23d33a2a53",
+  "dev_numeric_target_count": 17,
+  "fact_count": 7839,
+  "fact_index_sha256": "db602a37bab1a9912bbb576a1ce447bb56529b7c40d443cb969fe227efd4bd2a",
+  "frozen_contracts": {
+    "test_author_manifest_sha256": "f69e14f586a6d2fd94b5500d05db5a984c8180cd609d3e2582316ef481c29e22",
+    "verified_historical_imports": 9,
+    "verified_test_author_files": 27
+  },
+  "judge_used": false,
+  "locked_test_contents_used": false,
+  "model_inference_used": false,
+  "normalized_map_sha256": "9ac6d100c475576c55cd740e26677ae450ecbb4497f48eafeecc8a64f49378ea",
+  "normalized_map_state_counts": {
+    "DERIVED_VIA_APPROVED_INPUTS": 1,
+    "DIRECT_APPROVED": 2,
+    "NO_APPROVED_XBRL_PATH": 14
+  },
+  "numeric_catalog_sha256": "e598fcd47364b3944ac9f511e048acc6fc588e7dee599dbc66e4c9717a16c7ad",
+  "package_versions": {
+    "Pygments": "2.21.0",
+    "attrs": "26.1.0",
+    "beautifulsoup4": "4.15.0",
+    "iniconfig": "2.3.0",
+    "jsonschema": "4.26.0",
+    "jsonschema-specifications": "2025.9.1",
+    "lxml": "6.1.3",
+    "numpy": "2.5.3",
+    "packaging": "26.3",
+    "pluggy": "1.6.0",
+    "pytest": "9.1.1",
+    "referencing": "0.37.0",
+    "rpds-py": "2026.6.3",
+    "soupsieve": "2.9.2",
+    "typing_extensions": "4.16.0"
+  },
+  "python_version": "3.14.7",
+  "real_agent_outputs_used": false,
+  "runtime_file_count": 45,
+  "runtime_manifest_sha256": "e5db9ce8b1bebbd2f52ddc7f7b1bd073346506c1ac2dc48b1949a75f4b0835a9",
+  "separate_process_byte_identity": {
+    "canonical_audit_sha256": "05bcd7d7dea66ed91540c0c3bb8556765efd456f65d01ddac9f9b5973dec6790",
+    "passed": true,
+    "process_count": 2
+  },
+  "synthetic_result_hashes": {
+    "cd02": "289166f8da47e9a867bc9744642a00e3b1bea7362b0b47c9d33f2bfdcb6ae86e",
+    "derived": "fc3773f743b2f1f54deffb20c4f526aa2835ceb7e3d7395ae77ef30bee56b50d",
+    "direct": "4be88f93a8772db188a1999879253347499824b735af2452c59f328342ae4ea2",
+    "xbrl": "9f2d762d408a889fa1ac51170d18b93770a0924c922e010c55fb82f4cb691fcd"
+  },
+  "tests": {
+    "additional_implementation_checks": 22,
+    "command": "PYTHONPATH=tests/evaluation:. .venv/bin/python -m pytest -q tests/evaluation/test_deterministic_evaluator_contract_v0_2.py tests/evaluation/test_d2_v2_implementation_guards.py --disable-warnings",
+    "errors": 0,
+    "failed": 0,
+    "independent_frozen_cases": 257,
+    "passed": 279,
+    "skipped": 0
+  },
+  "unlinked_fact_count": 640,
+  "xbrl_artifact_fingerprint": "acaf087ee2c4fb7427377cae5f1968da26c75d4dfa565f67f1e056b2c4cc4eb6"
+}
