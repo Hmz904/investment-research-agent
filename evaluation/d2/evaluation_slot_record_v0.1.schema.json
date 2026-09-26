@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/evaluation_slot_record_v0.1.schema.json",
+  "title": "EvaluationSlotRecord v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slot_record_schema_version",
+    "adapter_version",
+    "question_id",
+    "scheduled_replicate_id",
+    "scheduled_slot_id",
+    "effective_attempt_id",
+    "replacement_for_slot_id",
+    "execution_status",
+    "agent_output_present",
+    "infrastructure_exhausted",
+    "observable_runtime_references"
+  ],
+  "properties": {
+    "slot_record_schema_version": {"const": "evaluation_slot_record_v0.1"},
+    "adapter_version": {"const": "evaluation_slot_record_adapter_v0.1"},
+    "question_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9_.-]+$"},
+    "scheduled_replicate_id": {"type": "string", "minLength": 1},
+    "scheduled_slot_id": {"type": "string", "minLength": 1},
+    "effective_attempt_id": {"type": "string", "minLength": 1},
+    "replacement_for_slot_id": {"type": ["string", "null"], "minLength": 1},
+    "execution_status": {
+      "enum": [
+        "RUN_COMPLETED",
+        "FAIL_TOOL_BUDGET_EXHAUSTED",
+        "FAIL_STEP_BUDGET_EXHAUSTED",
+        "FAIL_FINAL_SCHEMA_INVALID",
+        "FAIL_NO_VALID_FINAL_OUTPUT",
+        "FAIL_AGENT_ORCHESTRATION_UNRECOVERABLE",
+        "INFRA_RUN_RETRY_EXHAUSTED"
+      ]
+    },
+    "agent_output_present": {"type": "boolean"},
+    "infrastructure_exhausted": {"type": "boolean"},
+    "observable_runtime_references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["reference_type", "reference_id", "sha256"],
+        "properties": {
+          "reference_type": {"type": "string", "minLength": 1},
+          "reference_id": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"execution_status": {"const": "RUN_COMPLETED"}}, "required": ["execution_status"]},
+      "then": {"properties": {"agent_output_present": {"const": true}, "infrastructure_exhausted": {"const": false}}}
+    },
+    {
+      "if": {"properties": {"execution_status": {"pattern": "^FAIL_"}}, "required": ["execution_status"]},
+      "then": {"properties": {"agent_output_present": {"const": false}, "infrastructure_exhausted": {"const": false}}}
+    },
+    {
+      "if": {"properties": {"execution_status": {"const": "INFRA_RUN_RETRY_EXHAUSTED"}}, "required": ["execution_status"]},
+      "then": {"properties": {"agent_output_present": {"const": false}, "infrastructure_exhausted": {"const": true}}}
+    }
+  ],
+  "x-cross-record-constraints": [
+    "When replacement_for_slot_id is non-null it equals scheduled_slot_id.",
+    "One record exists per scheduled_slot_id.",
+    "A replacement attempt does not create an additional slot."
+  ]
+}

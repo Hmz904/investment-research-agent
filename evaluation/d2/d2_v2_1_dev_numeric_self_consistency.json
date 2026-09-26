@@ -1,0 +1,289 @@
+{
+  "TEST_accessed": false,
+  "agent_output_used": false,
+  "contract": "d2_contract_v0.2.1",
+  "failed": 0,
+  "gate_version": "d2_dev_numeric_self_consistency_v0.2.1",
+  "passed": 17,
+  "production_evaluator_used": false,
+  "source_sha256": {
+    "benchmark/dev/v0.1/numeric_answers.csv": "c6f82689fe8dd1adb1b5b054c393c4a7a5c2ffbc046ff8d100909127fcefcb0e",
+    "evaluation/dev/xbrl/dev_numeric_targets_v0.1.csv": "ad35e1bf23366c4564883c407e062cf319f06469cea7cfd9bc89451b5696d793"
+  },
+  "targets": [
+    {
+      "canonical_display_value": "48554000000",
+      "canonical_unit": "USD",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison"
+      ],
+      "display_value": "48554",
+      "quantum": "1",
+      "reference": "48554",
+      "result": "PASS",
+      "role": "input",
+      "target_id": "NF001",
+      "variant": null
+    },
+    {
+      "canonical_display_value": "21341000000",
+      "canonical_unit": "USD",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison"
+      ],
+      "display_value": "21341",
+      "quantum": "1",
+      "reference": "21341",
+      "result": "PASS",
+      "role": "input",
+      "target_id": "NF002",
+      "variant": null
+    },
+    {
+      "canonical_display_value": "27213000000",
+      "canonical_unit": "USD",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison",
+        "answer_variant",
+        "derived_output"
+      ],
+      "display_value": "27213",
+      "quantum": "1",
+      "reference": "27213",
+      "result": "PASS",
+      "role": "answer",
+      "target_id": "NF003",
+      "variant": "V1"
+    },
+    {
+      "canonical_display_value": "0.560",
+      "canonical_unit": "pure",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison",
+        "answer_variant",
+        "derived_output"
+      ],
+      "display_value": "56.0",
+      "quantum": "0.1",
+      "reference": "56.0468756436",
+      "result": "PASS",
+      "role": "answer",
+      "target_id": "NF004",
+      "variant": "V1"
+    },
+    {
+      "canonical_display_value": "4.81",
+      "canonical_unit": "USD_per_share",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison"
+      ],
+      "display_value": "4.81",
+      "quantum": "0.01",
+      "reference": "4.81",
+      "result": "PASS",
+      "role": "input",
+      "target_id": "NF005",
+      "variant": null
+    },
+    {
+      "canonical_display_value": "4.74",
+      "canonical_unit": "USD_per_share",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison"
+      ],
+      "display_value": "4.74",
+      "quantum": "0.01",
+      "reference": "4.74",
+      "result": "PASS",
+      "role": "input",
+      "target_id": "NF006",
+      "variant": null
+    },
+    {
+      "canonical_display_value": "3.65",
+      "canonical_unit": "USD_per_share",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison"
+      ],
+      "display_value": "3.65",
+      "quantum": "0.01",
+      "reference": "3.65",
+      "result": "PASS",
+      "role": "input",
+      "target_id": "NF007",
+      "variant": null
+    },
+    {
+      "canonical_display_value": "3.86",
+      "canonical_unit": "USD_per_share",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison"
+      ],
+      "display_value": "3.86",
+      "quantum": "0.01",
+      "reference": "3.86",
+      "result": "PASS",
+      "role": "input",
+      "target_id": "NF008",
+      "variant": null
+    },
+    {
+      "canonical_display_value": "0.07",
+      "canonical_unit": "USD_per_share",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison",
+        "answer_variant",
+        "derived_output"
+      ],
+      "display_value": "0.07",
+      "quantum": "0.01",
+      "reference": "0.07",
+      "result": "PASS",
+      "role": "answer",
+      "target_id": "NF009",
+      "variant": "V1"
+    },
+    {
+      "canonical_display_value": "-0.21",
+      "canonical_unit": "USD_per_share",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison",
+        "answer_variant",
+        "derived_output"
+      ],
+      "display_value": "-0.21",
+      "quantum": "0.01",
+      "reference": "-0.21",
+      "result": "PASS",
+      "role": "answer",
+      "target_id": "NF010",
+      "variant": "V1"
+    },
+    {
+      "canonical_display_value": "0.28",
+      "canonical_unit": "USD_per_share",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison",
+        "answer_variant",
+        "derived_output"
+      ],
+      "display_value": "0.28",
+      "quantum": "0.01",
+      "reference": "0.28",
+      "result": "PASS",
+      "role": "answer",
+      "target_id": "NF011",
+      "variant": "V1"
+    },
+    {
+      "canonical_display_value": "541000000",
+      "canonical_unit": "USD",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison"
+      ],
+      "display_value": "541",
+      "quantum": "1",
+      "reference": "541",
+      "result": "PASS",
+      "role": "input",
+      "target_id": "NF012",
+      "variant": null
+    },
+    {
+      "canonical_display_value": "1999000000",
+      "canonical_unit": "USD",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison"
+      ],
+      "display_value": "1999",
+      "quantum": "1",
+      "reference": "1999",
+      "result": "PASS",
+      "role": "input",
+      "target_id": "NF013",
+      "variant": null
+    },
+    {
+      "canonical_display_value": "1458000000",
+      "canonical_unit": "USD",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison",
+        "answer_variant",
+        "derived_output"
+      ],
+      "display_value": "1458",
+      "quantum": "1",
+      "reference": "1458",
+      "result": "PASS",
+      "role": "answer",
+      "target_id": "NF014",
+      "variant": "V1"
+    },
+    {
+      "canonical_display_value": "-0.07",
+      "canonical_unit": "USD_per_share",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison",
+        "answer_variant",
+        "derived_output"
+      ],
+      "display_value": "-0.07",
+      "quantum": "0.01",
+      "reference": "-0.07",
+      "result": "PASS",
+      "role": "answer",
+      "target_id": "NF015",
+      "variant": "V2"
+    },
+    {
+      "canonical_display_value": "0.21",
+      "canonical_unit": "USD_per_share",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison",
+        "answer_variant",
+        "derived_output"
+      ],
+      "display_value": "0.21",
+      "quantum": "0.01",
+      "reference": "0.21",
+      "result": "PASS",
+      "role": "answer",
+      "target_id": "NF016",
+      "variant": "V2"
+    },
+    {
+      "canonical_display_value": "-0.28",
+      "canonical_unit": "USD_per_share",
+      "constraints_checked": [
+        "target",
+        "metadata_comparison",
+        "answer_variant",
+        "derived_output"
+      ],
+      "display_value": "-0.28",
+      "quantum": "0.01",
+      "reference": "-0.28",
+      "result": "PASS",
+      "role": "answer",
+      "target_id": "NF017",
+      "variant": "V2"
+    }
+  ],
+  "total": 17
+}

@@ -1,0 +1,13 @@
+...............................................................F........ [ 24%]
+........................................................................ [ 48%]
+........................................................................ [ 72%]
+........................................................................ [ 96%]
+...........                                                              [100%]
+=================================== FAILURES ===================================
+_ test_D10_quantum_exact_power_and_half_even[1.24-1.23-0.1-1.23-1.23-False-False] _
+tests/evaluation/test_deterministic_evaluator_contract_v0_2.py:205: in test_D10_quantum_exact_power_and_half_even
+    assert z['metrics']['complete_numeric_answer'] is match
+E   assert True is False
+=========================== short test summary info ============================
+FAILED tests/evaluation/test_deterministic_evaluator_contract_v0_2.py::test_D10_quantum_exact_power_and_half_even[1.24-1.23-0.1-1.23-1.23-False-False]
+1 failed, 298 passed in 59.66s

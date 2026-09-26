@@ -1,0 +1,324 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "selection_schema_version": {
+      "const": "variant_selection_v0.2"
+    },
+    "eligible_variant_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "complete_passing_variant_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "selected_variant_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "selection_mode": {
+      "enum": [
+        "COMPLETE_PASS",
+        "CANONICAL_DIAGNOSTIC",
+        "NO_ELIGIBLE_VARIANT"
+      ]
+    },
+    "complete_deterministic_pass": {
+      "type": "boolean"
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "selection_schema_version",
+    "eligible_variant_ids",
+    "complete_passing_variant_ids",
+    "selected_variant_id",
+    "selection_mode",
+    "complete_deterministic_pass",
+    "reason_codes"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/variant_selection_v0.2.schema.json",
+  "title": "CD-02 coherent variant selection v0.2",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "selection_mode": {
+            "const": "COMPLETE_PASS"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "selected_variant_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "complete_deterministic_pass": {
+            "const": true
+          },
+          "eligible_variant_ids": {
+            "minItems": 1
+          },
+          "complete_passing_variant_ids": {
+            "minItems": 1
+          },
+          "reason_codes": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "selection_mode": {
+            "const": "CANONICAL_DIAGNOSTIC"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "selected_variant_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "complete_deterministic_pass": {
+            "const": false
+          },
+          "eligible_variant_ids": {
+            "minItems": 1
+          },
+          "complete_passing_variant_ids": {
+            "maxItems": 0
+          },
+          "reason_codes": {
+            "const": [
+              "NO_COMPLETE_VARIANT_PASS"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "selection_mode": {
+            "const": "NO_ELIGIBLE_VARIANT"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "selected_variant_id": {
+            "type": "null"
+          },
+          "complete_deterministic_pass": {
+            "const": false
+          },
+          "eligible_variant_ids": {
+            "maxItems": 0
+          },
+          "complete_passing_variant_ids": {
+            "maxItems": 0
+          },
+          "reason_codes": {
+            "const": [
+              "NO_ELIGIBLE_VARIANT"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "selection_schema_version": {
+          "const": "variant_selection_v0.2"
+        },
+        "approved_variants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "variant_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "variant_family": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "structurally_applicable": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "variant_id",
+              "variant_family",
+              "structurally_applicable"
+            ]
+          }
+        },
+        "explicit_variant_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "explicit_family_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "candidate_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "variant_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "complete_deterministic_pass": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "variant_id",
+              "complete_deterministic_pass"
+            ]
+          }
+        }
+      },
+      "required": [
+        "selection_schema_version",
+        "approved_variants",
+        "explicit_variant_id",
+        "explicit_family_id",
+        "candidate_results"
+      ]
+    },
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "evaluator_status": {
+          "enum": [
+            "EVAL_OK",
+            "EVAL_INPUT_INVALID"
+          ]
+        },
+        "selection": {
+          "anyOf": [
+            {
+              "$ref": "#"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason_codes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "evaluator_status",
+        "selection",
+        "reason_codes"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "evaluator_status": {
+                "const": "EVAL_OK"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "selection": {
+                "$ref": "#"
+              },
+              "reason_codes": {
+                "maxItems": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "selection": {
+                "type": "null"
+              },
+              "reason_codes": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "x-semantic-validation": [
+    "IDs unique by variant_id; eligible IDs derived from frozen structure before scoring.",
+    "Complete-passing IDs are a subset of eligible IDs; both arrays sorted by Unicode codepoint.",
+    "Selected ID is minimum passing ID if nonempty, else minimum eligible ID if nonempty, else null.",
+    "Candidate result IDs must be approved and unique; every eligible ID has exactly one result.",
+    "Explicit identifiers validated against approved IDs and families before outcome use.",
+    "All occurrence metrics and reason codes use the selected candidate only."
+  ]
+}

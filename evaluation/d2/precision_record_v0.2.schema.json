@@ -1,0 +1,249 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/precision_record_v0.2.schema.json",
+  "title": "PrecisionRecord v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "precision_schema_version",
+    "mode",
+    "quantum",
+    "absolute_tolerance",
+    "rounding_mode",
+    "source_encoding",
+    "source_value",
+    "precision_rule_id",
+    "comparison_unit",
+    "reference_value",
+    "interval"
+  ],
+  "properties": {
+    "precision_schema_version": {
+      "const": "precision_record_v0.2"
+    },
+    "mode": {
+      "enum": [
+        "EXACT",
+        "QUANTUM",
+        "ABS_TOLERANCE"
+      ]
+    },
+    "quantum": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/positive_decimal"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "absolute_tolerance": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/nonnegative_decimal"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "rounding_mode": {
+      "enum": [
+        "ROUND_HALF_EVEN",
+        null
+      ]
+    },
+    "source_encoding": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_value": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "precision_rule_id": {
+      "enum": [
+        "precision_exact_v0.1",
+        "precision_rounding_quantum_v0.1",
+        "precision_absolute_tolerance_v0.1"
+      ]
+    },
+    "comparison_unit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reference_value": {
+      "type": "string",
+      "pattern": "^[+-]?[0-9]+(?:\\.[0-9]+)?$"
+    },
+    "interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lower": {
+          "type": "string",
+          "pattern": "^[+-]?[0-9]+(?:\\.[0-9]+)?$"
+        },
+        "upper": {
+          "type": "string",
+          "pattern": "^[+-]?[0-9]+(?:\\.[0-9]+)?$"
+        },
+        "lower_inclusive": {
+          "type": "boolean"
+        },
+        "upper_inclusive": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "lower",
+        "upper",
+        "lower_inclusive",
+        "upper_inclusive"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "EXACT"
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "quantum": {
+            "type": "null"
+          },
+          "absolute_tolerance": {
+            "type": "null"
+          },
+          "rounding_mode": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "QUANTUM"
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "quantum": {
+            "$ref": "#/$defs/positive_decimal"
+          },
+          "absolute_tolerance": {
+            "type": "null"
+          },
+          "rounding_mode": {
+            "const": "ROUND_HALF_EVEN"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "ABS_TOLERANCE"
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "quantum": {
+            "type": "null"
+          },
+          "absolute_tolerance": {
+            "$ref": "#/$defs/nonnegative_decimal"
+          },
+          "rounding_mode": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "EXACT"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "precision_rule_id": {
+            "const": "precision_exact_v0.1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "QUANTUM"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "precision_rule_id": {
+            "const": "precision_rounding_quantum_v0.1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "ABS_TOLERANCE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "precision_rule_id": {
+            "const": "precision_absolute_tolerance_v0.1"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "positive_decimal": {
+      "type": "string",
+      "pattern": "^(?:10*|0\\.0*1)$"
+    },
+    "nonnegative_decimal": {
+      "type": "string",
+      "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$"
+    }
+  },
+  "x-semantic-validation": [
+    "Validate source parameters before canonicalization, tolerance >=0 and quantum=10^integer.",
+    "Recompute interval in comparison unit; QUANTUM candidate rounding equals unrounded gold. An off-grid reference has an empty interval (equal endpoints, both exclusive).",
+    "source_encoding and source_value preserve provenance, not a candidate-specific fallback."
+  ]
+}

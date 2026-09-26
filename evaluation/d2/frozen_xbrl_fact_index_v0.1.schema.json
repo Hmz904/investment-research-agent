@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/frozen_xbrl_fact_index_v0.1.schema.json",
+  "title": "FrozenXBRLFactIndex v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "index_schema_version": {
+      "const": "frozen_xbrl_fact_index_v0.1"
+    },
+    "xbrl_artifact_fingerprint": {
+      "const": "acaf087ee2c4fb7427377cae5f1968da26c75d4dfa565f67f1e056b2c4cc4eb6"
+    },
+    "expected_fact_count": {
+      "const": 7839
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/fact"
+      },
+      "minItems": 7839,
+      "maxItems": 7839,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "index_schema_version",
+    "xbrl_artifact_fingerprint",
+    "expected_fact_count",
+    "facts"
+  ],
+  "$defs": {
+    "fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fact_locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stable_fact_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "doc_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fact_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accession": {
+          "type": "string",
+          "pattern": "^[0-9]{10}-[0-9]{2}-[0-9]{6}$"
+        },
+        "concept": {
+          "type": "string",
+          "minLength": 1
+        },
+        "context_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entity_identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entity_scheme": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_measures": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unit_numerator": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unit_denominator": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "temporal": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "instant"
+                },
+                "instant": {
+                  "type": "string",
+                  "format": "date"
+                }
+              },
+              "required": [
+                "kind",
+                "instant"
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "duration"
+                },
+                "period_start": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "period_end": {
+                  "type": "string",
+                  "format": "date"
+                }
+              },
+              "required": [
+                "kind",
+                "period_start",
+                "period_end"
+              ]
+            }
+          ]
+        },
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "axis": {
+                "type": "string",
+                "minLength": 1
+              },
+              "member": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "axis",
+              "member"
+            ]
+          }
+        },
+        "chunk_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "fact_locator",
+        "stable_fact_id",
+        "doc_id",
+        "fact_id",
+        "accession",
+        "concept",
+        "context_ref",
+        "entity_identifier",
+        "entity_scheme",
+        "unit",
+        "unit_measures",
+        "unit_numerator",
+        "unit_denominator",
+        "temporal",
+        "dimensions",
+        "chunk_id"
+      ]
+    }
+  },
+  "x-semantic-validation": [
+    "Unique fact_locator and stable_fact_id; locator=doc_id#fact_id and stable=doc_id::fact_id.",
+    "Exact context/entity/unit/date/dimension/chunk identities verified against frozen artifact; dates ordered.",
+    "All 7839 facts, including unlinked and nonnumeric rows; ascending stable_fact_id."
+  ]
+}

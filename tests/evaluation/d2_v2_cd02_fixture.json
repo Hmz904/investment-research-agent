@@ -1,0 +1,542 @@
+{
+  "decision_id": "CD-02",
+  "classification": "COVERED_DETERMINISTIC",
+  "variant_A": {
+    "variant_id": "A",
+    "value": "10",
+    "unit": "USD",
+    "period": "Q1",
+    "basis": "GAAP",
+    "family": "F",
+    "inputs": {
+      "a": "12",
+      "b": "2"
+    },
+    "formula": "(a - b)"
+  },
+  "variant_B": {
+    "variant_id": "B",
+    "value": "10",
+    "unit": "USD",
+    "period": "Q1",
+    "basis": "GAAP",
+    "family": "F",
+    "inputs": {
+      "a": "7",
+      "b": "3"
+    },
+    "formula": "(a + b)"
+  },
+  "submission": {
+    "value": "10",
+    "unit": "USD",
+    "period": "Q1",
+    "basis": "GAAP",
+    "inputs": {
+      "a": "12",
+      "b": "3"
+    },
+    "formula": "(a - b)"
+  },
+  "literal_partial_facts": {
+    "A": {
+      "final_value_correct": true,
+      "formula_correct": true,
+      "correct_inputs": [
+        "a"
+      ]
+    },
+    "B": {
+      "final_value_correct": true,
+      "formula_correct": false,
+      "correct_inputs": [
+        "b"
+      ]
+    }
+  },
+  "expected_evaluator_result": {
+    "selected_variant_id": "A",
+    "selection_mode": "CANONICAL_DIAGNOSTIC",
+    "complete_deterministic_pass": false,
+    "formula_correct": true,
+    "arithmetic_correct": false,
+    "input_correctness": {
+      "numerator": 1,
+      "denominator": 2
+    },
+    "correct_input_roles": [
+      "a"
+    ],
+    "complete_numeric_answer": false
+  },
+  "schema_valid_request_witness": {
+    "request_schema_version": "evaluation_request_v0.2",
+    "split": "DEV",
+    "contract_identity": {
+      "protocol_version": "eval_protocol_v0.2.2",
+      "taxonomy_version": "execution_taxonomy_v0.1",
+      "agent_output_schema_version": "agent_output_v0.1.1",
+      "mapping_spec_version": "xbrl_gold_mapping_spec_v0.1.2",
+      "evaluator_contract_version": "d2_contract_v0.2",
+      "xbrl_artifact_fingerprint": "acaf087ee2c4fb7427377cae5f1968da26c75d4dfa565f67f1e056b2c4cc4eb6",
+      "corpus_fingerprint": "56df698d50b13cf15e913c1c60dbc96b1fd0fab44adb7b1f40ba99771c4b7c96"
+    },
+    "gold_bundle": {
+      "bundle_schema_version": "gold_bundle_v0.2",
+      "adapter_version": "gold_bundle_adapter_v0.2",
+      "source_format_version": "gold_bundle_v0.2",
+      "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "question_id": "SYNTH_Q",
+      "numeric_targets": [
+        {
+          "target_id": "OUT_A",
+          "accepted_value": "10",
+          "unit": "USD",
+          "period": "Q1",
+          "basis": "GAAP",
+          "precision": {
+            "precision_schema_version": "precision_record_v0.2",
+            "mode": "EXACT",
+            "quantum": null,
+            "absolute_tolerance": null,
+            "rounding_mode": null,
+            "source_encoding": "synthetic_frozen_exact",
+            "source_value": null,
+            "precision_rule_id": "precision_exact_v0.1",
+            "comparison_unit": "USD",
+            "reference_value": "10",
+            "interval": {
+              "lower": "10",
+              "upper": "10",
+              "lower_inclusive": true,
+              "upper_inclusive": true
+            }
+          },
+          "variant_family": "F",
+          "approved_chunk_paths": [
+            {
+              "path_id": "OUT_A.chunk",
+              "members": [
+                {
+                  "chunk_id": "chunk-a",
+                  "accession": "0000000001-24-000001",
+                  "locator": "Synthetic table chunk-a"
+                }
+              ]
+            }
+          ],
+          "approved_xbrl_paths": []
+        },
+        {
+          "target_id": "A_a",
+          "accepted_value": "12",
+          "unit": "USD",
+          "period": "Q1",
+          "basis": "GAAP",
+          "precision": {
+            "precision_schema_version": "precision_record_v0.2",
+            "mode": "EXACT",
+            "quantum": null,
+            "absolute_tolerance": null,
+            "rounding_mode": null,
+            "source_encoding": "synthetic_frozen_exact",
+            "source_value": null,
+            "precision_rule_id": "precision_exact_v0.1",
+            "comparison_unit": "USD",
+            "reference_value": "12",
+            "interval": {
+              "lower": "12",
+              "upper": "12",
+              "lower_inclusive": true,
+              "upper_inclusive": true
+            }
+          },
+          "variant_family": "F",
+          "approved_chunk_paths": [
+            {
+              "path_id": "A_a.chunk",
+              "members": [
+                {
+                  "chunk_id": "chunk-a",
+                  "accession": "0000000001-24-000001",
+                  "locator": "Synthetic table chunk-a"
+                }
+              ]
+            }
+          ],
+          "approved_xbrl_paths": []
+        },
+        {
+          "target_id": "A_b",
+          "accepted_value": "2",
+          "unit": "USD",
+          "period": "Q1",
+          "basis": "GAAP",
+          "precision": {
+            "precision_schema_version": "precision_record_v0.2",
+            "mode": "EXACT",
+            "quantum": null,
+            "absolute_tolerance": null,
+            "rounding_mode": null,
+            "source_encoding": "synthetic_frozen_exact",
+            "source_value": null,
+            "precision_rule_id": "precision_exact_v0.1",
+            "comparison_unit": "USD",
+            "reference_value": "2",
+            "interval": {
+              "lower": "2",
+              "upper": "2",
+              "lower_inclusive": true,
+              "upper_inclusive": true
+            }
+          },
+          "variant_family": "F",
+          "approved_chunk_paths": [
+            {
+              "path_id": "A_b.chunk",
+              "members": [
+                {
+                  "chunk_id": "chunk-a",
+                  "accession": "0000000001-24-000001",
+                  "locator": "Synthetic table chunk-a"
+                }
+              ]
+            }
+          ],
+          "approved_xbrl_paths": []
+        },
+        {
+          "target_id": "OUT_B",
+          "accepted_value": "10",
+          "unit": "USD",
+          "period": "Q1",
+          "basis": "GAAP",
+          "precision": {
+            "precision_schema_version": "precision_record_v0.2",
+            "mode": "EXACT",
+            "quantum": null,
+            "absolute_tolerance": null,
+            "rounding_mode": null,
+            "source_encoding": "synthetic_frozen_exact",
+            "source_value": null,
+            "precision_rule_id": "precision_exact_v0.1",
+            "comparison_unit": "USD",
+            "reference_value": "10",
+            "interval": {
+              "lower": "10",
+              "upper": "10",
+              "lower_inclusive": true,
+              "upper_inclusive": true
+            }
+          },
+          "variant_family": "F",
+          "approved_chunk_paths": [
+            {
+              "path_id": "OUT_B.chunk",
+              "members": [
+                {
+                  "chunk_id": "chunk-a",
+                  "accession": "0000000001-24-000001",
+                  "locator": "Synthetic table chunk-a"
+                }
+              ]
+            }
+          ],
+          "approved_xbrl_paths": []
+        },
+        {
+          "target_id": "B_a",
+          "accepted_value": "7",
+          "unit": "USD",
+          "period": "Q1",
+          "basis": "GAAP",
+          "precision": {
+            "precision_schema_version": "precision_record_v0.2",
+            "mode": "EXACT",
+            "quantum": null,
+            "absolute_tolerance": null,
+            "rounding_mode": null,
+            "source_encoding": "synthetic_frozen_exact",
+            "source_value": null,
+            "precision_rule_id": "precision_exact_v0.1",
+            "comparison_unit": "USD",
+            "reference_value": "7",
+            "interval": {
+              "lower": "7",
+              "upper": "7",
+              "lower_inclusive": true,
+              "upper_inclusive": true
+            }
+          },
+          "variant_family": "F",
+          "approved_chunk_paths": [
+            {
+              "path_id": "B_a.chunk",
+              "members": [
+                {
+                  "chunk_id": "chunk-a",
+                  "accession": "0000000001-24-000001",
+                  "locator": "Synthetic table chunk-a"
+                }
+              ]
+            }
+          ],
+          "approved_xbrl_paths": []
+        },
+        {
+          "target_id": "B_b",
+          "accepted_value": "3",
+          "unit": "USD",
+          "period": "Q1",
+          "basis": "GAAP",
+          "precision": {
+            "precision_schema_version": "precision_record_v0.2",
+            "mode": "EXACT",
+            "quantum": null,
+            "absolute_tolerance": null,
+            "rounding_mode": null,
+            "source_encoding": "synthetic_frozen_exact",
+            "source_value": null,
+            "precision_rule_id": "precision_exact_v0.1",
+            "comparison_unit": "USD",
+            "reference_value": "3",
+            "interval": {
+              "lower": "3",
+              "upper": "3",
+              "lower_inclusive": true,
+              "upper_inclusive": true
+            }
+          },
+          "variant_family": "F",
+          "approved_chunk_paths": [
+            {
+              "path_id": "B_b.chunk",
+              "members": [
+                {
+                  "chunk_id": "chunk-a",
+                  "accession": "0000000001-24-000001",
+                  "locator": "Synthetic table chunk-a"
+                }
+              ]
+            }
+          ],
+          "approved_xbrl_paths": []
+        }
+      ],
+      "answer_groups": [
+        {
+          "answer_group_id": "G1",
+          "multiplicity": 1,
+          "question_consistency_group": "LINK",
+          "variants": [
+            {
+              "variant_id": "A",
+              "variant_family": "F",
+              "numeric_target_id": "OUT_A",
+              "accepted_value": "10",
+              "unit": "USD",
+              "period": "Q1",
+              "basis": "GAAP",
+              "precision": {
+                "precision_schema_version": "precision_record_v0.2",
+                "mode": "EXACT",
+                "quantum": null,
+                "absolute_tolerance": null,
+                "rounding_mode": null,
+                "source_encoding": "synthetic_frozen_exact",
+                "source_value": null,
+                "precision_rule_id": "precision_exact_v0.1",
+                "comparison_unit": "USD",
+                "reference_value": "10",
+                "interval": {
+                  "lower": "10",
+                  "upper": "10",
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                }
+              },
+              "approved_chunk_paths": [
+                {
+                  "path_id": "OUT_A.chunk",
+                  "members": [
+                    {
+                      "chunk_id": "chunk-a",
+                      "accession": "0000000001-24-000001",
+                      "locator": "Synthetic table chunk-a"
+                    }
+                  ]
+                }
+              ],
+              "approved_xbrl_paths": [],
+              "sign_policy": "SIGNED_EXACT",
+              "derived_specification": {
+                "derived_target_id": "OUT_A",
+                "required_inputs": [
+                  {
+                    "input_role": "a",
+                    "source_target_id": "A_a",
+                    "source_answer_group_id": null
+                  },
+                  {
+                    "input_role": "b",
+                    "source_target_id": "A_b",
+                    "source_answer_group_id": null
+                  }
+                ],
+                "allowed_formula_variants": [
+                  {
+                    "formula_variant_id": "A.formula.v1",
+                    "canonical_formula": "(a - b)"
+                  }
+                ],
+                "output_unit": "USD",
+                "output_precision": {
+                  "precision_schema_version": "precision_record_v0.2",
+                  "mode": "EXACT",
+                  "quantum": null,
+                  "absolute_tolerance": null,
+                  "rounding_mode": null,
+                  "source_encoding": "synthetic_frozen_exact",
+                  "source_value": null,
+                  "precision_rule_id": "precision_exact_v0.1",
+                  "comparison_unit": "USD",
+                  "reference_value": "10",
+                  "interval": {
+                    "lower": "10",
+                    "upper": "10",
+                    "lower_inclusive": true,
+                    "upper_inclusive": true
+                  }
+                }
+              }
+            },
+            {
+              "variant_id": "B",
+              "variant_family": "F",
+              "numeric_target_id": "OUT_B",
+              "accepted_value": "10",
+              "unit": "USD",
+              "period": "Q1",
+              "basis": "GAAP",
+              "precision": {
+                "precision_schema_version": "precision_record_v0.2",
+                "mode": "EXACT",
+                "quantum": null,
+                "absolute_tolerance": null,
+                "rounding_mode": null,
+                "source_encoding": "synthetic_frozen_exact",
+                "source_value": null,
+                "precision_rule_id": "precision_exact_v0.1",
+                "comparison_unit": "USD",
+                "reference_value": "10",
+                "interval": {
+                  "lower": "10",
+                  "upper": "10",
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                }
+              },
+              "approved_chunk_paths": [
+                {
+                  "path_id": "OUT_B.chunk",
+                  "members": [
+                    {
+                      "chunk_id": "chunk-a",
+                      "accession": "0000000001-24-000001",
+                      "locator": "Synthetic table chunk-a"
+                    }
+                  ]
+                }
+              ],
+              "approved_xbrl_paths": [],
+              "sign_policy": "SIGNED_EXACT",
+              "derived_specification": {
+                "derived_target_id": "OUT_B",
+                "required_inputs": [
+                  {
+                    "input_role": "a",
+                    "source_target_id": "B_a",
+                    "source_answer_group_id": null
+                  },
+                  {
+                    "input_role": "b",
+                    "source_target_id": "B_b",
+                    "source_answer_group_id": null
+                  }
+                ],
+                "allowed_formula_variants": [
+                  {
+                    "formula_variant_id": "B.formula.v1",
+                    "canonical_formula": "(a + b)"
+                  }
+                ],
+                "output_unit": "USD",
+                "output_precision": {
+                  "precision_schema_version": "precision_record_v0.2",
+                  "mode": "EXACT",
+                  "quantum": null,
+                  "absolute_tolerance": null,
+                  "rounding_mode": null,
+                  "source_encoding": "synthetic_frozen_exact",
+                  "source_value": null,
+                  "precision_rule_id": "precision_exact_v0.1",
+                  "comparison_unit": "USD",
+                  "reference_value": "10",
+                  "interval": {
+                    "lower": "10",
+                    "upper": "10",
+                    "lower_inclusive": true,
+                    "upper_inclusive": true
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "judge_dependent_gold": {
+        "items": []
+      }
+    },
+    "slot_record": {
+      "slot_record_schema_version": "evaluation_slot_record_v0.2",
+      "adapter_version": "evaluation_slot_record_adapter_v0.2",
+      "question_id": "SYNTH_Q",
+      "scheduled_replicate_id": "rep-1",
+      "scheduled_slot_id": "slot-1",
+      "effective_attempt_id": "run-1",
+      "replacement_for_slot_id": null,
+      "execution_status": "RUN_COMPLETED",
+      "agent_output_present": true,
+      "infrastructure_exhausted": false,
+      "observable_runtime_references": [],
+      "attempts": [
+        {
+          "attempt_id": "run-1",
+          "execution_status": "RUN_COMPLETED",
+          "replacement_for_attempt_id": null
+        }
+      ],
+      "events": []
+    },
+    "agent_output_json": "{\"answer\":\"Synthetic answer\",\"answer_claim_ids\":[\"C001\"],\"calculations\":[{\"calculation_id\":\"K001\",\"expression\":\"I001-I002\",\"inputs\":[{\"basis\":\"GAAP\",\"input_id\":\"I001\",\"name\":\"a\",\"period\":\"Q1\",\"provenance\":[{\"accession\":\"0000000001-24-000001\",\"chunk_id\":\"chunk-a\",\"locator\":\"Synthetic table chunk-a\",\"provenance_type\":\"chunk\"}],\"source_type\":\"cited_fact\",\"unit\":\"USD\",\"value\":12},{\"basis\":\"GAAP\",\"input_id\":\"I002\",\"name\":\"b\",\"period\":\"Q1\",\"provenance\":[{\"accession\":\"0000000001-24-000001\",\"chunk_id\":\"chunk-a\",\"locator\":\"Synthetic table chunk-a\",\"provenance_type\":\"chunk\"}],\"source_type\":\"cited_fact\",\"unit\":\"USD\",\"value\":3}],\"result\":{\"display_value\":\"10\",\"unit\":\"USD\",\"value\":10}}],\"claims\":[{\"calculation_ids\":[\"K001\"],\"claim_id\":\"C001\",\"claim_type\":\"numeric\",\"entities\":[\"SYNTH\"],\"material\":true,\"numeric_value\":{\"basis\":\"GAAP\",\"display_value\":\"10\",\"period\":\"Q1\",\"unit\":\"USD\",\"value\":10},\"period\":\"Q1\",\"provenance\":[{\"accession\":\"0000000001-24-000001\",\"chunk_id\":\"chunk-a\",\"locator\":\"Synthetic table chunk-a\",\"provenance_type\":\"chunk\"}],\"requires_citation\":true,\"temporal_role\":\"current\",\"text\":\"Synthetic numeric claim\"}],\"q_id\":\"SYNTH_Q\",\"schema_version\":\"agent_output_v0.1.1\"}\n",
+    "agent_output_sha256": "2f8732f8568e673bc10165f4e9852bb7b4b559796c9ebb1071322504460ee1c2",
+    "chunk_catalog": [
+      {
+        "chunk_id": "chunk-a",
+        "accession": "0000000001-24-000001",
+        "locator": "Synthetic table chunk-a",
+        "source_allowed": true
+      },
+      {
+        "chunk_id": "chunk-b",
+        "accession": "0000000001-24-000001",
+        "locator": "Synthetic table chunk-b",
+        "source_allowed": true
+      }
+    ],
+    "normalized_xbrl_map": null,
+    "frozen_xbrl_fact_index": null,
+    "xbrl_numeric_values": []
+  }
+}

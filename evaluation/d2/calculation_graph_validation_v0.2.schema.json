@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/calculation_graph_validation_v0.2.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "graph_schema_version": {
+      "const": "calculation_graph_validation_v0.2"
+    },
+    "valid": {
+      "type": "boolean"
+    },
+    "invalid_calculation_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "dependent_claim_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "const": "INVALID_CALCULATION_REFERENCE_GRAPH"
+      },
+      "maxItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "graph_schema_version",
+    "valid",
+    "invalid_calculation_ids",
+    "dependent_claim_ids",
+    "reason_codes"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "valid": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "invalid_calculation_ids": {
+            "maxItems": 0
+          },
+          "dependent_claim_ids": {
+            "maxItems": 0
+          },
+          "reason_codes": {
+            "const": []
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "reason_codes": {
+            "const": [
+              "INVALID_CALCULATION_REFERENCE_GRAPH"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

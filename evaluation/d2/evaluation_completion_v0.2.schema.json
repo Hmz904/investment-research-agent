@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/evaluation_completion_v0.2.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "evaluation_status": {
+      "enum": [
+        "EVAL_COMPLETE",
+        "EVAL_INCOMPLETE"
+      ]
+    },
+    "scheduled_slot_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "scored_slot_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "missing_infrastructure_slot_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "evaluation_status",
+    "scheduled_slot_count",
+    "scored_slot_count",
+    "missing_infrastructure_slot_ids"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "evaluation_status": {
+            "const": "EVAL_COMPLETE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "missing_infrastructure_slot_ids": {
+            "maxItems": 0
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "missing_infrastructure_slot_ids": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}

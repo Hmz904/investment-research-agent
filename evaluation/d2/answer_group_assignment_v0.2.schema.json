@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesisagent.local/schemas/answer_group_assignment_v0.2.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "assignment_schema_version": {
+      "const": "answer_group_assignment_v0.2"
+    },
+    "assignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "answer_group_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "occurrence": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "claim_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "answer_group_id",
+          "occurrence",
+          "claim_id"
+        ]
+      }
+    },
+    "extra_claim_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "assignment_schema_version",
+    "assignments",
+    "extra_claim_ids"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "historical_manifest_path": "/mnt/d/projects/thesisagent-d2-cleanroom/evaluation/d2/D2_FREEZE_CANDIDATE_SHA256.txt",
+  "historical_manifest_sha256": "48df2edd4b8d6e7362f27404d71b8e833860f465b6ee1d5fca15b10416ebd044",
+  "imported": [
+    {
+      "source_path": "/mnt/d/projects/thesisagent-d2-cleanroom/evaluation/d2/deterministic_evaluator_prereg_v0.1.md",
+      "import_path": "evaluation/d2/deterministic_evaluator_prereg_v0.1.md",
+      "historical_sha256": "4b7d0fc5c6106bedadcd1fccfeaee79a9d0ff821a1bc4b84cca0a84c68567bcc",
+      "verified": true
+    },
+    {
+      "source_path": "/mnt/d/projects/thesisagent-d2-cleanroom/evaluation/d2/deterministic_evaluator_contract_supplement_v0.1.md",
+      "import_path": "evaluation/d2/deterministic_evaluator_contract_supplement_v0.1.md",
+      "historical_sha256": "0afc8e053df7c124f5903b6e8c25632447f347a3bd089c592c707800191bbd13",
+      "verified": true
+    },
+    {
+      "source_path": "/mnt/d/projects/thesisagent-d2-cleanroom/evaluation/d2/deterministic_evaluator_spec_v0.1.md",
+      "import_path": "evaluation/d2/deterministic_evaluator_spec_v0.1.md",
+      "historical_sha256": "78c8ff2b31e8a8941723cfc2542948dbf310f7f26a6a17b610d5b3a25c3fba4e",
+      "verified": true
+    },
+    {
+      "source_path": "/mnt/d/projects/thesisagent-d2-cleanroom/evaluation/d2/deterministic_evaluator_output_schema_v0.1.json",
+      "import_path": "evaluation/d2/deterministic_evaluator_output_schema_v0.1.json",
+      "historical_sha256": "46a83f61ad319927f4317a67f24947728b10f189886d706ad9f38339efb58eba",
+      "verified": true
+    },
+    {
+      "source_path": "/mnt/d/projects/thesisagent-d2-cleanroom/evaluation/d2/evaluation_slot_record_v0.1.schema.json",
+      "import_path": "evaluation/d2/evaluation_slot_record_v0.1.schema.json",
+      "historical_sha256": "3875d478a37d122dd656b2d162b625195af678cb1927949d39038a4da2b455fd",
+      "verified": true
+    },
+    {
+      "source_path": "/mnt/d/projects/thesisagent-d2-cleanroom/evaluation/d2/evaluator_status_v0.1.schema.json",
+      "import_path": "evaluation/d2/evaluator_status_v0.1.schema.json",
+      "historical_sha256": "977e4e51a71de495721619bd06fb0cffdfaed2792d1ba8f85de48ff03e08b18e",
+      "verified": true
+    },
+    {
+      "source_path": "/mnt/d/projects/thesisagent-d2-cleanroom/evaluation/d2/gold_bundle_v0.1.schema.json",
+      "import_path": "evaluation/d2/gold_bundle_v0.1.schema.json",
+      "historical_sha256": "9c777bfa104756c729f113c7cfb6992442896b39d334f6ae6fe40b927ef1d2a9",
+      "verified": true
+    },
+    {
+      "source_path": "/mnt/d/projects/thesisagent-d2-cleanroom/evaluation/d2/normalized_xbrl_map_v0.1.schema.json",
+      "import_path": "evaluation/d2/normalized_xbrl_map_v0.1.schema.json",
+      "historical_sha256": "9ba412fcbee47c04a972d00ccd5d31c1b35bb5f762977c650cdfc0522bf3651d",
+      "verified": true
+    },
+    {
+      "source_path": "/mnt/d/projects/thesisagent-d2-cleanroom/evaluation/d2/precision_record_v0.1.schema.json",
+      "import_path": "evaluation/d2/precision_record_v0.1.schema.json",
+      "historical_sha256": "a568e8e2e451c315b713e5e14a1217ee03385fe364aca54fe88be8d95a2bcec8",
+      "verified": true
+    }
+  ],
+  "unauthenticated_sources_used": false
+}

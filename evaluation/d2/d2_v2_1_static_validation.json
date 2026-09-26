@@ -1,0 +1,52 @@
+{
+  "TEST_accessed": false,
+  "audit_expectations_changed": [
+    "offgrid_gold",
+    "inconsistent_derived_output_precision"
+  ],
+  "audit_expectations_unchanged": 148,
+  "audit_input_policy": "unchanged original constructors and request bytes; expectation-only successor representation",
+  "audit_probe_count": 150,
+  "d19_original_bytes_unchanged": true,
+  "d19_original_input_sha256": "e0fb2e80d3cee77ae99fc383c3e3e394c16bb54769f9063d03384be1c7e758b4",
+  "dev_passed": 17,
+  "dev_total": 17,
+  "fixture_requests_shape_validated": 12,
+  "historical_257_cases_unchanged": true,
+  "historical_harness_identity_sha256": "f0c0ee4320be80ccfe6d053308ed7f52ee62088190541c5f5066c7dc8aa978d9",
+  "historical_manifest_entries": {
+    "D2_V2_AUDIT_REGRESSION_FREEZE_SHA256.txt": 7,
+    "D2_V2_TEST_AUTHOR_FREEZE_SHA256.txt": 27
+  },
+  "historical_normative_imports_verified": 9,
+  "judge_used": false,
+  "matrix": {
+    "CONTRACT_DECISION_REQUIRED": 0,
+    "COVERED_DETERMINISTIC": 39,
+    "PENDING_JUDGE": 3
+  },
+  "new_schemas_validated": [
+    "precision_record_v0.2.1.schema.json"
+  ],
+  "patch_test_cases": [
+    {
+      "cases": 8,
+      "name": "test_S1_quantum_classes"
+    },
+    {
+      "cases": 2,
+      "name": "test_S1_D19_exact_and_derived_quantum"
+    },
+    {
+      "cases": 1,
+      "name": "test_S1_nonempty_interval_is_diagnostic"
+    }
+  ],
+  "patch_test_count": 11,
+  "precision_projections_shape_validated": 30,
+  "production_evaluator_imported": false,
+  "production_evaluator_tests_run": false,
+  "real_agent_output_used": false,
+  "successor_expectation_sha256": "0aa76243856afde1e2d67193ad87a0b17e77dc72a8254b8e93496e52445f0357",
+  "validation_kind": "static_authoring_only"
+}
