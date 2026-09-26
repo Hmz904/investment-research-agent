@@ -21,6 +21,7 @@ from .validation_v0_2 import canonical_json_bytes, require, result_sha256
 from .verify_candidate_v0_2 import ROOT, verify_frozen_contracts
 from .verify_repair1_v0_2 import verify as verify_repair1
 from .dev_numeric_self_consistency_v0_2_1 import validate_dev
+from .prescoring_gate_v0_2_1 import validate_gold_integrity_before_scoring
 
 HISTORICAL = 'tests/evaluation/test_deterministic_evaluator_contract_v0_2.py'
 SUPERSEDED = HISTORICAL + '::test_D10_quantum_exact_power_and_half_even[1.24-1.23-0.1-1.23-1.23-False-False]'
@@ -212,7 +213,20 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     sys.path.insert(0, str(ROOT/'tests/evaluation'))
-    frozen = guards()
+    # Mandatory checkpoint precondition: no test/harness/evaluator entrypoint
+    # may execute before frozen inputs and all 17 DEV targets pass integrity.
+    try:
+        frozen = guards()
+        dev_integrity = validate_gold_integrity_before_scoring(validate_dev)
+    except Exception as exc:
+        # Diagnostic only: no scoring results or aggregate scoring payload.
+        args.output.write_bytes(canonical_json_bytes(dict(
+            checkpoint_valid=False, aggregate_reportability='NON-REPORTABLE',
+            evaluator_repair_and_rerun_required=True,
+            enforcement_mode='MANDATORY_PRECHECK',
+            gold_integrity_error=f'{type(exc).__name__}: {exc}')))
+        print(args.mode, 'BLOCKED: pre-scoring integrity precheck failed', flush=True)
+        raise SystemExit(1) from exc
     if args.mode == 'tests':
         result, log = test_accounting()
         args.output.with_suffix('.txt').write_text(log)
@@ -222,7 +236,7 @@ def main():
         result = determinism()
     require(guards() == frozen, 'Immutable artifacts changed during validation')
     result = dict(contract_interpretation='d2_contract_v0.2.1', patch_commit='0b6d22fc563dec40b0ae0ad643b30d0d1792d207',
-                  frozen_manifests=frozen, dev_integrity=validate_dev(), validation=result)
+                  frozen_manifests=frozen, dev_integrity=dev_integrity, validation=result)
     args.output.write_bytes(canonical_json_bytes(result))
     print(args.mode, 'PASS', digest(args.output.read_bytes()), flush=True)
 

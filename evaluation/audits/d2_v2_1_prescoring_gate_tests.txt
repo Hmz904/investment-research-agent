@@ -1,0 +1,30 @@
+ORDERING REGRESSION
+tests BLOCKED: pre-scoring integrity precheck failed
+{"events": ["frozen_inputs", "gold_integrity_precheck"], "mode": "tests", "scoring_invocation_count": 0, "valid_gold": false}
+.harness BLOCKED: pre-scoring integrity precheck failed
+{"events": ["frozen_inputs", "gold_integrity_precheck"], "mode": "harness", "scoring_invocation_count": 0, "valid_gold": false}
+.determinism BLOCKED: pre-scoring integrity precheck failed
+{"events": ["frozen_inputs", "gold_integrity_precheck"], "mode": "determinism", "scoring_invocation_count": 0, "valid_gold": false}
+.tests PASS 95739eaabd336d47b910fd8ff991d31eae9fcc9d336c8c98ef76f0c78a54bbcb
+{"events": ["frozen_inputs", "gold_integrity_precheck", "scoring_callback", "frozen_inputs"], "mode": "tests", "scoring_invocation_count": 1, "valid_gold": true}
+.harness PASS 6bfa96a4089efbbd8dd59d5b137f33ebafde4b73ba4feda706cf139810dd7f65
+{"events": ["frozen_inputs", "gold_integrity_precheck", "scoring_callback", "frozen_inputs"], "mode": "harness", "scoring_invocation_count": 1, "valid_gold": true}
+.determinism PASS 6b46b5843b9dfb80edef82b48944c412da164ed5839217886861f9344575fb11
+{"events": ["frozen_inputs", "gold_integrity_precheck", "scoring_callback", "frozen_inputs"], "mode": "determinism", "scoring_invocation_count": 1, "valid_gold": true}
+.
+6 passed in 3.38s
+
+FROZEN SUITE ACCOUNTING: 256 active historical, one superseded unchanged assertion
+...............................................................F........ [ 24%]
+........................................................................ [ 48%]
+........................................................................ [ 72%]
+........................................................................ [ 96%]
+...........                                                              [100%]
+=================================== FAILURES ===================================
+_ test_D10_quantum_exact_power_and_half_even[1.24-1.23-0.1-1.23-1.23-False-False] _
+tests/evaluation/test_deterministic_evaluator_contract_v0_2.py:205: in test_D10_quantum_exact_power_and_half_even
+    assert z['metrics']['complete_numeric_answer'] is match
+E   assert True is False
+=========================== short test summary info ============================
+FAILED tests/evaluation/test_deterministic_evaluator_contract_v0_2.py::test_D10_quantum_exact_power_and_half_even[1.24-1.23-0.1-1.23-1.23-False-False]
+1 failed, 298 passed in 61.45s (0:01:01)
